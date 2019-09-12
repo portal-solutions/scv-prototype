@@ -1,0 +1,108 @@
+{
+	"welcome": {
+		"document-title": "Welcome \u2014 Single client view",
+		"message": "<i>Single client view</i> is an aggregated, consistent, and holistic representation of the data held by the Government of Canada about its users that can be viewed in one centralized location.",
+		"more-information": "For more information, <0>click here</0>.",
+		"page-identifier": "SCV-0001-EN",
+		"page-title": "Single client view"
+	},
+
+	"wet-boew": {
+		"footer": {
+			"brand": {
+				"description": "About this site",
+				"mobile": {
+					"href": "https://www.canada.ca/en/html",
+					"text": "Mobile applications"
+				},
+				"new-site": {
+					"href": "https://www1.canada.ca/en/newsite.html",
+					"text": "About Canada.ca"
+				},
+				"privacy": {
+					"href": "https://www.canada.ca/en/transparency/html",
+					"text": "Privacy"
+				},
+				"social": {
+					"href": "https://www.canada.ca/en/html",
+					"text": "Social media"
+				},
+				"terms": {
+					"href": "https://www.canada.ca/en/transparency/html",
+					"text": "Terms and conditions"
+				}
+			},
+			"info": {
+				"contact": {
+					"href": "https://www.canada.ca/en/html",
+					"text": "Contact us"
+				},
+				"departments": {
+					"href": "https://www.canada.ca/en/government/dept.html",
+					"text": "Departments and agencies"
+				},
+				"description": "About government",
+				"laws": {
+					"href": "https://www.canada.ca/en/government/system/html",
+					"text": "Treaties, laws and regulations"
+				},
+				"news": {
+					"href": "https://www.canada.ca/en/html",
+					"text": "News"
+				},
+				"open-government": {
+					"href": "https://open.canada.ca/en/",
+					"text": "Open government"
+				},
+				"prime-minister": {
+					"href": "https://pm.gc.ca/eng",
+					"text": "Prime Minister"
+				},
+				"public-service": {
+					"href": "https://www.canada.ca/en/government/publicservice.html",
+					"text": "Public service and military"
+				},
+				"reporting": {
+					"href": "https://www.canada.ca/en/transparency/html",
+					"text": "Government-wide reporting"
+				},
+				"system": {
+					"href": "https://www.canada.ca/en/government/html",
+					"text": "How government works"
+				}
+			},
+			"top-of-page": "Top of Page",
+			"wordmark": {
+				"description": "Symbol of the Government of Canada",
+				"href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
+			}
+		},
+		"header": {
+			"brand-img-href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/sig-blk-en.svg",
+			"brand-logo": {
+				"href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
+			},
+			"brand-text": "Government of Canada",
+			"breadcrumbs": {
+				"description": "You are here:",
+				"home": {
+					"href": "https://www.canada.ca/en.html",
+					"text": "Home"
+				}
+			},
+			"canada-href": "https://www.canada.ca/en.html",
+			"language-lang": "fr",
+			"language-selection": "Language selection",
+			"language-toggle": "Français",
+			"skip-links": {
+				"about-government": "Skip to \"About government\"",
+				"main-content": "Skip to main content"
+			}
+		},
+		"page-details": {
+			"date-modified": "Date modified:",
+			"screen-identifier": "Screen identifier:",
+			"version": "Version:"
+		}
+	}
+}

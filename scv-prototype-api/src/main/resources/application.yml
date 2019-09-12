@@ -1,0 +1,22 @@
+# ===================================================================
+# Standard Spring Boot properties...  Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+spring:
+
+  application: # ContextIdApplicationContextInitializer
+    name: scv-prototype-api
+
+  profiles:
+    include: overrides # the order is important; keep 'overrides' at the end
+
+# ===================================================================
+# Application specific properties...
+# ===================================================================
+
+application:
+  security:
+    jwt-resolver:
+      expiration-time: 20m
+      secret: # must be set externally

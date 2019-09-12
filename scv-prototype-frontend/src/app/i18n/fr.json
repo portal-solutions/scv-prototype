@@ -1,0 +1,108 @@
+{
+	"welcome": {
+		"document-title": "Bienvenue \u2014 Vue client unique",
+		"message": "La <i>vue client unique</i> est une représentation globale, cohérente et holistique des données détenues par le gouvernement du Canada sur ses utilisateurs et pouvant être visualisées à partir d’un emplacement centralisé.",
+		"more-information": "Pour plus d'informations, <0>cliquez ici</0>.",
+		"page-identifier": "SCV-0001-FR",
+		"page-title": "Vue client unique"
+	},
+
+	"wet-boew": {
+		"footer": {
+			"brand": {
+				"description": "À propos du site",
+				"mobile": {
+					"href": "https://www.canada.ca/fr/html",
+					"text": "Applications mobiles"
+				},
+				"new-site": {
+					"href": "https://www1.canada.ca/fr/nouveausite.html",
+					"text": "À propos de Canada.ca"
+				},
+				"privacy": {
+					"href": "https://www.canada.ca/fr/transparence/confidentialite.html",
+					"text": "Confidentialité"
+				},
+				"social": {
+					"href": "https://www.canada.ca/fr/sociaux.html",
+					"text": "Médias sociaux"
+				},
+				"terms": {
+					"href": "https://www.canada.ca/fr/transparence/avis.html",
+					"text": "Avis"
+				}
+			},
+			"info": {
+				"contact": {
+					"href": "https://www.canada.ca/fr/html",
+					"text": "Contactez-nous"
+				},
+				"departments": {
+					"href": "https://www.canada.ca/fr/gouvernement/min.html",
+					"text": "Ministères et organismes"
+				},
+				"description": "Au sujet du gouvernement",
+				"laws": {
+					"href": "https://www.canada.ca/fr/gouvernement/systeme/lois.html",
+					"text": "Traités, lois et règlements"
+				},
+				"news": {
+					"href": "https://www.canada.ca/fr/nouvelles.html",
+					"text": "Nouvelles"
+				},
+				"open-government": {
+					"href": "https://ouvert.canada.ca/",
+					"text": "Gouvernement ouvert"
+				},
+				"prime-minister": {
+					"href": "https://pm.gc.ca/fra",
+					"text": "Premier ministre"
+				},
+				"public-service": {
+					"href": "https://www.canada.ca/fr/gouvernement/fonctionpublique.html",
+					"text": "Fonction publique et force militaire"
+				},
+				"reporting": {
+					"href": "https://www.canada.ca/fr/transparence/rapports.html",
+					"text": "Rapports à l'échelle du gouvernement"
+				},
+				"system": {
+					"href": "https://www.canada.ca/fr/gouvernement/systeme.html",
+					"text": "Comment le gouvernement fonctionne"
+				}
+			},
+			"top-of-page": "Haut de la page",
+			"wordmark": {
+				"description": "Symbole du gouvernement du Canada",
+				"href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
+			}
+		},
+		"header": {
+			"brand-img-href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/sig-blk-fr.svg",
+			"brand-logo": {
+				"href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
+			},
+			"brand-text": "Gouvernement du Canada",
+			"breadcrumbs": {
+				"description": "Vous êtes ici :",
+				"home": {
+					"href": "https://www.canada.ca/fr.html",
+					"text": "Accueil"
+				}
+			},
+			"canada-href": "https://www.canada.ca/fr.html",
+			"language-lang": "en",
+			"language-selection": "Sélection de la langue",
+			"language-toggle": "English",
+			"skip-links": {
+				"about-government": "Passer à « Au sujet du gouvernement »",
+				"main-content": "Passer au contenu principal"
+			}
+		},
+		"page-details": {
+			"date-modified": "Date de modification :",
+			"screen-identifier": "Identificateur d'écran :",
+			"version": "Version :"
+		}
+	}
+}

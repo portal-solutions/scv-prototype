@@ -1,0 +1,10 @@
+dl dt {
+	float: left;
+	clear: both;
+}
+
+dl dd {
+	float: left;
+	margin-left: 5px;
+	margin-bottom: 3px;
+}
