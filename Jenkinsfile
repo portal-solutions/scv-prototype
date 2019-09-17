@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('error') {
       steps {
-        dir(path: 'scv-pipeline-api') {
+        dir(path: 'scv-prototype-api') {
           sh 'mvn clean install'
           archiveArtifacts '**/*.jar'
         }
