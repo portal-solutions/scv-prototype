@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('error') {
+    stage('Maven Build') {
       steps {
         dir(path: 'scv-prototype-api') {
           sh 'mvn clean install'
