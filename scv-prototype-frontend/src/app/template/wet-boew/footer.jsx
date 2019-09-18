@@ -9,11 +9,11 @@ import './footer.css';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Footer = ({ brandLinks, navLinks }) => {
+export const Footer = (props) => {
 	const { t } = useTranslation();
 
 	/*
-	 * TODO :: GjB :: render passed-in brandLinks and navLinks
+	 * TODO :: GjB :: render passed-in props.brandLinks and props.navLinks
 	 */
 
 	return (
@@ -59,5 +59,3 @@ const Footer = ({ brandLinks, navLinks }) => {
 		</footer>
 	);
 }
-
-export { Footer };

@@ -6,8 +6,6 @@ import { useEffect } from "react";
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const useDocumentTitle = (documentTitle) => {
+export const useDocumentTitle = (documentTitle) => {
 	useEffect(() => { document.title = documentTitle }, [ documentTitle ]);
 }
-
-export { useDocumentTitle };

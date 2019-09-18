@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AppMetadataContext, PageMetadataContext } from '../../context';
+import { PageMetadataContext } from '../../context';
 import './page-details.css';
 
 /**
@@ -10,14 +10,14 @@ import './page-details.css';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const PageDetails = () => {
+export const PageDetails = (props) => {
 	const { t } = useTranslation();
-	const { dateModified, version } = useContext(AppMetadataContext);
-	const { pageIdentifier } = useContext(PageMetadataContext);
+
+	const { applicationDateModified, applicationVersion, pageIdentifier } = useContext(PageMetadataContext);
 
 	return (
 		<div className="pagedetails clearfix">
-			{ (pageIdentifier || dateModified || version) &&
+			{ (pageIdentifier || applicationDateModified || applicationVersion) &&
 				<dl id="wb-dtmd">
 					{ pageIdentifier &&
 						<>
@@ -25,16 +25,16 @@ const PageDetails = () => {
 							<dd property="identifier">{ pageIdentifier }</dd>
 						</>
 					}
-					{ dateModified &&
+					{ applicationDateModified &&
 						<>
 							<dt>{ t('wet-boew.page-details.date-modified') }</dt>
-							<dd><time property="dateModified">{ dateModified }</time></dd>
+							<dd><time property="dateModified">{ applicationDateModified }</time></dd>
 						</>
 					}
-					{ version &&
+					{ applicationVersion &&
 						<>
 							<dt>{ t('wet-boew.page-details.version') }</dt>
-							<dd property="version">{ version }</dd>
+							<dd property="version">{ applicationVersion }</dd>
 						</>
 					}
 				</dl>
@@ -42,5 +42,3 @@ const PageDetails = () => {
 		</div>
 	);
 }
-
-export { PageDetails };

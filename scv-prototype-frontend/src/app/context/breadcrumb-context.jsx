@@ -6,11 +6,6 @@ import { createContext } from 'react';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const BreadcrumbContext = createContext([
-	{ href: '/', text: 'Breadcrumb' }
-]);
-
-const BreadcrumbConsumer = BreadcrumbContext.Consumer;
-const BreadcrumbProvider = BreadcrumbContext.Provider;
-
-export { BreadcrumbConsumer, BreadcrumbContext, BreadcrumbProvider };
+export const BreadcrumbContext = createContext();
+export const BreadcrumbConsumer = BreadcrumbContext.Consumer;
+export const BreadcrumbProvider = BreadcrumbContext.Provider;

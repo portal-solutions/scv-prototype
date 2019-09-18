@@ -1,5 +1,8 @@
+import preval from 'preval.macro';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BreadcrumbProvider, PageMetadataProvider } from '../../context';
+import pkg from '../../../../package.json';
 import { Footer } from './footer';
 import { Header } from './header';
 import { PageDetails } from './page-details';
@@ -12,31 +15,37 @@ import './template.css';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Template = ({ children }) => {
-	const [ pageIdentifier, setPageIdentifier] = useState();
-	const [ pageTitle, setPageTitle ] = useState();
+export const Template = (props) => {
+	const { t } = useTranslation();
+
+	const [ applicationDateModified, setApplicationDateModified ] = useState(preval`module.exports = new Date().toISOString().slice(0, 10)`);
+	const [ applicationVersion, setApplicationVersion ] = useState(pkg.version);
+	const [ breadcrumbs, setBreadcrumbs ] = useState([]);
+	const [ pageIdentifier, setPageIdentifier] = useState(t('wet-boew.header.default-page-identifier'));
+	const [ pageTitle, setPageTitle ] = useState(t('wet-boew.header.default-page-title'));
+
+	const breadcrumbContext = {
+		breadcrumbs, setBreadcrumbs
+	};
 
 	const pageMetadataContext = {
-		pageIdentifier, pageTitle,
-		setPageTitle: (pageTitle) => setPageTitle(pageTitle),
-		setPageIdentifier: (pageIdentifier) => setPageIdentifier(pageIdentifier)
+		applicationDateModified, setApplicationDateModified,
+		applicationVersion, setApplicationVersion,
+		pageIdentifier, setPageIdentifier,
+		pageTitle, setPageTitle
 	};
 
 	return (
-		<>
-			<BreadcrumbProvider value={ [{ href: '/test', text: 'test' }] }>
+		<PageMetadataProvider value={ pageMetadataContext }>
+			<BreadcrumbProvider value={ breadcrumbContext }>
 				<Header></Header>
 				<main property="mainContentOfPage" className="container" typeof="WebPageElement">
-					<PageMetadataProvider value={ pageMetadataContext }>
-						<h1 property="name" id="wb-cont">{ pageTitle }</h1>
-						<div className="content">{ children }</div>
-						<PageDetails></PageDetails>
-					</PageMetadataProvider>
+					<h1 property="name" id="wb-cont">{ pageTitle }</h1>
+					<div className="content">{ props.children }</div>
+					<PageDetails></PageDetails>
 				</main>
 				<Footer></Footer>
 			</BreadcrumbProvider>
-		</>
+		</PageMetadataProvider>
 	);
 }
-
-export { Template };

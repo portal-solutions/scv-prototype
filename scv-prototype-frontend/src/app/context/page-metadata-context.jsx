@@ -7,15 +7,6 @@ import { createContext } from 'react';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const PageMetadataContext = createContext({
-	pageIdentifier: 'SCV-0000',
-	pageTitle: 'Page Title',
-
-	setPageTitle: () => {},
-	setPageIdentifier: () => {}
-});
-
-const PageMetadataConsumer = PageMetadataContext.Consumer;
-const PageMetadataProvider = PageMetadataContext.Provider;
-
-export { PageMetadataConsumer, PageMetadataContext, PageMetadataProvider };
+export const PageMetadataContext = createContext();
+export const PageMetadataConsumer = PageMetadataContext.Consumer;
+export const PageMetadataProvider = PageMetadataContext.Provider;

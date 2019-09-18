@@ -7,15 +7,13 @@ import './breadcrumb-item.css';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const BreadcrumbItem = ({ href, text }) => {
+export const BreadcrumbItem = (props) => {
 	return (
 		<li>
-			{ href
-				? (<a href={ href }>{ text }</a>)
-				: (<span>{ text }</span>)
+			{ props.href
+				? (<a href={ props.href }>{ props.text }</a>)
+				: (<span>{ props.text }</span>)
 			}
 		</li>
 	);
 }
-
-export { BreadcrumbItem };

@@ -8,6 +8,8 @@
 	},
 
 	"wet-boew": {
+		"default-page-identifier": "SCV-0000-FR",
+		"default-page-title": "Vue client unique",
 		"footer": {
 			"brand": {
 				"description": "À propos du site",

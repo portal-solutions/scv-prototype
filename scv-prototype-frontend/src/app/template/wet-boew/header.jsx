@@ -10,7 +10,7 @@ import './header.css';
  * @author Greg Baker <gregory.j.baker@hrsc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Header = () => {
+export const Header = (props) => {
 	const { i18n, t } = useTranslation();
 
 	return (
@@ -69,5 +69,3 @@ const Header = () => {
 		</>
 	);
 }
-
-export { Header };

@@ -11,25 +11,14 @@ import './welcome.css';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Welcome = () => {
+export const Welcome = (props) => {
 	const { t } = useTranslation();
 
 	useDocumentTitle(t('welcome.document-title'));
 
-	/*
-	* FIXME :: GjB :: setBreadcrumbs causes "Maximum update depth exceeded" error
-	*/
-
-	// const { setBreadcrumbs } = useContext(BreadcrumbContext);
-	// setBreadcrumbs([ { text: 'Foo', href: 'https://www.canada.ca/' } ]);
-
-	/*
-	 * FIXME :: GjB :: calling these two functions causes the component to re-render twice (why?)
-	 */
-
 	const { setPageIdentifier, setPageTitle } = useContext(PageMetadataContext);
 	setPageIdentifier(t('welcome.page-identifier'));
-	setPageTitle(t('welcome.page-title', { name: 'Greg' }));
+	setPageTitle(t('welcome.page-title'));
 
 	return (
 		<>
@@ -42,5 +31,3 @@ const Welcome = () => {
 		</>
 	);
 }
-
-export { Welcome };
