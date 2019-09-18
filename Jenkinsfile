@@ -15,7 +15,7 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-frontend') {
 							sh 'npm install && npm run-script dist'
-							archiveArtifacts '**/scv-prototype-frontend.zip'
+							archiveArtifacts '**/scv-prototype-frontend.tgz'
 						}
 					}
 				}
