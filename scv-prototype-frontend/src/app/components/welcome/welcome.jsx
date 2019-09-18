@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { PageMetadataContext } from '../../context';
+import { BreadcrumbContext, PageMetadataContext } from '../../context';
 import { useDocumentTitle } from '../../hooks';
 import './welcome.css';
 
@@ -14,11 +14,13 @@ import './welcome.css';
 export const Welcome = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('welcome.document-title'));
-
+	const { setBreadcrumbs } = useContext(BreadcrumbContext);
 	const { setPageIdentifier, setPageTitle } = useContext(PageMetadataContext);
-	setPageIdentifier(t('welcome.page-identifier'));
-	setPageTitle(t('welcome.page-title'));
+
+	useDocumentTitle(t('welcome.document-title'));
+	useEffect(() => setBreadcrumbs({ foo: 'bar'}), []);
+	useEffect(() => setPageIdentifier(t('welcome.page-identifier')), []);
+	useEffect(() => setPageTitle(t('welcome.page-title')), []);
 
 	return (
 		<>
