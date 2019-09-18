@@ -20,7 +20,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"dist": "react-scripts build && zip -r scv-prototype-frontend.zip . -i dist/app",
+		"dist": "react-scripts build && zip -r scv-prototype-frontend.zip . -i build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
