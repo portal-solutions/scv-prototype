@@ -7,6 +7,7 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-api') {
 							sh 'mvn clean package spring-boot:repackage install'
+							sh 'docker build --build-arg JAR_FILE=$(find -type f -name *.jar)'
 							archiveArtifacts '**/*.jar'
 						}
 					}
