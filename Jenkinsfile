@@ -1,14 +1,12 @@
 pipeline {
 	agent any
-
-	envionment {
-		AZURE_CR_CREDS = credentials('portalsolutions-cr')
-	}
-
 	stages {
 		stage('Build API & frontend') {
 			parallel {
 				stage('Build API') {
+					envionment {
+						AZURE_CR_CREDS = credentials('portalsolutions-cr')
+					}
 					steps {
 						dir(path: 'scv-prototype-api') {
 							sh 'mvn clean package spring-boot:repackage install'
