@@ -1,5 +1,10 @@
 pipeline {
 	agent any
+
+	envionment {
+		AZURE_CR_CREDS = credentials('portalsolutions-cr')
+	}
+
 	stages {
 		stage('Build API & frontend') {
 			parallel {
@@ -7,7 +12,8 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-api') {
 							sh 'mvn clean package spring-boot:repackage install'
-							sh 'docker build -t portal-solutions/scv-prototype-api:latest --build-arg JAR_FILE=$(find -type f -name *.jar) .'
+							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:latest --build-arg JAR_FILE=$(find -type f -name *.jar) .'
+							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scf-prototype-api'
 							archiveArtifacts '**/*.jar'
 						}
 					}
