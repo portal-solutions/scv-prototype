@@ -4,7 +4,7 @@ pipeline {
 		stage('Build API & frontend') {
 			parallel {
 				stage('Build API') {
-					envionment {
+					environment {
 						AZURE_CR_CREDS = credentials('portalsolutions-cr')
 					}
 					steps {
