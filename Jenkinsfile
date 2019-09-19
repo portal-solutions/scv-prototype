@@ -30,7 +30,9 @@ pipeline {
 						}
 					}
 					post {
+						success {
 							archiveArtifacts '**/scv-prototype-frontend.tgz'
+						}
 					}
 				}
 			}
