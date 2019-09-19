@@ -6,7 +6,7 @@ pipeline {
 				stage('Build API') {
 					steps {
 						dir(path: 'scv-prototype-api') {
-							sh 'mvn clean install'
+							sh 'mvn clean package spring-boot:repackage install'
 							archiveArtifacts '**/*.jar'
 						}
 					}
