@@ -1,6 +1,6 @@
 pipeline {
 	agent any
-	stages {ls /
+	stages {
 		stage('Build API & frontend') {
 			parallel {
 				stage('Build API') {
