@@ -12,12 +12,11 @@ import './page-details.css';
  */
 export const PageDetails = (props) => {
 	const { t } = useTranslation();
-
 	const { applicationDateModified, applicationVersion, pageIdentifier } = useContext(PageMetadataContext);
 
 	return (
 		<div className="pagedetails clearfix">
-			{ (pageIdentifier || applicationDateModified || applicationVersion) &&
+			{ (applicationDateModified || applicationVersion || pageIdentifier) &&
 				<dl id="wb-dtmd">
 					{ pageIdentifier &&
 						<>
