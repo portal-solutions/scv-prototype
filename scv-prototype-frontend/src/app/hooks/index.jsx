@@ -1,11 +1,15 @@
-import { useContext, useEffect } from "react";
-import { PageMetadataContext } from "../context";
-
 /**
- * React hook that can be used to set the date modified WETv4 element.
+ * Various hooks that can be used in the application.
  *
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
- * @since 0.0.0
+ */
+import { useContext, useEffect, useState } from "react";
+import { PageMetadataContext } from "../context";
+
+
+
+/**
+ * Set the 'date modified' WETv4 element.
  */
 export const useApplicationDateModified = (applicationDateModified) => {
 	const { setApplicationDataModified: setState } = useContext(PageMetadataContext);
@@ -13,10 +17,7 @@ export const useApplicationDateModified = (applicationDateModified) => {
 }
 
 /**
- * React hook that can be used to set the version WETv4 element.
- *
- * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
- * @since 0.0.0
+ * Set the 'application version' WETv4 element.
  */
 export const useApplicationVersion = (applicationVersion) => {
 	const { setApplicationVersion: setState } = useContext(PageMetadataContext);
@@ -24,20 +25,14 @@ export const useApplicationVersion = (applicationVersion) => {
 }
 
 /**
- * React hook that can be used to set the document title.
- *
- * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
- * @since 0.0.0
+ * Set the document title.
  */
 export const useDocumentTitle = (documentTitle) => {
 	useEffect(() => { document.title = documentTitle }, [ documentTitle ]);
 }
 
 /**
- * React hook that can be used to set the version WETv4 element.
- *
- * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
- * @since 0.0.0
+ * Set the 'page identifier' WETv4 element.
  */
 export const usePageIdentifier = (pageIdentifier) => {
 	const { setPageIdentifier: setState } = useContext(PageMetadataContext);
@@ -45,10 +40,7 @@ export const usePageIdentifier = (pageIdentifier) => {
 }
 
 /**
- * React hook that can be used to set the version WETv4 element.
- *
- * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
- * @since 0.0.0
+ * Set the 'page title' WETv4 element.
  */
 export const usePageTitle = (pageTitle) => {
 	const { setPageTitle: setState } = useContext(PageMetadataContext);

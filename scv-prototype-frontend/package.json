@@ -1,10 +1,10 @@
 {
 	"name": "scv-prototype-frontend",
 	"version": "0.0.0",
-	"homepage": "/scv/",
 	"contributors": [
 		"Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>",
-		"Sanjeev Balakrishnan <sanjeev.balakrishnan@hrsdc-rhdcc.gc.ca>"
+		"Sanjeev Balakrishnan <sanjeev.balakrishnan@hrsdc-rhdcc.gc.ca>",
+		"Sébastien Comeau <sebastien.comeau@hrsdc-rhdcc.gc.ca>"
 	],
 	"dependencies": {
 		"i18next": "^17.0.15",
