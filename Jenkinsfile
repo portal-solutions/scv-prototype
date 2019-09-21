@@ -30,7 +30,7 @@ pipeline {
 				stage('Build frontend') {
 					environment {
 						AZURE_CR_CREDS = credentials('portalsolutions-cr')
-						VERSION = readJSON(file: 'scv-prototype-frontend/package.json')['version']
+						VERSION = readJSON(file: 'scv-prototype-frontend/package.json').get('version')
 					}
 					steps {
 						dir(path: 'scv-prototype-frontend') {
