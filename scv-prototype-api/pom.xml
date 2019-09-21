@@ -144,4 +144,28 @@
 		</profile>
 	</profiles>
 
+
+	<contributors>
+		<contributor>
+			<name>Greg Baker</name>
+			<email>gregory.j.baker@hrsdc-rhdcc.gc.ca</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Sanjeev Balakrishnan</name>
+			<email>sanjeev.balakrishnan@hrsdc-rhdcc.gc.ca</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Sébastien Comeau</name>
+			<email>sebastien.comeau@hrsdc-rhdcc.gc.ca</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</contributor>
+	</contributors>
 </project>
