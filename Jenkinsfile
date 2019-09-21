@@ -39,13 +39,14 @@ pipeline {
 							sh 'npm run-script dist'
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION --build-arg BUILD_DIR=build .'
+							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
 							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION'
 							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
 						}
 					}
 					post {
 						success {
-							archiveArtifacts '**/scv-prototype-frontend.tgz'
+							archiveArtifacts 'scv-prototype-frontend/**/scv-prototype-frontend.tgz'
 						}
 					}
 				}
