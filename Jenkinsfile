@@ -2,12 +2,10 @@ pipeline {
 	agent any
 	stages {
 		stage('Build API & frontend') {
-			environment {
-				AZURE_CR_CREDS = credentials('portalsolutions-cr')
-			}
 			parallel {
 				stage('Build API') {
 					environment {
+						AZURE_CR_CREDS = credentials('portalsolutions-cr')
 						VERSION = readMavenPom(file: 'scv-prototype-api/pom.xml').getVersion()
 					}
 					steps {
@@ -31,6 +29,7 @@ pipeline {
 				}
 				stage('Build frontend') {
 					environment {
+						AZURE_CR_CREDS = credentials('portalsolutions-cr')
 						VERSION = readJSON(file: 'scv-prototype-frontend/package.json')['version']
 					}
 					steps {
@@ -39,14 +38,6 @@ pipeline {
 							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION .'
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION'
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
-						}
-					}
-					post {
-						always {
-							/* placeholder */
-						}
-						success {
-							/* placeholder */
 						}
 					}
 				}
