@@ -11,10 +11,11 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-api') {
 							sh 'mvn clean package spring-boot:repackage'
+							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION --build-arg JAR_FILE=$(find -type f -name *.jar) .'
 							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:latest'
-							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION'
-							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:latest'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:latest'
 						}
 					}
 					post {
@@ -34,10 +35,17 @@ pipeline {
 					}
 					steps {
 						dir(path: 'scv-prototype-frontend') {
-							// TODO :: GjB :: run tests and record test results in Jenkins UI
-							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION .'
-							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION'
-							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io && docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
+							sh 'npm install'
+							sh 'npm run-script dist'
+							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
+							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION --build-arg BUILD_DIR=build .'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
+						}
+					}
+					post {
+						success {
+							archiveArtifacts '**/scv-prototype-frontend.tgz'
 						}
 					}
 				}
