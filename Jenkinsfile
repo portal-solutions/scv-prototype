@@ -36,7 +36,8 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-frontend') {
 							sh 'npm install'
-							sh 'npm run-script dist'
+							sh 'npm run-script build'
+							sh 'tar --transform s/build/scv-prototype-frontend/ -zcvf scv-prototype-frontend.tgz build'
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION --build-arg BUILD_DIR=build .'
 							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
