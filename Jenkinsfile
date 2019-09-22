@@ -7,7 +7,7 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-api') {
 							sh 'mvn --batch-mode --errors --update-snapshots clean package spring-boot:repackage'
-							stash 'target'
+							stash name: 'api' includes: 'target'
 						}
 					}
 					post {
@@ -30,7 +30,7 @@ pipeline {
 					}
 					steps {
 						dir(path: 'scv-prototype-api') {
-							unstash 'target'
+							unstash 'api'
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 
 							// build statically versioned image (ex: v1.0.0)
@@ -57,7 +57,7 @@ pipeline {
 							sh 'npm install'
 							sh 'npm run-script build'
 							sh 'tar --transform s/build/scv-prototype-frontend/ -zcvf scv-prototype-frontend.tgz build'
-							stash 'build'
+							stash name: 'frontend' includes: 'build'
 						}
 					}
 					post {
@@ -76,7 +76,7 @@ pipeline {
 					}
 					steps {
 						dir(path: 'scv-prototype-frontend') {
-							unstash 'build'
+							unstash 'frontend'
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 
 							// build statically versioned image (ex: v1.0.0)
