@@ -13,17 +13,30 @@
 
 	<groupId>ca.gov.portal.single-client-view</groupId>
 	<artifactId>scv-prototype-api</artifactId>
-	<version>0.0.0-SNAPSHOT</version>
+	<version>${revision}</version>
 	<packaging>jar</packaging>
 
 
 	<properties>
+		<!-- see https://maven.apache.org/maven-ci-friendly.html -->
+		<revision>0.0.0-SNAPSHOT</revision>
+
+		<java-jwt.version>3.8.2</java-jwt.version>
+
 		<!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=547340 -->
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
 
 	<dependencies>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${java-jwt.version}</version>
+		</dependency>
+
+<!-- spring dependencies -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
@@ -36,17 +49,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.auth0</groupId>
-			<artifactId>java-jwt</artifactId>
-			<version>3.8.2</version>
-		</dependency>
 
 <!-- provided dependencies -->
 
 		<dependency>
+			<!-- see https://projectlombok.org/setup/overview -->
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
@@ -89,20 +103,15 @@
 
 	<profiles>
 		<profile>
+			<!-- dev profile is intended for running application on localhost                          -->
+			<!-- it provides a src/dev source tree for configuration and code not meant for production -->
 			<id>dev</id>
 			<activation>
 				<property>
-					<!-- this works in both eclipse and vscode -->
+					<!-- node: this works in both eclipse and vscode -->
 					<name>m2e.version</name>
 				</property>
 			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-devtools</artifactId>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
 			<build>
 				<resources>
 					<resource>
@@ -168,4 +177,5 @@
 			</roles>
 		</contributor>
 	</contributors>
+
 </project>
