@@ -7,7 +7,7 @@ pipeline {
 					steps {
 						dir(path: 'scv-prototype-api') {
 							sh 'mvn --batch-mode --errors --update-snapshots clean package spring-boot:repackage'
-							stash name: 'api' includes: 'target'
+							stash name: 'api', includes: 'target'
 						}
 					}
 					post {
@@ -57,7 +57,7 @@ pipeline {
 							sh 'npm install'
 							sh 'npm run-script build'
 							sh 'tar --transform s/build/scv-prototype-frontend/ -zcvf scv-prototype-frontend.tgz build'
-							stash name: 'frontend' includes: 'build'
+							stash name: 'frontend', includes: 'build'
 						}
 					}
 					post {
