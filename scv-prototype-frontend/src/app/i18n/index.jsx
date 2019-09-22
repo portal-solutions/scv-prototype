@@ -21,8 +21,10 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
 	interpolation: {
 		escapeValue: false // JSX escapes by default
 	},
+	load: 'languageOnly',
 	resources: {
 		en: { translation: messagesEn },
 		fr: { translation: messagesFr }
-	}
+	},
+	whitelist: [ 'en', 'fr' ]
 });
