@@ -3,10 +3,8 @@
  *
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { PageMetadataContext } from "../context";
-
-
 
 /**
  * Set the 'date modified' WETv4 element.

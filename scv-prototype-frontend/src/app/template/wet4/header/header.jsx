@@ -1,11 +1,9 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
-import { BreadcrumbItem } from './breadcrumb-item';
 import './header.css';
 
 /**
  * Standard WETv4 <header> element.
- * (stateless)
  *
  * @author Greg Baker <gregory.j.baker@hrsc-rhdcc.gc.ca>
  * @since 0.0.0
@@ -67,5 +65,22 @@ export const Header = (props) => {
 				{ /* TODO :: GjB :: Dynamic messages */ }
 			</header>
 		</>
+	);
+}
+
+/**
+ * Standard WETv4 breadcrumb item.
+ *
+ * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
+ * @since 0.0.0
+ */
+const BreadcrumbItem = (props) => {
+	return (
+		<li>
+			{ props.href
+				? (<a href={ props.href }>{ props.text }</a>)
+				: (<span>{ props.text }</span>)
+			}
+		</li>
 	);
 }

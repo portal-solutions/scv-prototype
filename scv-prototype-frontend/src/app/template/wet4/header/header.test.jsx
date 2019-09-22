@@ -7,8 +7,14 @@ import { Header } from './header';
  * @since 0.0.0
  */
 
-it('renders without crashing', () => {
+it('header renders without crashing', () => {
 	const div = document.createElement('div');
 	ReactDOM.render(<Header/>, div);
+	ReactDOM.unmountComponentAtNode(div);
+});
+
+it('breadcrumb item renders without crashing', () => {
+	const div = document.createElement('div');
+	ReactDOM.render(<BreadcrumbItem href="http://www.canada.ca/" text="Home"/>, div);
 	ReactDOM.unmountComponentAtNode(div);
 });

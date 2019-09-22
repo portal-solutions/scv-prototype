@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Welcome } from './components/welcome/welcome';
 import { PageMetadataProvider } from './context';
-import { WETv4 } from './template/wet-boew';
+import { Template } from './template/wet4';
 
 /**
  * Application entrypoint.
@@ -13,9 +13,9 @@ import { WETv4 } from './template/wet-boew';
 export const App = (props) => {
 	return (
 		<PageMetadataProvider>
-			<WETv4>
+			<Template>
 				<Route path="/" component={ Welcome } exact={ true }/>
-			</WETv4>
+			</Template>
 		</PageMetadataProvider>
 	);
 }

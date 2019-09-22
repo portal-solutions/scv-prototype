@@ -5,7 +5,6 @@ import './welcome.css';
 
 /**
  * A simple welcome page.
- * (stateless)
  *
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0

@@ -7,8 +7,14 @@ import { Template } from './template';
  * @since 0.0.0
  */
 
-it('renders without crashing', () => {
+it('template renders without crashing', () => {
 	const div = document.createElement('div');
 	ReactDOM.render(<Template/>, div);
+	ReactDOM.unmountComponentAtNode(div);
+});
+
+it('page details renders without crashing', () => {
+	const div = document.createElement('div');
+	ReactDOM.render(<PageDetails/>, div);
 	ReactDOM.unmountComponentAtNode(div);
 });
