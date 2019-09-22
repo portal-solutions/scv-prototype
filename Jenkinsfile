@@ -34,7 +34,7 @@ pipeline {
 									sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 
 									// build statically versioned image (ex: v1.0.0)
-									sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION --build-arg JAR_FILE=$(find -type f -name *.jar) ./docker'
+									sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION --build-arg JAR_FILE=../$(find -type f -name *.jar) ./docker'
 									sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION'
 
 									// build dynamically versioned 'latest' image (TODO :: GjB :: this should only happen for release builds)
@@ -84,7 +84,7 @@ pipeline {
 									sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 
 									// build statically versioned image (ex: v1.0.0)
-									sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION --build-arg BUILD_DIR=build ./docker'
+									sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION --build-arg BUILD_DIR=../build ./docker'
 									sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION'
 
 									// build dynamically versioned 'latest' image (TODO :: GjB :: this should only happen for release builds)
