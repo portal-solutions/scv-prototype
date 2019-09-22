@@ -17,10 +17,12 @@ pipeline {
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION --build-arg JAR_FILE=$(find -type f -name *.jar) .'
 							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION'
-							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:master'
-							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:master'
 							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:latest'
 							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:latest'
+							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:master'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:master'
+							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION-staging'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-api:$VERSION-staging'
 						}
 					}
 					post {
@@ -70,10 +72,12 @@ pipeline {
 							sh 'docker login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW portalsolutions.azurecr.io'
 							sh 'docker build -t portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION --build-arg BUILD_DIR=build .'
 							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION'
-							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:master'
-							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:master'
 							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
 							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:latest'
+							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:master'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:master'
+							sh 'docker tag portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION-staging'
+							sh 'docker push portalsolutions.azurecr.io/portal-solutions/scv-prototype-frontend:$VERSION-staging'
 						}
 					}
 					post {
