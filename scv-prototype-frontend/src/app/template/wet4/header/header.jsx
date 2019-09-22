@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from "react-i18next";
+import { AuthenticationContext } from '../../../context';
 import './header.css';
 
 /**
@@ -25,16 +26,26 @@ export const Header = (props) => {
 			</nav>
 			<header>
 				<div id="wb-bnr" className="container">
-					<section id="wb-lng" className="text-right">
-						<h2 className="wb-inv">{ t('wet-boew.header.language-selection') }</h2>
-						<ul className="list-inline margin-bottom-none">
-							<li>
-								<button className="btn btn-link" lang={ t('wet-boew.header.language-lang') } onClick={ () => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en') }>
-									<span>{ t('wet-boew.header.language-toggle') }</span>
-								</button>
-							</li>
-						</ul>
-					</section>
+					<div className="clearfix">
+						<section id="wb-auth" className="text-right">
+							<h2 className="wb-inv">Sign in</h2>
+							<ul className="list-inline margin-bottom-none">
+								<li>
+									<LoginButton></LoginButton>
+								</li>
+							</ul>
+						</section>
+						<section id="wb-lng" className="text-right">
+							<h2 className="wb-inv">{ t('wet-boew.header.language-selection') }</h2>
+							<ul className="list-inline margin-bottom-none">
+								<li>
+									<button className="btn btn-link btn-sm" lang={ t('wet-boew.header.language-lang') } onClick={ () => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en') }>
+										<span>{ t('wet-boew.header.language-toggle') }</span>
+									</button>
+								</li>
+							</ul>
+						</section>
+					</div>
 					<div className="row">
 						<div className="brand col-xs-5 col-md-4" property="publisher" typeof="GovernmentOrganization">
 							<a href={ t('wet-boew.header.canada-href') } property="url">
@@ -82,5 +93,35 @@ const BreadcrumbItem = (props) => {
 				: (<span>{ props.text }</span>)
 			}
 		</li>
+	);
+}
+
+/**
+ * Login button (changes behaviour depending on authentication status).
+ *
+ * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
+ * @since 0.0.0
+ */
+const LoginButton = (props) => {
+	const { username, setUsername } = useContext(AuthenticationContext);
+
+	return (
+		<>
+			{ username ?
+				(
+					<>
+						<button className="btn btn-primary btn-sm" onClick={ () => { setUsername(undefined) } }>
+							<i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> <span>Sign out</span>
+						</button>
+					</>
+				) : (
+					<>
+						<button className="btn btn-primary btn-sm" onClick={ () => { setUsername('foo') } }>
+							<i class="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i> <span>Sign in</span>
+						</button>
+					</>
+				)
+			}
+		</>
 	);
 }

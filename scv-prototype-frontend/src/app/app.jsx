@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { Welcome } from './components/welcome/welcome';
-import { PageMetadataProvider } from './context';
+import { PageMetadataProvider, AuthenticationProvider } from './context';
 import { Template } from './template/wet4';
 
 /**
@@ -12,10 +12,12 @@ import { Template } from './template/wet4';
  */
 export const App = (props) => {
 	return (
-		<PageMetadataProvider>
-			<Template>
-				<Route path="/" component={ Welcome } exact={ true }/>
-			</Template>
-		</PageMetadataProvider>
+		<AuthenticationProvider>
+			<PageMetadataProvider>
+				<Template>
+					<Route path="/" component={ Welcome } exact={ true }/>
+				</Template>
+			</PageMetadataProvider>
+		</AuthenticationProvider>
 	);
 }
