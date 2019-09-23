@@ -1,7 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { NotFound } from './components/not-found/not-found';
 import { Welcome } from './components/welcome/welcome';
-import { PageMetadataProvider, AuthenticationProvider } from './context';
+import { AuthenticationProvider, PageMetadataProvider } from './context';
 import { Template } from './template/wet4';
 
 /**
@@ -15,7 +16,10 @@ export const App = (props) => {
 		<AuthenticationProvider>
 			<PageMetadataProvider>
 				<Template>
-					<Route path="/" component={ Welcome } exact={ true }/>
+					<Switch>
+						<Route path="/" component={ Welcome } exact={ true }/>
+						<Route component={ NotFound }/>
+					</Switch>
 				</Template>
 			</PageMetadataProvider>
 		</AuthenticationProvider>

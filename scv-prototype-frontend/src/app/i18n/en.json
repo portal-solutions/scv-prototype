@@ -1,4 +1,15 @@
 {
+	"not-found": {
+		"apology": "We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?",
+		"document-title": "Error 404 \u2014 Single client view",
+		"error-404": "Error 404",
+		"page-identifier": "SCV-0404-EN",
+		"page-tag": "We couldn't find that web page",
+		"return-canada": "Return to <0>Canada.ca</0>.",
+		"return-canada-href": "https://canada.ca/en.html",
+		"return-home": "Return to the <0>home page</0>;"
+	},
+
 	"welcome": {
 		"document-title": "Welcome \u2014 Single client view",
 		"message": "<i>Single client view</i> is an aggregated, consistent, and holistic representation of the data held by the Government of Canada about its users that can be viewed in one centralized location.",

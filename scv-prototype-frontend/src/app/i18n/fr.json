@@ -1,4 +1,15 @@
 {
+	"not-found": {
+		"apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
+		"document-title": "Erreur 404 \u2014 Vue client unique",
+		"error-404": "Erreur 404",
+		"page-identifier": "SCV-0404-FR",
+		"page-tag": "Nous ne pouvons trouver cette page web",
+		"return-canada": "Retournez à <0>Canada.ca</0>.",
+		"return-canada-href": "https://canada.ca/fr.html",
+		"return-home": "Retournez à la <0>page d'accueil</0>;"
+	},
+
 	"welcome": {
 		"document-title": "Bienvenue \u2014 Vue client unique",
 		"message": "La <i>vue client unique</i> est une représentation globale, cohérente et holistique des données détenues par le gouvernement du Canada sur ses utilisateurs et pouvant être visualisées à partir d’un emplacement centralisé.",
