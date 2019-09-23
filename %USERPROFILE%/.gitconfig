@@ -1,0 +1,2 @@
+[http]
+	proxy = http://proxy.prv:80
