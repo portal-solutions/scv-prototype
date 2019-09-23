@@ -1,3 +1,5 @@
+def SLACK_COLOR_MAP = [ 'SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger' ]
+
 pipeline {
 	agent any
 	stages {
@@ -108,8 +110,7 @@ pipeline {
 	}
 	post {
 		always {
-			def COLOR_MAP = [ 'SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger' ]
-			slackSend channel: '#builds', teamDomain: 'scv-prototype', tokenCredentialId: 'slack-scv-prototype', color: COLOR_MAP[ currentBuild.currentResult ]
+			slackSend channel: '#builds', teamDomain: 'scv-prototype', tokenCredentialId: 'slack-scv-prototype', color: SLACK_COLOR_MAP[ currentBuild.currentResult ],
 					message: "*${ currentBuild.currentResult }:* Job ${ env.JOB_NAME } build ${ env.BUILD_NUMBER }\n More info at: ${ env.BUILD_URL }"
 		}
 	}
