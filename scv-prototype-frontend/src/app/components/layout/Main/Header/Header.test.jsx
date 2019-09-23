@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { App } from './app';
-import './i18n';
+import Header from './Header';
 
 /**
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
 
-it('renders without crashing', () => {
+it('header renders without crashing', () => {
 	const div = document.createElement('div');
-	ReactDOM.render(<Router><App/></Router>, div);
+	ReactDOM.render(<Header />, div);
 	ReactDOM.unmountComponentAtNode(div);
 });
