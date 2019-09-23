@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavBarItem = (props) => {
 
   return (
     <li>
-      <Link to={props.to}>
+      <NavLink to={props.to} activeClassName="active">
         {props.iconClass && <i className={props.iconClass}></i>}
         <span>{props.text}</span>
-      </Link>
+      </NavLink>
     </li>
   );
 };
