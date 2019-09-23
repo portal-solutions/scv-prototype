@@ -9,15 +9,13 @@
 		"return-canada-href": "https://canada.ca/fr.html",
 		"return-home": "Retournez à la <0>page d'accueil</0>;"
 	},
-
-	"welcome": {
+	"home": {
 		"document-title": "Bienvenue \u2014 Vue client unique",
 		"message": "La <i>vue client unique</i> est une représentation globale, cohérente et holistique des données détenues par le gouvernement du Canada sur ses utilisateurs et pouvant être visualisées à partir d’un emplacement centralisé.",
 		"more-information": "Pour plus d'informations, <0>cliquez ici</0>.",
 		"page-identifier": "SCV-0001-FR",
 		"page-title": "VCU :: Accueil"
 	},
-
 	"wet-boew": {
 		"default-page-identifier": "SCV-0000-FR",
 		"default-page-title": "Vue client unique",

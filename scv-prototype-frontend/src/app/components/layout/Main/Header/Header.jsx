@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import LoginButton from './LoginButton';
 import BreadcrumbItem from './BreadcrumbItem';
+import NavBar from './NavBar';
 import './Header.css';
 
 /**
@@ -59,8 +60,7 @@ const Header = (props) => {
 					</div>
 				</div>
 
-				{ /* TODO :: GjB :: add in a GCWeb menu (via ajax?) */}
-				<nav className="gcweb-v2 gcweb-menu" typeof="SiteNavigationElement"></nav>
+				<NavBar />
 
 				<nav id="wb-bc" property="breadcrumb">
 					<h2 className="wb-inv">{t('wet-boew.header.breadcrumbs.description')}</h2>

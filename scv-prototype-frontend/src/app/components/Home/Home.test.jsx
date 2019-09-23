@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../i18n';
-import { Welcome } from './welcome';
+import Home from './Home';
 
 /**
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
@@ -10,6 +10,6 @@ import { Welcome } from './welcome';
 
 it('renders without crashing', () => {
 	const div = document.createElement('div');
-	ReactDOM.render(<Welcome/>, div);
+	ReactDOM.render(<Home />, div);
 	ReactDOM.unmountComponentAtNode(div);
 });
