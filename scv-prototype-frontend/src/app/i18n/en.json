@@ -16,6 +16,54 @@
 		"page-identifier": "SCV-0001-EN",
 		"page-title": "SCV :: Home"
 	},
+	"profile": {
+		"document-title": "Profile",
+		"message": "This is the <strong>profile</strong> page.",
+		"page-identifier": "SCV-0002-EN",
+		"page-title": "SCV :: Profile"
+	},
+	"notifications": {
+		"document-title": "Notifications",
+		"message": "This is the <strong>notifications</strong> page.",
+		"page-identifier": "SCV-0003-EN",
+		"page-title": "SCV :: Notifications"
+	},
+	"inbox": {
+		"document-title": "Inbox",
+		"message": "This is the <strong>inbox</strong> page.",
+		"page-identifier": "SCV-0004-EN",
+		"page-title": "SCV :: Inbox"
+	},
+	"lets-connect": {
+		"document-title": "Let's connect",
+		"message": "This is the <strong>let's connect</strong> page.",
+		"page-identifier": "SCV-0005-EN",
+		"page-title": "SCV :: Let's connect"
+	},
+	"book-appointment": {
+		"document-title": "Book an appointment",
+		"message": "This is the <strong>book an appointment</strong> page.",
+		"page-identifier": "SCV-0006-EN",
+		"page-title": "SCV :: Book an appointment"
+	},
+	"benefits-services": {
+		"document-title": "Benefits and services",
+		"message": "This is the <strong>benefits and services</strong> page.",
+		"page-identifier": "SCV-0007-EN",
+		"page-title": "SCV :: Benefits and services"
+	},
+	"jobs-skills": {
+		"document-title": "Jobs and skills",
+		"message": "This is the <strong>jobs and skills</strong> page.",
+		"page-identifier": "SCV-0008-EN",
+		"page-title": "SCV :: Jobs and skills"
+	},
+	"preferences": {
+		"document-title": "Preferences",
+		"message": "This is the <strong>preferences</strong> page.",
+		"page-identifier": "SCV-0009-EN",
+		"page-title": "SCV :: Preferences"
+	},
 	"wet-boew": {
 		"default-page-identifier": "SCV-0000-EN",
 		"default-page-title": "Single client view",
@@ -108,6 +156,17 @@
 			"skip-links": {
 				"about-government": "Skip to \"About government\"",
 				"main-content": "Skip to main content"
+			},
+			"navbar": {
+				"home": "Home",
+				"profile": "Profile",
+				"notifications": "Notifications",
+				"inbox": "Inbox",
+				"lets-connect": "Let's connect",
+				"book-appointment": "Book an appointment",
+				"benefits-services": "Benefits and services",
+				"jobs-skills": "Jobs and skills",
+				"preferences": "Preferences"
 			}
 		},
 		"page-details": {
