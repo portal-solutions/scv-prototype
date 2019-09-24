@@ -4,6 +4,8 @@ import { AuthenticationProvider, PageMetadataProvider } from '../context';
 import MainLayout from './layout/Main';
 import Home from './Home';
 import Profile from './Profile';
+import ProfileProfileInformation from './Profile/ProfileInformation';
+import ProfilePaymentDetails from './Profile/PaymentDetails';
 import Notifications from './Notifications';
 import Inbox from './Inbox';
 import LetsConnect from './LetsConnect';
@@ -28,7 +30,7 @@ const App = (props) => {
 						<Switch>
 							<Route path="/" component={Home} exact />
 							<Route path="/Home" component={Home} exact />
-							<Route path="/Profile" component={Profile} exact />
+							<Route from="/Profile" component={Profile} />
 							<Route path="/Notifications" component={Notifications} exact />
 							<Route path="/Inbox" component={Inbox} exact />
 							<Route path="/LetsConnect" component={LetsConnect} exact />

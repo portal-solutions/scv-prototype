@@ -1,17 +1,18 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import NavBar from './NavBar';
+import ProfileInformation from './ProfileInformation';
+import PaymentDetails from './PaymentDetails';
 
 const Profile = (props) => {
-	const { t } = useTranslation();
-
-	useDocumentTitle(t('profile.document-title'));
-	usePageIdentifier(t('profile.page-identifier'));
-	usePageTitle(t('profile.page-title'));
-
 	return (
 		<>
-			<p><Trans i18nKey="profile.message" /></p>
+			<NavBar />
+			<Switch>
+				<Redirect from="/Profile" to="/Profile/ProfileInformation" exact />
+				<Route path="/Profile/ProfileInformation" component={ProfileInformation} exact />
+				<Route path="/Profile/PaymentDetails" component={PaymentDetails} exact />
+			</Switch>
 		</>
 	);
 }

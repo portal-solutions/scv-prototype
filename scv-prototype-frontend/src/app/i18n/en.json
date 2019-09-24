@@ -18,9 +18,21 @@
 	},
 	"profile": {
 		"document-title": "Profile",
-		"message": "This is the <strong>profile</strong> page.",
-		"page-identifier": "SCV-0002-EN",
-		"page-title": "SCV :: Profile"
+		"page-title": "SCV :: Profile",
+		"navbar": {
+			"profile-information": "Profile information",
+			"payment-details": "Payement details"
+		},
+		"profile-information": {
+			"document-title": "Profile Information",
+			"page-identifier": "SCV-00010-EN",
+			"page-title": "Profile Information"
+		},
+		"payment-details": {
+			"document-title": "Payments details",
+			"page-identifier": "SCV-00011-EN",
+			"page-title": "Payment details"
+		}
 	},
 	"notifications": {
 		"document-title": "Notifications",

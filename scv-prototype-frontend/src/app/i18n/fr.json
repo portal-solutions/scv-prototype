@@ -18,9 +18,21 @@
 	},
 	"profile": {
 		"document-title": "Profil",
-		"message": "C'est la page <strong>profil</strong>.",
-		"page-identifier": "SCV-0002-FR",
-		"page-title": "VCU :: Profil"
+		"page-title": "VCU :: Profil",
+		"navbar": {
+			"profile-information": "Informations de profil",
+			"payment-details": "Détails des paiements"
+		},
+		"profile-information": {
+			"document-title": "Informations de profil",
+			"page-identifier": "SCV-00010-FR",
+			"page-title": "Informations de profil"
+		},
+		"payment-details": {
+			"document-title": "Détails des paiements",
+			"page-identifier": "SCV-00011-FR",
+			"page-title": "Détails des paiements"
+		}
 	},
 	"notifications": {
 		"document-title": "Notifications",
