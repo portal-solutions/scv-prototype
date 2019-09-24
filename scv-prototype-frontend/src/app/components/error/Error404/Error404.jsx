@@ -18,7 +18,7 @@ const Error404 = (props) => {
 
 	return (
 		<>
-			<p class="small pagetag">{t('not-found.page-tag')}</p>
+			<p className="small pagetag">{t('not-found.page-tag')}</p>
 			<p>{t('not-found.apology')}</p>
 			<ul>
 				<li>
