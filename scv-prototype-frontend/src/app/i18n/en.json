@@ -9,15 +9,13 @@
 		"return-canada-href": "https://canada.ca/en.html",
 		"return-home": "Return to the <0>home page</0>;"
 	},
-
-	"welcome": {
+	"home": {
 		"document-title": "Welcome \u2014 Single client view",
 		"message": "<i>Single client view</i> is an aggregated, consistent, and holistic representation of the data held by the Government of Canada about its users that can be viewed in one centralized location.",
 		"more-information": "For more information, <0>click here</0>.",
 		"page-identifier": "SCV-0001-EN",
 		"page-title": "SCV :: Home"
 	},
-
 	"wet-boew": {
 		"default-page-identifier": "SCV-0000-EN",
 		"default-page-title": "Single client view",
