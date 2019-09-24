@@ -26,6 +26,6 @@ const Home = (props) => {
 			</p>
 		</>
 	);
-}
+};
 
 export default Home;

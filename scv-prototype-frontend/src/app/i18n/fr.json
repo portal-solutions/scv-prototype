@@ -16,6 +16,66 @@
 		"page-identifier": "SCV-0001-FR",
 		"page-title": "VCU :: Accueil"
 	},
+	"profile": {
+		"document-title": "Profil",
+		"page-title": "VCU :: Profil",
+		"navbar": {
+			"profile-information": "Informations de profil",
+			"payment-details": "Détails des paiements"
+		},
+		"profile-information": {
+			"document-title": "Informations de profil",
+			"page-identifier": "SCV-00010-FR",
+			"page-title": "Informations de profil"
+		},
+		"payment-details": {
+			"document-title": "Détails des paiements",
+			"page-identifier": "SCV-00011-FR",
+			"page-title": "Détails des paiements"
+		}
+	},
+	"notifications": {
+		"document-title": "Notifications",
+		"message": "C'est la page <strong>notifications</strong>.",
+		"page-identifier": "SCV-0003-FR",
+		"page-title": "VCU :: Notifications"
+	},
+	"inbox": {
+		"document-title": "Boîte de réception",
+		"message": "C'est la page <strong>boîte de réception</strong>.",
+		"page-identifier": "SCV-0004-FR",
+		"page-title": "VCU :: Boîte de réception"
+	},
+	"lets-connect": {
+		"document-title": "Connectons",
+		"message": "C'est la page <strong>connectons</strong>.",
+		"page-identifier": "SCV-0005-FR",
+		"page-title": "VCU :: Connectons"
+	},
+	"book-appointment": {
+		"document-title": "Prenez rendez-vous",
+		"message": "C'est la page <strong>prenez rendez-vous</strong>.",
+		"page-identifier": "SCV-0006-FR",
+		"page-title": "VCU :: Prenez rendez-vous"
+	},
+	"benefits-services": {
+		"document-title": "Avantages et services",
+		"message": "C'est la page <strong>avantages et services</strong>.",
+		"page-identifier": "SCV-0007-FR",
+		"page-title": "VCU :: Avantages et services"
+	},
+	"jobs-skills": {
+		"document-title": "Emplois et compétences",
+		"message": "C'est la page <strong>emplois et compétences</strong>.",
+		"page-identifier": "SCV-0008-FR",
+		"page-title": "VCU :: Emplois et compétences"
+	},
+	"preferences": {
+		"document-title": "Préférences",
+		"message": "C'est la page <strong>préférences</strong>.",
+		"page-identifier": "SCV-0009-FR",
+		"page-title": "VCU :: Préférences"
+	},
 	"wet-boew": {
 		"default-page-identifier": "SCV-0000-FR",
 		"default-page-title": "Vue client unique",
@@ -108,6 +168,17 @@
 			"skip-links": {
 				"about-government": "Passer à « Au sujet du gouvernement »",
 				"main-content": "Passer au contenu principal"
+			},
+			"navbar": {
+				"home": "Acceuil",
+				"profile": "Profil",
+				"notifications": "Notifications",
+				"inbox": "Boîte de reception",
+				"lets-connect": "Connectons",
+				"book-appointment": "Prenez rendez-vous",
+				"benefits-services": "Avantages et services",
+				"jobs-skills": "Emplois et compétences",
+				"preferences": "Préférences"
 			}
 		},
 		"page-details": {
