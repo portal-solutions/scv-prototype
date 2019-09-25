@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import './App.css';
+import Error404 from './components/error/Error404';
+import ProtectedRoute from './components/PrivateRoute';
+import ProtectedComponent from './components/ProtectedComponent';
 import { PageMetadataProvider } from './context';
 import { AuthProvider } from './context/AuthContext';
+import MainLayout from './layout/Main';
 import BenefitsServices from './views/BenefitsServices';
 import BookAppointment from './views/BookAppointment';
-import Error404 from './components/error/Error404';
 import Home from './views/Home';
 import Inbox from './views/Inbox';
 import JobsSkills from './views/JobsSkills';
-import MainLayout from './layout/Main';
 import LetsConnect from './views/LetsConnect';
 import Login from './views/Login/Login';
 import Notifications from './views/Notifications';
 import Preferences from './views/Preferences';
-import ProtectedRoute from './components/PrivateRoute';
 import Profile from './views/Profile';
-import ProtectedComponent from './components/ProtectedComponent';
 
 /**
  * Application entrypoint.
