@@ -4,14 +4,16 @@ import NavBar from './NavBar';
 import ProfileInformation from './ProfileInformation';
 import PaymentDetails from './PaymentDetails';
 
-const Profile = (props) => {
+const Profile = (prop) => {
 	return (
 		<>
 			<NavBar />
 			<Switch>
-				<Redirect from="/Profile" to="/Profile/ProfileInformation" exact />
-				<Route path="/Profile/ProfileInformation" component={ProfileInformation} exact />
-				<Route path="/Profile/PaymentDetails" component={PaymentDetails} exact />
+				<Route exact path="/profile">
+					<Redirect to="/profile/profile-information" />
+				</Route>
+				<Route exact path="/profile/profile-information" component={ProfileInformation} />
+				<Route exact path="/profile/payment-details" component={PaymentDetails} />
 			</Switch>
 		</>
 	);

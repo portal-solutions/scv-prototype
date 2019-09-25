@@ -1,8 +1,8 @@
 import preval from 'preval.macro';
 import React, { useContext } from 'react';
-import { version as applicationVersion } from '../../../../../package.json';
-import { PageMetadataContext } from '../../../context';
-import { useApplicationDateModified, useApplicationVersion } from '../../../hooks';
+import { version as applicationVersion } from '../../../../package.json';
+import { PageMetadataContext } from '../../context';
+import { useApplicationDateModified, useApplicationVersion } from '../../hooks';
 
 import Header from './Header';
 import Footer from './Footer';

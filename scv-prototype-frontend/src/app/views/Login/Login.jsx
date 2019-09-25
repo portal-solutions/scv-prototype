@@ -13,8 +13,8 @@ const Login = (props) => {
 	const { setAuthenticated, setAuthorities, setAuthToken, setUsername } = useContext(AuthContext);
 
 	// XXX :: GjB :: remove values (eventually)!
-	const [ email, setEmail ] = useState('user@example.com');
-	const [ password, setPassword ] = useState('password');
+	const [email, setEmail] = useState('user@example.com');
+	const [password, setPassword] = useState('password');
 
 	useDocumentTitle('Login required \u2014 Single client view');
 	usePageIdentifier('SCV-9999');
