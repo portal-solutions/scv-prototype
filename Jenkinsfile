@@ -2,6 +2,9 @@ def SLACK_COLOR_MAP = [ 'SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'dan
 
 pipeline {
 	agent any
+	options {
+		buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+	}
 	stages {
 		stage('Build API & frontend') {
 			parallel {
