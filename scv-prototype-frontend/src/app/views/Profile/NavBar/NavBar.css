@@ -1,0 +1,8 @@
+.profile-navigation-bar li > a {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.profile-navigation-bar li > a > span{
+	margin-left: 0.25em;
+}
