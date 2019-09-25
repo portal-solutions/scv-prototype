@@ -110,6 +110,9 @@ pipeline {
 				}
 			}
 		}
+		stage('Clean up dangling docker images') {
+			sh 'docker rmi $(docker images -q -f dangling=true)'
+		}
 	}
 	post {
 		always {
