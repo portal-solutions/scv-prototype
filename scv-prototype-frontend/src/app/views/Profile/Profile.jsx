@@ -7,14 +7,20 @@ import PaymentDetails from './PaymentDetails';
 const Profile = (prop) => {
 	return (
 		<>
-			<NavBar />
-			<Switch>
-				<Route exact path="/profile">
-					<Redirect to="/profile/profile-information" />
-				</Route>
-				<Route exact path="/profile/profile-information" component={ProfileInformation} />
-				<Route exact path="/profile/payment-details" component={PaymentDetails} />
-			</Switch>
+			<div className="row">
+				<div className="col-xs-12 col-md-4">
+					<NavBar />
+				</div>
+				<div className="col-xs-12 col-md-8">
+					<Switch>
+						<Route exact path="/profile">
+							<Redirect to="/profile/profile-information" />
+						</Route>
+						<Route exact path="/profile/profile-information" component={ProfileInformation} />
+						<Route exact path="/profile/payment-details" component={PaymentDetails} />
+					</Switch>
+				</div>
+			</div>
 		</>
 	);
 }
