@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import LoginButton from './LoginButton';
 import BreadcrumbItem from './BreadcrumbItem';
-import NavBar from './NavBar';
 import './Header.css';
+import LoginButton from './LoginButton';
+import NavBar from './NavBar';
 
 /**
  * Standard WETv4 <header> element.
@@ -29,7 +29,9 @@ const Header = (props) => {
 			<header>
 				<div id="wb-bnr" className="container">
 					<div className="clearfix">
+						{/* TODO :: GjB :: add mechanism to suppress login button rendering (ie: when on a login page) */}
 						<section id="wb-auth" className="text-right">
+							{/* TODO :: GjB :: translate this */}
 							<h2 className="wb-inv">Sign in</h2>
 							<ul className="list-inline margin-bottom-none">
 								<li>
