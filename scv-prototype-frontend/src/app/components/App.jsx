@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { AuthenticationProvider, PageMetadataProvider } from '../context';
-import MainLayout from './layout/Main';
-import Home from './Home';
-import Profile from './Profile';
-import ProfileProfileInformation from './Profile/ProfileInformation';
-import ProfilePaymentDetails from './Profile/PaymentDetails';
-import Notifications from './Notifications';
-import Inbox from './Inbox';
-import LetsConnect from './LetsConnect';
-import BookAppointment from './BookAppointment';
+import { PageMetadataProvider } from '../context';
+import { AuthProvider } from '../context/AuthContext';
 import BenefitsServices from './BenefitsServices';
-import JobsSkills from './JobsSkills';
-import Preferences from './Preferences';
+import BookAppointment from './BookAppointment';
 import Error404 from './error/Error404';
+import Home from './Home';
+import Inbox from './Inbox';
+import JobsSkills from './JobsSkills';
+import MainLayout from './layout/Main';
+import LetsConnect from './LetsConnect';
+import Login from './Login/Login';
+import Notifications from './Notifications';
+import Preferences from './Preferences';
+import ProtectedRoute from './PrivateRoute';
+import Profile from './Profile';
+import ProtectedComponent from './ProtectedComponent';
 
 /**
  * Application entrypoint.
@@ -22,8 +24,12 @@ import Error404 from './error/Error404';
  * @since 0.0.0
  */
 const App = (props) => {
+	// TODO :: GjB :: load authContext from localstorage, allowing the user to stay
+	//                logged in for a period of time (ie: until the auth token expires)
+	const defaultAuthContext = useContext(AuthProvider);
+
 	return (
-		<AuthenticationProvider>
+		<AuthProvider value={defaultAuthContext}>
 			<PageMetadataProvider>
 				<Router>
 					<MainLayout>
@@ -38,12 +44,18 @@ const App = (props) => {
 							<Route path="/BenefitsServices" component={BenefitsServices} exact />
 							<Route path="/JobsSkills" component={JobsSkills} exact />
 							<Route path="/Preferences" component={Preferences} exact />
+
+							{/* XXX :: GjB :: protected route for testing auth .. will remove later */}
+							<ProtectedRoute path="/protected" component={ProtectedComponent} authorities={['USER']} />
+							<Route path="/sign-in" component={Login} exact />
+
+							{/* catch-all route is the 404 page */}
 							<Route path="/" component={Error404} />
 						</Switch>
 					</MainLayout>
 				</Router>
 			</PageMetadataProvider>
-		</AuthenticationProvider>
+		</AuthProvider>
 	);
 }
 

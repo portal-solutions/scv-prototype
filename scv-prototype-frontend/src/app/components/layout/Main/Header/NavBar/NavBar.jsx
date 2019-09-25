@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import './NavBar.css';
 import NavBarItem from './NavBarItem';
-import './NavBar.css'
 
 const NavBar = () => {
 	const { t } = useTranslation();
@@ -20,6 +20,9 @@ const NavBar = () => {
 						<NavBarItem text={t('wet-boew.header.navbar.benefits-services')} iconClass="fas fa-hand-holding-heart" to="/BenefitsServices" />
 						<NavBarItem text={t('wet-boew.header.navbar.jobs-skills')} iconClass="fas fa-briefcase" to="/JobsSkills" />
 						<NavBarItem text={t('wet-boew.header.navbar.preferences')} iconClass="fas fa-cog" to="/Preferences" />
+
+						{/* XXX :: GjB :: test code .. remove eventually */}
+						<NavBarItem text="Protected" iconClass="fas fa-lock" to="/protected" />
 					</ul>
 				</div>
 			</div>
