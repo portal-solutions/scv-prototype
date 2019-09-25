@@ -111,7 +111,15 @@ pipeline {
 			}
 		}
 		stage('Clean up dangling docker images') {
-			sh 'docker rmi $(docker images -q -f dangling=true)'
+			environment {
+				AZURE_CR_CREDS = credentials('gregory-j-baker')
+			}
+			steps {
+				sh 'docker rmi $(docker images -q -f dangling=true)'
+				sh 'az login -u $AZURE_CR_CREDS_USR -p $AZURE_CR_CREDS_PSW'
+				sh 'az acr repository show-manifests --name portalsolutions --repository portal-solutions/scv-prototype-frontend --query "[?tags[0]==null].digest" -o tsv | xargs -I% az acr repository delete --name portalsolutions --image portal-solutions/scv-prototype-frontend@% --yes'
+				sh 'az acr repository show-manifests --name portalsolutions --repository portal-solutions/scv-prototype-api --query "[?tags[0]==null].digest" -o tsv | xargs -I% az acr repository delete --name portalsolutions --image portal-solutions/scv-prototype-api@% --yes'
+			}
 		}
 	}
 	post {
