@@ -12,6 +12,16 @@ spring:
     include: overrides # the order is important; keep 'overrides' at the end
 
 # ===================================================================
+# Management interface properties...
+# ===================================================================
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# ===================================================================
 # Application specific properties...
 # ===================================================================
 

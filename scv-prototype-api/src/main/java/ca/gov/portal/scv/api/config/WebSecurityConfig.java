@@ -1,6 +1,11 @@
 package ca.gov.portal.scv.api.config;
 
+import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.to;
+import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.toAnyEndpoint;
+import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.toLinks;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		auth.inMemoryAuthentication()
 			.passwordEncoder(passwordEncoder)
+			.withUser("actuator").password("{noop}password").roles("ACTUATOR").and()
 			.withUser("user@example.com").password("{noop}password").roles("API");
 	}
 
@@ -65,11 +71,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.addFilter(new JwtAuthenticationFilter(applicationEventPublisher, authenticationManager, jwtResolver))
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		http
+		http // unprotected resources
 			.authorizeRequests()
-				.antMatchers("/auth").permitAll().and()
+				.antMatchers("/auth").permitAll()
+				.requestMatchers(toLinks()).permitAll()
+				.requestMatchers(to(HealthEndpoint.class)).permitAll();
+
+		http // protected resources
 			.authorizeRequests()
-				.antMatchers("/api/**").authenticated();
+				.antMatchers("/api/**").hasRole("API")
+				.requestMatchers(toAnyEndpoint()).hasRole("ACTUATOR");
+
+		http // lock down all other requests
+			.authorizeRequests()
+				.anyRequest().denyAll();
 	}
 
 }
