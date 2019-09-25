@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { AuthContext } from '../../../../../context/AuthContext';
+import { AuthContext } from '../../../../context/AuthContext';
 
 /**
  * A no-frills login button. Doesn't do much; used mostly for testing.

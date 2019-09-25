@@ -11,8 +11,8 @@ const NavBar = () => {
 				<h2>Profile menu</h2>
 				<div className="row">
 					<ul className="list-inline menu">
-						<NavBarItem text={t('profile.navbar.profile-information')} iconClass="fas fa-user-circle fa-fw" to="/Profile/ProfileInformation" />
-						<NavBarItem text={t('profile.navbar.payment-details')} iconClass="fas fa-dollar-sign fa-fw" to="/Profile/PaymentDetails" />
+						<NavBarItem text={t('profile.navbar.profile-information')} iconClass="fas fa-user-circle fa-fw" to="/profile/profile-information" />
+						<NavBarItem text={t('profile.navbar.payment-details')} iconClass="fas fa-dollar-sign fa-fw" to="/profile/payment-details" />
 					</ul>
 				</div>
 			</div>

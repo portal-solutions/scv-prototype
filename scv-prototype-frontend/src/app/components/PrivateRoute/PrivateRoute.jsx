@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import Login from '../Login/Login';
+import Login from '../../views/Login/Login';
 import './PrivateRoute.css';
 
 /**

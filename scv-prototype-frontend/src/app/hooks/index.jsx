@@ -11,7 +11,7 @@ import { PageMetadataContext } from "../context";
  */
 export const useApplicationDateModified = (applicationDateModified) => {
 	const { setApplicationDataModified: setState } = useContext(PageMetadataContext);
-	useEffect(() => { setState(applicationDateModified) }, [ applicationDateModified, setState ]);
+	useEffect(() => { setState(applicationDateModified) }, [applicationDateModified, setState]);
 }
 
 /**
@@ -19,14 +19,14 @@ export const useApplicationDateModified = (applicationDateModified) => {
  */
 export const useApplicationVersion = (applicationVersion) => {
 	const { setApplicationVersion: setState } = useContext(PageMetadataContext);
-	useEffect(() => { setState(applicationVersion) }, [ applicationVersion, setState ]);
+	useEffect(() => { setState(applicationVersion) }, [applicationVersion, setState]);
 }
 
 /**
  * Set the document title.
  */
 export const useDocumentTitle = (documentTitle) => {
-	useEffect(() => { document.title = documentTitle }, [ documentTitle ]);
+	useEffect(() => { document.title = documentTitle }, [documentTitle]);
 }
 
 /**
@@ -34,7 +34,7 @@ export const useDocumentTitle = (documentTitle) => {
  */
 export const usePageIdentifier = (pageIdentifier) => {
 	const { setPageIdentifier: setState } = useContext(PageMetadataContext);
-	useEffect(() => { setState(pageIdentifier) }, [ pageIdentifier, setState ]);
+	useEffect(() => { setState(pageIdentifier) }, [pageIdentifier, setState]);
 }
 
 /**
@@ -42,5 +42,5 @@ export const usePageIdentifier = (pageIdentifier) => {
  */
 export const usePageTitle = (pageTitle) => {
 	const { setPageTitle: setState } = useContext(PageMetadataContext);
-	useEffect(() => { setState(pageTitle) }, [ pageTitle, setState ]);
+	useEffect(() => { setState(pageTitle) }, [pageTitle, setState]);
 }
