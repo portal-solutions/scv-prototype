@@ -16,6 +16,9 @@ spring:
 # ===================================================================
 
 application:
+  web-mvc-config:
+    cors-allowed-origins: # must be set externally
+
   security:
     jwt-resolver:
       expiration-time: 20m

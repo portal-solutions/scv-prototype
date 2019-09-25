@@ -27,7 +27,7 @@ import ca.gov.portal.scv.api.security.JwtResolver;
 @Configuration
 @ConfigurationProperties("application.security")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired ApplicationEventPublisher applicationEventPublisher;
 
@@ -53,7 +53,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 		auth.inMemoryAuthentication()
 			.passwordEncoder(passwordEncoder)
-			.withUser("user").password("{noop}password").roles("API");
+			.withUser("user@example.com").password("{noop}password").roles("API");
 	}
 
 	@Override
