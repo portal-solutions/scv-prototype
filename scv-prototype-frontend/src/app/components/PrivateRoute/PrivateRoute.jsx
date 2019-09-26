@@ -12,12 +12,14 @@ import './PrivateRoute.css';
  * @since 0.0.0
  */
 const PrivateRoute = ({ component: Component, ...rest }) => {
-	const { authenticated, authorities } = useContext(AuthContext);
+	const { authContext } = useContext(AuthContext);
 
-	if (authenticated !== true) { return (<Login />); }
+	if (authContext.authenticated !== true) {
+		return (<Login />);
+	}
 
 	if (rest.authorities) {
-		const hasAuthority = rest.authorities.filter((element) => (authorities || []).includes(element)).length !== 0;
+		const hasAuthority = rest.authorities.filter((element) => (authContext.authorities || []).includes(element)).length !== 0;
 		// TODO :: GjB :: render 403 page
 		if (hasAuthority === false) { throw new Error('User not allowed access'); }
 	}

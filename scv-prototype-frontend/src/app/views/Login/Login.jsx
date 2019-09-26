@@ -10,7 +10,7 @@ import './Login.css';
  * @since 0.0.0
  */
 const Login = (props) => {
-	const { setAuthenticated, setAuthorities, setAuthToken, setUsername } = useContext(AuthContext);
+	const { setAuthContext } = useContext(AuthContext);
 
 	// XXX :: GjB :: remove values (eventually)!
 	const [email, setEmail] = useState('user@example.com');
@@ -36,15 +36,12 @@ const Login = (props) => {
 		})
 		.then((response) => response.json())
 		.then((authentication) => {
-			setAuthorities(['USER']); // TODO :: GjB :: acquire programmatically
-			setAuthToken(authentication.accessToken);
-			setUsername(email);
-
-			// FIXME :: GjB :: this has to be last or else the order of
-			//                 checks done in the PrivateRoute component
-			//                 will break.. this is terrible and must be
-			//                 fixed! (leaving for now because it's late)
-			setAuthenticated(true);
+			setAuthContext({
+				authenticated: true,
+				username: email,
+				authorities: ['USER'],
+				authToken: authentication.accessToken
+			});
 		})
 		.catch(() => setAuthError(true));
 	};
