@@ -1,4 +1,11 @@
 {
+	"action": {
+		"add": "Add",
+		"edit": "Edit",
+		"remove": "Remove",
+		"delete": "Delete"
+	},
+	"no-data-available": "No data available",
 	"not-found": {
 		"apology": "We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?",
 		"document-title": "Error 404 \u2014 Single client view",
@@ -21,12 +28,47 @@
 		"page-title": "SCV :: Profile",
 		"navbar": {
 			"profile-information": "Profile information",
-			"payment-details": "Payement details"
+			"payment-details": "Payement details",
+			"my-identifiers": "My identifiers",
+			"authorized-representatives": "Authorized representatives",
+			"inclusive-accessible-service-options": "Inclusive and accessible service options",
+			"privacy-settings": "Pivacy settings"
 		},
 		"profile-information": {
 			"document-title": "Profile Information",
 			"page-identifier": "SCV-00010-EN",
-			"page-title": "Profile Information"
+			"page-title": "Profile Information",
+			"personal-information": {
+				"title": "Personal information",
+				"first-name": "First name",
+				"middle-name": "Middle name",
+				"last-name": "Last name",
+				"date-of-birth": "Date of birth",
+				"social-insurance-number": "Social insurance number",
+				"language-of-preference": "Language of preference"
+			},
+			"address": {
+				"title": "Address"
+			},
+			"phone": {
+				"title": "Phone",
+				"used-for-all": "Used for <strong>all programs</strong>.",
+				"used-for": "Used for <strong><0 /></strong>."
+			},
+			"email": {
+				"title": "Email address",
+				"primary-email-address": "Primary email address",
+				"secondary-email-address": "Secondary email address",
+				"used-for-all": "Used for <strong>all programs</strong>.",
+				"used-for": "Used for <strong><0 /></strong>."
+			},
+			"volunteer-experience": {
+				"title": "Volunteer experience",
+				"service-hours": "service hours"
+			},
+			"note": {
+				"title": "Notes"
+			}
 		},
 		"payment-details": {
 			"document-title": "Payments details",

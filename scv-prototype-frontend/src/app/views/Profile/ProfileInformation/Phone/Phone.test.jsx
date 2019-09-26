@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NavBar from './NavBar';
+import Phone from './Phone';
 
-describe('<NavBar />', () => {
+describe('<Phone />', () => {
   test('renders', () => {
-    const wrapper = shallow(<NavBar />);
+    const wrapper = shallow(<Phone />);
     expect(wrapper).toMatchSnapshot();
   });
 });

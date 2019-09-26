@@ -1,4 +1,11 @@
 {
+	"action": {
+		"add": "Ajouter",
+		"edit": "Modifier",
+		"remove": "Enlever",
+		"delete": "Supprimer"
+	},
+	"no-data-available": "Aucune données disponibles",
 	"not-found": {
 		"apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
 		"document-title": "Erreur 404 \u2014 Vue client unique",
@@ -21,12 +28,47 @@
 		"page-title": "VCU :: Profil",
 		"navbar": {
 			"profile-information": "Informations de profil",
-			"payment-details": "Détails des paiements"
+			"payment-details": "Détails des paiements",
+			"my-identifiers": "Mes identifiants",
+			"authorized-representatives": "Représentants autorisés",
+			"inclusive-accessible-service-options": "Options de service inclusives et accessibles",
+			"privacy-settings": "Paramètres de confidentialité"
 		},
 		"profile-information": {
 			"document-title": "Informations de profil",
 			"page-identifier": "SCV-00010-FR",
-			"page-title": "Informations de profil"
+			"page-title": "Informations de profil",
+			"personal-information": {
+				"title": "Informations personnelles",
+				"first-name": "Prénom",
+				"middle-name": "Deuxième nom",
+				"last-name": "Nom de famille",
+				"date-of-birth": "Date de naissance",
+				"social-insurance-number": "Numéro d'assurance sociale",
+				"language-of-preference": "Langue de préférence"
+			},
+			"address": {
+				"title": "Adresse"
+			},
+			"phone": {
+				"title": "Téléphone",
+				"used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+				"used-for": "Utilisée pour <strong><0 /></strong>."
+			},
+			"email": {
+				"title": "Adresse courriel",
+				"primary-email-address": "Adresse courriel primaire",
+				"secondary-email-address": "Adresse courriel secondaire",
+				"used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+				"used-for": "Utilisée pour <strong><0 /></strong>."
+			},
+			"volunteer-experience": {
+				"title": "Expérience de bénévolat",
+				"service-hours": "heures de service"
+			},
+			"note": {
+				"title": "Notes"
+			}
 		},
 		"payment-details": {
 			"document-title": "Détails des paiements",
