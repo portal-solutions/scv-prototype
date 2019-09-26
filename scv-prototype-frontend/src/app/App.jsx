@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Error404 from './components/error/Error404';
 import ProtectedRoute from './components/PrivateRoute';
 import ProtectedComponent from './components/ProtectedComponent';
 import { PageMetadataProvider } from './context';
-import { AuthContext, AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import MainLayout from './layout/Main';
 import BenefitsServices from './views/BenefitsServices';
 import BookAppointment from './views/BookAppointment';
@@ -25,26 +25,22 @@ import Profile from './views/Profile';
  * @since 0.0.0
  */
 const App = (props) => {
-	const authContext = useContext(AuthContext);
-
 	return (
-		<AuthProvider value={authContext}>
+		<AuthProvider>
 			<PageMetadataProvider>
 				<Router>
 					<MainLayout>
 						<Switch>
-							<Route exact path="/" >
-								<Redirect to="/home" />
-							</Route>
-							<Route exact path="/home" component={Home} />
+							<Route path="/" component={Home} exact />
+							<Route path="/benefits-services" component={BenefitsServices} exact />
+							<Route path="/book-appointment" component={BookAppointment} exact />
+							<Route path="/inbox" component={Inbox} exact />
+							<Route path="/jobs-skills" component={JobsSkills} exact />
+							<Route path="/lets-connect" component={LetsConnect} exact />
+							<Route path="/notifications" component={Notifications} exact />
+							<Route path="/preferences" component={Preferences} exact />
 							<Route path="/profile" component={Profile} />
-							<Route exact path="/notifications" component={Notifications} exact />
-							<Route exact path="/inbox" component={Inbox} exact />
-							<Route exact path="/lets-connect" component={LetsConnect} exact />
-							<Route exact path="/book-appointment" component={BookAppointment} exact />
-							<Route exact path="/benefits-services" component={BenefitsServices} exact />
-							<Route exact path="/jobs-skills" component={JobsSkills} exact />
-							<Route exact path="/preferences" component={Preferences} exact />
+							<Route path="/sign-in" component={Login} exact />
 
 							{/* XXX :: GjB :: protected route for testing auth .. will remove later */}
 							<ProtectedRoute path="/protected" component={ProtectedComponent} authorities={['USER']} />

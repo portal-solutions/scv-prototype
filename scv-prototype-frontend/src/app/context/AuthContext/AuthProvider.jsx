@@ -1,5 +1,31 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import AuthContext from './AuthContext';
+
+/**
+ * The default AuthContext state, used when no
+ * local state has been found.
+ */
+const initialState = {
+	authenticated: false,
+	authorities: [],
+	authToken: null,
+	username: 'Anonymous'
+};
+
+const localState = JSON.parse(localStorage.getItem('authContext'));
+
+/**
+ * A reducer function that is used to merge
+ * new state data with the existing state.
+ */
+const reducer = (state, newState) => {
+	if (newState === null) {
+		localStorage.removeItem('authContext');
+		return initialState;
+	}
+
+	return { ...state, ...newState };
+};
 
 /**
  * React component to provide the authentication context to child elements.
@@ -8,22 +34,9 @@ import AuthContext from './AuthContext';
  * @since 0.0.0
  */
 const AuthProvider = (props) => {
-	const [ authenticated, setAuthenticated ] = React.useState(props.value.authenticated);
-	const [ authorities, setAuthorities ] = React.useState(props.value.authorities);
-	const [ authToken, setAuthToken ] = React.useState(props.value.authToken);
-	const [ username, setUsername ] = React.useState(props.value.username);
-
-	const authContext = {
-		// XXX :: GjB :: is this a good way to get these values in localstorage?
-		authenticated, setAuthenticated: (authenticated) => { localStorage.setItem('authenticated', JSON.stringify(authenticated)); setAuthenticated(authenticated); },
-		authorities, setAuthorities: (authorities) => { localStorage.setItem('authorities', JSON.stringify(authorities)); setAuthorities(authorities); },
-		authToken, setAuthToken: (authToken) => { localStorage.setItem('authToken', authToken); setAuthToken(authToken); },
-		username, setUsername: (username) => { localStorage.setItem('username', username); setUsername(username); }
-	};
-
-	return (
-		<AuthContext.Provider value={authContext}>{ props.children }</AuthContext.Provider>
-	);
+	const [ authContext, setAuthContext ] = useReducer(reducer, (localState || initialState));
+	useEffect(() => localStorage.setItem('authContext', JSON.stringify(authContext), [ authContext ]));
+	return (<AuthContext.Provider value={{authContext, setAuthContext}}>{ props.children }</AuthContext.Provider>);
 };
 
 export default AuthProvider;

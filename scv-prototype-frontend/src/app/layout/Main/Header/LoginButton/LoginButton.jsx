@@ -9,21 +9,14 @@ import { AuthContext } from '../../../../context/AuthContext';
  * @since 0.0.0
  */
 const LoginButton = (props) => {
-	const { authenticated, setAuthenticated, setAuthorities, setAuthToken, setUsername } = useContext(AuthContext);
-
-	const handleLogout = () => {
-		setAuthenticated(false);
-		setAuthorities([]);
-		setAuthToken(undefined);
-		setUsername('Anonymous');
-	};
+	const { authContext, setAuthContext } = useContext(AuthContext);
 
 	return (
 		<>
-			{authenticated ?
+			{authContext.authenticated ?
 				(
 					<>
-						<button className="btn btn-primary btn-sm" onClick={handleLogout}>
+						<button className="btn btn-primary btn-sm" onClick={() => setAuthContext(null)}>
 							<i className="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> <span>Sign out</span>
 						</button>
 					</>
