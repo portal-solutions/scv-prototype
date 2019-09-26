@@ -15,6 +15,7 @@ const Login = (props) => {
 	// XXX :: GjB :: remove values (eventually)!
 	const [email, setEmail] = useState('user@example.com');
 	const [password, setPassword] = useState('password');
+	const [authError, setAuthError] = useState(false);
 
 	useDocumentTitle('Login required \u2014 Single client view');
 	usePageIdentifier('SCV-9999');
@@ -23,12 +24,29 @@ const Login = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		// TODO :: GjB :: perform REST call via service class
+		// TODO :: GjB :: make this URL configurable
+		fetch('https://scv-prototype-api.azurewebsites.net/auth', {
+			method: 'POST', mode: 'cors', cache: 'no-cache',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ username: email, password: password })
+		})
+		.then((response) => {
+			if (response.ok) { return response; }
+			throw new Error('Authentication failed; response status: ' + response.status);
+		})
+		.then((response) => response.json())
+		.then((authentication) => {
+			setAuthorities(['USER']); // TODO :: GjB :: acquire programmatically
+			setAuthToken(authentication.accessToken);
+			setUsername(email);
 
-		setAuthenticated(true);
-		setAuthorities(['USER']);
-		setAuthToken('auth-token');
-		setUsername(email);
+			// FIXME :: GjB :: this has to be last or else the order of
+			//                 checks done in the PrivateRoute component
+			//                 will break.. this is terrible and must be
+			//                 fixed! (leaving for now because it's late)
+			setAuthenticated(true);
+		})
+		.catch(() => setAuthError(true));
 	};
 
 	return (
@@ -40,12 +58,13 @@ const Login = (props) => {
 			<form className="well" onSubmit={handleSubmit}>
 				<div className="form-group">
 					<label htmlFor="email">Email address: (tip: enter 'user@example.com')</label>
-					<input id="email" name="email" type="email" className="form-control" value={email} onChange={setEmail} />
+					<input id="email" name="email" type="email" className="form-control" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
 				</div>
 				<div className="form-group">
 					<label htmlFor="password">Password: (tip: enter 'password')</label>
-					<input id="password" name="password" type="password" className="form-control" value={password} onChange={setPassword} />
+					<input id="password" name="password" type="password" className="form-control" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
 				</div>
+				{authError && (<div className="alert alert-danger"><span>Incorrect username or password.</span></div>)}
 				<button className="btn btn-primary btn-lg">
 					<i className="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i>
 					<span>Sign in</span>

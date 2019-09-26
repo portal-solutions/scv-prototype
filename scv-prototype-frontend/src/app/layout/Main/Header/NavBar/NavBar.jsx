@@ -5,13 +5,14 @@ import NavBarItem from './NavBarItem';
 
 const NavBar = () => {
 	const { t } = useTranslation();
+
 	return (
 		<nav role="navigation" id="wb-sm" data-trgt="mb-pnl" className="wb-menu visible-md visible-lg main-navigation-menu" typeof="SiteNavigationElement">
 			<div className="container nvbar">
 				<h2>Topics menu</h2>
 				<div className="row">
 					<ul className="list-inline menu">
-						<NavBarItem text={t('wet-boew.header.navbar.home')} iconClass="fas fa-home" to="/home" />
+						<NavBarItem text={t('wet-boew.header.navbar.home')} iconClass="fas fa-home" to="/" exact />
 						<NavBarItem text={t('wet-boew.header.navbar.profile')} iconClass="fas fa-user" to="/profile" />
 						<NavBarItem text={t('wet-boew.header.navbar.notifications')} iconClass="fas fa-bell" to="/notifications" />
 						<NavBarItem text={t('wet-boew.header.navbar.inbox')} iconClass="fas fa-inbox" to="/inbox" />
