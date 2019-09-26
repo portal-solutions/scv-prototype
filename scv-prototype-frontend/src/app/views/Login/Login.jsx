@@ -36,10 +36,15 @@ const Login = (props) => {
 		})
 		.then((response) => response.json())
 		.then((authentication) => {
-			setAuthenticated(true);
 			setAuthorities(['USER']); // TODO :: GjB :: acquire programmatically
 			setAuthToken(authentication.accessToken);
 			setUsername(email);
+
+			// FIXME :: GjB :: this has to be last or else the order of
+			//                 checks done in the PrivateRoute component
+			//                 will break.. this is terrible and must be
+			//                 fixed! (leaving for now because it's late)
+			setAuthenticated(true);
 		})
 		.catch(() => setAuthError(true));
 	};

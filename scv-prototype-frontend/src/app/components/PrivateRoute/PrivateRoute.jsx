@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import Login from '../../views/Login/Login';
@@ -12,12 +12,14 @@ import './PrivateRoute.css';
  * @since 0.0.0
  */
 const PrivateRoute = ({ component: Component, ...rest }) => {
-	const authContext = React.useContext(AuthContext);
+	const { authenticated, authorities } = useContext(AuthContext);
 
-	// TODO :: GjB :: add authorities check (redirect to 403 page if user does not have authority/role)
+	if (authenticated !== true) { return (<Login />); }
 
-	if (authContext.authenticated !== true) {
-		return (<Login />);
+	if (rest.authorities) {
+		const hasAuthority = rest.authorities.filter((element) => (authorities || []).includes(element)).length !== 0;
+		// TODO :: GjB :: render 403 page
+		if (hasAuthority === false) { throw new Error('User not allowed access'); }
 	}
 
 	return (<Route render={(props) => (<Component {...props} />)} />);

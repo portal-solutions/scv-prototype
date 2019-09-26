@@ -8,16 +8,17 @@ import AuthContext from './AuthContext';
  * @since 0.0.0
  */
 const AuthProvider = (props) => {
-	const [ authenticated, setAuthenticated ] = React.useState(props.authenticated);
-	const [ authorities, setAuthorities ] = React.useState(props.authorities);
-	const [ authToken, setAuthToken ] = React.useState(props.authToken);
-	const [ username, setUsername ] = React.useState(props.username);
+	const [ authenticated, setAuthenticated ] = React.useState(props.value.authenticated);
+	const [ authorities, setAuthorities ] = React.useState(props.value.authorities);
+	const [ authToken, setAuthToken ] = React.useState(props.value.authToken);
+	const [ username, setUsername ] = React.useState(props.value.username);
 
 	const authContext = {
-		authenticated, setAuthenticated,
-		authorities, setAuthorities,
-		authToken, setAuthToken,
-		username, setUsername
+		// XXX :: GjB :: is this a good way to get these values in localstorage?
+		authenticated, setAuthenticated: (authenticated) => { localStorage.setItem('authenticated', JSON.stringify(authenticated)); setAuthenticated(authenticated); },
+		authorities, setAuthorities: (authorities) => { localStorage.setItem('authorities', JSON.stringify(authorities)); setAuthorities(authorities); },
+		authToken, setAuthToken: (authToken) => { localStorage.setItem('authToken', authToken); setAuthToken(authToken); },
+		username, setUsername: (username) => { localStorage.setItem('username', username); setUsername(username); }
 	};
 
 	return (
