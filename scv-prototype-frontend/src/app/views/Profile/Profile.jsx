@@ -9,15 +9,17 @@ import AuthorizedRepresentatives from './AuthorizedRepresentatives';
 import InclusiveAccessibleServiceOptions from './InclusiveAccessibleServiceOptions';
 import PrivacySettings from './PrivacySettings';
 
+import './Profile.css';
+
 const Profile = ({ match }) => {
 	const { t } = useTranslation();
 
 	return (
 		<>
-			<div className="row">
+			<div className="row profile-container">
 				<div className="col-xs-12 col-md-4">
 					<nav>
-						<ul className="nav nav-pills nav-stacked profile-navigation-bar">
+						<ul className="nav nav-pills nav-stacked">
 							<NavBarItem text={t('profile.navbar.profile-information')} iconClass="fas fa-user-circle fa-fw" to={`${match.path}/profile-information`} />
 							<NavBarItem text={t('profile.navbar.payment-details')} iconClass="fas fa-dollar-sign fa-fw" to={`${match.path}/payment-details`} />
 							<NavBarItem text={t('profile.navbar.my-identifiers')} iconClass="fas fa-lock fa-fw" to={`${match.path}/my-identifiers`} />
