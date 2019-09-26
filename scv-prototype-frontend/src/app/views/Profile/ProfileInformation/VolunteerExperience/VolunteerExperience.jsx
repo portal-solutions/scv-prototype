@@ -1,41 +1,31 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const VolunteerExperience = () => {
+const VolunteerExperience = (props) => {
+	const { t } = useTranslation();
+
 	return (
 		<div className="panel panel-default">
-			<div className="panel-heading">Volunteer Experience</div>
-			<ul className="list-group">
-				<li className="list-group-item">
-					<p>
-						<strong>Service type</strong><br />
-						<span className="text-muted">Description of service.</span><br />
-						<i className="fa fa-clock"></i> 25 service hours
-								</p>
-					<div>
-						<a href="#">Edit</a> &#124; <a href="#">Remove</a>
-					</div>
-				</li>
-				<li className="list-group-item">
-					<p>
-						<strong>Service type</strong><br />
-						<span className="text-muted">Description of service.</span><br />
-						<i className="fa fa-clock"></i> 10 service hours
-								</p>
-					<div>
-						<a href="#">Edit</a> &#124; <a href="#">Remove</a>
-					</div>
-				</li>
-				<li className="list-group-item">
-					<p>
-						<strong>Service type</strong><br />
-						<span className="text-muted">Description of service.</span><br />
-						<i className="fa fa-clock"></i> 52 service hours
-								</p>
-					<div>
-						<a href="#">Edit</a> &#124; <a href="#">Remove</a>
-					</div>
-				</li>
-			</ul>
+			<div className="panel-heading">{t('profile.profile-information.volunteer-experience.title')}</div>
+			{props.volunteerExperiences && props.volunteerExperiences.length ?
+				<ul className="list-group">
+					{props.volunteerExperiences.map(data =>
+						<li className="list-group-item" key={data.id}>
+							<p><strong>{data.type ? data.type : "-"}</strong><br />
+								<span className="text-muted">{data.description ? data.description : "-"}</span><br />
+								<i className="fa fa-clock"></i> {data.hours ? data.hours : "-"} {t('profile.profile-information.volunteer-experience.service-hours')}
+							</p>
+							<div>
+								<a href="#">{t('action.edit')}</a> &#124; <a href="#">{t('action.remove')}</a>
+							</div>
+						</li>
+					)}
+				</ul>
+				:
+				<div className="panel-body">
+					<p className="text-center"><em>{t('no-data-available')}</em></p>
+				</div>
+			}
 		</div>
 	);
 };

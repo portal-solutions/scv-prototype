@@ -1,26 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const Note = () => {
+const Note = (props) => {
+	const { t } = useTranslation();
+
 	return (
 		<div className="panel panel-default">
-			<div className="panel-heading">Notes</div>
+			<div className="panel-heading">{t('profile.profile-information.note.title')}</div>
 			<div className="panel-body">
-				<p>
-					I want to be called by my middle name during service interactions.<br />
-					<span className="text-muted">09/10/19</span>
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ultricies odio.<br />
-					<span className="text-muted">09/10/19</span>
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ultricies odio.<br />
-					<span className="text-muted">09/10/19</span>
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ultricies odio.<br />
-					<span className="text-muted">09/10/19</span>
-				</p>
+				{props.notes && props.notes.length ? props.notes.map(note =>
+					<p key={note.id}>
+						{note.content}<br /><span className="text-muted">{note.createdOn.toLocaleDateString()}</span>
+					</p>
+				) : <p className="text-center"><em>{t('no-data-available')}</em></p>}
 			</div>
 		</div>
 	);
