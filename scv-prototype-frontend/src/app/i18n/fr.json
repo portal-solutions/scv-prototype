@@ -21,7 +21,11 @@
 		"page-title": "VCU :: Profil",
 		"navbar": {
 			"profile-information": "Informations de profil",
-			"payment-details": "Détails des paiements"
+			"payment-details": "Détails des paiements",
+			"my-identifiers": "Mes identifiants",
+			"authorized-representatives": "Représentants autorisés",
+			"inclusive-accessible-service-options": "Options de service inclusives et accessibles",
+			"privacy-settings": "Paramètres de confidentialité"
 		},
 		"profile-information": {
 			"document-title": "Informations de profil",

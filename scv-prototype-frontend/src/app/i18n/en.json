@@ -21,7 +21,11 @@
 		"page-title": "SCV :: Profile",
 		"navbar": {
 			"profile-information": "Profile information",
-			"payment-details": "Payement details"
+			"payment-details": "Payement details",
+			"my-identifiers": "My identifiers",
+			"authorized-representatives": "Authorized representatives",
+			"inclusive-accessible-service-options": "Inclusive and accessible service options",
+			"privacy-settings": "Pivacy settings"
 		},
 		"profile-information": {
 			"document-title": "Profile Information",

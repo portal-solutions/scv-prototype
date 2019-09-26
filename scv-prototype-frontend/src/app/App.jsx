@@ -33,16 +33,18 @@ const App = (props) => {
 				<Router>
 					<MainLayout>
 						<Switch>
-							<Route path="/" component={Home} exact />
-							<Route path="/benefits-services" component={BenefitsServices} exact />
-							<Route path="/book-appointment" component={BookAppointment} exact />
-							<Route path="/inbox" component={Inbox} exact />
-							<Route path="/jobs-skills" component={JobsSkills} exact />
-							<Route path="/lets-connect" component={LetsConnect} exact />
-							<Route path="/notifications" component={Notifications} exact />
-							<Route path="/preferences" component={Preferences} exact />
+							<Route exact path="/" >
+								<Redirect to="/home" />
+							</Route>
+							<Route exact path="/home" component={Home} />
 							<Route path="/profile" component={Profile} />
-							<Route path="/sign-in" component={Login} exact />
+							<Route exact path="/notifications" component={Notifications} exact />
+							<Route exact path="/inbox" component={Inbox} exact />
+							<Route exact path="/lets-connect" component={LetsConnect} exact />
+							<Route exact path="/book-appointment" component={BookAppointment} exact />
+							<Route exact path="/benefits-services" component={BenefitsServices} exact />
+							<Route exact path="/jobs-skills" component={JobsSkills} exact />
+							<Route exact path="/preferences" component={Preferences} exact />
 
 							{/* XXX :: GjB :: protected route for testing auth .. will remove later */}
 							<ProtectedRoute path="/protected" component={ProtectedComponent} authorities={['USER']} />
