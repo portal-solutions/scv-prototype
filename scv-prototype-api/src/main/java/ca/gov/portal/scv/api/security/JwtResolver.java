@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -107,7 +108,13 @@ public class JwtResolver implements InitializingBean {
 		final String token = matcher.group("token");
 		log.debug("Verifying token [{}]", token);
 
-		return Optional.of(JWT.require(Algorithm.HMAC512(secret)).build().verify(token));
+		try {
+			return Optional.of(JWT.require(Algorithm.HMAC512(secret)).build().verify(token));
+		}
+		catch (final JWTVerificationException jwtVerificationException) {
+			log.debug(jwtVerificationException.getMessage(), jwtVerificationException);
+			return Optional.empty();
+		}
 	}
 
 }
