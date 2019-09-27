@@ -68,6 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http // typical REST stuff
 			.cors().and()
+			.csrf().disable()
 			.addFilter(new JwtAuthenticationFilter(applicationEventPublisher, authenticationManager, jwtResolver))
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

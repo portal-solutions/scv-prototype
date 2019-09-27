@@ -25,6 +25,7 @@ application:
 
   security:
     jwt-resolver:
+      issuer: http://localhost:8080/
       secret: > # random 128 byte string
         z2U^0K5dvxYE9u#2IpKk*ui6T6lYv1j&wMnM!Flkt&oo7F&er!bQQ#6KXHz1qQlP
         hNTE$kzz65WY4whD5sQW5WpRA89Lq2^8Ysyh7mc&h&6$jIUqeu0Dn3nMYJNSVGaQ

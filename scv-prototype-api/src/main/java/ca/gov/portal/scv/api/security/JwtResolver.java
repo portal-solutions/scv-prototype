@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -47,6 +46,13 @@ public class JwtResolver implements InitializingBean {
 	private Duration expirationTime;
 
 	/**
+	 * Token issuer.
+	 */
+	@Setter
+	@NonNull
+	private String issuer;
+
+	/**
 	 * Secret used to encrypt/decrypt the JWT token.
 	 */
 	@Setter
@@ -56,6 +62,7 @@ public class JwtResolver implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		Assert.notNull(expirationTime, "expirationTime is required; it must not be null");
+		Assert.hasText(issuer, "issuer is required; it must not be null or blank");
 		Assert.hasText(secret, "secret is required; it must not be null or blank");
 	}
 
@@ -70,7 +77,7 @@ public class JwtResolver implements InitializingBean {
 				.toArray(String[]::new);
 
 		return JWT.create()
-			.withIssuer("scv-prototype-api")
+			.withIssuer(issuer)
 			.withSubject(userDetails.getUsername())
 			.withArrayClaim("authorities", authorities)
 			.withExpiresAt(new Date(System.currentTimeMillis() + expirationTime.toMillis()))
@@ -98,14 +105,9 @@ public class JwtResolver implements InitializingBean {
 		}
 
 		final String token = matcher.group("token");
+		log.debug("Verifying token [{}]", token);
 
-		try {
-			return Optional.ofNullable(JWT.require(Algorithm.HMAC512(secret)).build().verify(token));
-		}
-		catch(final TokenExpiredException tokenExpiredException) {
-			log.debug("JWT token has expired");
-			return Optional.empty();
-		}
+		return Optional.of(JWT.require(Algorithm.HMAC512(secret)).build().verify(token));
 	}
 
 }

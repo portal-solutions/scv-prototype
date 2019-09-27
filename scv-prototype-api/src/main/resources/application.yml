@@ -32,4 +32,5 @@ application:
   security:
     jwt-resolver:
       expiration-time: 20m
+      issuer: # must be set externally
       secret: # must be set externally
