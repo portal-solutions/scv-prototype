@@ -34,6 +34,23 @@ const apiService = {
 		}
 
 		return await response.json();
+	},
+
+	/**
+	 * Fetch user profile.
+	 * TODO :: GjB :: remove this eventually
+	 */
+	fetchProfile: async (authToken) => {
+		const response = await fetch(`${baseUrl}/api/profiles/`, {
+			method: 'GET', mode: 'cors', cache: 'no-cache',
+			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken }
+		});
+
+		if (!response.ok) {
+			throw new Error('Error fetching profile; response status: ' + response.status);
+		}
+
+		return await response.json();
 	}
 };
 
