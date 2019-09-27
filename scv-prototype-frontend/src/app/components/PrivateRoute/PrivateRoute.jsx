@@ -11,20 +11,24 @@ import './PrivateRoute.css';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ authorities, ...props }) => {
 	const { authenticationContext } = useContext(AuthenticationContext);
 
-	if (authenticationContext.authenticated !== true) {
+	if (!authenticationContext.authenticated) {
 		return (<Login />);
 	}
 
-	if (rest.authorities) {
-		const hasAuthority = rest.authorities.filter((element) => (authenticationContext.authorities || []).includes(element)).length !== 0;
+	if (authorities) {
+		const hasAuthority = authorities.filter((authority) => {
+			// this will effectively return the intersection of these two sets
+			return (authenticationContext.authorities || []).includes(authority)
+		}).length !== 0;
+
 		// TODO :: GjB :: render 403 page
-		if (hasAuthority === false) { throw new Error('User not allowed access'); }
+		if (!hasAuthority) { throw new Error('User not allowed access'); }
 	}
 
-	return (<Route render={(props) => (<Component {...props} />)} />);
+	return (<Route {...props} />);
 };
 
 export default PrivateRoute;
