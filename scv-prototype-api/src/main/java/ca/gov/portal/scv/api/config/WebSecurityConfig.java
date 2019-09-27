@@ -66,8 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		final AuthenticationManager authenticationManager = super.authenticationManager();
 
-		http
-			.csrf().disable()
+		http // typical REST stuff
+			.cors().and()
 			.addFilter(new JwtAuthenticationFilter(applicationEventPublisher, authenticationManager, jwtResolver))
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
