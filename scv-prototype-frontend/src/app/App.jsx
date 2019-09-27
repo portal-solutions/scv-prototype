@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Error404 from './components/error/Error404';
 import ProtectedRoute from './components/PrivateRoute';
-import ProtectedComponent from './components/ProtectedComponent';
 import { PageMetadataProvider } from './context';
 import { AuthProvider } from './context/AuthContext';
 import MainLayout from './layout/Main';
 import BenefitsServices from './views/BenefitsServices';
 import BookAppointment from './views/BookAppointment';
+import Greeting from './views/Greeting';
 import Home from './views/Home';
 import Inbox from './views/Inbox';
 import JobsSkills from './views/JobsSkills';
@@ -43,7 +43,7 @@ const App = (props) => {
 							<Route path="/sign-in" component={Login} exact />
 
 							{/* XXX :: GjB :: protected route for testing auth .. will remove later */}
-							<ProtectedRoute path="/protected" component={ProtectedComponent} authorities={['USER']} />
+							<ProtectedRoute path="/greeting" component={Greeting} authorities={['USER']} />
 
 							{/* catch-all route is the 404 page */}
 							<Route component={Error404} />

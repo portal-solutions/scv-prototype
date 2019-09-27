@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import apiService from "../../services/ApiService";
 import './Login.css';
 
 /**
@@ -13,7 +14,7 @@ const Login = (props) => {
 	const { setAuthContext } = useContext(AuthContext);
 
 	// XXX :: GjB :: remove values (eventually)!
-	const [email, setEmail] = useState('user@example.com');
+	const [username, setUsername] = useState('user@example.com');
 	const [password, setPassword] = useState('password');
 	const [authError, setAuthError] = useState(false);
 
@@ -24,26 +25,16 @@ const Login = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		// TODO :: GjB :: make this URL configurable
-		fetch('https://scv-prototype-api.azurewebsites.net/auth', {
-			method: 'POST', mode: 'cors', cache: 'no-cache',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ username: email, password: password })
-		})
-		.then((response) => {
-			if (response.ok) { return response; }
-			throw new Error('Authentication failed; response status: ' + response.status);
-		})
-		.then((response) => response.json())
-		.then((authentication) => {
-			setAuthContext({
-				authenticated: true,
-				username: email,
-				authorities: ['USER'],
-				authToken: authentication.accessToken
-			});
-		})
-		.catch(() => setAuthError(true));
+		apiService.login(username, password)
+			.then((authentication) => {
+				setAuthContext({
+					authenticated: true,
+					username: username,
+					authorities: ['USER'],
+					authToken: authentication.accessToken
+				});
+			})
+			.catch(() => setAuthError(true));
 	};
 
 	return (
@@ -55,7 +46,7 @@ const Login = (props) => {
 			<form className="well" onSubmit={handleSubmit}>
 				<div className="form-group">
 					<label htmlFor="email">Email address: (tip: enter 'user@example.com')</label>
-					<input id="email" name="email" type="email" className="form-control" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
+					<input id="email" name="email" type="email" className="form-control" defaultValue={username} onChange={(e) => setUsername(e.target.value)} />
 				</div>
 				<div className="form-group">
 					<label htmlFor="password">Password: (tip: enter 'password')</label>

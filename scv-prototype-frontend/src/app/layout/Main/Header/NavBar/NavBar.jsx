@@ -23,7 +23,7 @@ const NavBar = () => {
 						<NavBarItem text={t('wet-boew.header.navbar.preferences')} iconClass="fas fa-cog" to="/preferences" />
 
 						{/* XXX :: GjB :: test code .. remove eventually */}
-						<NavBarItem text="Protected" iconClass="fas fa-lock" to="/protected" />
+						<NavBarItem text="Greeting" iconClass="fas fa-handshake" to="/greeting" />
 					</ul>
 				</div>
 			</div>
