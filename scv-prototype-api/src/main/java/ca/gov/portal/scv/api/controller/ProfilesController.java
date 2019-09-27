@@ -1,11 +1,12 @@
 package ca.gov.portal.scv.api.controller;
 
-import java.nio.file.Files;
+import java.io.InputStreamReader;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping({ "/api/profiles" })
 public class ProfilesController {
 
+	private final Resource resource = new ClassPathResource("/dummy-data/profile.json");
+
 	@GetMapping(path = { "/{id}" }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<?> handleGetProfile(@PathVariable String id) throws Exception {
-		final Resource resource = new ClassPathResource("/dummy-data/profile.json");
-		return ResponseEntity.ok(new String(Files.readAllBytes(resource.getFile().toPath())));
+		return ResponseEntity.ok(FileCopyUtils.copyToString(new InputStreamReader(resource.getInputStream())));
 	}
 
 }
