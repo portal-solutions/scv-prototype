@@ -37,7 +37,7 @@ const Greeting = (props) => {
 	return (
 		<>
 			{greetings
-				? greetings.map((greeting) => (<p id={greeting.message}>{greeting.message}</p>))
+				? greetings.map((greeting) => (<p key={greeting.message}>{greeting.message}</p>))
 				: (<p className="text-center"><img src={process.env.PUBLIC_URL + '/spinner.gif'} alt="a loading spinner" width="80" height="80" /></p>)
 			}
 		</>
