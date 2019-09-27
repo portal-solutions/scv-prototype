@@ -33,7 +33,9 @@ const Email = (props) => {
 								}
 							</p>
 							<div>
-								<button className="btn btn-link btn-sm">{t('action.edit')}</button> | <button className="btn btn-link btn-sm">{t('action.remove')}</button>
+								<button className="btn btn-link btn-sm">{t('action.edit')}</button>
+								<small>|</small>
+								<button className="btn btn-link btn-sm">{t('action.remove')}</button>
 							</div>
 						</li>
 					)}
