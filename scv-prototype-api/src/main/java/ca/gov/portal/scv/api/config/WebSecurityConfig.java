@@ -74,9 +74,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http // unprotected resources
 			.authorizeRequests()
+				.antMatchers("/").permitAll()
 				.antMatchers("/auth").permitAll()
 				.requestMatchers(toLinks()).permitAll()
-				.requestMatchers(to(HealthEndpoint.class)).permitAll();
+				.requestMatchers(to(HealthEndpoint.class)).permitAll()
+				.and()
+			.authorizeRequests() // springfox/swagger support
+				.antMatchers("/webjars/**").permitAll()
+				.antMatchers("/*/api-docs/**").permitAll()
+				.antMatchers("/swagger-ui.html").permitAll()
+				.antMatchers("/swagger-resources/**").permitAll();
 
 		http // protected resources
 			.authorizeRequests()

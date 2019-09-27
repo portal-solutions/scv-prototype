@@ -22,6 +22,7 @@
 		<revision>0.0.0-SNAPSHOT</revision>
 
 		<java-jwt.version>3.8.2</java-jwt.version>
+		<springfox.version>2.9.2</springfox.version>
 
 		<!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=547340 -->
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -33,6 +34,16 @@
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
 			<version>${java-jwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
 		</dependency>
 
 <!-- spring dependencies -->
