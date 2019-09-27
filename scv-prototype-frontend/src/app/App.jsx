@@ -42,7 +42,7 @@ const App = (props) => {
 							<Route path="/lets-connect" component={LetsConnect} exact />
 							<Route path="/notifications" component={Notifications} exact />
 							<Route path="/preferences" component={Preferences} exact />
-							<Route path="/profile" component={Profile} />
+							<PrivateRoute path="/profile" component={Profile} authorities={['USER']} />
 							<Route path="/sign-in" component={Login} exact />
 
 							{/* XXX :: GjB :: protected route for testing auth .. will remove later */}
