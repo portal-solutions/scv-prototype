@@ -3,9 +3,11 @@
 		"add": "Ajouter",
 		"edit": "Modifier",
 		"remove": "Enlever",
-		"delete": "Supprimer"
+		"delete": "Supprimer",
+		"refresh": "Actualiser"
 	},
 	"no-data-available": "Aucune données disponibles",
+	"something-went-wrong": "Oops, il y a eu un problème...",
 	"not-found": {
 		"apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
 		"document-title": "Erreur 404 \u2014 Vue client unique",

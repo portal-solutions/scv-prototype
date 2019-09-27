@@ -28,7 +28,7 @@ const PersonalInformation = (props) => {
 					<div className="row">
 						<div className="col-xs-12 col-md-4">
 							<label>{t('profile.profile-information.personal-information.date-of-birth')}</label>
-							<div>{props.dateOfBirth ? props.dateOfBirth.toLocaleDateString() : "-"}</div>
+							<div>{props.dateOfBirth ? new Date(props.dateOfBirth).toLocaleDateString() : "-"}</div>
 						</div>
 						<div className="col-xs-12 col-md-4">
 							<label>{t('profile.profile-information.personal-information.social-insurance-number')}</label>

@@ -40,8 +40,8 @@ const apiService = {
 	 * Fetch user profile.
 	 * TODO :: GjB :: remove this eventually
 	 */
-	fetchProfile: async (authToken) => {
-		const response = await fetch(`${baseUrl}/api/profiles/`, {
+	fetchProfile: async (authToken, id) => {
+		const response = await fetch(`${baseUrl}/api/profiles/${id}`, {
 			method: 'GET', mode: 'cors', cache: 'no-cache',
 			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken }
 		});
