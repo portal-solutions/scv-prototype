@@ -1,3 +1,4 @@
+import { createBrowserHistory } from 'history';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -25,10 +26,12 @@ import Profile from './views/Profile';
  * @since 0.0.0
  */
 const App = (props) => {
+	const history = createBrowserHistory();
+
 	return (
 		<AuthenticationProvider>
 			<PageMetadataProvider>
-				<Router>
+				<Router history={history}>
 					<MainLayout>
 						<Switch>
 							<Route path="/" component={Home} exact />
