@@ -27,16 +27,22 @@ const Login = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		apiService.login(username, password)
-			.then((authentication) => {
-				setAuthenticationContext({
-					authenticated: true,
-					username: username,
-					authorities: ['USER'],
-					authToken: authentication.accessToken
-				});
-			})
-			.catch(() => setAuthError(true));
+		const login = async () => {
+			const authentication = await apiService.login(username, password);
+			setAuthenticationContext({
+				authenticated: true,
+				username: username,
+				authorities: ['USER'],
+				authToken: authentication.accessToken
+			});
+		}
+
+		try {
+			login();
+		}
+		catch (error) {
+			setAuthError(true);
+		}
 	};
 
 	return (

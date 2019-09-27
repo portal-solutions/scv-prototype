@@ -22,14 +22,22 @@ const Greeting = (props) => {
 	});
 
 	useEffect(() => {
-		apiService.fetchGreetings(authenticationContext.authToken)
-			.then((greetings) => setGreetings(greetings));
+		const fetchGreetings = async () => {
+			setGreetings(await apiService.fetchGreetings(authenticationContext.authToken));
+		}
+
+		try {
+			fetchGreetings();
+		}
+		catch (error) {
+			// TODO :: GjB :: do something
+		}
 	}, [authenticationContext.authToken]);
 
 	return (
 		<>
 			{greetings
-				? greetings.map((greeting) => (<p>{greeting.message}</p>))
+				? greetings.map((greeting) => (<p id={greeting.message}>{greeting.message}</p>))
 				: (<p className="text-center"><img src={process.env.PUBLIC_URL + '/spinner.gif'} alt="a loading spinner" width="80" height="80" /></p>)
 			}
 		</>
