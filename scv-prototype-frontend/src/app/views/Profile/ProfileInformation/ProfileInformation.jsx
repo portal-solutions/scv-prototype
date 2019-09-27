@@ -71,7 +71,7 @@ const ProfileInformation = () => {
 			</div>
 
 			{
-				(!isLoading && !isError) &&
+				data &&
 				<>
 					<div className="row">
 						<div className="col-xs-12">
