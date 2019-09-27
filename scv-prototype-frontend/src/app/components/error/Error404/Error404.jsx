@@ -1,7 +1,7 @@
 import React from 'react';
-import { useTranslation, Trans } from 'react-i18next';
-import { useDocumentTitle, usePageTitle, usePageIdentifier } from '../../../hooks';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { usePageMetadata } from '../../../context/PageMetadata';
 
 /**
  * 404 Not Found component that is very similar to what's used by canada.ca
@@ -12,9 +12,11 @@ import { Link } from 'react-router-dom';
 const Error404 = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('not-found.document-title'));
-	usePageIdentifier(t('not-found.page-identifier'))
-	usePageTitle(t('not-found.error-404'));
+	usePageMetadata({
+		documentTitle: t('not-found.document-title'),
+		pageIdentifier: t('not-found.page-identifier'),
+		pageTitle: t('not-found.error-404')
+	});
 
 	return (
 		<>
@@ -25,7 +27,7 @@ const Error404 = (props) => {
 					<Trans i18nKey="not-found.return-home"><Link to="/" /></Trans>
 				</li>
 				<li>
-					<Trans i18nKey="not-found.return-canada"><a href={t('not-found.return-canada-href')} /></Trans>
+					<Trans i18nKey="not-found.return-canada"><a href={t('not-found.return-canada-href')}>Return to Canada.ca</a></Trans>
 				</li>
 			</ul>
 		</>

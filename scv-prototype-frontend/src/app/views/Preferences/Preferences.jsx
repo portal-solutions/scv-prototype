@@ -1,13 +1,15 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { usePageMetadata } from '../../context/PageMetadata';
 
 const Preferences = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('preferences.document-title'));
-	usePageIdentifier(t('preferences.page-identifier'));
-	usePageTitle(t('preferences.page-title'));
+	usePageMetadata({
+		documentTitle: t('preferences.document-title'),
+		pageIdentifier: t('preferences.page-identifier'),
+		pageTitle: t('preferences.page-title')
+	});
 
 	return (
 		<>

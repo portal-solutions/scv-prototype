@@ -1,13 +1,15 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { usePageMetadata } from '../../context/PageMetadata';
 
 const LetsConnect = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('lets-connect.document-title'));
-	usePageIdentifier(t('lets-connect.page-identifier'));
-	usePageTitle(t('lets-connect.page-title'));
+	usePageMetadata({
+		documentTitle: t('lets-connect.document-title'),
+		pageIdentifier: t('lets-connect.page-identifier'),
+		pageTitle: t('lets-connect.page-title')
+	});
 
 	return (
 		<>

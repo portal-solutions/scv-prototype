@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { AuthContext } from '../../../../context/AuthContext';
+import { AuthenticationContext } from '../../../../context/Authentication';
 
 /**
  * A no-frills login button. Doesn't do much; used mostly for testing.
@@ -9,14 +9,14 @@ import { AuthContext } from '../../../../context/AuthContext';
  * @since 0.0.0
  */
 const LoginButton = (props) => {
-	const { authContext, setAuthContext } = useContext(AuthContext);
+	const { authenticationContext, setAuthenticationContext } = useContext(AuthenticationContext);
 
 	return (
 		<>
-			{authContext.authenticated ?
+			{authenticationContext.authenticated ?
 				(
 					<>
-						<button className="btn btn-primary btn-sm" onClick={() => setAuthContext(null)}>
+						<button className="btn btn-primary btn-sm" onClick={() => setAuthenticationContext(null)}>
 							<i className="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> <span>Sign out</span>
 						</button>
 					</>

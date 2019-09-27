@@ -1,13 +1,15 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { usePageMetadata } from '../../context/PageMetadata';
 
 const JobsSkills = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('jobs-skills.document-title'));
-	usePageIdentifier(t('jobs-skills.page-identifier'));
-	usePageTitle(t('jobs-skills.page-title'));
+	usePageMetadata({
+		documentTitle: t('jobs-skills.document-title'),
+		pageIdentifier: t('jobs-skills.page-identifier'),
+		pageTitle: t('jobs-skills.page-title')
+	});
 
 	return (
 		<>

@@ -26,7 +26,7 @@ const Phone = (props) => {
 								}
 							</p>
 							<div>
-								<a href="#">{t('action.edit')}</a> &#124; <a href="#">{t('action.remove')}</a>
+								<button className="btn btn-link btn-sm">{t('action.edit')}</button> | <button className="btn btn-link btn-sm">{t('action.remove')}</button>
 							</div>
 						</li>
 					)}

@@ -1,13 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../../hooks';
+import { usePageMetadata } from '../../../context/PageMetadata';
 
 const PaymentDetails = () => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(`${t('profile.payment-details.document-title')} - ${t('profile.document-title')}`);
-	usePageIdentifier(t('profile.payment-details.page-identifier'));
-	usePageTitle(`${t('profile.page-title')} - ${t('profile.payment-details.page-title')}`);
+	usePageMetadata({
+		documentTitle: `${t('profile.payment-details.document-title')} - ${t('profile.document-title')}`,
+		pageIdentifier: t('profile.payment-details.page-identifier'),
+		pageTitle: `${t('profile.page-title')} - ${t('profile.payment-details.page-title')}`
+	});
 
 	return (
 		<>

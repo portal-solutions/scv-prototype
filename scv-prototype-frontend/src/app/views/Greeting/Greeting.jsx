@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { AuthenticationContext } from '../../context/Authentication';
+import { usePageMetadata } from '../../context/PageMetadata';
 import apiService from '../../services/ApiService';
 
 /**
@@ -11,24 +11,26 @@ import apiService from '../../services/ApiService';
  * @since 0.0.0
  */
 const Greeting = (props) => {
-	const { authContext } = useContext(AuthContext);
+	const { authenticationContext } = useContext(AuthenticationContext);
 
 	const [ greetings, setGreetings ] = useState();
 
-	useDocumentTitle('Greetings! \u2014 Single client view');
-	usePageIdentifier('SCV-XXXX');
-	usePageTitle('A greeting for you');
+	usePageMetadata({
+		documentTitle: 'Greetings! \u2014 Single client view',
+		pageIdentifier: 'SCV-XXXX',
+		pageTitle: 'A greeting for you'
+	});
 
 	useEffect(() => {
-		apiService.fetchGreetings(authContext.authToken)
+		apiService.fetchGreetings(authenticationContext.authToken)
 			.then((greetings) => setGreetings(greetings));
-	}, []);
+	}, [authenticationContext.authToken]);
 
 	return (
 		<>
 			{greetings
 				? greetings.map((greeting) => (<p>{greeting.message}</p>))
-				: (<p className="text-center"><img src={process.env.PUBLIC_URL + '/spinner.gif'} width="80" height="80" /></p>)
+				: (<p className="text-center"><img src={process.env.PUBLIC_URL + '/spinner.gif'} alt="a loading spinner" width="80" height="80" /></p>)
 			}
 		</>
 	);

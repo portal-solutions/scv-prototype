@@ -1,19 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../../hooks';
-import PersonalInformation from './PersonalInformation';
+import { usePageMetadata } from '../../../context/PageMetadata';
 import Address from './Address';
-import Phone from './Phone';
 import Email from './Email';
-import VolunteerExperience from './VolunteerExperience';
 import Note from './Note';
+import PersonalInformation from './PersonalInformation';
+import Phone from './Phone';
+import VolunteerExperience from './VolunteerExperience';
 
 const ProfileInformation = () => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(`${t('profile.profile-information.document-title')} - ${t('profile.document-title')}`);
-	usePageIdentifier(t('profile.profile-information.page-identifier'));
-	usePageTitle(`${t('profile.page-title')} - ${t('profile.profile-information.page-title')}`);
+	usePageMetadata({
+		documentTitle: `${t('profile.profile-information.document-title')} - ${t('profile.document-title')}`,
+		pageIdentifier: t('profile.profile-information.page-identifier'),
+		pageTitle: `${t('profile.page-title')} - ${t('profile.profile-information.page-title')}`
+	});
 
 	// fake data
 	const data = {

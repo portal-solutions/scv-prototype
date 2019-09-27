@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { usePageMetadata } from '../../context/PageMetadata';
 import './Home.css';
 
 /**
@@ -10,11 +10,14 @@ import './Home.css';
  * @since 0.0.0
  */
 const Home = (props) => {
+	console.log('rendering home');
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('home.document-title'));
-	usePageIdentifier(t('home.page-identifier'));
-	usePageTitle(t('home.page-title'));
+	usePageMetadata({
+		documentTitle: t('home.document-title'),
+		pageIdentifier: t('home.page-identifier'),
+		pageTitle: t('home.page-title')
+	});
 
 	return (
 		<>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { AuthenticationContext } from '../../context/Authentication';
+import { usePageMetadata } from '../../context/PageMetadata';
 import apiService from "../../services/ApiService";
 import './Login.css';
 
@@ -11,23 +11,25 @@ import './Login.css';
  * @since 0.0.0
  */
 const Login = (props) => {
-	const { setAuthContext } = useContext(AuthContext);
+	const { setAuthenticationContext } = useContext(AuthenticationContext);
+
+	usePageMetadata({
+		documentTitle: 'Login required \u2014 Single client view',
+		pageIdentifier: 'SCV-9999',
+		pageTitle: 'Login required'
+	});
 
 	// XXX :: GjB :: remove values (eventually)!
 	const [username, setUsername] = useState('user@example.com');
 	const [password, setPassword] = useState('password');
 	const [authError, setAuthError] = useState(false);
 
-	useDocumentTitle('Login required \u2014 Single client view');
-	usePageIdentifier('SCV-9999');
-	usePageTitle('Login required');
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		apiService.login(username, password)
 			.then((authentication) => {
-				setAuthContext({
+				setAuthenticationContext({
 					authenticated: true,
 					username: username,
 					authorities: ['USER'],

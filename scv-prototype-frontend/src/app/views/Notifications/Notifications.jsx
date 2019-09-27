@@ -1,13 +1,15 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { usePageMetadata } from '../../context/PageMetadata';
 
 const Notifications = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('notifications.document-title'));
-	usePageIdentifier(t('notifications.page-identifier'));
-	usePageTitle(t('notifications.page-title'));
+	usePageMetadata({
+		documentTitle: t('notifications.document-title'),
+		pageIdentifier: t('notifications.page-identifier'),
+		pageTitle: t('notifications.page-title')
+	});
 
 	return (
 		<>

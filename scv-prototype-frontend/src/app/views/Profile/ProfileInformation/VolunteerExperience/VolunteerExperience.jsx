@@ -16,7 +16,7 @@ const VolunteerExperience = (props) => {
 								<i className="fa fa-clock"></i> {data.hours ? data.hours : "-"} {t('profile.profile-information.volunteer-experience.service-hours')}
 							</p>
 							<div>
-								<a href="#">{t('action.edit')}</a> &#124; <a href="#">{t('action.remove')}</a>
+								<button className="btn btn-link btn-sm">{t('action.edit')}</button> | <button className="btn btn-link btn-sm">{t('action.remove')}</button>
 							</div>
 						</li>
 					)}

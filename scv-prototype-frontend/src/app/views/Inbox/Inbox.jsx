@@ -1,13 +1,15 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useDocumentTitle, usePageIdentifier, usePageTitle } from '../../hooks';
+import { usePageMetadata } from '../../context/PageMetadata';
 
 const Inbox = (props) => {
 	const { t } = useTranslation();
 
-	useDocumentTitle(t('inbox.document-title'));
-	usePageIdentifier(t('inbox.page-identifier'));
-	usePageTitle(t('inbox.page-title'));
+	usePageMetadata({
+		documentTitle: t('inbox.document-title'),
+		pageIdentifier: t('inbox.page-identifier'),
+		pageTitle: t('inbox.page-title')
+	});
 
 	return (
 		<>

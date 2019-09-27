@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Error404 from './components/error/Error404';
 import ProtectedRoute from './components/PrivateRoute';
-import { PageMetadataProvider } from './context';
-import { AuthProvider } from './context/AuthContext';
+import { AuthenticationProvider } from './context/Authentication';
+import { PageMetadataProvider } from './context/PageMetadata';
 import MainLayout from './layout/Main';
 import BenefitsServices from './views/BenefitsServices';
 import BookAppointment from './views/BookAppointment';
@@ -26,7 +26,7 @@ import Profile from './views/Profile';
  */
 const App = (props) => {
 	return (
-		<AuthProvider>
+		<AuthenticationProvider>
 			<PageMetadataProvider>
 				<Router>
 					<MainLayout>
@@ -51,7 +51,7 @@ const App = (props) => {
 					</MainLayout>
 				</Router>
 			</PageMetadataProvider>
-		</AuthProvider>
+		</AuthenticationProvider>
 	);
 }
 
