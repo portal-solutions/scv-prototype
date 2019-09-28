@@ -1,26 +1,28 @@
-package ca.gov.portal.scv.api.controller.bean;
+package ca.gov.portal.scv.api.api.auth;
 
 import java.io.Serializable;
 
 import org.springframework.lang.NonNull;
 
+import lombok.Builder;
 import lombok.Value;
 
 /**
- * @see ca.gov.portal.scv.api.controller.AuthorizationController
+ * @see ca.gov.portal.scv.api.api.auth.AuthController
  * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
  * @since 0.0.0
  */
 @Value
+@Builder
 @SuppressWarnings({ "serial" })
-public class AuthorizationTokenBean implements Serializable {
+public class AuthResponse implements Serializable {
 
 	/**
 	 * Authorization token type. Defaults to 'bearer' since
 	 * this is the only token type supported by this API.
 	 */
 	@NonNull
-	private String tokenType = "bearer";
+	private String accessTokenType = "bearer";
 
 	/**
 	 * Authorization token value.

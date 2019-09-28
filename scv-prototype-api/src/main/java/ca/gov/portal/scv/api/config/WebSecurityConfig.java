@@ -1,11 +1,13 @@
 package ca.gov.portal.scv.api.config;
 
+import static java.util.Collections.emptyList;
 import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.to;
 import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.toAnyEndpoint;
 import static org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest.toLinks;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,8 +25,9 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
-import ca.gov.portal.scv.api.filter.JwtAuthenticationFilter;
+import ca.gov.portal.scv.api.security.JwtAuthenticationFilter;
 import ca.gov.portal.scv.api.security.JwtResolver;
+import lombok.Setter;
 
 /**
  * Application web security configuration.
@@ -32,13 +36,15 @@ import ca.gov.portal.scv.api.security.JwtResolver;
  * @since 0.0.0
  */
 @Configuration
-@ConfigurationProperties("application.security")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@ConfigurationProperties("application.config.security")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired ApplicationEventPublisher applicationEventPublisher;
 
 	@Autowired JwtResolver jwtResolver;
+
+	@Setter List<String> ignoredPaths = emptyList();
 
 	@Bean PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -83,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/auth").permitAll()
 				.requestMatchers(toLinks()).permitAll()
-				.requestMatchers(to(HealthEndpoint.class)).permitAll()
+				.requestMatchers(to("health", "info")).permitAll()
 				.and()
 			.authorizeRequests() // springfox/swagger support
 				.antMatchers("/webjars/**").permitAll()
@@ -99,6 +105,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http // lock down all other requests
 			.authorizeRequests()
 				.anyRequest().denyAll();
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		ignoredPaths.forEach((ignoredPath) -> web.ignoring().antMatchers(ignoredPath));
 	}
 
 }

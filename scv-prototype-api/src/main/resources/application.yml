@@ -26,11 +26,10 @@ management:
 # ===================================================================
 
 application:
-  web-mvc-config:
-    cors-allowed-origins: # must be set externally
-
-  security:
-    jwt-resolver:
-      expiration-time: 20m
-      issuer: # must be set externally
-      secret: # must be set externally
+  config:
+    webmvc:
+      cors-allowed-origins: # must be set externally
+  jwt-resolver:
+    expiration-time: 20m
+    issuer: # must be set externally
+    secret: # must be set externally

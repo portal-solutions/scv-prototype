@@ -1,5 +1,6 @@
-package ca.gov.portal.scv.api.controller;
+package ca.gov.portal.scv.api.api.greetings;
 
+import java.io.Serializable;
 import java.util.Collections;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.gov.portal.scv.api.controller.bean.GreetingBean;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * Simple controller that returns a single greeting.
@@ -23,8 +25,26 @@ public class GreetingsController {
 
 	@GetMapping
 	public ResponseEntity<?> getAllGreetings() {
-		final GreetingBean greetingBean = GreetingBean.builder().message("Hello, world!").build();
-		return ResponseEntity.ok(Collections.singleton(greetingBean));
+		return ResponseEntity.ok(Collections.singleton(GreetingResponse.builder()
+			.message("Hello, world!")
+			.build()));
 	}
+
+}
+
+/**
+ * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
+ * @since 0.0.0
+ */
+@Value
+@Builder
+@SuppressWarnings({ "serial" })
+class GreetingResponse implements Serializable {
+
+	/**
+	 * The greeting's message. Examples are 'Hello, world!' or
+	 * 'How many people work in the government? About half.'
+	 */
+	private String message;
 
 }

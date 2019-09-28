@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Configuration
-@ConfigurationProperties("application.web-mvc-config")
+@ConfigurationProperties("application.config.webmvc")
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Setter List<String> corsAllowedOrigins = emptyList();

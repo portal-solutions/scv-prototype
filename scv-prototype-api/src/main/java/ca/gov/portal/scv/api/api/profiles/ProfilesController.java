@@ -1,7 +1,8 @@
-package ca.gov.portal.scv.api.controller;
+package ca.gov.portal.scv.api.api.profiles;
 
 import java.io.InputStreamReader;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping({ "/api/profiles" })
+@ConfigurationProperties("application.profiles-controller")
 public class ProfilesController {
 
 	private final Resource resource = new ClassPathResource("/dummy-data/profile.json");

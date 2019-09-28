@@ -24,6 +24,7 @@
 		<java-jwt.version>3.8.2</java-jwt.version>
 		<springfox.version>2.9.2</springfox.version>
 
+		<git-commit-id-plugin.version.version>3.0.1</git-commit-id-plugin.version.version>
 		<!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=547340 -->
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
@@ -111,6 +112,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<version>${git-commit-id-plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>

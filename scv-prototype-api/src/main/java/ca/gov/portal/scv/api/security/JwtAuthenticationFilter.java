@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.filter;
+package ca.gov.portal.scv.api.security;
 
 import java.io.IOException;
 import java.util.List;
@@ -58,12 +58,12 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 			log.debug("JWT token for user [{}] found in authorization header; authentication success", decodedJwt.getSubject());
 
 			final List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(decodedJwt.getClaim("authorities").asArray(String.class));
-			final Authentication authentication = new UsernamePasswordAuthenticationToken(decodedJwt.getSubject(), null, authorities);
-			SecurityContextHolder.getContext().setAuthentication(authentication);
+			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(decodedJwt.getSubject(), null, authorities));
 
-			applicationEventPublisher.publishEvent(new AuthenticationSuccessEvent(authentication));
+			applicationEventPublisher.publishEvent(new AuthenticationSuccessEvent(SecurityContextHolder.getContext().getAuthentication()));
 		});
 
+		log.debug("No JWT token found in request; falling back to BASIC auth");
 		super.doFilterInternal(request, response, filterChain);
 	}
 

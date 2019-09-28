@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.controller.bean;
+package ca.gov.portal.scv.api.api;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

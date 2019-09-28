@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.controller.bean;
+package ca.gov.portal.scv.api.api.auth;
 
 import java.io.Serializable;
 
@@ -8,14 +8,14 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * @see ca.gov.portal.scv.api.controller.AuthorizationController
+ * @see ca.gov.portal.scv.api.api.auth.AuthController
  * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
  * @since 0.0.0
  */
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-public class AuthenticationBean implements Serializable {
+public class AuthRequest implements Serializable {
 
 	/**
 	 * The username of the account being authenticated.

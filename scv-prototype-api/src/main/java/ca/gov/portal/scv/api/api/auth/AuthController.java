@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.controller;
+package ca.gov.portal.scv.api.api.auth;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.gov.portal.scv.api.controller.bean.AuthenticationBean;
-import ca.gov.portal.scv.api.controller.bean.AuthorizationTokenBean;
 import ca.gov.portal.scv.api.security.JwtResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping({ "/auth" })
-@ConfigurationProperties("application.controller.authorization-controller")
-public class AuthorizationController {
+@ConfigurationProperties("application.auth-controller")
+public class AuthController {
 
 	@NonNull
 	private final ApplicationEventPublisher applicationEventPublisher;
@@ -50,20 +48,23 @@ public class AuthorizationController {
 	private final UserDetailsService userDetailsService;
 
 	@PostMapping
-	public ResponseEntity<?> handleAuthRequest(@Validated @RequestBody AuthenticationBean authenticationBean) {
-		log.debug("Incoming authentication request for user: [{}]", authenticationBean.getUsername());
+	public ResponseEntity<?> handleAuthRequest(@Validated @RequestBody AuthRequest authRequest) {
+		log.debug("Incoming authentication request for user: [{}]", authRequest.getUsername());
 
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationBean.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
 
-		if (passwordEncoder.matches(authenticationBean.getPassword(), userDetails.getPassword()) == false) {
+		if (passwordEncoder.matches(authRequest.getPassword(), userDetails.getPassword()) == false) {
 			throw new BadCredentialsException("Username and password do not match");
 		}
 
 		final Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
 		applicationEventPublisher.publishEvent(new AuthenticationSuccessEvent(authentication));
 
-		log.debug("User [{}] has successfully authenticated", authenticationBean.getUsername());
-		return ResponseEntity.ok(new AuthorizationTokenBean(jwtResolver.createToken(userDetails)));
+		log.debug("User [{}] has successfully authenticated", authRequest.getUsername());
+
+		return ResponseEntity.ok(AuthResponse.builder()
+			.accessToken(jwtResolver.createToken(userDetails))
+			.build());
 	}
 
 }

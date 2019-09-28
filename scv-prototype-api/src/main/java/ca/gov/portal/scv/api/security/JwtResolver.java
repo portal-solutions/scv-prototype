@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-@ConfigurationProperties("application.security.jwt-resolver")
+@ConfigurationProperties("application.jwt-resolver")
 public class JwtResolver implements InitializingBean {
 
 	/**
