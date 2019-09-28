@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.api.auth;
+package ca.gov.portal.scv.api.endpoint.auth;
 
 import java.io.Serializable;
 

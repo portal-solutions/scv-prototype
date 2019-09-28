@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.api.auth;
+package ca.gov.portal.scv.api.endpoint.auth;
 
 import java.io.Serializable;
 
@@ -29,5 +29,11 @@ public class AuthResponse implements Serializable {
 	 */
 	@NonNull
 	private String accessToken;
+
+	/**
+	 * The user id.
+	 */
+	@NonNull
+	private String uid;
 
 }

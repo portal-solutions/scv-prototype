@@ -1,0 +1,18 @@
+[{
+	"username": "actuator",
+	"password": "{noop}password",
+	"authorities": ["ROLE_ACTUATOR"],
+	"uid": "efe5c728-e212-11e9-81b4-2a2ae2dbcce4"
+},
+{
+	"username": "user@example.com",
+	"password": "{noop}password",
+	"authorities": ["ROLE_API"],
+	"uid": "f635ea5e-e212-11e9-81b4-2a2ae2dbcce4"
+},
+{
+	"username": "admin@example.com",
+	"password": "{noop}password",
+	"authorities": ["ROLE_ADMIN", "ROLE_API"],
+	"uid": "c7e80690-e20e-11e9-81b4-2a2ae2dbcce4"
+}]

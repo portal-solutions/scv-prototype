@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.api.profiles;
+package ca.gov.portal.scv.api.endpoint.profile;
 
 import java.io.InputStreamReader;
 

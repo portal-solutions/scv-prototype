@@ -49,7 +49,7 @@ public class SwaggerConfig {
 			.groupName("API version 1")
 			.securityContexts(Collections.singletonList(securityContext))
 			.securitySchemes(Collections.singletonList(basicAuth))
-			.select().apis(RequestHandlerSelectors.basePackage("ca.gov.portal.scv.api.api"))
+			.select().apis(RequestHandlerSelectors.basePackage("ca.gov.portal.scv.api.endpoint"))
 			.build();
 	}
 

@@ -1,4 +1,4 @@
-package ca.gov.portal.scv.api.api.greetings;
+package ca.gov.portal.scv.api.endpoint.greeting;
 
 import java.io.Serializable;
 import java.util.Collections;

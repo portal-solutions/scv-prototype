@@ -33,3 +33,7 @@ application:
     expiration-time: 20m
     issuer: # must be set externally
     secret: # must be set externally
+
+  # see ca.gov.portal.scv.api.security.InMemoryUserDetailsService
+  # TODO :: GjB :: remove this (eventually)
+  in-memory-user-details-service.enabled: true
