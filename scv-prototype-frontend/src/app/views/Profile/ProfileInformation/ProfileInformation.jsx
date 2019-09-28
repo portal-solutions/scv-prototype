@@ -50,6 +50,8 @@ const ProfileInformation = () => {
 		}
 
 		fetchProfile();
+
+	// eslint-disable-next-line
 	}, [fetchData]);
 
 	return (

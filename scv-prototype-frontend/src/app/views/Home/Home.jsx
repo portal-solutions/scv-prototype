@@ -10,7 +10,6 @@ import './Home.css';
  * @since 0.0.0
  */
 const Home = (props) => {
-	console.log('rendering home');
 	const { t } = useTranslation();
 
 	usePageMetadata({

@@ -15,6 +15,7 @@ import Loading from '../../components/loading';
 const Greeting = (props) => {
 	const { t } = useTranslation();
 	const { authenticationContext } = useContext(AuthenticationContext);
+	const { authToken } = authenticationContext;
 
 	const [data, setData] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
@@ -29,46 +30,40 @@ const Greeting = (props) => {
 
 	useEffect(() => {
 		const fetchGreetings = async () => {
-
 			setIsError(false);
 			setIsLoading(true);
 
 			try {
-				const data = await apiService.fetchGreetings(authenticationContext.authToken);
-
-				console.log(data)
-
-				setData(data);
-
-			} catch (error) {
-				console.log(error)
+				setData(await apiService.fetchGreetings(authToken));
+			}
+			 catch (error) {
 				setIsError(true);
 			}
 
 			setIsLoading(false);
-		}
+		};
 
 		fetchGreetings();
-
+	// eslint-disable-next-line
 	}, [fetchData]);
 
 	return (
 		<>
-			<div className="row">
-				<div className="col-xs-12 text-center">
-					{isLoading && <div className="text-center"><Loading /></div>}
-
-					{!isLoading && (
-						<div className="text-right">
-							<button class="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
-								<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
-							</button>
-						</div>
-					)}
-
-					{isError && <h4 className="text-center">{t('something-went-wrong')}</h4>}
+			{isLoading ? (
+				<div className="text-center mrgn-tp-lg"><Loading /></div>
+			) : (
+				<div className="text-right">
+					<button className="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
+						<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
+					</button>
 				</div>
-			</div>
+			)}
+
+			{isError && (
+				<div className="alert alert-danger">
+					<span>{t('something-went-wrong')}</span>
+				</div>
+			)}
 
 			{data !== null && (
 				<div className="row">
