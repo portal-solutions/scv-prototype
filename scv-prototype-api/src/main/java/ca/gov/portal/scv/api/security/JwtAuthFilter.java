@@ -2,6 +2,7 @@ package ca.gov.portal.scv.api.security;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.util.Assert;
+
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,13 +37,13 @@ import lombok.extern.slf4j.Slf4j;
  * @since 0.0.0
  */
 @Slf4j
-public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
+public class JwtAuthFilter extends BasicAuthenticationFilter {
 
 	private final ApplicationEventPublisher applicationEventPublisher;
 
 	private final JwtResolver jwtResolver;
 
-	public JwtAuthenticationFilter(ApplicationEventPublisher applicationEventPublisher, AuthenticationManager authenticationManager, JwtResolver jwtResolver) {
+	public JwtAuthFilter(ApplicationEventPublisher applicationEventPublisher, AuthenticationManager authenticationManager, JwtResolver jwtResolver) {
 		super(authenticationManager);
 
 		Assert.notNull(applicationEventPublisher, "applicationEventPublisher is required; it must not be null");
@@ -52,17 +55,21 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-		jwtResolver.getDecodedJwt(request).ifPresent((decodedJwt) -> {
-			log.debug("JWT token for user [{}] found in authorization header; authentication success", decodedJwt.getSubject());
+		final Optional<DecodedJWT> decodedJwt = jwtResolver.getDecodedJwt(request);
 
-			final List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(decodedJwt.getClaim("authorities").asArray(String.class));
-			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(decodedJwt.getSubject(), null, authorities));
+		if (decodedJwt.isPresent()) {
+			log.debug("JWT token for user [{}] found in authorization header; authentication success", decodedJwt.get().getSubject());
 
+			final List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(decodedJwt.get().getClaim("authorities").asArray(String.class));
+			SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(decodedJwt.get().getSubject(), null, authorities));
 			applicationEventPublisher.publishEvent(new AuthenticationSuccessEvent(SecurityContextHolder.getContext().getAuthentication()));
-		});
 
-		log.debug("No JWT token found in request; falling back to BASIC auth");
-		super.doFilterInternal(request, response, filterChain);
+			filterChain.doFilter(request, response);
+		}
+		else {
+			log.debug("No JWT token found in request; falling back to BASIC auth");
+			super.doFilterInternal(request, response, filterChain);
+		}
 	}
 
 }

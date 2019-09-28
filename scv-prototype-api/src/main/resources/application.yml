@@ -5,21 +5,18 @@
 
 spring:
 
-  application: # ContextIdApplicationContextInitializer
-    name: scv-prototype-api
+  # ContextIdApplicationContextInitializer
+  application.name: scv-prototype-api
 
-  profiles:
-    include: overrides # the order is important; keep 'overrides' at the end
+  # NOTE: the order is important; if you add any, keep 'overrides' at the end
+  profiles.include: overrides
 
 # ===================================================================
 # Management interface properties...
 # ===================================================================
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+management.endpoints:
+  web.exposure.include: '*'
 
 # ===================================================================
 # Application specific properties...

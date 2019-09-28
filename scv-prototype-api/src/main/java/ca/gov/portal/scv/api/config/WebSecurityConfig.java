@@ -23,7 +23,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
-import ca.gov.portal.scv.api.security.JwtAuthenticationFilter;
+import ca.gov.portal.scv.api.security.JwtAuthFilter;
 import ca.gov.portal.scv.api.security.JwtResolver;
 import lombok.Setter;
 
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http // typical REST stuff
 			.cors().and()
 			.csrf().disable()
-			.addFilter(new JwtAuthenticationFilter(applicationEventPublisher, authenticationManager, jwtResolver))
+			.addFilter(new JwtAuthFilter(applicationEventPublisher, authenticationManager, jwtResolver))
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		http
