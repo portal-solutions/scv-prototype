@@ -22,10 +22,10 @@ const Login = (props) => {
 		suppressLoginButton: true
 	});
 
-	const [isBusy, setIsBusy] = useState();
-	const [username, setUsername] = useState('user@example.com');
-	const [password, setPassword] = useState('password');
 	const [authError, setAuthError] = useState();
+	const [isBusy, setIsBusy] = useState();
+	const [username, setUsername] = useState();
+	const [password, setPassword] = useState();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -34,12 +34,14 @@ const Login = (props) => {
 			setIsBusy(true);
 
 			try {
-				const authentication = await apiService.login(username, password);
+				const authorities = ['USER'];
+				const authToken = (await apiService.login(username, password)).accessToken;
+
 				setAuthenticationContext({
 					authenticated: true,
 					username: username,
-					authorities: ['USER'],
-					authToken: authentication.accessToken
+					authorities: authorities,
+					authToken: authToken
 				});
 			}
 			catch (error) {
@@ -53,7 +55,7 @@ const Login = (props) => {
 	};
 
 	return (
-		<>
+		<div id="login-page">
 			<form className="well col-md-8 z-depth-1 mrgn-tp-lg" onSubmit={handleSubmit}>
 				<h2 className="h3 mrgn-tp-0 mrgn-bttm-lg">{t('login.greeting')}</h2>
 				<div className={`form-group ${authError && 'input-error'}`}>
@@ -80,7 +82,7 @@ const Login = (props) => {
 				<div className="form-group">
 					<label className="checkbox-inline">
 						<input id="remember-me" name="remember-me" type="checkbox" />
-						{t('login.input.remember-me')}
+						<span>{t('login.input.remember-me')}</span>
 					</label>
 				</div>
 				<button className={`btn btn-primary btn-lg ${isBusy && 'disabled'}`}>
@@ -89,7 +91,7 @@ const Login = (props) => {
 				</button>
 				<button className="btn btn-link">{t('login.input.forgot-password')}</button>
 			</form>
-		</>
+		</div>
 	);
 };
 
