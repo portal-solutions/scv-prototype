@@ -14,9 +14,9 @@ import messagesFr from './fr.json';
  */
 i18n.use(LanguageDetector).use(initReactI18next).init({
 	detection: {
-		order: [ 'querystring', 'cookie', 'localStorage', 'navigator' ],
-		lookupQuerystring: 'locale', lookupCookie: 'locale', lookupLocalStorage: 'locale',
-		caches: [ 'cookie', 'localStorage' ]
+		order: [ 'querystring', 'localStorage', 'navigator' ],
+		lookupQuerystring: 'locale', lookupLocalStorage: 'locale',
+		caches: [ 'localStorage' ]
 	},
 	interpolation: {
 		escapeValue: false // JSX escapes by default

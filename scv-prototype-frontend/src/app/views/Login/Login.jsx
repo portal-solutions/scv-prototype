@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AuthenticationContext } from '../../context/Authentication';
 import { usePageMetadata } from '../../context/PageMetadata';
 import apiService from "../../services/ApiService";
@@ -11,60 +12,82 @@ import './Login.css';
  * @since 0.0.0
  */
 const Login = (props) => {
+	const { t } = useTranslation();
 	const { setAuthenticationContext } = useContext(AuthenticationContext);
 
 	usePageMetadata({
-		documentTitle: 'Login required \u2014 Single client view',
-		pageIdentifier: 'SCV-9999',
-		pageTitle: 'Login required'
+		documentTitle: t('login.document-title'),
+		pageIdentifier: t('login.page-identifier'),
+		pageTitle: t('login.page-title'),
+		suppressLoginButton: true
 	});
 
-	// XXX :: GjB :: remove values (eventually)!
+	const [isBusy, setIsBusy] = useState();
 	const [username, setUsername] = useState('user@example.com');
 	const [password, setPassword] = useState('password');
-	const [authError, setAuthError] = useState(false);
+	const [authError, setAuthError] = useState();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		const login = async () => {
-			const authentication = await apiService.login(username, password);
-			setAuthenticationContext({
-				authenticated: true,
-				username: username,
-				authorities: ['USER'],
-				authToken: authentication.accessToken
-			});
+			setIsBusy(true);
+
+			try {
+				const authentication = await apiService.login(username, password);
+				setAuthenticationContext({
+					authenticated: true,
+					username: username,
+					authorities: ['USER'],
+					authToken: authentication.accessToken
+				});
+			}
+			catch (error) {
+				setAuthError(true);
+			}
+
+			setIsBusy(false);
 		}
 
-		try {
-			login();
-		}
-		catch (error) {
-			setAuthError(true);
-		}
+		login();
 	};
 
 	return (
 		<>
-			<div className="alert alert-warning">
-				<span>The page you are requesting requires that you login.</span>
-			</div>
-
-			<form className="well" onSubmit={handleSubmit}>
-				<div className="form-group">
-					<label htmlFor="email">Email address: (tip: enter 'user@example.com')</label>
-					<input id="email" name="email" type="email" className="form-control" defaultValue={username} onChange={(e) => setUsername(e.target.value)} />
+			<form className="well col-md-8 z-depth-1 mrgn-tp-lg" onSubmit={handleSubmit}>
+				<h2 className="h3 mrgn-tp-0 mrgn-bttm-lg">{t('login.greeting')}</h2>
+				<div className={`form-group ${authError && 'input-error'}`}>
+					<label htmlFor="email" className="sr-only">{t('login.input.username')}</label>
+					<input
+						id="email" name="email" type="email" className="form-control"
+						placeholder={t('login.input.username')} defaultValue={username}
+						onChange={(e) => setUsername(e.target.value)} size="50"
+					/>
 				</div>
-				<div className="form-group">
-					<label htmlFor="password">Password: (tip: enter 'password')</label>
-					<input id="password" name="password" type="password" className="form-control" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
+				<div className={`form-group ${authError && 'input-error'}`}>
+					<label htmlFor="password" className="sr-only">{t('login.input.password')}</label>
+					<input
+						id="password" name="password" type="password" className="form-control"
+						placeholder={t('login.input.password')}
+						onChange={(e) => setPassword(e.target.value)} size="50"
+					/>
 				</div>
-				{authError && (<div className="alert alert-danger"><span>Incorrect username or password.</span></div>)}
-				<button className="btn btn-primary btn-lg">
-					<i className="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i>
-					<span>Sign in</span>
+				{authError && (
+					<div className="alert alert-danger">
+						<span>{t('login.bad-credentials')}</span>
+					</div>
+				)}
+				<div className="form-group">
+					<label className="checkbox-inline">
+						<input id="remember-me" name="remember-me" type="checkbox" />
+						{t('login.input.remember-me')}
+					</label>
+				</div>
+				<button className={`btn btn-primary btn-lg ${isBusy && 'disabled'}`}>
+					<i className={`fas fa-sign-in-alt fa-fw ${isBusy && 'fa-spinner fa-spin'}`} aria-hidden="true"></i>
+					<span className="mrgn-lft-sm">{t('login.input.login')}</span>
 				</button>
+				<button className="btn btn-link">{t('login.input.forgot-password')}</button>
 			</form>
 		</>
 	);

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PageMetadataContext } from '../../../context/PageMetadata';
 import BreadcrumbItem from './BreadcrumbItem';
 import './Header.css';
 import LoginButton from './LoginButton';
@@ -13,6 +14,7 @@ import NavBar from './NavBar';
  */
 const Header = (props) => {
 	const { i18n, t } = useTranslation();
+	const { pageMetadata } = useContext(PageMetadataContext);
 
 	return (
 		<>
@@ -28,28 +30,19 @@ const Header = (props) => {
 			</nav>
 			<header>
 				<div id="wb-bnr" className="container">
-					<div className="clearfix">
-						{/* TODO :: GjB :: add mechanism to suppress login button rendering (ie: when on a login page) */}
-						<section id="wb-auth" className="text-right">
-							{/* TODO :: GjB :: translate this */}
-							<h2 className="wb-inv">Sign in</h2>
-							<ul className="list-inline margin-bottom-none">
-								<li>
-									<LoginButton />
-								</li>
-							</ul>
-						</section>
-						<section id="wb-lng" className="text-right">
-							<h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
-							<ul className="list-inline margin-bottom-none">
-								<li>
-									<button className="btn btn-link btn-sm" lang={t('wet-boew.header.language-lang')} onClick={() => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en')}>
-										<span>{t('wet-boew.header.language-toggle')}</span>
-									</button>
-								</li>
-							</ul>
-						</section>
-					</div>
+					<section id="wb-lng" className="text-right">
+						<h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
+						<ul className="list-inline margin-bottom-none">
+							<li>
+								<button className="btn btn-link btn-sm" lang={t('wet-boew.header.language-lang')} onClick={() => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en')}>
+									<span>{t('wet-boew.header.language-toggle')}</span>
+								</button>
+							</li>
+							{pageMetadata.suppressLoginButton || (
+								<li><LoginButton /></li>
+							)}
+						</ul>
+					</section>
 					<div className="row">
 						<div className="brand col-xs-5 col-md-4" property="publisher" typeof="GovernmentOrganization">
 							<a href={t('wet-boew.header.canada-href')} property="url">

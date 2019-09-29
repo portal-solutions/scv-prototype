@@ -11,7 +11,8 @@ const initialState = {
 	applicationDateModified: applicationDateModified,
 	applicationVersion: applicationVersion,
 	pageIdentifier: null,
-	pageTitle: null
+	pageTitle: null,
+	suppressLoginButton: false
 };
 
 /**
@@ -42,11 +43,16 @@ const PageMetadataProvider = (props) => {
 const usePageMetadata = (pageMetadata) => {
 	const { setPageMetadata } = useContext(PageMetadataContext);
 
+	// this little trick sets suppressLoginButton=false if not explicitly passed-in
+	const suppressLoginButton = pageMetadata.suppressLoginButton
+			? pageMetadata.suppressLoginButton : false;
+
 	useEffect(() => {
-		setPageMetadata(pageMetadata);
+		setPageMetadata({ ...pageMetadata, suppressLoginButton });
 		document.title = pageMetadata.documentTitle;
 	// eslint-disable-next-line
 	}, [JSON.stringify(pageMetadata)]);
 };
 
 export { PageMetadataContext, PageMetadataProvider, usePageMetadata };
+

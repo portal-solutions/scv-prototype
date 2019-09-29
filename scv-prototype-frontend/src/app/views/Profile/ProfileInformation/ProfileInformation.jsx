@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { usePageMetadata } from '../../../context/PageMetadata';
-import { AuthenticationContext } from '../../../context/Authentication';
-import apiService from '../../../services/ApiService';
 import Loading from '../../../components/loading';
+import { AuthenticationContext } from '../../../context/Authentication';
+import { usePageMetadata } from '../../../context/PageMetadata';
+import apiService from '../../../services/ApiService';
 import Address from './Address';
 import Email from './Email';
 import Note from './Note';
@@ -62,7 +62,7 @@ const ProfileInformation = () => {
 
 					{!isLoading && (
 						<div className="text-right">
-							<button class="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
+							<button className="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
 								<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
 							</button>
 						</div>

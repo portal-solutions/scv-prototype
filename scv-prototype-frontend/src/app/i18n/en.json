@@ -223,12 +223,27 @@
 				"benefits-services": "Benefits and services",
 				"jobs-skills": "Jobs and skills",
 				"preferences": "Preferences"
-			}
+			},
+			"sign-in": "Sign in"
 		},
 		"page-details": {
 			"date-modified": "Date modified:",
 			"screen-identifier": "Screen identifier:",
 			"version": "Version:"
+		}
+	},
+	"login": {
+		"document-title": "Login \u2014 Single client view",
+		"page-title": "Single client view",
+		"page-identifier": "SCV-9999-EN",
+		"greeting": "Enter your details to log in to your account.",
+		"bad-credentials": "The username and password you entered did not match our records. Please double-check and try again.",
+		"input": {
+			"username": "Username",
+			"password": "Password",
+			"login": "Login",
+			"remember-me": "Remember me",
+			"forgot-password": "Forgot password?"
 		}
 	}
 }

@@ -223,12 +223,27 @@
 				"benefits-services": "Avantages et services",
 				"jobs-skills": "Emplois et compétences",
 				"preferences": "Préférences"
-			}
+			},
+			"sign-in": "Se connecter"
 		},
 		"page-details": {
 			"date-modified": "Date de modification :",
 			"screen-identifier": "Identificateur d'écran :",
 			"version": "Version :"
+		}
+	},
+	"login": {
+		"document-title": "Se connecter \u2014 Vue client unique",
+		"page-title": "Vue client unique",
+		"page-identifier": "SCV-9999-FR",
+		"greeting": "Entrez vos informations pour vous connecter à votre compte.",
+		"bad-credentials": "Le nom d'utilisateur et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.",
+		"input": {
+			"username": "Identifiant",
+			"password": "Mot de passe",
+			"login": "Se connecter",
+			"remember-me": "Se souvenir de moi",
+			"forgot-password": "Mot de passe oublié?"
 		}
 	}
 }
