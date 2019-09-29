@@ -29,7 +29,7 @@ const Greeting = (props) => {
 	});
 
 	useEffect(() => {
-		const fetchGreetings = async () => {
+		(async () => {
 			setIsError(false);
 			setIsLoading(true);
 
@@ -41,9 +41,7 @@ const Greeting = (props) => {
 			}
 
 			setIsLoading(false);
-		};
-
-		fetchGreetings();
+		})();
 	// eslint-disable-next-line
 	}, [fetchData]);
 
