@@ -1,12 +1,15 @@
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Error404 from './components/error/Error404';
-import PrivateRoute from './components/PrivateRoute';
+
 import { AuthenticationProvider } from './context/Authentication';
 import { PageMetadataProvider } from './context/PageMetadata';
+
+import Error404 from './components/error/Error404';
+import PrivateRoute from './components/PrivateRoute';
+
 import MainLayout from './layout/Main';
+
 import BenefitsServices from './views/BenefitsServices';
 import BookAppointment from './views/BookAppointment';
 import Greeting from './views/Greeting';
@@ -18,6 +21,8 @@ import Login from './views/Login/Login';
 import Notifications from './views/Notifications';
 import Preferences from './views/Preferences';
 import Profile from './views/Profile';
+
+import './App.scss';
 
 /**
  * Application entrypoint.

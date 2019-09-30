@@ -1,0 +1,14 @@
+.main-navigation-menu .menu > li a {
+	display: flex;
+	flex-direction: column;
+
+	> i {
+		font-size: 2em;
+		margin-bottom: 0.25em;
+	}
+
+	> span {
+		font-size: 0.875em;
+		white-space: nowrap;
+	}
+}

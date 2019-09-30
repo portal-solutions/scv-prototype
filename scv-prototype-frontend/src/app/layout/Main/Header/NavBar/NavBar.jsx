@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './NavBar.css';
+import './NavBar.scss';
 import NavBarItem from './NavBarItem';
 
 const NavBar = () => {

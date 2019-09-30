@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { AuthenticationContext } from '../../context/Authentication';
 import { usePageMetadata } from '../../context/PageMetadata';
 import apiService from "../../services/ApiService";
-import './Login.css';
 
 /**
  * A very simple login component.

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Loading from '../../../components/loading';
+import Loading from '../../../components/Loading';
 import { AuthenticationContext } from '../../../context/Authentication';
 import { usePageMetadata } from '../../../context/PageMetadata';
 import apiService from '../../../services/ApiService';
@@ -29,6 +29,7 @@ const ProfileInformation = () => {
 
 	useEffect(() => {
 		const fetchProfile = async () => {
+			setData(null);
 			setIsError(false);
 			setIsLoading(true);
 
@@ -51,7 +52,7 @@ const ProfileInformation = () => {
 
 		fetchProfile();
 
-	// eslint-disable-next-line
+		// eslint-disable-next-line
 	}, [fetchData]);
 
 	return (

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageMetadataContext } from '../../../context/PageMetadata';
 import BreadcrumbItem from './BreadcrumbItem';
-import './Header.css';
+import './Header.scss';
 import LoginButton from './LoginButton';
 import NavBar from './NavBar';
 
