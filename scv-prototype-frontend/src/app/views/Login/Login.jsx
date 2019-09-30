@@ -29,7 +29,8 @@ const Login = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const login = async () => {
+		(async () => {
+			setAuthError(false);
 			setIsBusy(true);
 
 			try {
@@ -48,9 +49,7 @@ const Login = (props) => {
 			}
 
 			setIsBusy(false);
-		}
-
-		login();
+		})();
 	};
 
 	return (
