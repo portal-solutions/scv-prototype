@@ -1,5 +1,5 @@
 import React from 'react';
-import './Roller.css';
+import './Roller.scss';
 
 const Roller = () => {
 	return <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;

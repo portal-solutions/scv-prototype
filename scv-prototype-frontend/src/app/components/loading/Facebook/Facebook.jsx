@@ -1,5 +1,5 @@
 import React from 'react';
-import './Facebook.css';
+import './Facebook.scss';
 
 const Facebook = () => {
 	return <div className="lds-facebook"><div></div><div></div><div></div></div>;
