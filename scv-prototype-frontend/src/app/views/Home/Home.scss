@@ -1,0 +1,90 @@
+.benefits-services-container {
+	.benefits-services {
+		.panel-heading {
+			display:flex; flex-direction: row; justify-content: space-between;
+
+			.action {
+				display: flex; flex-direction: column; justify-content: center;
+				color: white;
+				line-height: 1.1;
+				margin: 0.25em 0;
+				text-align: right;
+			}
+
+			.title {
+				display: flex; flex-direction: column; justify-content: center;
+				margin: 0.25em 0;
+			}
+		}
+
+		.panel-body {
+			padding: 1.5em;
+
+			.current-benefits-services-container {
+				padding: 1em;
+
+				h3 {
+					border-bottom: 1px solid black;
+					margin: 0
+				}
+
+				.current-benefits-services {
+					display: flex; flex-wrap: wrap; justify-content: center;
+					padding: 0.25em 1.5em;
+
+					.details {
+						padding: 0 1em;
+						text-align: center;
+
+						button {
+							padding: 0.5em 3em;
+						}
+						h4 {
+							margin-top: 0;
+						}
+					}
+
+					.item {
+						background-color: lightgray;
+						display: flex; flex-wrap: nowrap;
+						margin: 0.5em;
+						padding: 1em;
+
+						.fa-stack {
+							align-self: center;
+
+							.fa-stack-1x {
+								font-size: 75%;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.notification-container {
+	margin-top: 2em;
+
+	.notification {
+		font-size: 90%;
+		padding: 1rem;
+		position: relative;
+
+		.action-button {
+			padding: 0.5em 3em;
+		}
+
+		.info-icon {
+			background-color: #134988;
+			border-radius: 50%;
+			color: white;
+			display: inline-block;
+			line-height: 2.5em;
+			position: absolute;
+			top: -1em; left: -1em;
+			width: 2.5em; height: 2.5em;
+		}
+	}
+}
