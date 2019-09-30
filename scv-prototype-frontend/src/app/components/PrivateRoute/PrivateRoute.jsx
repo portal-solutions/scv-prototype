@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { AuthenticationContext } from '../../context/Authentication';
 import Login from '../../views/Login/Login';
-import './PrivateRoute.css';
 
 /**
  * Component that will redirect to a login page if

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PageMetadataContext } from '../../context/PageMetadata';
 import Footer from './Footer';
 import Header from './Header';
-import './Main.css';
+import './Main.scss';
 import PageDetails from './PageDetails';
 
 /**

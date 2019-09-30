@@ -9,7 +9,7 @@ import AuthorizedRepresentatives from './AuthorizedRepresentatives';
 import InclusiveAccessibleServiceOptions from './InclusiveAccessibleServiceOptions';
 import PrivacySettings from './PrivacySettings';
 
-import './Profile.css';
+import './Profile.scss';
 
 const Profile = ({ match }) => {
 	const { t } = useTranslation();
