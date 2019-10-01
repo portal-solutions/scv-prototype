@@ -35,7 +35,7 @@ const Profile = ({ match }) => {
 							<Redirect to={`${match.path}/profile-information`} />
 						</Route>
 						<Route exact path={`${match.path}/profile-information`} component={ProfileInformation} />
-						<Route exact path={`${match.path}/payment-details`} component={PaymentDetails} />
+						<Route path={`${match.path}/payment-details`} component={PaymentDetails} />
 						<Route exact path={`${match.path}/my-identifiers`} component={MyIdentifiers} />
 						<Route exact path={`${match.path}/authorized-representatives`} component={AuthorizedRepresentatives} />
 						<Route exact path={`${match.path}/inclusive-accessible-service-options`} component={InclusiveAccessibleServiceOptions} />

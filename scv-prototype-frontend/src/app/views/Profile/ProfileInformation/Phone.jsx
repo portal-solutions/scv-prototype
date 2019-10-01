@@ -16,9 +16,9 @@ const Phone = (props) => {
 							<p>
 								{
 									data.usedFor === null ?
-										<Trans i18nKey="profile.profile-information.email.used-for-all" />
+										<Trans i18nKey="profile.profile-information.phone.used-for-all" />
 										:
-										<Trans i18nKey="profile.profile-information.email.used-for">
+										<Trans i18nKey="profile.profile-information.phone.used-for">
 											{
 												data.usedFor.join(', ')
 											}
