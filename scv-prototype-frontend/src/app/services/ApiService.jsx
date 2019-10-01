@@ -34,8 +34,12 @@ const apiService = {
 			headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` }
 		});
 
+		if (response.status === 401) {
+			throw new InvalidTokenError('Invalid token or token has expired');
+		}
+
 		if (!response.ok) {
-			throw new Error('Error fetching greetings; response status: ' + response.status);
+			throw new InvalidTokenError('Error fetching greetings; response status: ' + response.status);
 		}
 
 		return await response.json();
@@ -58,4 +62,19 @@ const apiService = {
 	}
 };
 
+/**
+ * A custom error class intended to be thrown on authentication errors.
+ */
+class InvalidTokenError extends Error {
+
+	constructor(message) {
+		super(message);
+		this.message = message;
+		this.name="InvalidTokenError";
+	}
+
+};
+
 export default apiService;
+export { InvalidTokenError };
+

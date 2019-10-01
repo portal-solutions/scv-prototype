@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { AuthenticationContext } from '../../context/Authentication';
 import Login from '../../views/Login/Login';
+import Error403 from '../error/Error403';
 
 /**
  * Component that will redirect to a login page if
@@ -10,24 +11,27 @@ import Login from '../../views/Login/Login';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const PrivateRoute = ({ authorities, ...props }) => {
+const PrivateRoute = ({ authorities: requiredAuthorities, ...props }) => {
 	const { authenticationContext } = useContext(AuthenticationContext);
+	const { authenticated, authorities, tokenExpired } = authenticationContext;
 
-	if (!authenticationContext.authenticated) {
+	if (!authenticated || tokenExpired) {
 		return (<Login />);
 	}
 
-	if (authorities) {
-		const hasAuthority = authorities.filter((authority) => {
-			// this will effectively return the intersection of these two sets
-			return (authenticationContext.authorities || []).includes(authority)
-		}).length !== 0;
-
-		// TODO :: GjB :: render 403 page
-		if (!hasAuthority) { throw new Error('User not allowed access'); }
+	if (requiredAuthorities && intersection(requiredAuthorities)(authorities).length === 0) {
+		return (<Error403 />);
 	}
 
 	return (<Route {...props} />);
 };
+
+/**
+ * Array intersect (curried) function. Finds
+ * the intersection of two arrays.
+ *
+ * TODO :: GjB :: move to utility package?
+ */
+const intersection = (arr1) => (arr2) => (arr1 || []).filter((element) => (arr2 || []).includes(element));
 
 export default PrivateRoute;

@@ -12,7 +12,8 @@ import apiService from "../../services/ApiService";
  */
 const Login = (props) => {
 	const { t } = useTranslation();
-	const { setAuthenticationContext } = useContext(AuthenticationContext);
+	const { authenticationContext, setAuthenticationContext } = useContext(AuthenticationContext);
+	const { tokenExpired } = authenticationContext;
 
 	usePageMetadata({
 		documentTitle: t('login.document-title'),
@@ -29,7 +30,8 @@ const Login = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const login = async () => {
+		(async () => {
+			setAuthError(false);
 			setIsBusy(true);
 
 			try {
@@ -40,7 +42,8 @@ const Login = (props) => {
 					authenticated: true,
 					username: username,
 					authorities: authorities,
-					authToken: authToken
+					authToken: authToken,
+					tokenExpired: false
 				});
 			}
 			catch (error) {
@@ -48,9 +51,7 @@ const Login = (props) => {
 			}
 
 			setIsBusy(false);
-		}
-
-		login();
+		})();
 	};
 
 	return (
@@ -76,6 +77,11 @@ const Login = (props) => {
 				{authError && (
 					<div className="alert alert-danger">
 						<span>{t('login.bad-credentials')}</span>
+					</div>
+				)}
+				{tokenExpired && (
+					<div className="alert alert-danger">
+						<span>Your session has expired; please sign in again.</span>
 					</div>
 				)}
 				<div className="form-group">

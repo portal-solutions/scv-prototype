@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Loading from '../../components/Loading';
 import { AuthenticationContext } from '../../context/Authentication';
 import { usePageMetadata } from '../../context/PageMetadata';
 import apiService from '../../services/ApiService';
-import Loading from '../../components/Loading';
 
 /**
  * Component used for testing protected routes.
@@ -14,7 +14,7 @@ import Loading from '../../components/Loading';
  */
 const Greeting = (props) => {
 	const { t } = useTranslation();
-	const { authenticationContext } = useContext(AuthenticationContext);
+	const { authenticationContext, setAuthenticationContext } = useContext(AuthenticationContext);
 	const { authToken } = authenticationContext;
 
 	const [data, setData] = useState(null);
@@ -36,8 +36,12 @@ const Greeting = (props) => {
 			try {
 				setData(await apiService.fetchGreetings(authToken));
 			}
-			catch (error) {
+			catch (authError) {
 				setIsError(true);
+
+				if (authError.name === 'InvalidTokenError') {
+					setAuthenticationContext({ tokenExpired: true });
+				}
 			}
 
 			setIsLoading(false);
@@ -50,12 +54,15 @@ const Greeting = (props) => {
 			{isLoading ? (
 				<div className="text-center mrgn-tp-lg"><Loading /></div>
 			) : (
-					<div className="text-right">
-						<button className="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
-							<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
-						</button>
-					</div>
-				)}
+				<div className="text-right">
+					<button className="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
+						<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
+					</button>
+					<button className="btn btn-link btn-sm text-lowercase" onClick={() => setAuthenticationContext({ tokenExpired: true }) }>
+						<i className="fas fa-exclamation"></i>&nbsp;&nbsp;Simulate expired token
+					</button>
+				</div>
+			)}
 
 			{isError && (
 				<div className="alert alert-danger">

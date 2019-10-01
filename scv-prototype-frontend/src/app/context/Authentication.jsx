@@ -8,6 +8,7 @@ const initialState = {
 	authenticated: false,
 	authorities: [],
 	authToken: null,
+	tokenExpired: null,
 	username: 'Anonymous'
 };
 
@@ -53,3 +54,4 @@ const useAuthenticationContext = (authenticationContext) => {
 };
 
 export { AuthenticationContext, AuthenticationProvider, useAuthenticationContext };
+
