@@ -37,11 +37,9 @@ const ProfileInformation = () => {
 				//TODO: userId should come from auth context
 				const userId = 1;
 
-				const data = await apiService.fetchProfile(authenticationContext.authToken, userId);
+				const fecthedData = await apiService.fetchProfile(authenticationContext.authToken, userId);
 
-				console.log(data)
-
-				setData(data);
+				setData(fecthedData);
 			} catch (error) {
 				console.log(error)
 				setIsError(true);
@@ -64,7 +62,7 @@ const ProfileInformation = () => {
 					{!isLoading && (
 						<div className="text-right">
 							<button className="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
-								<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
+								<i className="fas fa-sync mr-2"></i> {t("action.refresh")}
 							</button>
 						</div>
 					)}
