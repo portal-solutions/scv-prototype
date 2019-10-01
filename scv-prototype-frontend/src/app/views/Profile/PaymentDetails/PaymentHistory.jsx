@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loading from '../../../components/Loading';
 
 const PaymentHistory = () => {
-	const { t } = useTranslation();
-
+	
 	const fakeData = [
 		{
 			id: 1,
@@ -43,7 +42,7 @@ const PaymentHistory = () => {
 		}
 	];
 
-	console.info((new Date()).toISOString());
+	const { t } = useTranslation();
 
 	const [data, setData] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
@@ -51,14 +50,14 @@ const PaymentHistory = () => {
 
 	useEffect(() => {
 		const fetchHistory = async () => {
-			setData(null);
 			setIsError(false);
 			setIsLoading(true);
 
 			try {
-				// simulate fake fetch and set data with fake data
+				// simulate fake fetch with sleep
 				await (new Promise((resolve) => setTimeout(resolve, 1000)));
 
+				//set data with fake data
 				setData(fakeData);
 			} catch (error) {
 				console.error(error)
@@ -70,25 +69,6 @@ const PaymentHistory = () => {
 
 		fetchHistory();
 	}, []);
-
-	const columns = [
-		{
-			Header: "Date",
-			accessor: "date"
-		},
-		{
-			Header: "Program/Service",
-			accessor: "programService"
-		},
-		{
-			Header: "Amount",
-			accessor: "amount"
-		},
-		{
-			Header: "Account number",
-			accessor: "accountNumber"
-		}
-	];
 
 	return (
 		<>
@@ -107,18 +87,17 @@ const PaymentHistory = () => {
 								<tr>
 									<th>{t('profile.payment-details.payment-history.date')}</th>
 									<th>{t('profile.payment-details.payment-history.program-service')}</th>
-									<th>{t('profile.payment-details.payment-history.amount')}</th>
+									<th className="text-right">{t('profile.payment-details.payment-history.amount')}</th>
 									<th>{t('profile.payment-details.payment-history.account-number')}</th>
 								</tr>
 							</thead>
 							<tbody>
-								{console.debug(data)}
 								{data !== null && data.length > 0 ?
 									data.map(item =>
 										<tr key={item.id}>
-											<td>{new Date(item.date).toDateString()}</td>
+											<td>{new Date(item.date).toISOString().split('T')[0]}</td>
 											<td>{item.programService}</td>
-											<td>${item.amount}</td>
+											<td className="text-right">${item.amount.toFixed(2)}</td>
 											<td>{item.accountNumber}</td>
 										</tr>
 									)
