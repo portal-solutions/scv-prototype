@@ -1,8 +1,14 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePageMetadata } from '../../../context/PageMetadata';
+import NavBarItem from '../NavBarItem';
+import Details from './Details';
+import MakePayment from './MakePayment';
+import PaymentHistory from './PaymentHistory';
 
-const PaymentDetails = () => {
+const PaymentDetails = ({ match }) => {
+
 	const { t } = useTranslation();
 
 	usePageMetadata({
@@ -13,7 +19,21 @@ const PaymentDetails = () => {
 
 	return (
 		<>
-			<div>PaymentDetails</div>
+			<div className="row mb-4">
+				<div className="col-xs-12">
+					<ul className="nav nav-pills nav-justified">
+						<NavBarItem text={t('profile.payment-details.navbar.details')} to={`${match.path}`} />
+						<NavBarItem text={t('profile.payment-details.navbar.make-payment')} to={`${match.path}/make-payment`} />
+						<NavBarItem text={t('profile.payment-details.navbar.payment-history')} to={`${match.path}/payment-history`} />
+					</ul>
+				</div>
+			</div>
+
+			<Switch>
+				<Route exact path={`${match.path}`} component={Details} />
+				<Route exact path={`${match.path}/make-payment`} component={MakePayment} />
+				<Route exact path={`${match.path}/payment-history`} component={PaymentHistory} />
+			</Switch>
 		</>
 	);
 };

@@ -73,9 +73,24 @@
 			}
 		},
 		"payment-details": {
-			"document-title": "Payments details",
+			"document-title": "Payment details",
 			"page-identifier": "SCV-00011-EN",
-			"page-title": "Payment details"
+			"page-title": "Payment details",
+			"navbar": {
+				"details": "Details",
+				"make-payment": "Make a payment",
+				"payment-history": "Payment history"
+			},
+			"details": {
+				"not-in-use": "Not in use.",
+				"used-for": "Used for: <strong><0 /></strong>"
+			},
+			"payment-history": {
+				"date": "Date",
+				"program-service": "Program/service",
+				"amount": "Amount",
+				"account-number": "Account number"
+			}
 		}
 	},
 	"notifications": {

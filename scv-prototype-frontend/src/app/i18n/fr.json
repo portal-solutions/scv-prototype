@@ -30,7 +30,7 @@
 		"page-title": "VCU :: Profil",
 		"navbar": {
 			"profile-information": "Informations de profil",
-			"payment-details": "Détails des paiements",
+			"payment-details": "Détails de paiement",
 			"my-identifiers": "Mes identifiants",
 			"authorized-representatives": "Représentants autorisés",
 			"inclusive-accessible-service-options": "Options de service inclusives et accessibles",
@@ -73,9 +73,24 @@
 			}
 		},
 		"payment-details": {
-			"document-title": "Détails des paiements",
+			"document-title": "Détails de paiement",
 			"page-identifier": "SCV-00011-FR",
-			"page-title": "Détails des paiements"
+			"page-title": "Détails de paiement",
+			"navbar": {
+				"details": "Détails",
+				"make-payment": "Effectuer un paiement",
+				"payment-history": "Historique de paiement"
+			},
+			"details": {
+				"not-in-use": "Non utilisé.",
+				"used-for": "Used for: <strong><0 /></strong>"
+			},
+			"payment-history": {
+				"date": "Date",
+				"program-service": "Programme / service",
+				"amount": "Montant",
+				"account-number": "Numéro de compte"
+			}
 		}
 	},
 	"notifications": {
