@@ -13,9 +13,9 @@ import Error403 from '../error/Error403';
  */
 const PrivateRoute = ({ authorities: requiredAuthorities, ...props }) => {
 	const { authenticationContext } = useContext(AuthenticationContext);
-	const { authenticated, authorities } = authenticationContext;
+	const { authenticated, authorities, tokenExpired } = authenticationContext;
 
-	if (!authenticated) {
+	if (!authenticated || tokenExpired) {
 		return (<Login />);
 	}
 

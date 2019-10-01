@@ -51,7 +51,7 @@ const App = (props) => {
 							<Route path="/sign-in" component={Login} exact />
 
 							{/* XXX :: GjB :: protected route for testing auth .. will remove later */}
-							<PrivateRoute exact path="/greeting" component={Greeting} authorities={['xUSER']} />
+							<PrivateRoute exact path="/greeting" component={Greeting} authorities={['USER']} />
 
 							{/* catch-all route is the 404 page */}
 							<Route component={Error404} />
