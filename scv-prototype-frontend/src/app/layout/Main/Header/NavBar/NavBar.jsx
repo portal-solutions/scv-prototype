@@ -21,9 +21,6 @@ const NavBar = () => {
 						<NavBarItem text={t('wet-boew.header.navbar.benefits-services')} iconClass="fas fa-hand-holding-heart" to="/benefits-services" />
 						<NavBarItem text={t('wet-boew.header.navbar.jobs-skills')} iconClass="fas fa-briefcase" to="/jobs-skills" />
 						<NavBarItem text={t('wet-boew.header.navbar.preferences')} iconClass="fas fa-cog" to="/preferences" />
-
-						{/* XXX :: GjB :: test code .. remove eventually */}
-						<NavBarItem text="Greeting" iconClass="fas fa-handshake" to="/greeting" />
 					</ul>
 				</div>
 			</div>
