@@ -1,0 +1,25 @@
+[{
+	"id": 1,
+	"title": "TD Canada Trust",
+	"identifier": "********6285",
+	"usedFor": ["Employment Insurance"],
+	"image": "https://via.placeholder.com/125"
+}, {
+	"id": 2,
+	"title": "Bank of Montreal",
+	"identifier": "********8563",
+	"usedFor": ["Canada Learning Bond"],
+	"image": "https://via.placeholder.com/125"
+}, {
+	"id": 3,
+	"title": "PayPal",
+	"identifier": "M********@email.com",
+	"usedFor": null,
+	"image": "https://via.placeholder.com/125"
+}, {
+	"id": 4,
+	"title": "Reloadable debit card",
+	"identifier": "********2345",
+	"usedFor": null,
+	"image": "https://via.placeholder.com/125"
+}]
