@@ -92,6 +92,42 @@ const useApi = () => {
 		}
 	};
 
+		/**
+	 * Fetch a user's payment history information.
+	 */
+	const fetchPaymentHistory = async () => {
+		setData(null);
+		setError(null)
+		setLoading(true);
+
+		const {authToken, uid} = authenticationContext;
+
+		try {
+			const response = await fetch(`${config.api.baseUrl}/api/profiles/${uid}/payment-history`, {
+				method: 'GET', mode: 'cors', cache: 'no-cache',
+				headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` }
+			});
+
+			if (!response.ok) {
+				if (response.status === 401) {
+					throw new InvalidTokenError('Invalid token or token has expired');
+				}
+				else {
+					throw new Error('Error fetching profile; response status: ' + response.status);
+				}
+			}
+
+			setData(await response.json());
+		}
+		catch (error) {
+			setAuthenticationContext({ tokenExpired: true });
+			setError(error);
+		}
+		finally {
+			setLoading(false);
+		}
+	};
+
 	/**
 	 * Fetch a user's payment details information.
 	 */
@@ -169,7 +205,7 @@ const useApi = () => {
 		data, error, loading,
 
 		// API methods
-		fetchGreetings, fetchPaymentDetails, fetchProfile, login
+		fetchGreetings, fetchPaymentDetails, fetchPaymentHistory, fetchProfile, login
 	};
 };
 
