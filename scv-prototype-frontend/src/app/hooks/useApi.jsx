@@ -91,12 +91,48 @@ const useApi = () => {
 		}
 	};
 
+	/**
+	 * Fetch the user profile data.
+	 */
+	const fetchProfile = async (profileId) => {
+		setData(null);
+		setError(null)
+		setLoading(true);
+
+		const {authToken} = authenticationContext;
+
+		try {
+			const response = await fetch(`${config.api.baseUrl}/api/profiles/${profileId}`, {
+				method: 'GET', mode: 'cors', cache: 'no-cache',
+				headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` }
+			});
+
+			if (!response.ok) {
+				if (response.status === 401) {
+					throw new InvalidTokenError('Invalid token or token has expired');
+				}
+				else {
+					throw new Error('Error fetching profile; response status: ' + response.status);
+				}
+			}
+
+			setData(await response.json());
+		}
+		catch (error) {
+			setAuthenticationContext({ tokenExpired: true });
+			setError(error);
+		}
+		finally {
+			setLoading(false);
+		}
+	};
+
 	return {
 		// status fields
 		data, error, loading,
 
 		// API methods
-		fetchGreetings, login
+		fetchGreetings, fetchProfile, login
 	};
 };
 
