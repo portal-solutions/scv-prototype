@@ -10,9 +10,6 @@ import PersonalInformation from './PersonalInformation';
 import Phone from './Phone';
 import VolunteerExperience from './VolunteerExperience';
 
-// TODO: userId should come from auth context
-const userId = 1;
-
 const ProfileInformation = () => {
 	const {t} = useTranslation();
 	const {fetchProfile, data, error, loading} = useApi();
@@ -25,7 +22,7 @@ const ProfileInformation = () => {
 	});
 
 	// eslint-disable-next-line
-	useEffect(() => { fetchProfile(userId) }, [fetchData]);
+	useEffect(() => { fetchProfile() }, [fetchData]);
 
 	return (
 		<>

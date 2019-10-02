@@ -38,10 +38,11 @@ const useApi = () => {
 
 			setAuthenticationContext({
 				authenticated: true,
-				username: username,
 				authorities: ['USER'],
 				authToken: json.accessToken,
-				tokenExpired: false
+				tokenExpired: false,
+				uid: json.uid,
+				username: username
 			});
 
 			setData(json);
@@ -92,17 +93,53 @@ const useApi = () => {
 	};
 
 	/**
-	 * Fetch the user profile data.
+	 * Fetch a user's payment details information.
 	 */
-	const fetchProfile = async (profileId) => {
+	const fetchPaymentDetails = async () => {
 		setData(null);
 		setError(null)
 		setLoading(true);
 
-		const {authToken} = authenticationContext;
+		const {authToken, uid} = authenticationContext;
 
 		try {
-			const response = await fetch(`${config.api.baseUrl}/api/profiles/${profileId}`, {
+			const response = await fetch(`${config.api.baseUrl}/api/profiles/${uid}/payment-details`, {
+				method: 'GET', mode: 'cors', cache: 'no-cache',
+				headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` }
+			});
+
+			if (!response.ok) {
+				if (response.status === 401) {
+					throw new InvalidTokenError('Invalid token or token has expired');
+				}
+				else {
+					throw new Error('Error fetching profile; response status: ' + response.status);
+				}
+			}
+
+			setData(await response.json());
+		}
+		catch (error) {
+			setAuthenticationContext({ tokenExpired: true });
+			setError(error);
+		}
+		finally {
+			setLoading(false);
+		}
+	};
+
+	/**
+	 * Fetch the user profile data.
+	 */
+	const fetchProfile = async () => {
+		setData(null);
+		setError(null)
+		setLoading(true);
+
+		const {authToken, uid} = authenticationContext;
+
+		try {
+			const response = await fetch(`${config.api.baseUrl}/api/profiles/${uid}`, {
 				method: 'GET', mode: 'cors', cache: 'no-cache',
 				headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` }
 			});
@@ -132,7 +169,7 @@ const useApi = () => {
 		data, error, loading,
 
 		// API methods
-		fetchGreetings, fetchProfile, login
+		fetchGreetings, fetchPaymentDetails, fetchProfile, login
 	};
 };
 

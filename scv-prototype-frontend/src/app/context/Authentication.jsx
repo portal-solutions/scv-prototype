@@ -9,6 +9,7 @@ const initialState = {
 	authorities: [],
 	authToken: null,
 	tokenExpired: null,
+	uid: null,
 	username: 'Anonymous'
 };
 
