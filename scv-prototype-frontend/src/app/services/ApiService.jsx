@@ -39,7 +39,7 @@ const apiService = {
 		}
 
 		if (!response.ok) {
-			throw new InvalidTokenError('Error fetching greetings; response status: ' + response.status);
+			throw new Error('Error fetching greetings; response status: ' + response.status);
 		}
 
 		return await response.json();
@@ -69,12 +69,10 @@ class InvalidTokenError extends Error {
 
 	constructor(message) {
 		super(message);
-		this.message = message;
-		this.name="InvalidTokenError";
+		this.name='InvalidTokenError';
 	}
 
 };
 
 export default apiService;
 export { InvalidTokenError };
-

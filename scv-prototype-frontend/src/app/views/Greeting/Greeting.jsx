@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import Loading from '../../components/Loading';
-import { AuthenticationContext } from '../../context/Authentication';
+import { Loading } from '../../components/Loading';
 import { usePageMetadata } from '../../context/PageMetadata';
-import apiService from '../../services/ApiService';
+import { useApi } from '../../hooks';
 
 /**
  * Component used for testing protected routes.
@@ -13,14 +12,7 @@ import apiService from '../../services/ApiService';
  * @since 0.0.0
  */
 const Greeting = (props) => {
-	const { t } = useTranslation();
-	const { authenticationContext, setAuthenticationContext } = useContext(AuthenticationContext);
-	const { authToken } = authenticationContext;
-
-	const [data, setData] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
-	const [isError, setIsError] = useState(false);
-	const [fetchData, setFetchData] = useState(null);
+	const {data, error, loading, fetchGreetings} = useApi();
 
 	usePageMetadata({
 		documentTitle: 'Greetings! \u2014 Single client view',
@@ -28,57 +20,36 @@ const Greeting = (props) => {
 		pageTitle: 'A greeting for you'
 	});
 
-	useEffect(() => {
-		(async () => {
-			setIsError(false);
-			setIsLoading(true);
-
-			try {
-				setData(await apiService.fetchGreetings(authToken));
-			}
-			catch (authError) {
-				setIsError(true);
-
-				if (authError.name === 'InvalidTokenError') {
-					setAuthenticationContext({ tokenExpired: true });
-				}
-			}
-
-			setIsLoading(false);
-		})();
-		// eslint-disable-next-line
-	}, [fetchData]);
+	// eslint-disable-next-line
+	useEffect(() => { (async () => fetchGreetings())() }, []);
 
 	return (
 		<>
-			{isLoading ? (
-				<div className="text-center mrgn-tp-lg"><Loading /></div>
-			) : (
-				<div className="text-right">
-					<button className="btn btn-link btn-sm text-lowercase" onClick={() => { setFetchData(!fetchData) }}>
-						<i className="fas fa-sync"></i>&nbsp;&nbsp;{t("action.refresh")}
-					</button>
-					<button className="btn btn-link btn-sm text-lowercase" onClick={() => setAuthenticationContext({ tokenExpired: true }) }>
-						<i className="fas fa-exclamation"></i>&nbsp;&nbsp;Simulate expired token
-					</button>
-				</div>
-			)}
-
-			{isError && (
-				<div className="alert alert-danger">
-					<span>{t('something-went-wrong')}</span>
-				</div>
-			)}
-
-			{data !== null && (
-				<div className="row">
-					<div className="col-xs-12">
-						{data.map(greeting => <p key={greeting.message}>{greeting.message}</p>)}
-					</div>
-				</div>
-			)}
+			{loading && (<div className="text-center mrgn-tp-lg"><Loading /></div>)}
+			{error && (<Error />)}
+			{data && (<Messages data={data}/>)}
 		</>
 	);
 };
+
+const Error = (props) => {
+	const {t} = useTranslation();
+
+	return (
+		<div className="alert alert-danger">
+			<span>{t('something-went-wrong')}</span>
+		</div>
+	)
+};
+
+const Messages = (props) => {
+	return (
+		<div className="row">
+			<div className="col-xs-12">
+				{props.data.map(greeting => <p key={greeting.message}>{greeting.message}</p>)}
+			</div>
+		</div>
+	);
+}
 
 export default Greeting;
