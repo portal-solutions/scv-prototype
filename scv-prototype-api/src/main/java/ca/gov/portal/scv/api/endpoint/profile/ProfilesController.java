@@ -24,18 +24,22 @@ import org.springframework.web.bind.annotation.RestController;
 @ConfigurationProperties("application.profiles-controller")
 public class ProfilesController {
 
-	private final Resource profileResource = new ClassPathResource("/dummy-data/profile.json");
-
-	private final Resource paymentDetailsResource = new ClassPathResource("/dummy-data/payment-details.json");
-
 	@GetMapping(path = { "/{id}" }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<?> handleGetProfile(@PathVariable String id) throws Exception {
-		return ResponseEntity.ok(FileCopyUtils.copyToString(new InputStreamReader(profileResource.getInputStream())));
+		final Resource resource = new ClassPathResource("/dummy-data/profile.json");
+		return ResponseEntity.ok(FileCopyUtils.copyToString(new InputStreamReader(resource.getInputStream())));
 	}
 
 	@GetMapping(path = { "/{id}/payment-details" }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<?> handleGetPaymentDetails(@PathVariable String id) throws Exception {
-		return ResponseEntity.ok(FileCopyUtils.copyToString(new InputStreamReader(paymentDetailsResource.getInputStream())));
+		final Resource resource = new ClassPathResource("/dummy-data/payment-details.json");
+		return ResponseEntity.ok(FileCopyUtils.copyToString(new InputStreamReader(resource.getInputStream())));
+	}
+
+	@GetMapping(path = { "/{id}/payment-history" }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<?> handleGetPaymentHistory(@PathVariable String id) throws Exception {
+		final Resource resource = new ClassPathResource("/dummy-data/payment-history.json");
+		return ResponseEntity.ok(FileCopyUtils.copyToString(new InputStreamReader(resource.getInputStream())));
 	}
 
 }

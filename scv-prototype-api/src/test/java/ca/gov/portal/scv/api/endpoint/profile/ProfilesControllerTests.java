@@ -48,4 +48,17 @@ public class ProfilesControllerTests {
 			.isNotNull();
 	}
 
+	@Test
+	public void handleGetPaymentHistory() throws Exception {
+		ResponseEntity<?> responseEntity = this.profilesController.handleGetPaymentHistory("id");
+
+		assertThat(responseEntity)
+			.extracting(ResponseEntity::getStatusCode)
+			.isEqualTo(HttpStatus.OK);
+
+		assertThat(responseEntity)
+			.extracting(ResponseEntity::getBody)
+			.isNotNull();
+	}
+
 }
