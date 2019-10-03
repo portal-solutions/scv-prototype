@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ type,
-	variant,
-	size,
-	disabled,
-	children,
-	className,
-	otherProps
-}) => {
+const Button = (props) => {
 
-	if (disabled) {
-		otherProps = { ...otherProps, disabled: "disabled" }
-	}
+	const { type,
+		variant,
+		size,
+		disabled,
+		children,
+		className,
+		...otherProps } = props;
+
+	const disabledProp = disabled ? { disabled: "disabled" } : undefined;
 
 	return <button type={type}
 		className={
@@ -21,6 +20,7 @@ const Button = ({ type,
 			(size && size !== Button.sizes.default ? ` btn-${size}` : "") +
 			(className ? ` ${className}` : "")
 		}
+		{...disabledProp}
 		{...otherProps}>{children}</button>;
 };
 
@@ -52,8 +52,7 @@ Button.propTypes = {
 	variant: PropTypes.oneOf(Object.keys(Button.variants)),
 	size: PropTypes.oneOf(Object.keys(Button.sizes)),
 	disabled: PropTypes.bool,
-	className: PropTypes.string,
-	otherProps: PropTypes.object
+	className: PropTypes.string
 };
 
 Button.defaultProps = {
@@ -61,8 +60,7 @@ Button.defaultProps = {
 	variant: Button.variants.primary,
 	size: Button.sizes.default,
 	disabled: false,
-	className: undefined,
-	otherProps: undefined
+	className: undefined
 }
 
 export default Button;

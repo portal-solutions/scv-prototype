@@ -33,7 +33,7 @@ const ProfileInformation = () => {
 						<div className="text-center"><Loading /></div>
 					) : (
 							<div className="text-right">
-								<Button variant={Button.variants.link} size={Button.sizes.sm} className="text-lowercase" otherProps={{ onClick: () => setFetchData(!fetchData) }}>
+								<Button variant={Button.variants.link} size={Button.sizes.sm} className="text-lowercase" onClick={() => setFetchData(!fetchData)}>
 									<i className="fas fa-sync mr-2"></i> {t('action.refresh')}
 								</Button>
 							</div>

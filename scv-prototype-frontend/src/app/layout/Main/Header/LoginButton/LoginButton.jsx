@@ -18,7 +18,7 @@ const LoginButton = (props) => {
 		<>
 			{authenticationContext.authenticated ?
 
-				<Button size={Button.sizes.sm} otherProps={{ onClick: () => setAuthenticationContext(null) }} >
+				<Button size={Button.sizes.sm} onClick={() => setAuthenticationContext(null)} >
 					<i className="fas fa-sign-out-alt mr-2" aria-hidden="true"></i><span>{t("action.sign-out")}</span>
 				</Button>
 				:

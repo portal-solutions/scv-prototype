@@ -45,7 +45,7 @@ const Header = (props) => {
 							<h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
 							<ul className="list-inline margin-bottom-none">
 								<li>
-									<Button variant={Button.variants.link} size={Button.sizes.sm} otherProps={{ lang: t('wet-boew.header.language-lang'), onClick: () => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en') }}>
+									<Button variant={Button.variants.link} size={Button.sizes.sm} lang={t('wet-boew.header.language-lang')} onClick={() => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en')}>
 										<span>{t('wet-boew.header.language-toggle')}</span>
 									</Button>
 								</li>
