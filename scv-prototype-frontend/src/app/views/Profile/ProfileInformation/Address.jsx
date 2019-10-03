@@ -1,5 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import Button from '../../../components/Button';
 
 const Address = (props) => {
 	const { t } = useTranslation();
@@ -29,9 +30,9 @@ const Address = (props) => {
 								}
 							</p>
 							<div>
-								<button className="btn btn-link btn-sm">{t('action.edit')}</button>
+								<Button variant={Button.variants.link} size={Button.sizes.sm}>{t('action.edit')}</Button>
 								<small>|</small>
-								<button className="btn btn-link btn-sm">{t('action.remove')}</button>
+								<Button variant={Button.variants.link} size={Button.sizes.sm}>{t('action.remove')}</Button>
 							</div>
 						</li>
 					)}

@@ -4,7 +4,9 @@
 		"edit": "Modifier",
 		"remove": "Enlever",
 		"delete": "Supprimer",
-		"refresh": "Actualiser"
+		"refresh": "Actualiser",
+		"sign-in": "Se connecter",
+		"sign-out": "Se déconnecter"
 	},
 	"no-data-available": "Aucune données disponibles",
 	"something-went-wrong": "Oops, il y a eu un problème...",

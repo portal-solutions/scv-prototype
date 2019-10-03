@@ -9,10 +9,11 @@ import Note from './Note';
 import PersonalInformation from './PersonalInformation';
 import Phone from './Phone';
 import VolunteerExperience from './VolunteerExperience';
+import Button from '../../../components/Button';
 
 const ProfileInformation = () => {
-	const {t} = useTranslation();
-	const {fetchProfile, data, error, loading} = useApi();
+	const { t } = useTranslation();
+	const { fetchProfile, data, error, loading } = useApi();
 	const [fetchData, setFetchData] = useState(false);
 
 	usePageMetadata({
@@ -31,12 +32,12 @@ const ProfileInformation = () => {
 					{loading ? (
 						<div className="text-center"><Loading /></div>
 					) : (
-						<div className="text-right">
-							<button className="btn btn-link btn-sm text-lowercase" onClick={() => setFetchData(!fetchData)}>
-								<i className="fas fa-sync mr-2"></i> {t('action.refresh')}
-							</button>
-						</div>
-					)}
+							<div className="text-right">
+								<Button variant={Button.variants.link} size={Button.sizes.sm} className="text-lowercase" otherProps={{ onClick: () => setFetchData(!fetchData) }}>
+									<i className="fas fa-sync mr-2"></i> {t('action.refresh')}
+								</Button>
+							</div>
+						)}
 					{error && <h4 className="text-center">{t('something-went-wrong')}</h4>}
 				</div>
 			</div>

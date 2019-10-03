@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthenticationContext } from '../../context/Authentication';
 import { usePageMetadata } from '../../context/PageMetadata';
 import { useApi } from '../../hooks';
+import Button from '../../components/Button';
 
 /**
  * A very simple login component.
@@ -15,9 +16,9 @@ const Login = (props) => {
 	const [password, setPassword] = useState('password');
 	const [rememberMe, setRememberMe] = useState();
 
-	const {t} = useTranslation();
-	const {error, loading, login} = useApi();
-	const {authenticationContext} = {...useContext(AuthenticationContext)};
+	const { t } = useTranslation();
+	const { error, loading, login } = useApi();
+	const { authenticationContext } = { ...useContext(AuthenticationContext) };
 
 	usePageMetadata({
 		documentTitle: t('login.document-title'),
@@ -71,11 +72,12 @@ const Login = (props) => {
 						<span>Your session has expired; please sign in again.</span>
 					</div>
 				)}
-				<button className={`btn btn-primary btn-lg ${loading && 'disabled'}`}>
+
+				<Button type={Button.types.submit} size={Button.sizes.lg} disabled={loading}>
 					<i className={`fas fa-sign-in-alt fa-fw ${loading && 'fa-spinner fa-spin'}`} aria-hidden="true"></i>
 					<span className="mrgn-lft-sm">{t('login.input.login')}</span>
-				</button>
-				<button className="btn btn-link">{t('login.input.forgot-password')}</button>
+				</Button>
+				<Button variant={Button.variants.link}>{t('login.input.forgot-password')}</Button>
 			</form>
 		</div>
 	);
