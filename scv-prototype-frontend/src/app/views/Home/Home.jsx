@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { usePageMetadata } from '../../context/PageMetadata';
+import Button from '../../components/Button';
 import './Home.scss';
 
 /**
@@ -39,7 +40,7 @@ const Notifications = (props) => {
 				<div className="info-icon z-depth-1"><i className="fas fa-bell fa-fw"></i></div>
 				<p className="mrgn-bttm-0 text-primary">You have <strong>1</strong> new notification.</p>
 				<p className="small">Action is required pertaining to your <strong>EI application</strong>.</p>
-				<button className="btn btn-xs btn-primary action-button z-depth-1">View actions required</button>
+				<Button size={Button.sizes.xs} className="action-button z-depth-1">View actions required</Button>
 			</div>
 		</div>
 	);
@@ -51,7 +52,7 @@ const BenefitsServices = (props) => {
 			<div className="benefits-services panel panel-primary z-depth-1">
 				<div className="panel-heading">
 					<h2 className="title h3">Your benefits and services dashboard</h2>
-					{ /* eslint-disable-next-line */ }
+					{ /* eslint-disable-next-line */}
 					<a href="#" className="action">Manage my benefits and services</a>
 				</div>
 				<div className="panel-body">
@@ -65,17 +66,17 @@ const BenefitsServices = (props) => {
 								</span>
 								<div className="details">
 									<h4 className="h3">Canada Learning Bond</h4>
-									<button className="btn btn-primary mrgn-tp-md z-depth-1">More details</button>
+									<Button className="mt-4 z-depth-1">More details</Button>
 								</div>
 							</div>
 							<div className="item z-depth-1">
-							<span className="fa-stack fa-2x">
+								<span className="fa-stack fa-2x">
 									<i className="fas fa-circle fa-stack-2x"></i>
 									<i className="fas fa-briefcase fa-stack-1x fa-inverse"></i>
 								</span>
 								<div className="details">
 									<h4 className="h3">Employment insurance</h4>
-									<button className="btn btn-primary mrgn-tp-md z-depth-1">More details</button>
+									<Button className="mt-4 z-depth-1">More details</Button>
 								</div>
 							</div>
 						</div>

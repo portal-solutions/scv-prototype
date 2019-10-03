@@ -4,7 +4,9 @@
 		"edit": "Edit",
 		"remove": "Remove",
 		"delete": "Delete",
-		"refresh": "Refresh"
+		"refresh": "Refresh",
+		"sign-in": "Sign in",
+		"sign-out": "Sign out"
 	},
 	"no-data-available": "No data available",
 	"something-went-wrong": "Oops, something went wrong...",

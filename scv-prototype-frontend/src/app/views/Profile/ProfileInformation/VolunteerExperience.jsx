@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import Button from '../../../components/Button';
 
 const VolunteerExperience = (props) => {
 	const { t } = useTranslation();
@@ -16,9 +17,9 @@ const VolunteerExperience = (props) => {
 								<i className="fa fa-clock"></i> {data.hours ? data.hours : "-"} {t('profile.profile-information.volunteer-experience.service-hours')}
 							</p>
 							<div>
-								<button className="btn btn-link btn-sm">{t('action.edit')}</button>
+								<Button variant={Button.variants.link} size={Button.sizes.sm}>{t('action.edit')}</Button>
 								<small>|</small>
-								<button className="btn btn-link btn-sm">{t('action.remove')}</button>
+								<Button variant={Button.variants.link} size={Button.sizes.sm}>{t('action.remove')}</Button>
 							</div>
 						</li>
 					)}

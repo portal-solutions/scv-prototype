@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import Loading from '../../../components/Loading';
 import { useApi } from '../../../hooks';
+import Button from '../../../components/Button';
 
 const Details = () => {
-	const {t} = useTranslation();
-	const {fetchPaymentDetails, data, error, loading} = useApi();
+	const { t } = useTranslation();
+	const { fetchPaymentDetails, data, error, loading } = useApi();
 
 	// eslint-disable-next-line
 	useEffect(() => { fetchPaymentDetails() }, []);
@@ -38,13 +39,13 @@ const Details = () => {
 														{item.usedFor ? (
 															<Trans i18nKey="profile.payment-details.details.used-for">{item.usedFor.join(', ')}</Trans>
 														) : (
-															<Trans i18nKey="profile.payment-details.details.not-in-use" />
-														)}
+																<Trans i18nKey="profile.payment-details.details.not-in-use" />
+															)}
 													</p>
 													<div>
-														<button className="btn btn-link btn-sm">{t('action.edit')}</button>
+														<Button variant={Button.variants.link} size={Button.sizes.sm}>{t('action.edit')}</Button>
 														<small>|</small>
-														<button className="btn btn-link btn-sm">{t('action.remove')}</button>
+														<Button variant={Button.variants.link} size={Button.sizes.sm}>{t('action.remove')}</Button>
 													</div>
 												</div>
 											</div>
@@ -52,10 +53,10 @@ const Details = () => {
 									)}
 								</ul>
 							) : (
-								<div className="panel-body">
-									<p className="text-center"><em>{t('no-data-available')}</em></p>
-								</div>
-							)}
+									<div className="panel-body">
+										<p className="text-center"><em>{t('no-data-available')}</em></p>
+									</div>
+								)}
 						</div>
 					</div>
 				</div>

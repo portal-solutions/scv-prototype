@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { AuthenticationContext } from '../../../../context/Authentication';
+import Button from '../../../../components/Button';
 
 /**
  * A no-frills login button. Doesn't do much; used mostly for testing.
@@ -10,23 +12,21 @@ import { AuthenticationContext } from '../../../../context/Authentication';
  */
 const LoginButton = (props) => {
 	const { authenticationContext, setAuthenticationContext } = useContext(AuthenticationContext);
+	const { t } = useTranslation();
 
 	return (
 		<>
 			{authenticationContext.authenticated ?
-				(
-					<>
-						<button className="btn btn-primary btn-sm" onClick={() => setAuthenticationContext(null)}>
-							<i className="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> <span>Sign out</span>
-						</button>
-					</>
-				) : (
-					<Link to="/sign-in">
-						<button className="btn btn-primary btn-sm">
-							<i className="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i> <span>Sign in</span>
-						</button>
-					</Link>
-				)
+
+				<Button size={Button.sizes.sm} onClick={() => setAuthenticationContext(null)} >
+					<i className="fas fa-sign-out-alt mr-2" aria-hidden="true"></i><span>{t("action.sign-out")}</span>
+				</Button>
+				:
+				<Link to="/sign-in">
+					<Button size={Button.sizes.sm}>
+						<i className="fas fa-sign-in-alt mr-2" aria-hidden="true"></i><span>{t("action.sign-in")}</span>
+					</Button>
+				</Link>
 			}
 		</>
 	);

@@ -5,6 +5,7 @@ import BreadcrumbItem from './BreadcrumbItem';
 import './Header.scss';
 import LoginButton from './LoginButton';
 import NavBar from './NavBar';
+import Button from '../../../components/Button';
 
 /**
  * Standard WETv4 <header> element.
@@ -44,9 +45,9 @@ const Header = (props) => {
 							<h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
 							<ul className="list-inline margin-bottom-none">
 								<li>
-									<button className="btn btn-link btn-sm" lang={t('wet-boew.header.language-lang')} onClick={() => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en')}>
+									<Button variant={Button.variants.link} size={Button.sizes.sm} lang={t('wet-boew.header.language-lang')} onClick={() => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en')}>
 										<span>{t('wet-boew.header.language-toggle')}</span>
-									</button>
+									</Button>
 								</li>
 							</ul>
 						</section>
