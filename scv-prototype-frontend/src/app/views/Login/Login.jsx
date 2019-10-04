@@ -4,6 +4,8 @@ import { AuthenticationContext } from '../../context/Authentication';
 import { usePageMetadata } from '../../context/PageMetadata';
 import { useApi } from '../../hooks';
 import Button from '../../components/Button';
+import FormGroup from '../../components/FormGroup';
+
 
 /**
  * A very simple login component.
@@ -36,22 +38,20 @@ const Login = (props) => {
 		<div id="login-page">
 			<form className="well col-md-8 z-depth-1 mrgn-tp-lg" onSubmit={handleSubmit}>
 				<h2 className="h3 mrgn-tp-0 mrgn-bttm-lg">{t('login.greeting')}</h2>
-				<div className={`form-group ${error && 'input-error'}`}>
-					<label htmlFor="email" className="sr-only">{t('login.input.username')}</label>
+				<FormGroup label={t('login.input.username')} labelFor="email" className={error && 'input-error'} required>
 					<input
 						id="email" name="email" type="email" className="form-control"
 						placeholder={t('login.input.username')} defaultValue={username}
 						onChange={(e) => setUsername(e.target.value)} size="50"
 					/>
-				</div>
-				<div className={`form-group ${error && 'input-error'}`}>
-					<label htmlFor="password" className="sr-only">{t('login.input.password')}</label>
+				</FormGroup>
+				<FormGroup label={t('login.input.password')} labelFor="password" className={error && 'input-error'} required>
 					<input
 						id="password" name="password" type="password" className="form-control"
 						placeholder={t('login.input.password')}
 						onChange={(e) => setPassword(e.target.value)} size="50"
 					/>
-				</div>
+				</FormGroup>
 				<div className="form-group">
 					<label className="checkbox-inline">
 						<input
