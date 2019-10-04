@@ -9,19 +9,12 @@ const Button = (props) => {
 		disabled,
 		children,
 		className,
-		...otherProps } = props;
-
-	const disabledProp = disabled ? { disabled: "disabled" } : undefined;
+		...rest } = props;
 
 	return <button type={type}
-		className={
-			"btn" +
-			` btn-${variant}` +
-			(size && size !== Button.sizes.default ? ` btn-${size}` : "") +
-			(className ? ` ${className}` : "")
-		}
-		{...disabledProp}
-		{...otherProps}>{children}</button>;
+		className={`btn ${variant.variantClass || ''} ${size.sizeClass || ''} ${className || ''}`.trim()}
+		disabled={disabled}
+		{...rest}>{children}</button>;
 };
 
 Button.types = {
@@ -31,27 +24,27 @@ Button.types = {
 };
 
 Button.variants = {
-	default: 'default',
-	primary: 'primary',
-	success: 'success',
-	info: 'info',
-	warning: 'warning',
-	danger: 'danger',
-	link: 'link'
+	default: { variantClass: 'btn-default' },
+	primary: { variantClass: 'btn-primary' },
+	success: { variantClass: 'btn-success' },
+	info: { variantClass: 'btn-info' },
+	warning: { variantClass: 'btn-warning' },
+	danger: { variantClass: 'btn-danger' },
+	link: { variantClass: 'btn-link' }
 };
 
 Button.sizes = {
-	default: 'default',
-	xs: 'xs',
-	sm: 'sm',
-	lg: 'lg'
+	default: { sizeClass: '' },
+	xsmall: { sizeClass: 'btn-xs' },
+	small: { sizeClass: 'btn-sm' },
+	large: { sizeClass: 'btn-lg' }
 };
 
 Button.propTypes = {
 	type: PropTypes.oneOf(Object.keys(Button.types)),
-	variant: PropTypes.oneOf(Object.keys(Button.variants)),
-	size: PropTypes.oneOf(Object.keys(Button.sizes)),
-	disabled: PropTypes.bool,
+	variant: PropTypes.shape({ variantClass: PropTypes.string }),
+	size: PropTypes.shape({ sizeClass: PropTypes.string }),
+	disabled: PropTypes.any,
 	className: PropTypes.string
 };
 
