@@ -10,6 +10,7 @@
 	},
 	"no-data-available": "No data available",
 	"something-went-wrong": "Oops, something went wrong...",
+	"required": "required",
 	"not-found": {
 		"apology": "We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?",
 		"document-title": "Error 404 \u2014 Single client view",

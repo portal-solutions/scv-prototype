@@ -12,7 +12,7 @@ const Button = (props) => {
 		...rest } = props;
 
 	return <button type={type}
-		className={`btn ${variant.variantClass || ''} ${size.sizeClass || ''} ${className || ''}`.trim()}
+		className={`btn ${variant.variantClass || ''} ${size.sizeClass || ''} ${className || ''}`}
 		disabled={disabled}
 		{...rest}>{children}</button>;
 };
@@ -44,16 +44,14 @@ Button.propTypes = {
 	type: PropTypes.oneOf(Object.keys(Button.types)),
 	variant: PropTypes.shape({ variantClass: PropTypes.string }),
 	size: PropTypes.shape({ sizeClass: PropTypes.string }),
-	disabled: PropTypes.any,
+	disabled: PropTypes.bool,
 	className: PropTypes.string
 };
 
 Button.defaultProps = {
 	type: Button.types.button,
 	variant: Button.variants.primary,
-	size: Button.sizes.default,
-	disabled: false,
-	className: undefined
+	size: Button.sizes.default
 }
 
 export default Button;
