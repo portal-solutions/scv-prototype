@@ -10,7 +10,7 @@ const AuthContext = createContext();
  * A convenience hook to return the auth context in a more concise manner.
  */
 const useAuthContext = () => {
-	return useContext(AuthContext);
+  return useContext(AuthContext);
 };
 
 /**
@@ -18,12 +18,12 @@ const useAuthContext = () => {
  * local state has been found.
  */
 const initialState = {
-	authenticated: false,
-	authorities: [],
-	authToken: null,
-	tokenExpired: null,
-	uid: null,
-	username: 'Anonymous'
+  authenticated: false,
+  authorities: [],
+  authToken: null,
+  tokenExpired: null,
+  uid: null,
+  username: 'Anonymous'
 };
 
 /**
@@ -35,25 +35,25 @@ const localState = JSON.parse(localStorage.getItem('authContext'));
  * A reducer function that is used to merge new state data with the existing state.
  */
 const reducer = (state, newState) => {
-	if (newState === null) {
-		localStorage.removeItem('authContext');
-		return initialState;
-	}
+  if (newState === null) {
+    localStorage.removeItem('authContext');
+    return initialState;
+  }
 
-	return { ...state, ...newState };
+  return { ...state, ...newState };
 };
 
 /**
  * The context provider.
  */
 const AuthProvider = ({ children }) => {
-	const [authContext, setAuthContext] = useReducer(reducer, localState || initialState);
-	useEffect(() => localStorage.setItem('authContext', JSON.stringify(authContext), [JSON.stringify(authContext)]));
-	return <AuthContext.Provider value={{ authContext, setAuthContext }}>{children}</AuthContext.Provider>;
+  const [authContext, setAuthContext] = useReducer(reducer, localState || initialState);
+  useEffect(() => localStorage.setItem('authContext', JSON.stringify(authContext), [JSON.stringify(authContext)]));
+  return <AuthContext.Provider value={{ authContext, setAuthContext }}>{children}</AuthContext.Provider>;
 };
 
 AuthProvider.propTypes = {
-	children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired
 };
 
 export { AuthContext, AuthProvider, useAuthContext };
