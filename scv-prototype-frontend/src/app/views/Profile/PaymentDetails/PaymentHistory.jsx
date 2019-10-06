@@ -1,25 +1,31 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loading from '../../../components/Loading';
-import { useApi } from '../../../hooks';
+import { useApi } from '../../../utils/api';
 
 const PaymentHistory = () => {
-	const {t} = useTranslation();
-	const {fetchPaymentHistory, data, error, loading} = useApi();
+	const { t } = useTranslation();
+	const { fetchPaymentHistory, data, error, loading } = useApi();
 
-	// eslint-disable-next-line
-	useEffect(() => { fetchPaymentHistory() }, []);
+	useEffect(() => {
+		fetchPaymentHistory();
+		// eslint-disable-next-line
+	}, []);
 
 	return (
 		<>
 			<div className="row">
 				<div className="col-xs-12 text-center">
-					{loading && <div className="text-center"><Loading /></div>}
+					{loading && (
+						<div className="text-center">
+							<Loading />
+						</div>
+					)}
 					{error && <h4 className="text-center">{t('something-went-wrong')}</h4>}
 				</div>
 			</div>
 
-			{(!loading && !error) && (
+			{!loading && !error && (
 				<div className="row">
 					<div className="col-xs-12">
 						<table className="table table-striped">
@@ -32,10 +38,14 @@ const PaymentHistory = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{(data && data.length > 0) ? (
-									data.map((item) => (<PaymentItem item={item} />))
+								{data && data.length > 0 ? (
+									data.map(item => <PaymentItem item={item} />)
 								) : (
-									<tr><td className="text-center" colSpan="4">{t('no-data-available')}</td></tr>
+									<tr>
+										<td className="text-center" colSpan="4">
+											{t('no-data-available')}
+										</td>
+									</tr>
 								)}
 							</tbody>
 						</table>
@@ -46,7 +56,7 @@ const PaymentHistory = () => {
 	);
 };
 
-const PaymentItem = ({item}) => {
+const PaymentItem = ({ item }) => {
 	return (
 		<tr key={item.id}>
 			<td>{new Date(item.date).toISOString().split('T')[0]}</td>

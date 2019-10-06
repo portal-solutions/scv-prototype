@@ -1,8 +1,8 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { usePageMetadata } from '../../context/PageMetadata';
+import { usePageMetadata } from '../../utils/page-metadata';
 
-const LetsConnect = (props) => {
+const LetsConnect = props => {
 	const { t } = useTranslation();
 
 	usePageMetadata({
@@ -13,7 +13,9 @@ const LetsConnect = (props) => {
 
 	return (
 		<>
-			<p><Trans i18nKey="lets-connect.message" /></p>
+			<p>
+				<Trans i18nKey="lets-connect.message" />
+			</p>
 		</>
 	);
 };

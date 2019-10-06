@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import config from '../../config';
-import { InvalidTokenError } from '../services/ApiService';
 import { useAuthContext } from '../utils/auth';
 
 /**
@@ -211,4 +210,14 @@ const useApi = () => {
 	};
 };
 
-export { useApi };
+/**
+ * A custom error class intended to be thrown on authentication errors.
+ */
+class InvalidTokenError extends Error {
+	constructor(message) {
+		super(message);
+		this.name = 'InvalidTokenError';
+	}
+}
+
+export { InvalidTokenError, useApi };

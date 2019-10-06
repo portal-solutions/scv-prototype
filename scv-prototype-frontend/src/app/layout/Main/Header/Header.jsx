@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { PageMetadataContext } from '../../../context/PageMetadata';
+import Button from '../../../components/Button';
+import { usePageMetadataContext } from '../../../utils/page-metadata';
 import BreadcrumbItem from './BreadcrumbItem';
 import './Header.scss';
 import LoginButton from './LoginButton';
 import NavBar from './NavBar';
-import Button from '../../../components/Button';
 
 /**
  * Standard WETv4 <header> element.
@@ -13,19 +13,23 @@ import Button from '../../../components/Button';
  * @author Greg Baker <gregory.j.baker@hrsc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Header = (props) => {
+const Header = props => {
 	const { i18n, t } = useTranslation();
-	const { pageMetadata } = useContext(PageMetadataContext);
+	const { pageMetadata } = usePageMetadataContext();
 
 	return (
 		<>
 			<nav>
 				<ul id="wb-tphp">
 					<li className="wb-slc">
-						<a className="wb-sl" href="#wb-cont">{t('wet-boew.header.skip-links.main-content')}</a>
+						<a className="wb-sl" href="#wb-cont">
+							{t('wet-boew.header.skip-links.main-content')}
+						</a>
 					</li>
 					<li className="wb-slc">
-						<a className="wb-sl" href="#wb-info">{t('wet-boew.header.skip-links.about-government')}</a>
+						<a className="wb-sl" href="#wb-info">
+							{t('wet-boew.header.skip-links.about-government')}
+						</a>
 					</li>
 				</ul>
 			</nav>
@@ -37,7 +41,9 @@ const Header = (props) => {
 								{/* TODO :: GjB :: translate this */}
 								<h2 className="wb-inv">Sign in</h2>
 								<ul className="list-inline margin-bottom-none">
-									<li><LoginButton /></li>
+									<li>
+										<LoginButton />
+									</li>
 								</ul>
 							</section>
 						)}
@@ -45,7 +51,12 @@ const Header = (props) => {
 							<h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
 							<ul className="list-inline margin-bottom-none">
 								<li>
-									<Button variant={Button.variants.link} size={Button.sizes.sm} lang={t('wet-boew.header.language-lang')} onClick={() => i18n.changeLanguage((i18n.language === 'en') ? 'fr' : 'en')}>
+									<Button
+										variant={Button.variants.link}
+										size={Button.sizes.sm}
+										lang={t('wet-boew.header.language-lang')}
+										onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'fr' : 'en')}
+									>
 										<span>{t('wet-boew.header.language-toggle')}</span>
 									</Button>
 								</li>
@@ -56,10 +67,12 @@ const Header = (props) => {
 						<div className="brand col-xs-5 col-md-4" property="publisher" typeof="GovernmentOrganization">
 							<a href={t('wet-boew.header.canada-href')} property="url">
 								<img src={t('wet-boew.header.brand-img-href')} alt="" property="logo" />
-								<span className="wb-inv" property="name">{t('wet-boew.header.brand-text')}</span>
+								<span className="wb-inv" property="name">
+									{t('wet-boew.header.brand-text')}
+								</span>
 							</a>
 							<meta property="areaServed" typeof="Country" content="Canada" />
-							<link property="logo" href={t("wet-boew.header.brand-logo.href")} />
+							<link property="logo" href={t('wet-boew.header.brand-logo.href')} />
 						</div>
 					</div>
 				</div>
@@ -78,10 +91,10 @@ const Header = (props) => {
 					</div>
 				</nav>
 
-				{ /* TODO :: GjB :: Dynamic messages */}
+				{/* TODO :: GjB :: Dynamic messages */}
 			</header>
 		</>
 	);
-}
+};
 
 export default Header;

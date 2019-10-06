@@ -7,7 +7,7 @@ import React, { createContext, useContext, useEffect, useReducer } from 'react';
 const AuthContext = createContext();
 
 /**
- * A convenience hook to return the auth context in a more concice manner.
+ * A convenience hook to return the auth context in a more concise manner.
  */
 const useAuthContext = () => {
 	return useContext(AuthContext);

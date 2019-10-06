@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/Button';
 import FormGroup from '../../components/FormGroup';
-import { usePageMetadata } from '../../context/PageMetadata';
-import { useApi } from '../../hooks';
+import { useApi } from '../../utils/api';
 import { useAuthContext } from '../../utils/auth';
+import { usePageMetadata } from '../../utils/page-metadata';
 
 /**
  * A very simple login component.

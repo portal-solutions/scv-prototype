@@ -1,8 +1,8 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { usePageMetadata } from '../../context/PageMetadata';
+import { usePageMetadata } from '../../utils/page-metadata';
 
-const BenefitsServices = (props) => {
+const BenefitsServices = props => {
 	const { t } = useTranslation();
 
 	usePageMetadata({
@@ -13,7 +13,9 @@ const BenefitsServices = (props) => {
 
 	return (
 		<>
-			<p><Trans i18nKey="benefits-services.message" /></p>
+			<p>
+				<Trans i18nKey="benefits-services.message" />
+			</p>
 		</>
 	);
 };

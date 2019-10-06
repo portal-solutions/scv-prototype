@@ -41,7 +41,7 @@
 		},
 		"profile-information": {
 			"document-title": "Profile Information",
-			"page-identifier": "SCV-00010-EN",
+			"page-identifier": "SCV-0010-EN",
 			"page-title": "Profile Information",
 			"personal-information": {
 				"title": "Personal information",
@@ -77,7 +77,7 @@
 		},
 		"payment-details": {
 			"document-title": "Payment details",
-			"page-identifier": "SCV-00011-EN",
+			"page-identifier": "SCV-0011-EN",
 			"page-title": "Payment details",
 			"navbar": {
 				"details": "Details",
