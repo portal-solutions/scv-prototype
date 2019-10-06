@@ -1,0 +1,67 @@
+{
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"editor.rulers": [120],
+	"eslint.workingDirectories": [
+		{
+			"changeProcessCWD": true,
+			"directory": "./scv-prototype-frontend"
+		}
+	],
+	"files.exclude": {
+		"**/.classpath": true,
+		"**/.factorypath": true,
+		"**/.git": true,
+		"**/.project": true,
+		"**/.settings": true,
+		"node_modules": true
+	},
+	"files.watcherExclude": {
+		"**/.git/objects/**": true,
+		"**/.git/subtree-cache/**": true,
+		"**/node_modules/*/**": true
+	},
+	"java.completion.favoriteStaticMembers": [
+		"org.assertj.core.api.Assertions.*",
+		"org.hamcrest.CoreMatchers.*",
+		"org.junit.Assert.*",
+		"org.junit.Assume.*",
+		"org.junit.jupiter.api.Assertions.*",
+		"org.junit.jupiter.api.Assumptions.*",
+		"org.junit.jupiter.api.DynamicContainer.*",
+		"org.junit.jupiter.api.DynamicTest.*",
+		"org.mockito.Answers.*",
+		"org.mockito.ArgumentMatchers.*",
+		"org.mockito.BDDMockito.*",
+		"org.mockito.Mockito.*",
+		"org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
+		"org.springframework.test.web.servlet.result.MockMvcResultHandlers.*",
+		"org.springframework.test.web.servlet.result.MockMvcResultMatchers.*"
+	],
+	"java.maven.downloadSources": true,
+	"search.exclude": {
+		"**/node_modules": true
+	}
+}
