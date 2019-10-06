@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
-import { AuthenticationContext } from '../../context/Authentication';
+import { AuthContext } from '../../utils/auth';
 import Login from '../../views/Login/Login';
 import Error403 from '../error/Error403';
 
@@ -12,18 +12,18 @@ import Error403 from '../error/Error403';
  * @since 0.0.0
  */
 const PrivateRoute = ({ authorities: requiredAuthorities, ...props }) => {
-	const { authenticationContext } = useContext(AuthenticationContext);
-	const { authenticated, authorities, tokenExpired } = authenticationContext;
+	const { authContext } = useContext(AuthContext);
+	const { authenticated, authorities, tokenExpired } = authContext;
 
 	if (!authenticated || tokenExpired) {
-		return (<Login />);
+		return <Login />;
 	}
 
 	if (requiredAuthorities && intersection(requiredAuthorities)(authorities).length === 0) {
-		return (<Error403 />);
+		return <Error403 />;
 	}
 
-	return (<Route {...props} />);
+	return <Route {...props} />;
 };
 
 /**
@@ -32,6 +32,6 @@ const PrivateRoute = ({ authorities: requiredAuthorities, ...props }) => {
  *
  * TODO :: GjB :: move to utility package?
  */
-const intersection = (arr1) => (arr2) => (arr1 || []).filter((element) => (arr2 || []).includes(element));
+const intersection = arr1 => arr2 => (arr1 || []).filter(element => (arr2 || []).includes(element));
 
 export default PrivateRoute;
