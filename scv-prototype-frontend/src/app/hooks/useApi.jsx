@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import config from '../../config';
 import { InvalidTokenError } from '../services/ApiService';
-import { AuthContext } from '../utils/auth';
+import { useAuthContext } from '../utils/auth';
 
 /**
  * A custom hook that can keep track of authentication state
@@ -13,7 +13,7 @@ const useApi = () => {
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState();
 
-	const { authContext, setAuthContext } = useContext(AuthContext);
+	const { authContext, setAuthContext } = useAuthContext();
 
 	/**
 	 * Perform a login by POSTing a username and password to the API.

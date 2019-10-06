@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import Button from '../../../../components/Button';
-import { AuthContext } from '../../../../utils/auth';
+import { useAuthContext } from '../../../../utils/auth';
 
 /**
  * A no-frills login button. Doesn't do much; used mostly for testing.
@@ -11,7 +11,7 @@ import { AuthContext } from '../../../../utils/auth';
  * @since 0.0.0
  */
 const LoginButton = props => {
-	const { authContext, setAuthContext } = useContext(AuthContext);
+	const { authContext, setAuthContext } = useAuthContext();
 	const { t } = useTranslation();
 
 	return (

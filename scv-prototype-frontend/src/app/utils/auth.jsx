@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 /**
  * React context to hold all of the authentication data.
  */
 const AuthContext = createContext();
+
+/**
+ * A convenience hook to return the auth context in a more concice manner.
+ */
+const useAuthContext = () => {
+	return useContext(AuthContext);
+};
 
 /**
  * The default AuthContext state, used when no
@@ -25,8 +32,7 @@ const initialState = {
 const localState = JSON.parse(localStorage.getItem('authContext'));
 
 /**
- * A reducer function that is used to merge
- * new state data with the existing state.
+ * A reducer function that is used to merge new state data with the existing state.
  */
 const reducer = (state, newState) => {
 	if (newState === null) {
@@ -50,4 +56,4 @@ AuthProvider.propTypes = {
 	children: PropTypes.node.isRequired
 };
 
-export { AuthContext, AuthProvider };
+export { AuthContext, AuthProvider, useAuthContext };

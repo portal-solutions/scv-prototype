@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/Button';
 import FormGroup from '../../components/FormGroup';
 import { usePageMetadata } from '../../context/PageMetadata';
 import { useApi } from '../../hooks';
-import { AuthContext } from '../../utils/auth';
+import { useAuthContext } from '../../utils/auth';
 
 /**
  * A very simple login component.
@@ -19,7 +19,7 @@ const Login = props => {
 
 	const { t } = useTranslation();
 	const { error, loading, login } = useApi();
-	const { authContext } = { ...useContext(AuthContext) };
+	const { authContext } = { ...useAuthContext() };
 
 	usePageMetadata({
 		documentTitle: t('login.document-title'),

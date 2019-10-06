@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
-import { AuthContext } from '../../utils/auth';
+import { useAuthContext } from '../../utils/auth';
 import Login from '../../views/Login/Login';
 import Error403 from '../error/Error403';
 
@@ -12,7 +12,7 @@ import Error403 from '../error/Error403';
  * @since 0.0.0
  */
 const PrivateRoute = ({ authorities: requiredAuthorities, ...props }) => {
-	const { authContext } = useContext(AuthContext);
+	const { authContext } = useAuthContext();
 	const { authenticated, authorities, tokenExpired } = authContext;
 
 	if (!authenticated || tokenExpired) {
