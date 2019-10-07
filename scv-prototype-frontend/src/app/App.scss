@@ -49,6 +49,28 @@
 	padding: 16px;
 }
 
+/*
+ Secondary Navigation
+*/
+#wb-sec {
+	margin: 0;
+	padding: 0;
+
+	.list-group {
+		margin: 0;
+	}
+
+	li a {
+		display: flex;
+		align-items: top;
+
+		> i {
+			margin-top: 0.3em;
+			margin-right: 0.5em;
+		}
+	}
+}
+
 /* margin utilities from BS4 */
 
 .m {
