@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/Button';
 import FormGroup from '../../components/FormGroup';
-import { useApi } from '../../utils/api/index';
+import { useLogin } from '../../utils/api/index';
 import { useAuthContext } from '../../utils/auth';
 import { usePageMetadata } from '../../utils/page-metadata';
 
@@ -12,13 +12,13 @@ import { usePageMetadata } from '../../utils/page-metadata';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Login = (props) => {
+const Login = () => {
   const [username, setUsername] = useState('user@example.com');
   const [password, setPassword] = useState('password');
-  const [rememberMe, setRememberMe] = useState();
+  const [rememberMe, setRememberMe] = useState(false);
 
   const { t } = useTranslation();
-  const { error, loading, login } = useApi();
+  const { error, loading, login } = useLogin();
   const { authContext } = { ...useAuthContext() };
 
   usePageMetadata({
@@ -29,14 +29,15 @@ const Login = (props) => {
   });
 
   const handleSubmit = (e) => {
-    login(username, password);
     e.preventDefault();
+    login({ username, password });
   };
 
   return (
     <div id="login-page">
       <form className="well col-md-8 z-depth-1 mrgn-tp-lg" onSubmit={handleSubmit}>
         <h2 className="h3 mrgn-tp-0 mrgn-bttm-lg">{t('login.greeting')}</h2>
+
         <FormGroup label={t('login.input.username')} labelFor="email" className={error && 'input-error'} required>
           <input
             id="email"
@@ -49,6 +50,7 @@ const Login = (props) => {
             size="50"
           />
         </FormGroup>
+
         <FormGroup label={t('login.input.password')} labelFor="password" className={error && 'input-error'} required>
           <input
             id="password"
@@ -60,8 +62,9 @@ const Login = (props) => {
             size="50"
           />
         </FormGroup>
+
         <div className="form-group">
-          <label className="checkbox-inline">
+          <label htmlFor="remember-me" className="checkbox-inline">
             <input
               id="remember-me"
               name="remember-me"
@@ -72,11 +75,13 @@ const Login = (props) => {
             <span>{t('login.input.remember-me')}</span>
           </label>
         </div>
+
         {error && (
           <div className="alert alert-danger">
             <span>{t('login.bad-credentials')}</span>
           </div>
         )}
+
         {authContext.tokenExpired && (
           <div className="alert alert-danger">
             <span>Your session has expired; please sign in again.</span>
@@ -84,9 +89,10 @@ const Login = (props) => {
         )}
 
         <Button type={Button.types.submit} size={Button.sizes.lg} disabled={loading}>
-          <i className={`fas fa-sign-in-alt fa-fw ${loading && 'fa-spinner fa-spin'}`} aria-hidden="true"></i>
+          <i className={`fas fa-sign-in-alt fa-fw ${loading && 'fa-spinner fa-spin'}`} aria-hidden="true" />
           <span className="mrgn-lft-sm">{t('login.input.login')}</span>
         </Button>
+
         <Button variant={Button.variants.link}>{t('login.input.forgot-password')}</Button>
       </form>
     </div>

@@ -5,7 +5,7 @@ import fetchGreetings from './fetch-greetings';
 import fetchPaymentDetails from './fetch-payment-details';
 import fetchPaymentHistory from './fetch-payment-history';
 import fetchProfile from './fetch-profile';
-import login from './login';
+import useLogin from './useLogin';
 
 /**
  * A custom hook that can keep track of authentication state internally so that
@@ -29,11 +29,8 @@ const useApi = () => {
     fetchGreetings: fetchGreetings({ authToken, uid, setData, setError, setLoading, setAuthContext }),
     fetchPaymentDetails: fetchPaymentDetails({ authToken, uid, setData, setError, setLoading, setAuthContext }),
     fetchPaymentHistory: fetchPaymentHistory({ authToken, uid, setData, setError, setLoading, setAuthContext }),
-    fetchProfile: fetchProfile({ authToken, uid, setData, setError, setLoading, setAuthContext }),
-
-    // authentication methods
-    login: login({ setData, setError, setLoading, setAuthContext })
+    fetchProfile: fetchProfile({ authToken, uid, setData, setError, setLoading, setAuthContext })
   };
 };
 
-export { InvalidTokenError, useApi };
+export { InvalidTokenError, useApi, useLogin };
