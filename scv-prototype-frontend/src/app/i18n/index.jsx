@@ -12,19 +12,23 @@ import messagesFr from './fr.json';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-i18n.use(LanguageDetector).use(initReactI18next).init({
-	detection: {
-		order: [ 'querystring', 'localStorage', 'navigator' ],
-		lookupQuerystring: 'locale', lookupLocalStorage: 'locale',
-		caches: [ 'localStorage' ]
-	},
-	interpolation: {
-		escapeValue: false // JSX escapes by default
-	},
-	load: 'languageOnly',
-	resources: {
-		en: { translation: messagesEn },
-		fr: { translation: messagesFr }
-	},
-	whitelist: [ 'en', 'fr' ]
-});
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    detection: {
+      order: ['querystring', 'localStorage', 'navigator'],
+      lookupQuerystring: 'locale',
+      lookupLocalStorage: 'locale',
+      caches: ['localStorage']
+    },
+    interpolation: {
+      escapeValue: false // JSX escapes by default
+    },
+    load: 'languageOnly',
+    resources: {
+      en: { translation: messagesEn },
+      fr: { translation: messagesFr }
+    },
+    whitelist: ['en', 'fr']
+  });
