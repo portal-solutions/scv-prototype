@@ -1,57 +1,60 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-props-no-spreading */
+
 import PropTypes from 'prop-types';
+import React from 'react';
 
-const Button = (props) => {
-
-	const { type,
-		variant,
-		size,
-		disabled,
-		children,
-		className,
-		...rest } = props;
-
-	return <button type={type}
-		className={`btn ${variant.variantClass || ''} ${size.sizeClass || ''} ${className || ''}`}
-		disabled={disabled}
-		{...rest}>{children}</button>;
+const Button = ({ type, variant, size, disabled, children, className, ...rest }) => {
+  return (
+    <button
+      type={type}
+      className={`btn ${variant.variantClass || ''} ${size.sizeClass || ''} ${className || ''}`}
+      disabled={disabled}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
 };
 
 Button.types = {
-	button: 'button',
-	submit: 'submit',
-	reset: 'reset'
+  button: 'button',
+  reset: 'reset',
+  submit: 'submit'
 };
 
 Button.variants = {
-	default: { variantClass: 'btn-default' },
-	primary: { variantClass: 'btn-primary' },
-	success: { variantClass: 'btn-success' },
-	info: { variantClass: 'btn-info' },
-	warning: { variantClass: 'btn-warning' },
-	danger: { variantClass: 'btn-danger' },
-	link: { variantClass: 'btn-link' }
+  danger: { variantClass: 'btn-danger' },
+  default: { variantClass: 'btn-default' },
+  info: { variantClass: 'btn-info' },
+  link: { variantClass: 'btn-link' },
+  primary: { variantClass: 'btn-primary' },
+  success: { variantClass: 'btn-success' },
+  warning: { variantClass: 'btn-warning' }
 };
 
 Button.sizes = {
-	default: { sizeClass: '' },
-	xsmall: { sizeClass: 'btn-xs' },
-	small: { sizeClass: 'btn-sm' },
-	large: { sizeClass: 'btn-lg' }
+  default: { sizeClass: '' },
+  large: { sizeClass: 'btn-lg' },
+  small: { sizeClass: 'btn-sm' },
+  xsmall: { sizeClass: 'btn-xs' }
 };
 
 Button.propTypes = {
-	type: PropTypes.oneOf(Object.keys(Button.types)),
-	variant: PropTypes.shape({ variantClass: PropTypes.string }),
-	size: PropTypes.shape({ sizeClass: PropTypes.string }),
-	disabled: PropTypes.bool,
-	className: PropTypes.string
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  size: PropTypes.shape({ sizeClass: PropTypes.string }),
+  type: PropTypes.oneOf(Object.keys(Button.types)),
+  variant: PropTypes.shape({ variantClass: PropTypes.string })
 };
 
 Button.defaultProps = {
-	type: Button.types.button,
-	variant: Button.variants.primary,
-	size: Button.sizes.default
-}
+  className: '',
+  disabled: false,
+  size: Button.sizes.default,
+  type: Button.types.button,
+  variant: Button.variants.primary
+};
 
 export default Button;
