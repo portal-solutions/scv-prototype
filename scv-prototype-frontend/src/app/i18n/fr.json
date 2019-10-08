@@ -1,267 +1,267 @@
 {
-	"action": {
-		"add": "Ajouter",
-		"edit": "Modifier",
-		"remove": "Enlever",
-		"delete": "Supprimer",
-		"refresh": "Actualiser",
-		"sign-in": "Se connecter",
-		"sign-out": "Se déconnecter"
-	},
-	"no-data-available": "Aucune données disponibles",
-	"something-went-wrong": "Oops, il y a eu un problème...",
-	"required": "obligatoire",
-	"not-found": {
-		"apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
-		"document-title": "Erreur 404 \u2014 Vue client unique",
-		"error-404": "Erreur 404",
-		"page-identifier": "SCV-0404-FR",
-		"page-tag": "Nous ne pouvons trouver cette page web",
-		"return-canada": "Retournez à <0>Canada.ca</0>.",
-		"return-canada-href": "https://canada.ca/fr.html",
-		"return-home": "Retournez à la <0>page d'accueil</0>;"
-	},
-	"home": {
-		"document-title": "Bienvenue \u2014 Vue client unique",
-		"message": "La <i>vue client unique</i> est une représentation globale, cohérente et holistique des données détenues par le gouvernement du Canada sur ses utilisateurs et pouvant être visualisées à partir d’un emplacement centralisé.",
-		"more-information": "Pour plus d'informations, <0>cliquez ici</0>.",
-		"page-identifier": "SCV-0001-FR",
-		"page-title": "VCU :: Accueil"
-	},
-	"profile": {
-		"document-title": "Profil",
-		"page-title": "VCU :: Profil",
-		"navbar": {
-			"profile-information": "Informations de profil",
-			"payment-details": "Détails de paiement",
-			"my-identifiers": "Mes identifiants",
-			"authorized-representatives": "Représentants autorisés",
-			"inclusive-accessible-service-options": "Options de service inclusives et accessibles",
-			"privacy-settings": "Paramètres de confidentialité"
-		},
-		"profile-information": {
-			"document-title": "Informations de profil",
-			"page-identifier": "SCV-0010-FR",
-			"page-title": "Informations de profil",
-			"personal-information": {
-				"title": "Informations personnelles",
-				"first-name": "Prénom",
-				"middle-name": "Deuxième nom",
-				"last-name": "Nom de famille",
-				"date-of-birth": "Date de naissance",
-				"social-insurance-number": "Numéro d'assurance sociale",
-				"language-of-preference": "Langue de préférence"
-			},
-			"address": {
-				"title": "Adresse"
-			},
-			"phone": {
-				"title": "Téléphone",
-				"used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-				"used-for": "Utilisée pour <strong><0 /></strong>."
-			},
-			"email": {
-				"title": "Adresse courriel",
-				"primary-email-address": "Adresse courriel primaire",
-				"secondary-email-address": "Adresse courriel secondaire",
-				"used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-				"used-for": "Utilisée pour <strong><0 /></strong>."
-			},
-			"volunteer-experience": {
-				"title": "Expérience de bénévolat",
-				"service-hours": "heures de service"
-			},
-			"note": {
-				"title": "Notes"
-			}
-		},
-		"payment-details": {
-			"document-title": "Détails de paiement",
-			"page-identifier": "SCV-0011-FR",
-			"page-title": "Détails de paiement",
-			"navbar": {
-				"details": "Détails",
-				"make-payment": "Effectuer un paiement",
-				"payment-history": "Historique de paiement"
-			},
-			"details": {
-				"not-in-use": "Non utilisé.",
-				"used-for": "Used for: <strong><0 /></strong>"
-			},
-			"payment-history": {
-				"date": "Date",
-				"program-service": "Programme / service",
-				"amount": "Montant",
-				"account-number": "Numéro de compte"
-			}
-		}
-	},
-	"notifications": {
-		"document-title": "Notifications",
-		"message": "C'est la page <strong>notifications</strong>.",
-		"page-identifier": "SCV-0003-FR",
-		"page-title": "VCU :: Notifications"
-	},
-	"inbox": {
-		"document-title": "Boîte de réception",
-		"message": "C'est la page <strong>boîte de réception</strong>.",
-		"page-identifier": "SCV-0004-FR",
-		"page-title": "VCU :: Boîte de réception"
-	},
-	"lets-connect": {
-		"document-title": "Connectons",
-		"message": "C'est la page <strong>connectons</strong>.",
-		"page-identifier": "SCV-0005-FR",
-		"page-title": "VCU :: Connectons"
-	},
-	"book-appointment": {
-		"document-title": "Prenez rendez-vous",
-		"message": "C'est la page <strong>prenez rendez-vous</strong>.",
-		"page-identifier": "SCV-0006-FR",
-		"page-title": "VCU :: Prenez rendez-vous"
-	},
-	"benefits-services": {
-		"document-title": "Avantages et services",
-		"message": "C'est la page <strong>avantages et services</strong>.",
-		"page-identifier": "SCV-0007-FR",
-		"page-title": "VCU :: Avantages et services"
-	},
-	"jobs-skills": {
-		"document-title": "Emplois et compétences",
-		"message": "C'est la page <strong>emplois et compétences</strong>.",
-		"page-identifier": "SCV-0008-FR",
-		"page-title": "VCU :: Emplois et compétences"
-	},
-	"preferences": {
-		"document-title": "Préférences",
-		"message": "C'est la page <strong>préférences</strong>.",
-		"page-identifier": "SCV-0009-FR",
-		"page-title": "VCU :: Préférences"
-	},
-	"wet-boew": {
-		"default-page-identifier": "SCV-0000-FR",
-		"default-page-title": "Vue client unique",
-		"footer": {
-			"brand": {
-				"description": "À propos du site",
-				"mobile": {
-					"href": "https://www.canada.ca/fr/html",
-					"text": "Applications mobiles"
-				},
-				"new-site": {
-					"href": "https://www1.canada.ca/fr/nouveausite.html",
-					"text": "À propos de Canada.ca"
-				},
-				"privacy": {
-					"href": "https://www.canada.ca/fr/transparence/confidentialite.html",
-					"text": "Confidentialité"
-				},
-				"social": {
-					"href": "https://www.canada.ca/fr/sociaux.html",
-					"text": "Médias sociaux"
-				},
-				"terms": {
-					"href": "https://www.canada.ca/fr/transparence/avis.html",
-					"text": "Avis"
-				}
-			},
-			"info": {
-				"contact": {
-					"href": "https://www.canada.ca/fr/html",
-					"text": "Contactez-nous"
-				},
-				"departments": {
-					"href": "https://www.canada.ca/fr/gouvernement/min.html",
-					"text": "Ministères et organismes"
-				},
-				"description": "Au sujet du gouvernement",
-				"laws": {
-					"href": "https://www.canada.ca/fr/gouvernement/systeme/lois.html",
-					"text": "Traités, lois et règlements"
-				},
-				"news": {
-					"href": "https://www.canada.ca/fr/nouvelles.html",
-					"text": "Nouvelles"
-				},
-				"open-government": {
-					"href": "https://ouvert.canada.ca/",
-					"text": "Gouvernement ouvert"
-				},
-				"prime-minister": {
-					"href": "https://pm.gc.ca/fra",
-					"text": "Premier ministre"
-				},
-				"public-service": {
-					"href": "https://www.canada.ca/fr/gouvernement/fonctionpublique.html",
-					"text": "Fonction publique et force militaire"
-				},
-				"reporting": {
-					"href": "https://www.canada.ca/fr/transparence/rapports.html",
-					"text": "Rapports à l'échelle du gouvernement"
-				},
-				"system": {
-					"href": "https://www.canada.ca/fr/gouvernement/systeme.html",
-					"text": "Comment le gouvernement fonctionne"
-				}
-			},
-			"top-of-page": "Haut de la page",
-			"wordmark": {
-				"description": "Symbole du gouvernement du Canada",
-				"href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
-			}
-		},
-		"header": {
-			"brand-img-href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/sig-blk-fr.svg",
-			"brand-logo": {
-				"href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
-			},
-			"brand-text": "Gouvernement du Canada",
-			"breadcrumbs": {
-				"description": "Vous êtes ici :",
-				"home": {
-					"href": "https://www.canada.ca/fr.html",
-					"text": "Accueil"
-				}
-			},
-			"canada-href": "https://www.canada.ca/fr.html",
-			"language-lang": "en",
-			"language-selection": "Sélection de la langue",
-			"language-toggle": "English",
-			"skip-links": {
-				"about-government": "Passer à « Au sujet du gouvernement »",
-				"main-content": "Passer au contenu principal"
-			},
-			"navbar": {
-				"home": "Acceuil",
-				"profile": "Profil",
-				"notifications": "Notifications",
-				"inbox": "Boîte de reception",
-				"lets-connect": "Connectons",
-				"book-appointment": "Prenez rendez-vous",
-				"benefits-services": "Avantages et services",
-				"jobs-skills": "Emplois et compétences",
-				"preferences": "Préférences"
-			},
-			"sign-in": "Se connecter"
-		},
-		"page-details": {
-			"date-modified": "Date de modification :",
-			"screen-identifier": "Identificateur d'écran :",
-			"version": "Version :"
-		}
-	},
-	"login": {
-		"document-title": "Se connecter \u2014 Vue client unique",
-		"page-title": "Vue client unique",
-		"page-identifier": "SCV-9999-FR",
-		"greeting": "Entrez vos informations pour vous connecter à votre compte.",
-		"bad-credentials": "Le nom d'utilisateur et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.",
-		"input": {
-			"username": "Identifiant",
-			"password": "Mot de passe",
-			"login": "Se connecter",
-			"remember-me": "Se souvenir de moi",
-			"forgot-password": "Mot de passe oublié?"
-		}
-	}
+  "action": {
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "remove": "Enlever",
+    "delete": "Supprimer",
+    "refresh": "Actualiser",
+    "sign-in": "Se connecter",
+    "sign-out": "Se déconnecter"
+  },
+  "no-data-available": "Aucune données disponibles",
+  "something-went-wrong": "Oops, il y a eu un problème...",
+  "required": "obligatoire",
+  "not-found": {
+    "apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
+    "document-title": "Erreur 404 \u2014 Vue client unique",
+    "error-404": "Erreur 404",
+    "page-identifier": "SCV-0404-FR",
+    "page-tag": "Nous ne pouvons trouver cette page web",
+    "return-canada": "Retournez à <0>Canada.ca</0>.",
+    "return-canada-href": "https://canada.ca/fr.html",
+    "return-home": "Retournez à la <0>page d'accueil</0>;"
+  },
+  "home": {
+    "document-title": "Bienvenue \u2014 Vue client unique",
+    "message": "La <i>vue client unique</i> est une représentation globale, cohérente et holistique des données détenues par le gouvernement du Canada sur ses utilisateurs et pouvant être visualisées à partir d’un emplacement centralisé.",
+    "more-information": "Pour plus d'informations, <0>cliquez ici</0>.",
+    "page-identifier": "SCV-0001-FR",
+    "page-title": "VCU :: Accueil"
+  },
+  "profile": {
+    "document-title": "Profil",
+    "page-title": "VCU :: Profil",
+    "navbar": {
+      "profile-information": "Informations de profil",
+      "payment-details": "Détails de paiement",
+      "my-identifiers": "Mes identifiants",
+      "authorized-representatives": "Représentants autorisés",
+      "inclusive-accessible-service-options": "Options de service inclusives et accessibles",
+      "privacy-settings": "Paramètres de confidentialité"
+    },
+    "profile-information": {
+      "document-title": "Informations de profil",
+      "page-identifier": "SCV-0010-FR",
+      "page-title": "Informations de profil",
+      "personal-information": {
+        "title": "Informations personnelles",
+        "first-name": "Prénom",
+        "middle-name": "Deuxième nom",
+        "last-name": "Nom de famille",
+        "date-of-birth": "Date de naissance",
+        "social-insurance-number": "Numéro d'assurance sociale",
+        "language-of-preference": "Langue de préférence"
+      },
+      "address": {
+        "title": "Adresse"
+      },
+      "phone": {
+        "title": "Téléphone",
+        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+        "used-for": "Utilisée pour <strong><0 /></strong>."
+      },
+      "email": {
+        "title": "Adresse courriel",
+        "primary-email-address": "Adresse courriel primaire",
+        "secondary-email-address": "Adresse courriel secondaire",
+        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+        "used-for": "Utilisée pour <strong><0 /></strong>."
+      },
+      "volunteer-experience": {
+        "title": "Expérience de bénévolat",
+        "service-hours": "heures de service"
+      },
+      "note": {
+        "title": "Notes"
+      }
+    },
+    "payment-details": {
+      "document-title": "Détails de paiement",
+      "page-identifier": "SCV-0011-FR",
+      "page-title": "Détails de paiement",
+      "navbar": {
+        "details": "Détails",
+        "make-payment": "Effectuer un paiement",
+        "payment-history": "Historique de paiement"
+      },
+      "details": {
+        "not-in-use": "Non utilisé.",
+        "used-for": "Used for: <strong><0 /></strong>"
+      },
+      "payment-history": {
+        "date": "Date",
+        "program-service": "Programme / service",
+        "amount": "Montant",
+        "account-number": "Numéro de compte"
+      }
+    }
+  },
+  "notifications": {
+    "document-title": "Notifications",
+    "message": "C'est la page <strong>notifications</strong>.",
+    "page-identifier": "SCV-0003-FR",
+    "page-title": "VCU :: Notifications"
+  },
+  "inbox": {
+    "document-title": "Boîte de réception",
+    "message": "C'est la page <strong>boîte de réception</strong>.",
+    "page-identifier": "SCV-0004-FR",
+    "page-title": "VCU :: Boîte de réception"
+  },
+  "lets-connect": {
+    "document-title": "Connectons",
+    "message": "C'est la page <strong>connectons</strong>.",
+    "page-identifier": "SCV-0005-FR",
+    "page-title": "VCU :: Connectons"
+  },
+  "book-appointment": {
+    "document-title": "Prenez rendez-vous",
+    "message": "C'est la page <strong>prenez rendez-vous</strong>.",
+    "page-identifier": "SCV-0006-FR",
+    "page-title": "VCU :: Prenez rendez-vous"
+  },
+  "benefits-services": {
+    "document-title": "Avantages et services",
+    "message": "C'est la page <strong>avantages et services</strong>.",
+    "page-identifier": "SCV-0007-FR",
+    "page-title": "VCU :: Avantages et services"
+  },
+  "jobs-skills": {
+    "document-title": "Emplois et compétences",
+    "message": "C'est la page <strong>emplois et compétences</strong>.",
+    "page-identifier": "SCV-0008-FR",
+    "page-title": "VCU :: Emplois et compétences"
+  },
+  "preferences": {
+    "document-title": "Préférences",
+    "message": "C'est la page <strong>préférences</strong>.",
+    "page-identifier": "SCV-0009-FR",
+    "page-title": "VCU :: Préférences"
+  },
+  "wet-boew": {
+    "default-page-identifier": "SCV-0000-FR",
+    "default-page-title": "Vue client unique",
+    "footer": {
+      "brand": {
+        "description": "À propos du site",
+        "mobile": {
+          "href": "https://www.canada.ca/fr/html",
+          "text": "Applications mobiles"
+        },
+        "new-site": {
+          "href": "https://www1.canada.ca/fr/nouveausite.html",
+          "text": "À propos de Canada.ca"
+        },
+        "privacy": {
+          "href": "https://www.canada.ca/fr/transparence/confidentialite.html",
+          "text": "Confidentialité"
+        },
+        "social": {
+          "href": "https://www.canada.ca/fr/sociaux.html",
+          "text": "Médias sociaux"
+        },
+        "terms": {
+          "href": "https://www.canada.ca/fr/transparence/avis.html",
+          "text": "Avis"
+        }
+      },
+      "info": {
+        "contact": {
+          "href": "https://www.canada.ca/fr/html",
+          "text": "Contactez-nous"
+        },
+        "departments": {
+          "href": "https://www.canada.ca/fr/gouvernement/min.html",
+          "text": "Ministères et organismes"
+        },
+        "description": "Au sujet du gouvernement",
+        "laws": {
+          "href": "https://www.canada.ca/fr/gouvernement/systeme/lois.html",
+          "text": "Traités, lois et règlements"
+        },
+        "news": {
+          "href": "https://www.canada.ca/fr/nouvelles.html",
+          "text": "Nouvelles"
+        },
+        "open-government": {
+          "href": "https://ouvert.canada.ca/",
+          "text": "Gouvernement ouvert"
+        },
+        "prime-minister": {
+          "href": "https://pm.gc.ca/fra",
+          "text": "Premier ministre"
+        },
+        "public-service": {
+          "href": "https://www.canada.ca/fr/gouvernement/fonctionpublique.html",
+          "text": "Fonction publique et force militaire"
+        },
+        "reporting": {
+          "href": "https://www.canada.ca/fr/transparence/rapports.html",
+          "text": "Rapports à l'échelle du gouvernement"
+        },
+        "system": {
+          "href": "https://www.canada.ca/fr/gouvernement/systeme.html",
+          "text": "Comment le gouvernement fonctionne"
+        }
+      },
+      "top-of-page": "Haut de la page",
+      "wordmark": {
+        "description": "Symbole du gouvernement du Canada",
+        "href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
+      }
+    },
+    "header": {
+      "brand-img-href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/sig-blk-fr.svg",
+      "brand-logo": {
+        "href": "https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/assets/wmms-blk.svg"
+      },
+      "brand-text": "Gouvernement du Canada",
+      "breadcrumbs": {
+        "description": "Vous êtes ici :",
+        "home": {
+          "href": "https://www.canada.ca/fr.html",
+          "text": "Accueil"
+        }
+      },
+      "canada-href": "https://www.canada.ca/fr.html",
+      "language-lang": "en",
+      "language-selection": "Sélection de la langue",
+      "language-toggle": "English",
+      "skip-links": {
+        "about-government": "Passer à « Au sujet du gouvernement »",
+        "main-content": "Passer au contenu principal"
+      },
+      "navbar": {
+        "home": "Acceuil",
+        "profile": "Profil",
+        "notifications": "Notifications",
+        "inbox": "Boîte de reception",
+        "lets-connect": "Connectons",
+        "book-appointment": "Prenez rendez-vous",
+        "benefits-services": "Avantages et services",
+        "jobs-skills": "Emplois et compétences",
+        "preferences": "Préférences"
+      },
+      "sign-in": "Se connecter"
+    },
+    "page-details": {
+      "date-modified": "Date de modification :",
+      "screen-identifier": "Identificateur d'écran :",
+      "version": "Version :"
+    }
+  },
+  "login": {
+    "document-title": "Se connecter \u2014 Vue client unique",
+    "page-title": "Vue client unique",
+    "page-identifier": "SCV-9999-FR",
+    "greeting": "Entrez vos informations pour vous connecter à votre compte.",
+    "bad-credentials": "Le nom d'utilisateur et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.",
+    "input": {
+      "username": "Identifiant",
+      "password": "Mot de passe",
+      "login": "Se connecter",
+      "remember-me": "Se souvenir de moi",
+      "forgot-password": "Mot de passe oublié?"
+    }
+  }
 }
