@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { intersection } from '../utils/array-utils';
 import { useAuthContext } from '../utils/auth';
-import Login from '../views/Login/Login';
 import Error403 from './error/Error403';
 
 /**
@@ -13,20 +12,30 @@ import Error403 from './error/Error403';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const PrivateRoute = ({ authorities: requiredAuthorities, ...props }) => {
+// eslint-disable-next-line react/prop-types
+const PrivateRoute = ({ component: Component, authorities: requiredAuthorities, ...rest }) => {
   const { authContext } = useAuthContext();
   const { authenticated, authorities, tokenExpired } = authContext;
 
-  if (!authenticated || tokenExpired) {
-    return <Login />;
-  }
-
-  if (requiredAuthorities && intersection(requiredAuthorities)(authorities).length === 0) {
+  if (authenticated && requiredAuthorities.length && intersection(requiredAuthorities)(authorities).length === 0) {
     return <Error403 />;
   }
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Route {...props} />;
+  return (
+    <Route
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      render={(props) => {
+        if (!authenticated || tokenExpired) {
+          // eslint-disable-next-line react/prop-types
+          return <Redirect to={{ pathname: '/sign-in', state: { from: props.location } }} />;
+        }
+
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        return <Component {...props} />;
+      }}
+    />
+  );
 };
 
 PrivateRoute.defaultProps = {
