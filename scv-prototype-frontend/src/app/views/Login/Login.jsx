@@ -20,15 +20,6 @@ const Login = ({ location, history }) => {
   const { error, loading, login } = useLogin();
   const { authContext } = { ...useAuthContext() };
 
-  useEffect(() => {
-    // redirect to home if already logged in
-    if (authContext.authenticated) {
-      // eslint-disable-next-line react/prop-types
-      history.push('/');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const [username, setUsername] = useState('user@example.com');
   const [password, setPassword] = useState('password');
   const [rememberMe, setRememberMe] = useState(false);
@@ -52,7 +43,7 @@ const Login = ({ location, history }) => {
   // eslint-disable-next-line react/prop-types
   const { from } = location.state || { from: { pathname: '/' } };
 
-  return redirectToReferrer ? (
+  return redirectToReferrer || authContext.authenticated ? (
     <Redirect to={from} />
   ) : (
     <div id="login-page">
