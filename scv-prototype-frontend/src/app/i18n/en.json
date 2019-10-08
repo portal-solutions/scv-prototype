@@ -21,6 +21,10 @@
     "return-canada-href": "https://canada.ca/en.html",
     "return-home": "Return to the <0>home page</0>;"
   },
+  "authentication": {
+    "welcome": "Welcome <strong><0>username</0></strong>!",
+    "not-logged-in": "You are not logged in."
+  },
   "home": {
     "document-title": "Welcome \u2014 Single client view",
     "message": "<i>Single client view</i> is an aggregated, consistent, and holistic representation of the data held by the Government of Canada about its users that can be viewed in one centralized location.",

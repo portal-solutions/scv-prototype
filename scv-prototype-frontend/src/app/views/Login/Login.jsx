@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/Button';
-import FormGroup from '../../components/FormGroup';
+import { Redirect } from 'react-router-dom';
+
 import { useLogin } from '../../utils/api/index';
 import { useAuthContext } from '../../utils/auth';
 import { usePageMetadata } from '../../utils/page-metadata';
+import FormGroup from '../../components/FormGroup';
+import Button from '../../components/Button';
 
 /**
  * A very simple login component.
@@ -12,14 +14,25 @@ import { usePageMetadata } from '../../utils/page-metadata';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Login = () => {
-  const [username, setUsername] = useState('user@example.com');
-  const [password, setPassword] = useState('password');
-  const [rememberMe, setRememberMe] = useState(false);
-
+// eslint-disable-next-line react/prop-types
+const Login = ({ location, history }) => {
   const { t } = useTranslation();
   const { error, loading, login } = useLogin();
   const { authContext } = { ...useAuthContext() };
+
+  useEffect(() => {
+    // redirect to home if already logged in
+    if (authContext.authenticated) {
+      // eslint-disable-next-line react/prop-types
+      history.push('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [username, setUsername] = useState('user@example.com');
+  const [password, setPassword] = useState('password');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
   usePageMetadata({
     documentTitle: t('login.document-title'),
@@ -28,12 +41,20 @@ const Login = () => {
     suppressLoginButton: true
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login({ username, password });
+
+    await login({ username, password });
+
+    setRedirectToReferrer(true);
   };
 
-  return (
+  // eslint-disable-next-line react/prop-types
+  const { from } = location.state || { from: { pathname: '/' } };
+
+  return redirectToReferrer ? (
+    <Redirect to={from} />
+  ) : (
     <div id="login-page">
       <form className="well col-md-8 z-depth-1 mrgn-tp-lg" onSubmit={handleSubmit}>
         <h2 className="h3 mrgn-tp-0 mrgn-bttm-lg">{t('login.greeting')}</h2>
