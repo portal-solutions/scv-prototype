@@ -7,14 +7,14 @@ import { usePageMetadata } from '../../../utils/page-metadata';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Error403 = props => {
-	usePageMetadata({
-		documentTitle: 'Permission denied \u2016 Single client view',
-		pageIdentifier: 'SCV-0403-EN',
-		pageTitle: 'Permission denied'
-	});
+const Error403 = () => {
+  usePageMetadata({
+    documentTitle: 'Permission denied \u2016 Single client view',
+    pageIdentifier: 'SCV-0403-EN',
+    pageTitle: 'Permission denied'
+  });
 
-	return <p>You are not allowed to access that resource.</p>;
+  return <p>You are not allowed to access that resource.</p>;
 };
 
 export default Error403;
