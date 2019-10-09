@@ -1,10 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../../components/Button';
-import { usePageMetadataContext } from '../../../utils/page-metadata';
+import AuthButton from './AuthButton';
 import BreadcrumbItem from './BreadcrumbItem';
 import './Header.scss';
-import AuthButton from './AuthButton';
 import NavBar from './NavBar';
 
 /**
@@ -15,7 +14,6 @@ import NavBar from './NavBar';
  */
 const Header = () => {
   const { i18n, t } = useTranslation();
-  const { pageMetadata } = usePageMetadataContext();
 
   return (
     <>

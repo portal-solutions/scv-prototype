@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useAuthContext } from '../auth';
+import { useAuth } from '../auth';
 import { InvalidTokenError } from './errors';
 import fetchGreetings from './fetch-greetings';
 import fetchPaymentDetails from './fetch-payment-details';
 import fetchPaymentHistory from './fetch-payment-history';
 import fetchProfile from './fetch-profile';
-import useLogin from './useLogin';
 
 /**
  * A custom hook that can keep track of authentication state internally so that
@@ -16,8 +15,8 @@ const useApi = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
-  const { authContext, setAuthContext } = useAuthContext();
-  const { authToken, uid } = authContext;
+  const { auth, setAuth } = useAuth();
+  const { authToken, uid } = auth;
 
   return {
     // status fields
@@ -26,11 +25,11 @@ const useApi = () => {
     loading,
 
     // API methods
-    fetchGreetings: fetchGreetings({ authToken, uid, setData, setError, setLoading, setAuthContext }),
-    fetchPaymentDetails: fetchPaymentDetails({ authToken, uid, setData, setError, setLoading, setAuthContext }),
-    fetchPaymentHistory: fetchPaymentHistory({ authToken, uid, setData, setError, setLoading, setAuthContext }),
-    fetchProfile: fetchProfile({ authToken, uid, setData, setError, setLoading, setAuthContext })
+    fetchGreetings: fetchGreetings({ authToken, uid, setData, setError, setLoading, setAuth }),
+    fetchPaymentDetails: fetchPaymentDetails({ authToken, uid, setData, setError, setLoading, setAuth }),
+    fetchPaymentHistory: fetchPaymentHistory({ authToken, uid, setData, setError, setLoading, setAuth }),
+    fetchProfile: fetchProfile({ authToken, uid, setData, setError, setLoading, setAuth })
   };
 };
 
-export { InvalidTokenError, useApi, useLogin };
+export { InvalidTokenError, useApi };
