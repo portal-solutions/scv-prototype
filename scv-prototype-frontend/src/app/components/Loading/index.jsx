@@ -5,13 +5,6 @@ import Ring from './Ring';
 import Roller from './Roller';
 import Spinner from './Spinner';
 
-export {
-	Ellipsis,
-	Facebook,
-	Loading,
-	Ring,
-	Roller,
-	Spinner,
-}
+export { Ellipsis, Facebook, Loading, Ring, Spinner };
 
 export default Roller;
