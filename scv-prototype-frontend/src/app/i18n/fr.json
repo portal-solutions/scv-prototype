@@ -8,6 +8,12 @@
     "sign-in": "Se connecter",
     "sign-out": "Se déconnecter"
   },
+  "colon": " :",
+  "alert": {
+    "info": "Information",
+    "success": "Succès",
+    "error": "Erreur"
+  },
   "no-data-available": "Aucune données disponibles",
   "something-went-wrong": "Oops, il y a eu un problème...",
   "required": "obligatoire",

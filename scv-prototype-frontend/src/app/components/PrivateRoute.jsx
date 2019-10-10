@@ -17,7 +17,12 @@ const PrivateRoute = ({ component: Component, authorities: requiredAuthorities, 
   const { auth } = useAuth();
   const { authenticated, authorities, tokenExpired } = auth;
 
-  if (authenticated && requiredAuthorities.length && intersection(requiredAuthorities)(authorities).length === 0) {
+  if (
+    authenticated &&
+    !tokenExpired &&
+    requiredAuthorities.length &&
+    intersection(requiredAuthorities)(authorities).length === 0
+  ) {
     return <Error403 />;
   }
 
@@ -26,13 +31,13 @@ const PrivateRoute = ({ component: Component, authorities: requiredAuthorities, 
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       render={(props) => {
-        if (!authenticated || tokenExpired) {
+        if (authenticated && !tokenExpired) {
           // eslint-disable-next-line react/prop-types
-          return <Redirect to={{ pathname: '/sign-in', state: { from: props.location } }} />;
+          return <Component {...props} />;
         }
 
         // eslint-disable-next-line react/jsx-props-no-spreading
-        return <Component {...props} />;
+        return <Redirect to={{ pathname: '/sign-in', state: { from: props.location } }} />;
       }}
     />
   );

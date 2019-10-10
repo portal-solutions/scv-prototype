@@ -9,7 +9,8 @@ const NavBar = () => {
   const { auth } = useAuth();
 
   return (
-    auth.authenticated && (
+    auth.authenticated &&
+    !auth.tokenExpired && (
       <nav
         role="navigation"
         id="wb-sm"

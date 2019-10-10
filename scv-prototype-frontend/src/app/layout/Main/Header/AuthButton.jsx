@@ -21,20 +21,16 @@ const AuthButton = withRouter(({ history }) => {
     history.push('/');
   };
 
-  return (
+  return auth.authenticated && !auth.tokenExpired ? (
     <>
-      {auth.authenticated && (
-        <>
-          <span className="mr-3">
-            <Trans i18nKey="authentication.welcome">{auth.username}</Trans>
-          </span>
-          <Button size={Button.sizes.sm} onClick={handleSignOut}>
-            <i className="fas fa-sign-out-alt" aria-hidden="true" /> <span>{t('action.sign-out')}</span>
-          </Button>
-        </>
-      )}
+      <span className="mr-3">
+        <Trans i18nKey="authentication.welcome">{auth.username}</Trans>
+      </span>
+      <Button size={Button.sizes.sm} onClick={handleSignOut}>
+        <i className="fas fa-sign-out-alt" aria-hidden="true" /> <span>{t('action.sign-out')}</span>
+      </Button>
     </>
-  );
+  ) : null;
 });
 
 export default AuthButton;

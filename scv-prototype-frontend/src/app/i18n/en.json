@@ -8,6 +8,12 @@
     "sign-in": "Sign in",
     "sign-out": "Sign out"
   },
+  "colon": ":",
+  "alert": {
+    "info": "Information",
+    "success": "Success",
+    "error": "Error"
+  },
   "no-data-available": "No data available",
   "something-went-wrong": "Oops, something went wrong...",
   "required": "required",

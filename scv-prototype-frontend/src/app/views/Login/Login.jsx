@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
-import Button from '../../components/Button';
-import FormGroup from '../../components/FormGroup';
 import { useAuth } from '../../utils/auth';
 import { usePageMetadata } from '../../utils/page-metadata';
+import Button from '../../components/Button';
+import FormGroup from '../../components/FormGroup';
 
 /**
  * A very simple login component.
@@ -30,8 +30,7 @@ const Login = ({ location }) => {
   usePageMetadata({
     documentTitle: t('login.document-title'),
     pageIdentifier: t('login.page-identifier'),
-    pageTitle: t('login.page-title'),
-    suppressLoginButton: true
+    pageTitle: t('login.page-title')
   });
 
   const handleSubmit = async (e) => {
@@ -54,7 +53,7 @@ const Login = ({ location }) => {
 
   const { from } = location.state || { from: { pathname: '/' } };
 
-  return redirectToReferrer || auth.authenticated ? (
+  return redirectToReferrer || (auth.authenticated && !auth.tokenExpired) ? (
     <Redirect to={from} />
   ) : (
     <div id="login-page">

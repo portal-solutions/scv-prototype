@@ -13,10 +13,12 @@
     "preval.macro": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.0",
+    "react-alert": "^5.5.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.10.0",
     "react-i18next": "^10.13.0",
-    "react-router-dom": "^5.1.0"
+    "react-router-dom": "^5.1.0",
+    "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.0.0",
