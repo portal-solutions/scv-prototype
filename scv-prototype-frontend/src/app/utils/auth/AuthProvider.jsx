@@ -36,9 +36,10 @@ const AuthProvider = (props) => {
     return null;
   };
 
-  const logout = async () => {
+  // TODO :: GjB :: this should be its own function (preferrably a reducer)
+  const logout = async (tokenExpired) => {
     localStorage.removeItem('auth');
-    setState(initialState);
+    setState({ ...initialState, tokenExpired });
   };
 
   return <AuthContext.Provider value={{ auth: state, login, logout }} {...props} />;
