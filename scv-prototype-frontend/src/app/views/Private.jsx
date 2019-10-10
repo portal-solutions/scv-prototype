@@ -1,7 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import BenefitsServices from './BenefitsServices';
 import BookAppointment from './BookAppointment';
+import Greeting from './Greeting/Greeting';
 import Home from './Home';
 import Inbox from './Inbox';
 import JobsSkills from './JobsSkills';
@@ -22,6 +23,9 @@ const Private = ({ match }) => {
       <Route path={`${match.path}/notifications`} component={Notifications} exact />
       <Route path={`${match.path}/preferences`} component={Preferences} exact />
       <Route path={`${match.path}/profile`} component={Profile} />
+
+      {/* TODO :: GjB :: remove this eventually */}
+      <Route path={`${match.path}/greeting`} component={Greeting} />
     </Switch>
   );
 };

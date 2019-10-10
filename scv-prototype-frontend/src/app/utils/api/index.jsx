@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../auth';
+import ApiProvider from './ApiProvider';
 import { InvalidTokenError } from './errors';
 import fetchGreetings from './fetch-greetings';
 import fetchPaymentDetails from './fetch-payment-details';
@@ -32,4 +33,5 @@ const useApi = () => {
   };
 };
 
+export { ApiProvider };
 export { InvalidTokenError, useApi };

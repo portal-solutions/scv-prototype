@@ -1,8 +1,11 @@
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { Provider as AlertProvider } from 'react-alert';
-import AlertTemplate from './components/AlertTemplate';
+import './App.scss';
+import Error404 from './components/error/Error404';
+import PrivateRoute from './components/PrivateRoute';
+import MainLayout from './layout/Main';
+import { ApiProvider } from './utils/api';
 import { AuthProvider } from './utils/auth';
 import { PageMetadataProvider } from './utils/page-metadata';
 import PrivateRoute from './components/PrivateRoute';
@@ -33,6 +36,8 @@ const App = () => {
     // eslint-disable-next-line react/jsx-props-no-spreading
     <AlertProvider template={AlertTemplate} {...alertOptions}>
       <AuthProvider>
+      <ApiProvider>
+
         <PageMetadataProvider>
           <Router history={history}>
             <MainLayout>
@@ -47,6 +52,7 @@ const App = () => {
             </MainLayout>
           </Router>
         </PageMetadataProvider>
+</ApiProvider>
       </AuthProvider>
     </AlertProvider>
   );

@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Redirect } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
-import { useApi } from '../../utils/api';
+import { useApi } from '../../utils/api/ApiProvider';
 import { usePageMetadata } from '../../utils/page-metadata';
 
 /**
@@ -11,53 +13,81 @@ import { usePageMetadata } from '../../utils/page-metadata';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Greeting = props => {
-	const { data, error, loading, fetchGreetings } = useApi();
+const Greeting = () => {
+  const { data, fetchGreetings } = useApi();
 
-	usePageMetadata({
-		documentTitle: 'Greetings! \u2014 Single client view',
-		pageIdentifier: 'SCV-XXXX',
-		pageTitle: 'A greeting for you'
-	});
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		(async () => fetchGreetings())();
-		// eslint-disable-next-line
-	}, []);
+  usePageMetadata({
+    documentTitle: 'Greetings! \u2014 Single client view',
+    pageIdentifier: 'SCV-XXXX',
+    pageTitle: 'A greeting for you'
+  });
 
-	return (
-		<>
-			{loading && (
-				<div className="text-center mrgn-tp-lg">
-					<Loading />
-				</div>
-			)}
-			{error && <Error />}
-			{data && <Messages data={data} />}
-		</>
-	);
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        await fetchGreetings();
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <>
+      {error && error.name === 'InvalidTokenError' && (
+        <Redirect to={{ pathname: '/sign-in', state: { tokenExpired: true } }} />
+      )}
+
+      {error && (error.name !== 'InvalidTokenError' || <Error />)}
+
+      {loading && (
+        <div className="text-center mrgn-tp-lg">
+          <Loading />
+        </div>
+      )}
+
+      {data && <Messages data={data} />}
+    </>
+  );
 };
 
-const Error = props => {
-	const { t } = useTranslation();
+const Error = () => {
+  const { t } = useTranslation();
 
-	return (
-		<div className="alert alert-danger">
-			<span>{t('something-went-wrong')}</span>
-		</div>
-	);
+  return (
+    <>
+      <div className="alert alert-danger">
+        <span>{t('something-went-wrong')}</span>
+      </div>
+    </>
+  );
 };
 
-const Messages = props => {
-	return (
-		<div className="row">
-			<div className="col-xs-12">
-				{props.data.map(greeting => (
-					<p key={greeting.message}>{greeting.message}</p>
-				))}
-			</div>
-		</div>
-	);
+const Messages = ({ data }) => {
+  return (
+    <div className="row">
+      <div className="col-xs-12">
+        {data.map((greeting) => (
+          <p key={greeting.message}>{greeting.message}</p>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+Messages.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      message: PropTypes.string
+    })
+  ).isRequired
 };
 
 export default Greeting;
