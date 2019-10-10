@@ -4,7 +4,6 @@ import ApiProvider from './ApiProvider';
 import { InvalidTokenError } from './errors';
 import fetchPaymentDetails from './fetch-payment-details';
 import fetchPaymentHistory from './fetch-payment-history';
-import fetchProfile from './fetch-profile';
 
 /**
  * A custom hook that can keep track of authentication state internally so that
@@ -26,8 +25,7 @@ const useApi = () => {
 
     // API methods
     fetchPaymentDetails: fetchPaymentDetails({ authToken, uid, setData, setError, setLoading, setAuth }),
-    fetchPaymentHistory: fetchPaymentHistory({ authToken, uid, setData, setError, setLoading, setAuth }),
-    fetchProfile: fetchProfile({ authToken, uid, setData, setError, setLoading, setAuth })
+    fetchPaymentHistory: fetchPaymentHistory({ authToken, uid, setData, setError, setLoading, setAuth })
   };
 };
 

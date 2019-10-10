@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 import { useAuth } from '../auth';
 import * as apiService from './ApiService';
 
@@ -20,21 +20,29 @@ const useApi = () => useContext(ApiContext);
 const ApiProvider = (props) => {
   const { auth, logout } = useAuth();
 
-  const [state, setState] = useState();
-
   const fetchGreetings = async () => {
     try {
-      setState(await apiService.fetchGreetings(auth.authToken, auth.uid));
+      return await apiService.fetchGreetings(auth.authToken, auth.uid);
     } catch (err) {
       if (err.name === 'InvalidTokenError') {
         logout(true);
       }
-
       throw err;
     }
   };
 
-  return <ApiContext.Provider value={{ data: state, fetchGreetings }} {...props} />;
+  const fetchProfile = async () => {
+    try {
+      return await apiService.fetchProfile(auth.authToken, auth.uid);
+    } catch (err) {
+      if (err.name === 'InvalidTokenError') {
+        logout(true);
+      }
+      throw err;
+    }
+  };
+
+  return <ApiContext.Provider value={{ fetchGreetings, fetchProfile }} {...props} />;
 };
 
 export default ApiProvider;

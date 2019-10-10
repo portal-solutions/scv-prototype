@@ -14,8 +14,9 @@ import { usePageMetadata } from '../../utils/page-metadata';
  * @since 0.0.0
  */
 const Greeting = () => {
-  const { data, fetchGreetings } = useApi();
+  const { fetchGreetings } = useApi();
 
+  const [data, setData] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +30,7 @@ const Greeting = () => {
     (async () => {
       try {
         setLoading(true);
-        await fetchGreetings();
+        setData(await fetchGreetings());
       } catch (err) {
         setError(err);
       } finally {
