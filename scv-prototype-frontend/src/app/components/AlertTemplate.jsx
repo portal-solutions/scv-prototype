@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 const alertStyle = {
   backgroundColor: '#151515',
-  color: 'white',
+  color: '#FFFFFF',
   padding: '10px',
   borderRadius: '3px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  boxShadow: '0px 2px 2px 2px rgba(0, 0, 0, 0.03)',
-  width: '300px',
+  width: '350px',
   boxSizing: 'border-box',
   fontSize: '0.85em',
   fontFamily: 'Arial'
@@ -19,7 +18,6 @@ const alertStyle = {
 const buttonStyle = {
   marginLeft: '10px',
   padding: '0',
-  flexGrow: '1',
   border: 'none',
   backgroundColor: 'transparent',
   cursor: 'pointer',
@@ -41,15 +39,15 @@ const AlertTemplate = ({ message, options, style, close }) => {
 
   const icons = {
     info: {
-      title: t('alert.info'),
+      title: t('alert.info') + t('colon'),
       iconClassName: 'fas fa-info-circle fa-fw text-info'
     },
     success: {
-      title: t('alert.success'),
+      title: t('alert.success') + t('colon'),
       iconClassName: 'fas fa-check-circle fa-fw text-success'
     },
     error: {
-      title: t('alert.error'),
+      title: t('alert.error') + t('colon'),
       iconClassName: 'fas fa-exclamation-circle fa-fw text-danger'
     },
     close: {
