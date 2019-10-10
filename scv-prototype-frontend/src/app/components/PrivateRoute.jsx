@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { intersection } from '../utils/array-utils';
-import { useAuthContext } from '../utils/auth';
+import { useAuth } from '../utils/auth';
 import Error403 from './error/Error403';
 
 /**
@@ -14,8 +14,8 @@ import Error403 from './error/Error403';
  */
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ component: Component, authorities: requiredAuthorities, ...rest }) => {
-  const { authContext } = useAuthContext();
-  const { authenticated, authorities, tokenExpired } = authContext;
+  const { auth } = useAuth();
+  const { authenticated, authorities, tokenExpired } = auth;
 
   if (authenticated && requiredAuthorities.length && intersection(requiredAuthorities)(authorities).length === 0) {
     return <Error403 />;

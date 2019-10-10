@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
-
-import { useLogin } from '../../utils/api/index';
-import { useAuthContext } from '../../utils/auth';
-import { usePageMetadata } from '../../utils/page-metadata';
-import FormGroup from '../../components/FormGroup';
 import Button from '../../components/Button';
+import FormGroup from '../../components/FormGroup';
+import { useAuth } from '../../utils/auth';
+import { usePageMetadata } from '../../utils/page-metadata';
 
 /**
  * A very simple login component.
@@ -14,15 +14,17 @@ import Button from '../../components/Button';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-// eslint-disable-next-line react/prop-types
-const Login = ({ location, history }) => {
+const Login = ({ location }) => {
   const { t } = useTranslation();
-  const { error, loading, login } = useLogin();
-  const { authContext } = { ...useAuthContext() };
+  const { auth, login } = useAuth();
+
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
   const [username, setUsername] = useState('user@example.com');
   const [password, setPassword] = useState('password');
   const [rememberMe, setRememberMe] = useState(false);
+
   const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
   usePageMetadata({
@@ -35,15 +37,24 @@ const Login = ({ location, history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await login({ username, password });
-
-    setRedirectToReferrer(true);
+    try {
+      setLoading(true);
+      await login(username, password);
+      setRedirectToReferrer(true);
+    } catch (err) {
+      if (err.name === 'BadCredentialsError') {
+        setError(err);
+      } else {
+        throw err;
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // eslint-disable-next-line react/prop-types
   const { from } = location.state || { from: { pathname: '/' } };
 
-  return redirectToReferrer || authContext.authenticated ? (
+  return redirectToReferrer || auth.authenticated ? (
     <Redirect to={from} />
   ) : (
     <div id="login-page">
@@ -94,7 +105,7 @@ const Login = ({ location, history }) => {
           </div>
         )}
 
-        {authContext.tokenExpired && (
+        {auth.tokenExpired && (
           <div className="alert alert-danger">
             <span>Your session has expired; please sign in again.</span>
           </div>

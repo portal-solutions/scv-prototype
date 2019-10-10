@@ -1,15 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuthContext } from '../../../../utils/auth';
-import NavBarItem from './NavBarItem';
+import { useAuth } from '../../../../utils/auth';
 import './NavBar.scss';
+import NavBarItem from './NavBarItem';
 
 const NavBar = () => {
   const { t } = useTranslation();
-  const { authContext } = useAuthContext();
+  const { auth } = useAuth();
 
   return (
-    authContext.authenticated && (
+    auth.authenticated && (
       <nav
         role="navigation"
         id="wb-sm"
