@@ -6,6 +6,11 @@
 # Spring Boot Auto Configuration debug flag
 # debug: true
 
+spring:
+  # allow a 'local' profile for further customization
+  # (note application-local.yml will be ignored by git)
+  profiles.include: local
+
 # ===================================================================
 # Logging properties...
 # ===================================================================
