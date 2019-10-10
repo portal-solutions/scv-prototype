@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useAuth } from '../auth';
 import ApiProvider from './ApiProvider';
 import { InvalidTokenError } from './errors';
-import fetchPaymentDetails from './fetch-payment-details';
 import fetchPaymentHistory from './fetch-payment-history';
 
 /**
@@ -24,7 +23,6 @@ const useApi = () => {
     loading,
 
     // API methods
-    fetchPaymentDetails: fetchPaymentDetails({ authToken, uid, setData, setError, setLoading, setAuth }),
     fetchPaymentHistory: fetchPaymentHistory({ authToken, uid, setData, setError, setLoading, setAuth })
   };
 };
