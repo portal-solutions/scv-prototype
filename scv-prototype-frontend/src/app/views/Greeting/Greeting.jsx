@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 import { Loading } from '../../components/Loading';
-import { useApi } from '../../utils/api/ApiProvider';
+import { useApi } from '../../utils/api';
 import { usePageMetadata } from '../../utils/page-metadata';
 
 /**

@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Roller from '../../../components/Loading';
-import { useApi } from '../../../utils/api/ApiProvider';
+import { useApi } from '../../../utils/api';
 
 const Details = () => {
   const { fetchPaymentDetails } = useApi();
