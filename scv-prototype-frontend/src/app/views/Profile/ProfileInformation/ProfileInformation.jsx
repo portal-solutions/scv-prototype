@@ -40,8 +40,7 @@ const ProfileInformation = () => {
         setLoading(false);
       }
     })();
-    // eslint-disable-next-line
-  }, [fetchData]);
+  }, [fetchData, fetchProfile]);
 
   return (
     <>

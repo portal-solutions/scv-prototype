@@ -24,8 +24,7 @@ const Details = () => {
         setLoading(false);
       }
     })();
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchPaymentDetails]);
 
   return (
     <>

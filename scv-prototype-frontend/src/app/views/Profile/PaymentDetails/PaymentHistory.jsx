@@ -26,8 +26,7 @@ const PaymentHistory = () => {
         setLoading(false);
       }
     })();
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchPaymentHistory]);
 
   return (
     <>

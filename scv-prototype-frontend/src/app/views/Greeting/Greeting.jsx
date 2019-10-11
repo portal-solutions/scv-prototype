@@ -37,8 +37,7 @@ const Greeting = () => {
         setLoading(false);
       }
     })();
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchGreetings]);
 
   return (
     <>
