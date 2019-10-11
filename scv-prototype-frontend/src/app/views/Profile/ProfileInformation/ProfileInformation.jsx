@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Roller from '../../../components/Loading';
-import { useApi } from '../../../utils/api/ApiProvider';
+import { useApi } from '../../../utils/api';
 import { usePageMetadata } from '../../../utils/page-metadata';
 import Address from './Address';
 import Email from './Email';
@@ -40,8 +40,7 @@ const ProfileInformation = () => {
         setLoading(false);
       }
     })();
-    // eslint-disable-next-line
-  }, [fetchData]);
+  }, [fetchData, fetchProfile]);
 
   return (
     <>
