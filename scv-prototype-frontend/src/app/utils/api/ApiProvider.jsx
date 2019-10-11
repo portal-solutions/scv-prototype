@@ -42,6 +42,17 @@ const ApiProvider = (props) => {
     }
   };
 
+  const fetchPaymentHistory = async () => {
+    try {
+      return await apiService.fetchPaymentHistory(auth.authToken, auth.uid);
+    } catch (err) {
+      if (err.name === 'InvalidTokenError') {
+        logout(true);
+      }
+      throw err;
+    }
+  };
+
   const fetchProfile = async () => {
     try {
       return await apiService.fetchProfile(auth.authToken, auth.uid);
@@ -53,7 +64,12 @@ const ApiProvider = (props) => {
     }
   };
 
-  return <ApiContext.Provider value={{ fetchGreetings, fetchPaymentDetails, fetchProfile }} {...props} />;
+  return (
+    <ApiContext.Provider
+      value={{ fetchGreetings, fetchPaymentDetails, fetchPaymentHistory, fetchProfile }}
+      {...props}
+    />
+  );
 };
 
 export default ApiProvider;
