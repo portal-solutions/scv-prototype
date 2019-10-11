@@ -1,29 +1,47 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react/jsx-one-expression-per-line */
+
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Loading from '../../../components/Loading';
-import { useApi } from '../../../utils/api';
+import { Redirect } from 'react-router-dom';
+import Roller from '../../../components/Loading';
+import { useApi } from '../../../utils/api/ApiProvider';
 
 const PaymentHistory = () => {
   const { t } = useTranslation();
-  const { fetchPaymentHistory, data, error, loading } = useApi();
+  const { fetchPaymentHistory } = useApi();
+
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
-    fetchPaymentHistory();
+    (async () => {
+      try {
+        setLoading(true);
+        setData(await fetchPaymentHistory());
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
     // eslint-disable-next-line
   }, []);
 
   return (
     <>
-      <div className="row">
-        <div className="col-xs-12 text-center">
-          {loading && (
-            <div className="text-center">
-              <Loading />
-            </div>
-          )}
-          {error && <h4 className="text-center">{t('something-went-wrong')}</h4>}
+      {error && error.name === 'InvalidTokenError' && (
+        <Redirect to={{ pathname: '/sign-in', state: { tokenExpired: true } }} />
+      )}
+
+      {error && (error.name !== 'InvalidTokenError' || <Error />)}
+
+      {loading && (
+        <div className="text-center mrgn-tp-lg">
+          <Roller />
         </div>
-      </div>
+      )}
 
       {!loading && !error && (
         <div className="row">
@@ -56,6 +74,18 @@ const PaymentHistory = () => {
   );
 };
 
+const Error = () => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <div className="alert alert-danger">
+        <span>{t('something-went-wrong')}</span>
+      </div>
+    </>
+  );
+};
+
 const PaymentItem = ({ item }) => {
   return (
     <tr>
@@ -65,6 +95,15 @@ const PaymentItem = ({ item }) => {
       <td>{item.accountNumber}</td>
     </tr>
   );
+};
+
+PaymentItem.propTypes = {
+  item: PropTypes.shape({
+    accountNumber: PropTypes.string,
+    amount: PropTypes.number,
+    date: PropTypes.string,
+    programService: PropTypes.string
+  }).isRequired
 };
 
 export default PaymentHistory;
