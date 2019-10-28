@@ -26,14 +26,11 @@ const AuthProvider = (props) => {
   const login = async (username, password) => {
     const user = await authService.authenticate(username, password);
 
-    if (user) {
-      const auth = { authenticated: true, ...user };
-      localStorage.setItem('auth', JSON.stringify(auth));
-      setState(auth);
-      return auth;
-    }
+    const auth = { authenticated: true, ...user };
+    localStorage.setItem('auth', JSON.stringify(auth));
+    setState(auth);
 
-    return null;
+    return auth;
   };
 
   // TODO :: GjB :: this should be its own function (preferrably a reducer)
