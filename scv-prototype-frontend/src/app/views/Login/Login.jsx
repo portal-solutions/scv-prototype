@@ -18,14 +18,12 @@ const Login = ({ location }) => {
   const { t } = useTranslation();
   const { auth, login } = useAuth();
 
-  const [error, setError] = useState();
+  const [badCredentialsError, setBadCredentialsError] = useState();
   const [loading, setLoading] = useState(false);
 
   const [username, setUsername] = useState('user@example.com');
   const [password, setPassword] = useState('password');
   const [rememberMe, setRememberMe] = useState(false);
-
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
   usePageMetadata({
     documentTitle: t('login.document-title'),
@@ -33,34 +31,43 @@ const Login = ({ location }) => {
     pageTitle: t('login.page-title')
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    try {
-      setLoading(true);
-      await login(username, password);
-      setRedirectToReferrer(true);
-    } catch (err) {
-      if (err.name === 'BadCredentialsError') {
-        setError(err);
-      } else {
-        throw err;
+    // call login
+    (async () => {
+      try {
+        await login(username, password);
+      } catch (err) {
+        if (err.name === 'BadCredentialsError') {
+          setBadCredentialsError(err);
+          setLoading(false);
+        } else {
+          throw err;
+        }
       }
-    } finally {
-      setLoading(false);
-    }
+    })();
   };
 
+  // check if user logged in
   const { from } = location.state || { from: { pathname: '/' } };
 
-  return redirectToReferrer || (auth.authenticated && !auth.tokenExpired) ? (
-    <Redirect to={from} />
-  ) : (
+  if (auth.authenticated && !auth.tokenExpired) {
+    return <Redirect to={from} />;
+  }
+
+  return (
     <div id="login-page">
       <form className="well col-md-8 z-depth-1 mrgn-tp-lg" onSubmit={handleSubmit}>
         <h2 className="h3 mrgn-tp-0 mrgn-bttm-lg">{t('login.greeting')}</h2>
 
-        <FormGroup label={t('login.input.username')} labelFor="email" className={error && 'input-error'} required>
+        <FormGroup
+          label={t('login.input.username')}
+          labelFor="email"
+          className={badCredentialsError && 'input-error'}
+          required
+        >
           <input
             id="email"
             name="email"
@@ -73,7 +80,12 @@ const Login = ({ location }) => {
           />
         </FormGroup>
 
-        <FormGroup label={t('login.input.password')} labelFor="password" className={error && 'input-error'} required>
+        <FormGroup
+          label={t('login.input.password')}
+          labelFor="password"
+          className={badCredentialsError && 'input-error'}
+          required
+        >
           <input
             id="password"
             name="password"
@@ -98,7 +110,7 @@ const Login = ({ location }) => {
           </label>
         </div>
 
-        {error && (
+        {badCredentialsError && (
           <div className="alert alert-danger">
             <span>{t('login.bad-credentials')}</span>
           </div>

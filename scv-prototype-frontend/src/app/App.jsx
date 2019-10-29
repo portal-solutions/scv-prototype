@@ -1,7 +1,6 @@
-import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Provider as AlertProvider } from 'react-alert';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import AlertTemplate from './components/AlertTemplate';
 import Error404 from './components/error/Error404';
@@ -28,15 +27,13 @@ const alertOptions = {
  * @since 0.0.0
  */
 const App = () => {
-  const history = createBrowserHistory();
-
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <AlertProvider template={AlertTemplate} {...alertOptions}>
       <AuthProvider>
         <ApiProvider>
           <PageMetadataProvider>
-            <Router history={history}>
+            <BrowserRouter>
               <MainLayout>
                 <Switch>
                   <Route path="/" exact>
@@ -47,7 +44,7 @@ const App = () => {
                   <Route path="*" component={Error404} />
                 </Switch>
               </MainLayout>
-            </Router>
+            </BrowserRouter>
           </PageMetadataProvider>
         </ApiProvider>
       </AuthProvider>

@@ -7,7 +7,6 @@
     "Sébastien Comeau <sebastien.comeau@hrsdc-rhdcc.gc.ca>"
   ],
   "dependencies": {
-    "history": "^4.10.1",
     "i18next": "^17.2.0",
     "i18next-browser-languagedetector": "^4.0.0",
     "preval.macro": "^3.0.0",

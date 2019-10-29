@@ -10,7 +10,7 @@ import { useAuth } from '../../../utils/auth';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const AuthButton = withRouter(({ history }) => {
+const AuthButton = ({ history }) => {
   const { t } = useTranslation();
   const { auth, logout } = useAuth();
 
@@ -31,6 +31,6 @@ const AuthButton = withRouter(({ history }) => {
       </Button>
     </>
   ) : null;
-});
+};
 
-export default AuthButton;
+export default withRouter(AuthButton);
