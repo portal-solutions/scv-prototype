@@ -1,23 +1,24 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import MainLayout from '../../layout/Main';
 import { usePageMetadata } from '../../utils/page-metadata';
 
-const JobsSkills = props => {
-	const { t } = useTranslation();
+const JobsSkills = () => {
+  const { t } = useTranslation();
 
-	usePageMetadata({
-		documentTitle: t('jobs-skills.document-title'),
-		pageIdentifier: t('jobs-skills.page-identifier'),
-		pageTitle: t('jobs-skills.page-title')
-	});
+  usePageMetadata({
+    documentTitle: t('jobs-skills.document-title'),
+    pageIdentifier: t('jobs-skills.page-identifier'),
+    pageTitle: t('jobs-skills.page-title')
+  });
 
-	return (
-		<>
-			<p>
-				<Trans i18nKey="jobs-skills.message" />
-			</p>
-		</>
-	);
+  return (
+    <MainLayout>
+      <p>
+        <Trans i18nKey="jobs-skills.message" />
+      </p>
+    </MainLayout>
+  );
 };
 
 export default JobsSkills;

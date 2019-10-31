@@ -1,4 +1,5 @@
 import React from 'react';
+import MainLayout from '../../../layout/Main';
 import { usePageMetadata } from '../../../utils/page-metadata';
 
 /**
@@ -14,7 +15,11 @@ const Error403 = () => {
     pageTitle: 'Permission denied'
   });
 
-  return <p>You are not allowed to access that resource.</p>;
+  return (
+    <MainLayout>
+      <p>You are not allowed to access that resource.</p>;
+    </MainLayout>
+  );
 };
 
 export default Error403;

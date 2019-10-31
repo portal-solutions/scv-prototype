@@ -1,19 +1,20 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import NavBarItem from './NavBarItem';
-import ProfileInformation from './ProfileInformation';
-import PaymentDetails from './PaymentDetails';
-import MyIdentifiers from './MyIdentifiers';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import MainLayout from '../../layout/Main';
 import AuthorizedRepresentatives from './AuthorizedRepresentatives';
 import InclusiveAccessibleServiceOptions from './InclusiveAccessibleServiceOptions';
+import MyIdentifiers from './MyIdentifiers';
+import NavBarItem from './NavBarItem';
+import PaymentDetails from './PaymentDetails';
 import PrivacySettings from './PrivacySettings';
+import ProfileInformation from './ProfileInformation';
 
 const Profile = ({ match, location }) => {
   const { t } = useTranslation();
 
   return (
-    <>
+    <MainLayout>
       <div className="row profile-container">
         <div className="col-xs-12 col-md-4">
           <nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
@@ -90,7 +91,7 @@ const Profile = ({ match, location }) => {
           </Switch>
         </div>
       </div>
-    </>
+    </MainLayout>
   );
 };
 
