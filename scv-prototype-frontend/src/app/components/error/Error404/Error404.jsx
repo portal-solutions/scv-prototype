@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import MainLayout from '../../../layout/Main';
 import { usePageMetadata } from '../../../utils/page-metadata';
 
 /**
@@ -19,7 +20,7 @@ const Error404 = () => {
   });
 
   return (
-    <>
+    <MainLayout>
       <p className="small pagetag">{t('not-found.page-tag')}</p>
       <p>{t('not-found.apology')}</p>
       <ul>
@@ -34,7 +35,7 @@ const Error404 = () => {
           </Trans>
         </li>
       </ul>
-    </>
+    </MainLayout>
   );
 };
 

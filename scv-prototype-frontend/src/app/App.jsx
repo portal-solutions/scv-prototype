@@ -5,7 +5,6 @@ import './App.scss';
 import AlertTemplate from './components/AlertTemplate';
 import Error404 from './components/error/Error404';
 import PrivateRoute from './components/PrivateRoute';
-import MainLayout from './layout/Main';
 import { ApiProvider } from './utils/api';
 import { AuthProvider } from './utils/auth';
 import { PageMetadataProvider } from './utils/page-metadata';
@@ -34,16 +33,14 @@ const App = () => {
         <ApiProvider>
           <PageMetadataProvider>
             <BrowserRouter>
-              <MainLayout>
-                <Switch>
-                  <Route path="/" exact>
-                    <Redirect to="/private" />
-                  </Route>
-                  <Route path="/sign-in" component={Login} exact />
-                  <PrivateRoute path="/private" component={Private} />
-                  <Route path="*" component={Error404} />
-                </Switch>
-              </MainLayout>
+              <Switch>
+                <Route path="/" exact>
+                  <Redirect to="/private" />
+                </Route>
+                <Route path="/sign-in" component={Login} exact />
+                <PrivateRoute path="/private" component={Private} />
+                <Route path="*" component={Error404} />
+              </Switch>
             </BrowserRouter>
           </PageMetadataProvider>
         </ApiProvider>
