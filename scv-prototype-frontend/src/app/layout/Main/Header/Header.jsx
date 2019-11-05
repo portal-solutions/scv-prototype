@@ -4,7 +4,7 @@ import Button from '../../../components/Button';
 import AuthButton from './AuthButton';
 import BreadcrumbItem from './BreadcrumbItem';
 import './Header.scss';
-import NavBar from './NavBar';
+import NavMenu from './NavMenu';
 
 /**
  * Standard WETv4 <header> element.
@@ -34,15 +34,6 @@ const Header = () => {
       <header>
         <div id="wb-bnr" className="container">
           <div className="clearfix">
-            <section id="wb-auth" className="text-right">
-              {/* TODO :: GjB :: translate this */}
-              <h2 className="wb-inv">Sign in</h2>
-              <ul className="list-inline margin-bottom-none">
-                <li>
-                  <AuthButton />
-                </li>
-              </ul>
-            </section>
             <section id="wb-lng" className="text-right">
               <h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
               <ul className="list-inline margin-bottom-none">
@@ -55,6 +46,14 @@ const Header = () => {
                   >
                     <span>{t('wet-boew.header.language-toggle')}</span>
                   </Button>
+                </li>
+              </ul>
+            </section>
+            <section id="wb-auth" className="text-right">
+              <h2 className="wb-inv">{t('action.sign-out')}</h2>
+              <ul className="list-inline margin-bottom-none">
+                <li>
+                  <AuthButton />
                 </li>
               </ul>
             </section>
@@ -73,7 +72,7 @@ const Header = () => {
           </div>
         </div>
 
-        <NavBar />
+        <NavMenu />
 
         <nav id="wb-bc" property="breadcrumb">
           <h2 className="wb-inv">{t('wet-boew.header.breadcrumbs.description')}</h2>
