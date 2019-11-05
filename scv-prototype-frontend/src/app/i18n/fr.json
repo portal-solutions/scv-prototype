@@ -8,7 +8,7 @@
     "sign-in": "Se connecter",
     "sign-out": "Se déconnecter"
   },
-  "colon": " :",
+  "colon": "\u00a0:",
   "alert": {
     "info": "Information",
     "success": "Succès",
@@ -40,113 +40,45 @@
   },
   "profile": {
     "document-title": "Profil",
-    "page-title": "VCU :: Profil",
-    "navbar": {
-      "profile-information": "Informations de profil",
-      "payment-details": "Détails de paiement",
-      "my-identifiers": "Mes identifiants",
-      "authorized-representatives": "Représentants autorisés",
-      "inclusive-accessible-service-options": "Options de service inclusives et accessibles",
-      "privacy-settings": "Paramètres de confidentialité"
+    "page-title": "SCV :: Profil",
+    "page-identifier": "SCV-0010-FR",
+    "personal-information": {
+      "title": "Informations personnelles",
+      "first-name": "Prénom",
+      "middle-name": "Deuxième nom",
+      "last-name": "Nom de famille",
+      "date-of-birth": "Date de naissance",
+      "social-insurance-number": "Numéro d'assurance sociale",
+      "language-of-preference": "Langue de préférence"
     },
-    "profile-information": {
-      "document-title": "Informations de profil",
-      "page-identifier": "SCV-0010-FR",
-      "page-title": "Informations de profil",
-      "personal-information": {
-        "title": "Informations personnelles",
-        "first-name": "Prénom",
-        "middle-name": "Deuxième nom",
-        "last-name": "Nom de famille",
-        "date-of-birth": "Date de naissance",
-        "social-insurance-number": "Numéro d'assurance sociale",
-        "language-of-preference": "Langue de préférence"
-      },
-      "address": {
-        "title": "Adresse"
-      },
-      "phone": {
-        "title": "Téléphone",
-        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-        "used-for": "Utilisée pour <strong><0 /></strong>."
-      },
-      "email": {
-        "title": "Adresse courriel",
-        "primary-email-address": "Adresse courriel primaire",
-        "secondary-email-address": "Adresse courriel secondaire",
-        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-        "used-for": "Utilisée pour <strong><0 /></strong>."
-      },
-      "volunteer-experience": {
-        "title": "Expérience de bénévolat",
-        "service-hours": "heures de service"
-      },
-      "note": {
-        "title": "Notes"
-      }
+    "address": {
+      "title": "Adresse"
     },
-    "payment-details": {
-      "document-title": "Détails de paiement",
-      "page-identifier": "SCV-0011-FR",
-      "page-title": "Détails de paiement",
-      "navbar": {
-        "details": "Détails",
-        "make-payment": "Effectuer un paiement",
-        "payment-history": "Historique de paiement"
-      },
-      "details": {
-        "not-in-use": "Non utilisé.",
-        "used-for": "Used for: <strong><0 /></strong>"
-      },
-      "payment-history": {
-        "date": "Date",
-        "program-service": "Programme / service",
-        "amount": "Montant",
-        "account-number": "Numéro de compte"
-      }
+    "phone": {
+      "title": "Téléphone",
+      "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+      "used-for": "Utilisée pour <strong><0 /></strong>."
+    },
+    "email": {
+      "title": "Adresse courriel",
+      "primary-email-address": "Adresse courriel primaire",
+      "secondary-email-address": "Adresse courriel secondaire",
+      "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+      "used-for": "Utilisée pour <strong><0 /></strong>."
+    },
+    "volunteer-experience": {
+      "title": "Expérience de bénévolat",
+      "service-hours": "heures de service"
+    },
+    "note": {
+      "title": "Notes"
     }
   },
-  "notifications": {
-    "document-title": "Notifications",
-    "message": "C'est la page <strong>notifications</strong>.",
-    "page-identifier": "SCV-0003-FR",
-    "page-title": "VCU :: Notifications"
-  },
-  "inbox": {
-    "document-title": "Boîte de réception",
-    "message": "C'est la page <strong>boîte de réception</strong>.",
-    "page-identifier": "SCV-0004-FR",
-    "page-title": "VCU :: Boîte de réception"
-  },
-  "lets-connect": {
-    "document-title": "Connectons",
-    "message": "C'est la page <strong>connectons</strong>.",
-    "page-identifier": "SCV-0005-FR",
-    "page-title": "VCU :: Connectons"
-  },
-  "book-appointment": {
-    "document-title": "Prenez rendez-vous",
-    "message": "C'est la page <strong>prenez rendez-vous</strong>.",
-    "page-identifier": "SCV-0006-FR",
-    "page-title": "VCU :: Prenez rendez-vous"
-  },
-  "benefits-services": {
-    "document-title": "Avantages et services",
-    "message": "C'est la page <strong>avantages et services</strong>.",
-    "page-identifier": "SCV-0007-FR",
-    "page-title": "VCU :: Avantages et services"
-  },
-  "jobs-skills": {
-    "document-title": "Emplois et compétences",
-    "message": "C'est la page <strong>emplois et compétences</strong>.",
-    "page-identifier": "SCV-0008-FR",
-    "page-title": "VCU :: Emplois et compétences"
-  },
-  "preferences": {
-    "document-title": "Préférences",
-    "message": "C'est la page <strong>préférences</strong>.",
+  "service-preferences": {
+    "document-title": "Préférences de service",
+    "message": "C'est la page <strong>préférences de service</strong>.",
     "page-identifier": "SCV-0009-FR",
-    "page-title": "VCU :: Préférences"
+    "page-title": "VCU :: Préférences de service"
   },
   "wet-boew": {
     "default-page-identifier": "SCV-0000-FR",
@@ -244,13 +176,7 @@
       "navbar": {
         "home": "Acceuil",
         "profile": "Profil",
-        "notifications": "Notifications",
-        "inbox": "Boîte de reception",
-        "lets-connect": "Connectons",
-        "book-appointment": "Prenez rendez-vous",
-        "benefits-services": "Avantages et services",
-        "jobs-skills": "Emplois et compétences",
-        "preferences": "Préférences"
+        "preferences": "Préférences de service"
       },
       "sign-in": "Se connecter"
     },

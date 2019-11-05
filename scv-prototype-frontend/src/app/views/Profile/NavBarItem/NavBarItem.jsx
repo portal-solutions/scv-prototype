@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
-const NavBarItem = (props) => {
+const NavBarItem = ({ text, to, iconClass }) => {
   return (
     <li>
-      <NavLink to={props.to} className="list-group-item" activeClassName="wb-navcurr" title={props.text}>
-        {props.iconClass && <i className={props.iconClass}></i>}
-        <span>{props.text}</span>
+      <NavLink to={to} className="list-group-item" activeClassName="wb-navcurr" title={text}>
+        {iconClass && <i className={iconClass}></i>}
+        <span>{text}</span>
       </NavLink>
     </li>
   );

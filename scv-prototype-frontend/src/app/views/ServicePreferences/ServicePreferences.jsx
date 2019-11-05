@@ -3,22 +3,22 @@ import { Trans, useTranslation } from 'react-i18next';
 import MainLayout from '../../layout/Main';
 import { usePageMetadata } from '../../utils/page-metadata';
 
-const BenefitsServices = () => {
+const ServicePreferences = () => {
   const { t } = useTranslation();
 
   usePageMetadata({
-    documentTitle: t('benefits-services.document-title'),
-    pageIdentifier: t('benefits-services.page-identifier'),
-    pageTitle: t('benefits-services.page-title')
+    documentTitle: t('service-preferences.document-title'),
+    pageIdentifier: t('service-preferences.page-identifier'),
+    pageTitle: t('service-preferences.page-title')
   });
 
   return (
     <MainLayout>
       <p>
-        <Trans i18nKey="benefits-services.message" />
+        <Trans i18nKey="service-preferences.message" />
       </p>
     </MainLayout>
   );
 };
 
-export default BenefitsServices;
+export default ServicePreferences;

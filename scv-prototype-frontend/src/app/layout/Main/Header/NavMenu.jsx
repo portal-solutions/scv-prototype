@@ -32,38 +32,8 @@ const NavMenu = () => {
             </Link>
           </li>
           <li role="presentation">
-            <Link role="menuitem" to="/private/notifications" exact>
-              <i className="fas fa-fw fa-bell" /> {t('wet-boew.header.navbar.notifications')}
-            </Link>
-          </li>
-          <li role="presentation">
-            <Link role="menuitem" to="/private/inbox" exact>
-              <i className="fas fa-fw fa-inbox" /> {t('wet-boew.header.navbar.inbox')}
-            </Link>
-          </li>
-          <li role="presentation">
-            <Link role="menuitem" to="/private/lets-connect" exact>
-              <i className="fas fa-fw fa-comments" /> {t('wet-boew.header.navbar.lets-connect')}
-            </Link>
-          </li>
-          <li role="presentation">
-            <Link role="menuitem" to="/private/book-appointment" exact>
-              <i className="fas fa-fw fa-calendar" /> {t('wet-boew.header.navbar.book-appointment')}
-            </Link>
-          </li>
-          <li role="presentation">
-            <Link role="menuitem" to="/private/benefits-services" exact>
-              <i className="fas fa-fw fa-hand-holding-heart" /> {t('wet-boew.header.navbar.benefits-services')}
-            </Link>
-          </li>
-          <li role="presentation">
-            <Link role="menuitem" to="/private/jobs-skills" exact>
-              <i className="fas fa-fw fa-briefcase" /> {t('wet-boew.header.navbar.jobs-skills')}
-            </Link>
-          </li>
-          <li role="presentation">
-            <Link role="menuitem" to="/private/preferences" exact>
-              <i className="fas fa-fw fa-cog" /> {t('wet-boew.header.navbar.preferences')}
+            <Link role="menuitem" to="/private/service-preferences" exact>
+              <i className="fas fa-fw fa-cog" /> {t('wet-boew.header.navbar.service-preferences')}
             </Link>
           </li>
           <li role="presentation">
