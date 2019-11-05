@@ -176,7 +176,7 @@
       "navbar": {
         "home": "Acceuil",
         "profile": "Profil",
-        "preferences": "Préférences de service"
+        "service-preferences": "Préférences de service"
       },
       "sign-in": "Se connecter"
     },
