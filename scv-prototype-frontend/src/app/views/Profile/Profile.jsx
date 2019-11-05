@@ -1,98 +1,114 @@
-import React from 'react';
+/* eslint-disable react/jsx-one-expression-per-line */
+
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Roller from '../../components/Loading';
+import { useApi } from '../../utils/api';
+import { usePageMetadata } from '../../utils/page-metadata';
 import MainLayout from '../../layout/Main';
-import AuthorizedRepresentatives from './AuthorizedRepresentatives';
-import InclusiveAccessibleServiceOptions from './InclusiveAccessibleServiceOptions';
-import MyIdentifiers from './MyIdentifiers';
-import NavBarItem from './NavBarItem';
-import PaymentDetails from './PaymentDetails';
-import PrivacySettings from './PrivacySettings';
-import ProfileInformation from './ProfileInformation';
+import PersonalInformation from './PersonalInformation';
+import Address from './Address';
+import Email from './Email';
+import Note from './Note';
+import Phone from './Phone';
+import VolunteerExperience from './VolunteerExperience';
 
-const Profile = ({ match, location }) => {
+const Profile = () => {
   const { t } = useTranslation();
+  const { fetchProfile } = useApi();
 
-  return (
-    <MainLayout>
-      <div className="row profile-container">
-        <div className="col-xs-12 col-md-4">
-          <nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
-            <ul className="list-group menu list-unstyled">
-              <NavBarItem
-                text={t('profile.navbar.profile-information')}
-                iconClass="fas fa-user-circle fa-fw"
-                to={`${match.path}/profile-information`}
-              />
-              <NavBarItem
-                text={t('profile.navbar.payment-details')}
-                iconClass="fas fa-dollar-sign fa-fw"
-                to={`${match.path}/payment-details`}
-              />
-              {location.pathname.startsWith(`${match.path}/payment-details/`) && (
-                <li>
-                  <ul className="list-group menu list-unstyled">
-                    <NavBarItem
-                      text={t('profile.payment-details.navbar.details')}
-                      to={`${match.path}/payment-details/details`}
-                      iconClass="fas fa-angle-right fa-fw"
-                    />
-                    <NavBarItem
-                      text={t('profile.payment-details.navbar.make-payment')}
-                      to={`${match.path}/payment-details/make-payment`}
-                      iconClass="fas fa-angle-right fa-fw"
-                    />
-                    <NavBarItem
-                      text={t('profile.payment-details.navbar.payment-history')}
-                      to={`${match.path}/payment-details/payment-history`}
-                      iconClass="fas fa-angle-right fa-fw"
-                    />
-                  </ul>
-                </li>
-              )}
-              <NavBarItem
-                text={t('profile.navbar.my-identifiers')}
-                iconClass="fas fa-lock fa-fw"
-                to={`${match.path}/my-identifiers`}
-              />
-              <NavBarItem
-                text={t('profile.navbar.authorized-representatives')}
-                iconClass="fas fa-user-friends fa-fw"
-                to={`${match.path}/authorized-representatives`}
-              />
-              <NavBarItem
-                text={t('profile.navbar.inclusive-accessible-service-options')}
-                iconClass="fas fa-hands-helping fa-fw"
-                to={`${match.path}/inclusive-accessible-service-options`}
-              />
-              <NavBarItem
-                text={t('profile.navbar.privacy-settings')}
-                iconClass="fas fa-info fa-fw"
-                to={`${match.path}/privacy-settings`}
-              />
-            </ul>
-          </nav>
-        </div>
-        <div className="col-xs-12 col-md-8">
-          <Switch>
-            <Route exact path={match.path}>
-              <Redirect to={`${match.path}/profile-information`} />
-            </Route>
-            <Route exact path={`${match.path}/profile-information`} component={ProfileInformation} />
-            <Route path={`${match.path}/payment-details`} component={PaymentDetails} />
-            <Route exact path={`${match.path}/my-identifiers`} component={MyIdentifiers} />
-            <Route exact path={`${match.path}/authorized-representatives`} component={AuthorizedRepresentatives} />
-            <Route
-              exact
-              path={`${match.path}/inclusive-accessible-service-options`}
-              component={InclusiveAccessibleServiceOptions}
-            />
-            <Route exact path={`${match.path}/privacy-settings`} component={PrivacySettings} />
-          </Switch>
-        </div>
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  usePageMetadata({
+    documentTitle: `${t('profile.document-title')} - ${t('profile.document-title')}`,
+    pageIdentifier: t('profile.page-identifier'),
+    pageTitle: `${t('profile.page-title')} - ${t('profile.page-title')}`
+  });
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setData(await fetchProfile());
+      } catch (err) {
+        setError(err);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // RETURNS component to render
+  let componentToRender = null;
+
+  // error occured
+  if (error) {
+    // error occured because token is invalid, user needs to sign-in
+    if (error.name === 'InvalidTokenError') {
+      componentToRender = <Redirect to={{ pathname: '/sign-in', state: { tokenExpired: true } }} />;
+    }
+
+    // eslint-disable-next-line no-console
+    console.error(error);
+
+    componentToRender = (
+      <div className="alert alert-danger">
+        <span>{t('something-went-wrong')}</span>
       </div>
-    </MainLayout>
-  );
+    );
+  }
+
+  // data is loading
+  if (data === null) {
+    componentToRender = (
+      <div className="text-center mrgn-tp-lg">
+        <Roller />
+      </div>
+    );
+  } else {
+    // data loaded
+    componentToRender = (
+      <>
+        <div className="row">
+          <div className="col-xs-12">
+            <PersonalInformation
+              firstName={data.firstName}
+              middleName={data.middleName}
+              lastName={data.lastName}
+              dateOfBirth={data.dateOfBirth}
+              socialInsuranceNumber={data.socialInsuranceNumber}
+              languageOfPreference={data.languageOfPreference}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 col-md-6">
+            <Address addresses={data.addresses} />
+          </div>
+          <div className="col-xs-12 col-md-6">
+            <Phone phones={data.phones} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <Email emails={data.emails} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <VolunteerExperience volunteerExperiences={data.volunteerExperiences} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <Note notes={data.notes} />
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return <MainLayout>{componentToRender}</MainLayout>;
 };
 
 export default Profile;

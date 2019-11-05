@@ -41,49 +41,37 @@
   "profile": {
     "document-title": "Profile",
     "page-title": "SCV :: Profile",
-    "navbar": {
-      "profile-information": "Profile information",
-      "payment-details": "Payement details",
-      "my-identifiers": "My identifiers",
-      "authorized-representatives": "Authorized representatives",
-      "inclusive-accessible-service-options": "Inclusive and accessible service options",
-      "privacy-settings": "Pivacy settings"
+    "page-identifier": "SCV-0010-EN",
+    "personal-information": {
+      "title": "Personal information",
+      "first-name": "First name",
+      "middle-name": "Middle name",
+      "last-name": "Last name",
+      "date-of-birth": "Date of birth",
+      "social-insurance-number": "Social insurance number",
+      "language-of-preference": "Language of preference"
     },
-    "profile-information": {
-      "document-title": "Profile Information",
-      "page-identifier": "SCV-0010-EN",
-      "page-title": "Profile Information",
-      "personal-information": {
-        "title": "Personal information",
-        "first-name": "First name",
-        "middle-name": "Middle name",
-        "last-name": "Last name",
-        "date-of-birth": "Date of birth",
-        "social-insurance-number": "Social insurance number",
-        "language-of-preference": "Language of preference"
-      },
-      "address": {
-        "title": "Address"
-      },
-      "phone": {
-        "title": "Phone",
-        "used-for-all": "Used for <strong>all programs</strong>.",
-        "used-for": "Used for <strong><0 /></strong>."
-      },
-      "email": {
-        "title": "Email address",
-        "primary-email-address": "Primary email address",
-        "secondary-email-address": "Secondary email address",
-        "used-for-all": "Used for <strong>all programs</strong>.",
-        "used-for": "Used for <strong><0 /></strong>."
-      },
-      "volunteer-experience": {
-        "title": "Volunteer experience",
-        "service-hours": "service hours"
-      },
-      "note": {
-        "title": "Notes"
-      }
+    "address": {
+      "title": "Address"
+    },
+    "phone": {
+      "title": "Phone",
+      "used-for-all": "Used for <strong>all programs</strong>.",
+      "used-for": "Used for <strong><0 /></strong>."
+    },
+    "email": {
+      "title": "Email address",
+      "primary-email-address": "Primary email address",
+      "secondary-email-address": "Secondary email address",
+      "used-for-all": "Used for <strong>all programs</strong>.",
+      "used-for": "Used for <strong><0 /></strong>."
+    },
+    "volunteer-experience": {
+      "title": "Volunteer experience",
+      "service-hours": "service hours"
+    },
+    "note": {
+      "title": "Notes"
     },
     "payment-details": {
       "document-title": "Payment details",
@@ -106,47 +94,11 @@
       }
     }
   },
-  "notifications": {
-    "document-title": "Notifications",
-    "message": "This is the <strong>notifications</strong> page.",
-    "page-identifier": "SCV-0003-EN",
-    "page-title": "SCV :: Notifications"
-  },
-  "inbox": {
-    "document-title": "Inbox",
-    "message": "This is the <strong>inbox</strong> page.",
-    "page-identifier": "SCV-0004-EN",
-    "page-title": "SCV :: Inbox"
-  },
-  "lets-connect": {
-    "document-title": "Let's connect",
-    "message": "This is the <strong>let's connect</strong> page.",
-    "page-identifier": "SCV-0005-EN",
-    "page-title": "SCV :: Let's connect"
-  },
-  "book-appointment": {
-    "document-title": "Book an appointment",
-    "message": "This is the <strong>book an appointment</strong> page.",
-    "page-identifier": "SCV-0006-EN",
-    "page-title": "SCV :: Book an appointment"
-  },
-  "benefits-services": {
-    "document-title": "Benefits and services",
-    "message": "This is the <strong>benefits and services</strong> page.",
-    "page-identifier": "SCV-0007-EN",
-    "page-title": "SCV :: Benefits and services"
-  },
-  "jobs-skills": {
-    "document-title": "Jobs and skills",
-    "message": "This is the <strong>jobs and skills</strong> page.",
-    "page-identifier": "SCV-0008-EN",
-    "page-title": "SCV :: Jobs and skills"
-  },
-  "preferences": {
-    "document-title": "Preferences",
-    "message": "This is the <strong>preferences</strong> page.",
+  "service-preferences": {
+    "document-title": "Service preferences",
+    "message": "This is the <strong>service preferences</strong> page.",
     "page-identifier": "SCV-0009-EN",
-    "page-title": "SCV :: Preferences"
+    "page-title": "SCV :: Service preferences"
   },
   "wet-boew": {
     "default-page-identifier": "SCV-0000-EN",
@@ -244,13 +196,7 @@
       "navbar": {
         "home": "Home",
         "profile": "Profile",
-        "notifications": "Notifications",
-        "inbox": "Inbox",
-        "lets-connect": "Let's connect",
-        "book-appointment": "Book an appointment",
-        "benefits-services": "Benefits and services",
-        "jobs-skills": "Jobs and skills",
-        "preferences": "Preferences"
+        "service-preferences": "Service preferences"
       },
       "sign-in": "Sign in"
     },

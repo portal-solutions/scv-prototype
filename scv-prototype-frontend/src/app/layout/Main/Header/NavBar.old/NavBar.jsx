@@ -25,35 +25,9 @@ const NavBar = () => {
               <NavBarItem text={t('wet-boew.header.navbar.home')} iconClass="fas fa-home" to="/private" exact />
               <NavBarItem text={t('wet-boew.header.navbar.profile')} iconClass="fas fa-user" to="/private/profile" />
               <NavBarItem
-                text={t('wet-boew.header.navbar.notifications')}
-                iconClass="fas fa-bell"
-                to="/private/notifications"
-              />
-              <NavBarItem text={t('wet-boew.header.navbar.inbox')} iconClass="fas fa-inbox" to="/private/inbox" />
-              <NavBarItem
-                text={t('wet-boew.header.navbar.lets-connect')}
-                iconClass="fas fa-comments"
-                to="/private/lets-connect"
-              />
-              <NavBarItem
-                text={t('wet-boew.header.navbar.book-appointment')}
-                iconClass="fas fa-calendar"
-                to="/private/book-appointment"
-              />
-              <NavBarItem
-                text={t('wet-boew.header.navbar.benefits-services')}
-                iconClass="fas fa-hand-holding-heart"
-                to="/private/benefits-services"
-              />
-              <NavBarItem
-                text={t('wet-boew.header.navbar.jobs-skills')}
-                iconClass="fas fa-briefcase"
-                to="/private/jobs-skills"
-              />
-              <NavBarItem
-                text={t('wet-boew.header.navbar.preferences')}
+                text={t('wet-boew.header.navbar.service-preferences')}
                 iconClass="fas fa-cog"
-                to="/private/preferences"
+                to="/private/service-preferences"
               />
             </ul>
           </div>
