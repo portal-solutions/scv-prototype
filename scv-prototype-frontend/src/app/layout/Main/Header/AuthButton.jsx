@@ -23,7 +23,7 @@ const AuthButton = ({ history }) => {
 
   return auth.authenticated && !auth.tokenExpired ? (
     <>
-      <span className="mr-3">
+      <span className="btn">
         <Trans i18nKey="authentication.welcome">{auth.username}</Trans>
       </span>
       <Button size={Button.sizes.sm} onClick={handleSignOut}>
