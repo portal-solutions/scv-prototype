@@ -49,6 +49,9 @@
       "document-title": "Profil",
       "page-title": "VCU :: Profil",
       "page-identifier": "VCU-0010-FR",
+      "panel": {
+        "title": "Profil"
+      },
       "description": {
         "title": "Description du profil ",
         "content": "Cet écran vous montre les différentes informations démographiques et personnelles que les programmes participants possèdent sur vous, ainsi que les informations de contact que vous avez fournies aux programmes participants. Veuillez noter qu'il est possible que les informations personnelles diffèrent d'un programme à l'autre, en fonction du moment et de la date de création de ces données. Si vous remarquez des erreurs, merci de nous le signaler! À partir de cet écran, vous pouvez ajouter de nouvelles informations de contact et décider des programmes auxquels vous souhaitez accéder et utiliser ces informations de contact. Une fois que vous avez ajouté de nouvelles données, vous pouvez demander des mises à jour pour les différents programmes. Une fois qu'ils acceptent ou rejettent vos données, nous vous le ferons savoir."
@@ -89,6 +92,9 @@
       "document-title": "Préférences de service",
       "page-identifier": "VCU-0009-FR",
       "page-title": "VCU :: Préférences de service",
+      "panel": {
+        "title": "Préférences de service"
+      },
       "description": {
         "title": "Description des préférences de service",
         "content": "Cet écran vous permet d'ajuster vos préférences pour les canaux que nous utilisons pour vous contacter, à quelle fréquence, et vous permet d'ajuster ces paramètres pour différents programmes car vos besoins en communication peuvent être différents d'un programme à l'autre. De plus, cet écran vous permet d’identifier les caractéristiques d’inclusivité afin de localiser des avantages et des services personnalisés. Enfin, vous pouvez spécifier des besoins en matière d’accessibilité qui modifieront notre communication et vous assurer que toute correspondance que nous vous adressons est dans le bon format."
@@ -98,6 +104,9 @@
       "document-title": "Consentement",
       "page-identifier": "SCV-0009-EN",
       "page-title": "SCV :: Consentement",
+      "panel": {
+        "title": "Consentement"
+      },
       "description": {
         "title": "Description du consentement",
         "content-top": "Cet écran vous permet de voir quelles données sont conservées à votre sujet dans les programmes participants et comment ces données sont utilisées sous autorité législative. Cette vue vous permet également d'ajuster les contrôles d'utilisation de vos données dans les contextes suivants:",
@@ -114,6 +123,9 @@
       "document-title": "Actions de service",
       "page-identifier": "VCU-0009-FR",
       "page-title": "VCU :: Actions de service",
+      "panel": {
+        "title": "Actions de service"
+      },
       "description": {
         "title": "Description des actions de service",
         "content": "Cet écran vous permet de définir des recherches automatisées pour compiler les recherches d’emploi, le développement des compétences, les opportunités de formation et l’exploration de carrière. Une fois que vous nous avez indiqué où vous souhaitez que nous recherchions ces informations et à quelle fréquence vous souhaitez que nous répétions les recherches, nous fournirons la compilation des résultats sous chaque onglet de cet écran."

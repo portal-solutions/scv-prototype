@@ -13,7 +13,31 @@ const Private = ({ match }) => {
 
   return (
     <MainLayout>
-      <div className="row private-container">
+      <div className="row">
+        <div className="col-xs-12 mb-3 mt-3">
+          <Switch>
+            <Route exact path={`${match.path}/profile`}>
+              <p>{t('private.profile.description.content')}</p>
+            </Route>
+            <Route exact path={`${match.path}/service-preferences`}>
+              <p>{t('private.service-preferences.description.content')}</p>
+            </Route>
+            <Route exact path={`${match.path}/consent`}>
+              <p>{t('private.consent.description.content-top')}</p>
+              <ul>
+                {t('private.consent.description.context-items', { returnObjects: true }).map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+              <p>{t('private.consent.description.content-bottom')}</p>
+            </Route>
+            <Route exact path={`${match.path}/service-actions`}>
+              <p>{t('private.service-actions.description.content')}</p>
+            </Route>
+          </Switch>
+        </div>
+      </div>
+      <div className="row">
         <div className="col-xs-12 col-md-3 mb-2">
           <nav role="navigation" id="wb-sec" typeof="SiteNavigationElement">
             <ul className="list-group menu list-unstyled">

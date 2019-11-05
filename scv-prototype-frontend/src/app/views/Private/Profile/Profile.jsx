@@ -67,13 +67,6 @@ const Profile = () => {
   // data loaded
   return (
     <>
-      <div className="panel panel-info">
-        <div className="panel-heading">{t('private.profile.description.title')}</div>
-        <div className="panel-body">
-          <p>{t('private.profile.description.content')}</p>
-        </div>
-      </div>
-
       <PersonalInformation
         firstName={data.firstName}
         middleName={data.middleName}
