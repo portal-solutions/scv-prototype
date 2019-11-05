@@ -49,6 +49,10 @@
       "document-title": "Profile",
       "page-title": "SCV :: Profile",
       "page-identifier": "SCV-0010-EN",
+      "description": {
+        "title": "Profile description",
+        "content": "This screen shows you the different demographic and personal information that participating programs hold about you, as well as the contact information you have provided to the participating programs. Please note that it is possible for the personal information to be different across programs depending on how and when that data was created. If you notice any errors, please let us know! From this screen you can add new contact information and decide which programs you want to access and use that contact information. Once you add new data, you can request updates to the various programs. Once they accept or reject your data, we will let you know."
+      },
       "personal-information": {
         "title": "Personal information",
         "first-name": "First name",
@@ -104,6 +108,15 @@
           "Allowing use of your general profile data for eligibility determination for benefits and services"
         ],
         "content-bottom": "Consent is usually provided as a single transaction – you are allowing us to take your instruction once and apply it to an administrative or service need. As such, we will often re-confirm your consent to ensure you still want us to use the data the same way. Some consents will be persistent until you tell us to change the activity, such as finding benefits and services through a regular automated web search where we provide you compiled results. You are free to adjust your consent over time using this view."
+      }
+    },
+    "service-actions": {
+      "document-title": "Service actions",
+      "page-identifier": "SCV-0009-EN",
+      "page-title": "SCV :: Service actions",
+      "description": {
+        "title": "Service actions description",
+        "content": "This screen allows you to set automated searches to compile job searches, skills development, educational opportunities and career exploration. Once you tell us where you want us to look for this information and how often you would like us to repeat searches, we will provide the compilation of results underneath each tab in this view screen."
       }
     }
   },

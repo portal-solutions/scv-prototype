@@ -14,7 +14,9 @@ const ServicePreferences = () => {
   return (
     <div className="panel panel-info">
       <div className="panel-heading">{t('private.service-preferences.description.title')}</div>
-      <div className="panel-body">{t('private.service-preferences.description.content')}</div>
+      <div className="panel-body">
+        <p>{t('private.service-preferences.description.content')}</p>
+      </div>
     </div>
   );
 };

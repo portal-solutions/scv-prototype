@@ -67,18 +67,22 @@ const Profile = () => {
   // data loaded
   return (
     <>
-      <div className="row">
-        <div className="col-xs-12">
-          <PersonalInformation
-            firstName={data.firstName}
-            middleName={data.middleName}
-            lastName={data.lastName}
-            dateOfBirth={data.dateOfBirth}
-            socialInsuranceNumber={data.socialInsuranceNumber}
-            languageOfPreference={data.languageOfPreference}
-          />
+      <div className="panel panel-info">
+        <div className="panel-heading">{t('private.profile.description.title')}</div>
+        <div className="panel-body">
+          <p>{t('private.profile.description.content')}</p>
         </div>
       </div>
+
+      <PersonalInformation
+        firstName={data.firstName}
+        middleName={data.middleName}
+        lastName={data.lastName}
+        dateOfBirth={data.dateOfBirth}
+        socialInsuranceNumber={data.socialInsuranceNumber}
+        languageOfPreference={data.languageOfPreference}
+      />
+
       <div className="row">
         <div className="col-xs-12 col-md-6">
           <Address addresses={data.addresses} />

@@ -49,6 +49,10 @@
       "document-title": "Profil",
       "page-title": "VCU :: Profil",
       "page-identifier": "VCU-0010-FR",
+      "description": {
+        "title": "Description du profil ",
+        "content": "Cet écran vous montre les différentes informations démographiques et personnelles que les programmes participants possèdent sur vous, ainsi que les informations de contact que vous avez fournies aux programmes participants. Veuillez noter qu'il est possible que les informations personnelles diffèrent d'un programme à l'autre, en fonction du moment et de la date de création de ces données. Si vous remarquez des erreurs, merci de nous le signaler! À partir de cet écran, vous pouvez ajouter de nouvelles informations de contact et décider des programmes auxquels vous souhaitez accéder et utiliser ces informations de contact. Une fois que vous avez ajouté de nouvelles données, vous pouvez demander des mises à jour pour les différents programmes. Une fois qu'ils acceptent ou rejettent vos données, nous vous le ferons savoir."
+      },
       "personal-information": {
         "title": "Informations personnelles",
         "first-name": "Prénom",
@@ -104,6 +108,15 @@
           "Autoriser l'utilisation de vos données de profil générales pour la détermination de l'éligibilité aux avantages et services"
         ],
         "content-bottom": "Le consentement est généralement fourni sous forme de transaction unique - vous nous autorisez à suivre vos instructions une seule fois et à les appliquer. à un besoin administratif ou de service. En tant que tel, nous allons souvent reconfirmer votre consentement pour que vous souhaitiez toujours que nous utilisions les données de la même manière. Certains consentements seront persistants jusqu'à ce que vous nous demandiez de changer d'activité, par exemple, trouver des avantages et des services par le biais d'une recherche Web automatisée régulière sur laquelle nous vous fournissons des résultats compilés. Vous êtes libre d'ajuster votre consentement au fil du temps en utilisant cette vue."
+      }
+    },
+    "service-actions": {
+      "document-title": "Actions de service",
+      "page-identifier": "VCU-0009-FR",
+      "page-title": "VCU :: Actions de service",
+      "description": {
+        "title": "Description des actions de service",
+        "content": "Cet écran vous permet de définir des recherches automatisées pour compiler les recherches d’emploi, le développement des compétences, les opportunités de formation et l’exploration de carrière. Une fois que vous nous avez indiqué où vous souhaitez que nous recherchions ces informations et à quelle fréquence vous souhaitez que nous répétions les recherches, nous fournirons la compilation des résultats sous chaque onglet de cet écran."
       }
     }
   },

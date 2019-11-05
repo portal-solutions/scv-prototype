@@ -13,8 +13,10 @@ const ServiceActions = () => {
 
   return (
     <div className="panel panel-info">
-      <div className="panel-heading">{t('private.service-actions.panel-heading')}</div>
-      <div className="panel-body">{t('private.service-actions.message')}</div>
+      <div className="panel-heading">{t('private.service-actions.description.title')}</div>
+      <div className="panel-body">
+        <p>{t('private.service-actions.description.content')}</p>
+      </div>
     </div>
   );
 };
