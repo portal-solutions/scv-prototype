@@ -1,26 +1,24 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import Button from '../../components/Button';
+import Button from '../../../../components/Button';
 
-const Email = ({ emails }) => {
+const Phone = ({ phones }) => {
   const { t } = useTranslation();
 
   return (
     <div className="panel panel-default">
-      <div className="panel-heading">{t('profile.email.title')}</div>
-      {emails && emails.length ? (
+      <div className="panel-heading">{t('private.profile.phone.title')}</div>
+      {phones && phones.length ? (
         <ul className="list-group">
-          {emails.map((data) => (
+          {phones.map((data) => (
             <li className="list-group-item" key={data.id}>
-              <p>{data.address}</p>
-              <p className="text-muted">
-                {data.isPrimary ? t('profile.email.primary-email-address') : t('profile.email.secondary-email-address')}
-              </p>
+              <p>{data.number}</p>
+              <p className="text-muted">{data.type}</p>
               <p>
                 {data.usedFor === null ? (
-                  <Trans i18nKey="profile.email.used-for-all" />
+                  <Trans i18nKey="profile.phone.used-for-all" />
                 ) : (
-                  <Trans i18nKey="profile.email.used-for">{data.usedFor.join(', ')}</Trans>
+                  <Trans i18nKey="profile.phone.used-for">{data.usedFor.join(', ')}</Trans>
                 )}
               </p>
               <div>
@@ -46,4 +44,4 @@ const Email = ({ emails }) => {
   );
 };
 
-export default Email;
+export default Phone;

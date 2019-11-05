@@ -21,7 +21,7 @@
     "apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
     "document-title": "Erreur 404 \u2014 Vue client unique",
     "error-404": "Erreur 404",
-    "page-identifier": "SCV-0404-FR",
+    "page-identifier": "VCU-0404-FR",
     "page-tag": "Nous ne pouvons trouver cette page web",
     "return-canada": "Retournez à <0>Canada.ca</0>.",
     "return-canada-href": "https://canada.ca/fr.html",
@@ -35,53 +35,80 @@
     "document-title": "Bienvenue \u2014 Vue client unique",
     "message": "La <i>vue client unique</i> est une représentation globale, cohérente et holistique des données détenues par le gouvernement du Canada sur ses utilisateurs et pouvant être visualisées à partir d’un emplacement centralisé.",
     "more-information": "Pour plus d'informations, <0>cliquez ici</0>.",
-    "page-identifier": "SCV-0001-FR",
+    "page-identifier": "VCU-0001-FR",
     "page-title": "VCU :: Accueil"
   },
-  "profile": {
-    "document-title": "Profil",
-    "page-title": "SCV :: Profil",
-    "page-identifier": "SCV-0010-FR",
-    "personal-information": {
-      "title": "Informations personnelles",
-      "first-name": "Prénom",
-      "middle-name": "Deuxième nom",
-      "last-name": "Nom de famille",
-      "date-of-birth": "Date de naissance",
-      "social-insurance-number": "Numéro d'assurance sociale",
-      "language-of-preference": "Langue de préférence"
+  "private": {
+    "sidebar": {
+      "profile": "Profil",
+      "service-preferences": "Préférences de service",
+      "consent": "Consentement",
+      "service-actions": "Actions de service"
     },
-    "address": {
-      "title": "Adresse"
+    "profile": {
+      "document-title": "Profil",
+      "page-title": "VCU :: Profil",
+      "page-identifier": "VCU-0010-FR",
+      "personal-information": {
+        "title": "Informations personnelles",
+        "first-name": "Prénom",
+        "middle-name": "Deuxième nom",
+        "last-name": "Nom de famille",
+        "date-of-birth": "Date de naissance",
+        "social-insurance-number": "Numéro d'assurance sociale",
+        "language-of-preference": "Langue de préférence"
+      },
+      "address": {
+        "title": "Adresse"
+      },
+      "phone": {
+        "title": "Téléphone",
+        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+        "used-for": "Utilisée pour <strong><0 /></strong>."
+      },
+      "email": {
+        "title": "Adresse courriel",
+        "primary-email-address": "Adresse courriel primaire",
+        "secondary-email-address": "Adresse courriel secondaire",
+        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
+        "used-for": "Utilisée pour <strong><0 /></strong>."
+      },
+      "volunteer-experience": {
+        "title": "Expérience de bénévolat",
+        "service-hours": "heures de service"
+      },
+      "note": {
+        "title": "Notes"
+      }
     },
-    "phone": {
-      "title": "Téléphone",
-      "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-      "used-for": "Utilisée pour <strong><0 /></strong>."
+    "service-preferences": {
+      "document-title": "Préférences de service",
+      "page-identifier": "VCU-0009-FR",
+      "page-title": "VCU :: Préférences de service",
+      "description": {
+        "title": "Description des préférences de service",
+        "content": "Cet écran vous permet d'ajuster vos préférences pour les canaux que nous utilisons pour vous contacter, à quelle fréquence, et vous permet d'ajuster ces paramètres pour différents programmes car vos besoins en communication peuvent être différents d'un programme à l'autre. De plus, cet écran vous permet d’identifier les caractéristiques d’inclusivité afin de localiser des avantages et des services personnalisés. Enfin, vous pouvez spécifier des besoins en matière d’accessibilité qui modifieront notre communication et vous assurer que toute correspondance que nous vous adressons est dans le bon format."
+      }
     },
-    "email": {
-      "title": "Adresse courriel",
-      "primary-email-address": "Adresse courriel primaire",
-      "secondary-email-address": "Adresse courriel secondaire",
-      "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-      "used-for": "Utilisée pour <strong><0 /></strong>."
-    },
-    "volunteer-experience": {
-      "title": "Expérience de bénévolat",
-      "service-hours": "heures de service"
-    },
-    "note": {
-      "title": "Notes"
+    "consent": {
+      "document-title": "Consentement",
+      "page-identifier": "SCV-0009-EN",
+      "page-title": "SCV :: Consentement",
+      "description": {
+        "title": "Description du consentement",
+        "content-top": "Cet écran vous permet de voir quelles données sont conservées à votre sujet dans les programmes participants et comment ces données sont utilisées sous autorité législative. Cette vue vous permet également d'ajuster les contrôles d'utilisation de vos données dans les contextes suivants:",
+        "context-items": [
+          "Réutilisation des données de profil générales pour faciliter les exigences administratives futures ou nouvelles, telles que le remplissage d'applications et la fourniture de mises à jour une fois pour plusieurs programmes",
+          "Autoriser l'affichage des données de préférence de service pour personnaliser les avantages et l'identification du service en fonction de vos besoins",
+          "Autoriser les agents de service à afficher vos données de préférence de service afin de pouvoir personnaliser l'expérience de service en fonction de vos besoins. Besoins",
+          "Autoriser l'utilisation de vos données de profil générales pour la détermination de l'éligibilité aux avantages et services"
+        ],
+        "content-bottom": "Le consentement est généralement fourni sous forme de transaction unique - vous nous autorisez à suivre vos instructions une seule fois et à les appliquer. à un besoin administratif ou de service. En tant que tel, nous allons souvent reconfirmer votre consentement pour que vous souhaitiez toujours que nous utilisions les données de la même manière. Certains consentements seront persistants jusqu'à ce que vous nous demandiez de changer d'activité, par exemple, trouver des avantages et des services par le biais d'une recherche Web automatisée régulière sur laquelle nous vous fournissons des résultats compilés. Vous êtes libre d'ajuster votre consentement au fil du temps en utilisant cette vue."
+      }
     }
   },
-  "service-preferences": {
-    "document-title": "Préférences de service",
-    "message": "C'est la page <strong>préférences de service</strong>.",
-    "page-identifier": "SCV-0009-FR",
-    "page-title": "VCU :: Préférences de service"
-  },
   "wet-boew": {
-    "default-page-identifier": "SCV-0000-FR",
+    "default-page-identifier": "VCU-0000-FR",
     "default-page-title": "Vue client unique",
     "footer": {
       "brand": {
@@ -189,7 +216,7 @@
   "login": {
     "document-title": "Se connecter \u2014 Vue client unique",
     "page-title": "Vue client unique",
-    "page-identifier": "SCV-9999-FR",
+    "page-identifier": "VCU-9999-FR",
     "greeting": "Entrez vos informations pour vous connecter à votre compte.",
     "bad-credentials": "Le nom d'utilisateur et le mot de passe que vous avez entrés ne correspondent pas à ceux présents dans nos fichiers. Veuillez vérifier et réessayer.",
     "input": {

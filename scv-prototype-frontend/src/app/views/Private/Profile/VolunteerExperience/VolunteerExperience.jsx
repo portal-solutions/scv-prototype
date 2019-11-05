@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/Button';
+import Button from '../../../../components/Button';
 
 const VolunteerExperience = ({ volunteerExperiences }) => {
   const { t } = useTranslation();
 
   return (
     <div className="panel panel-default">
-      <div className="panel-heading">{t('profile.volunteer-experience.title')}</div>
+      <div className="panel-heading">{t('private.profile.volunteer-experience.title')}</div>
       {volunteerExperiences && volunteerExperiences.length ? (
         <ul className="list-group">
           {volunteerExperiences.map((data) => (
@@ -18,7 +18,7 @@ const VolunteerExperience = ({ volunteerExperiences }) => {
                 <span className="text-muted">{data.description ? data.description : '-'}</span>
                 <br />
                 <i className="fa fa-clock"></i> {data.hours ? data.hours : '-'}{' '}
-                {t('profile.volunteer-experience.service-hours')}
+                {t('private.profile.volunteer-experience.service-hours')}
               </p>
               <div>
                 <Button variant={Button.variants.link} size={Button.sizes.sm}>

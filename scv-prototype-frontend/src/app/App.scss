@@ -54,17 +54,45 @@
   margin: 0;
   padding: 0;
 
+  h3 a:hover,
+  .list-group a.list-group-item.wb-navcurr,
+  .list-group a.list-group-item.wb-navcurr[href]:hover,
+  .list-group a.list-group-item.wb-navcurr[href]:focus,
+  .list-group a.list-group-item[href]:hover,
+  .list-group a.list-group-item[href]:focus,
+  .list-group .list-group .list-group .list-group-item.wb-navcurr {
+    background-color: #fff;
+    color: #555;
+  }
+
+  .list-group a.list-group-item.wb-navcurr,
+  .list-group a.list-group-item.wb-navcurr[href]:hover,
+  .list-group a.list-group-item.wb-navcurr[href]:focus {
+    border-left: 5px solid #2572b4;
+  }
+
   .list-group {
     margin: 0;
   }
 
-  li a {
-    display: flex;
-    align-items: top;
+  li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
 
-    > i {
-      margin-top: 0.3em;
-      margin-right: 0.5em;
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      display: flex;
+      align-items: top;
+      border: none;
+      border-left: 5px solid transparent;
+
+      > i {
+        margin-top: 0.3em;
+        margin-right: 0.5em;
+      }
     }
   }
 }

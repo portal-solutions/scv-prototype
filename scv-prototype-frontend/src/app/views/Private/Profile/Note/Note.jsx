@@ -6,7 +6,7 @@ const Note = ({ notes }) => {
 
   return (
     <div className="panel panel-default">
-      <div className="panel-heading">{t('profile.note.title')}</div>
+      <div className="panel-heading">{t('private.profile.note.title')}</div>
       <div className="panel-body">
         {notes && notes.length ? (
           notes.map((note) => (
