@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import Button from '../../../../components/Button';
+import { useTranslation } from 'react-i18next';
 
 const Address = ({ addresses }) => {
   const { t } = useTranslation();
