@@ -8,14 +8,12 @@ const DatesOfBirth = ({ datesOfBirth }) => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <div>
-        <h3>
-          <i className="fas fa-calendar fa-fw" />
-        </h3>
+    <div className="profile__section">
+      <div className="profile__section-icon">
+        <i className="fas fa-calendar-alt fa-fw" />
       </div>
-      <div>
-        <h3>{t('private.profile.dates-of-birth')}</h3>
+      <div className="profile__section-content">
+        <span className="profile__section-content-header">{t('private.profile.dates-of-birth')}</span>
         {datesOfBirth && datesOfBirth.length ? (
           datesOfBirth.map((dob, i) => <DateOfBirth key={i} program={dob.program} dateOfBirth={dob.dateOfBirth} />)
         ) : (

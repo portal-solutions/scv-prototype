@@ -3,15 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
-import Roller from '../../../components/Loading';
 import { useApi } from '../../../utils/api';
 import { usePageMetadata } from '../../../utils/page-metadata';
-import PersonalInformation from './PersonalInformation/PersonalInformation';
-import Address from './Address/Address';
-import Email from './Email/Email';
-import Note from './Note/Note';
-import Phone from './Phone/Phone';
-import VolunteerExperience from './VolunteerExperience/VolunteerExperience';
+import Roller from '../../../components/Loading';
+import Names from './Names';
+import DatesOfBirth from './DatesOfBirth';
+import Addresses from './Addresses';
+import TelephoneNumbers from './TelephoneNumbers';
+import EmailAddresses from './EmailAddresses';
+
+import './Profile.scss';
 
 const Profile = () => {
   const { t } = useTranslation();
@@ -66,40 +67,20 @@ const Profile = () => {
 
   // data loaded
   return (
-    <>
-      <PersonalInformation
-        firstName={data.firstName}
-        middleName={data.middleName}
-        lastName={data.lastName}
-        dateOfBirth={data.dateOfBirth}
-        socialInsuranceNumber={data.socialInsuranceNumber}
-        languageOfPreference={data.languageOfPreference}
-      />
-
-      <div className="row">
-        <div className="col-xs-12 col-md-6">
-          <Address addresses={data.addresses} />
-        </div>
-        <div className="col-xs-12 col-md-6">
-          <Phone phones={data.phones} />
-        </div>
+    <div className="panel panel-default">
+      <div className="panel-heading">{t('private.profile.panel.title')}</div>
+      <div className="panel-body profile">
+        <Names />
+        <hr />
+        <DatesOfBirth />
+        <hr />
+        <Addresses />
+        <hr />
+        <TelephoneNumbers />
+        <hr />
+        <EmailAddresses />
       </div>
-      <div className="row">
-        <div className="col-xs-12">
-          <Email emails={data.emails} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-xs-12">
-          <VolunteerExperience volunteerExperiences={data.volunteerExperiences} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-xs-12">
-          <Note notes={data.notes} />
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

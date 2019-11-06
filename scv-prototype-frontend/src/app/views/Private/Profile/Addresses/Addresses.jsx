@@ -8,14 +8,12 @@ const Addresses = ({ addresses }) => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <div>
-        <h3>
-          <i className="fas fa-pin fa-fw" />
-        </h3>
+    <div className="profile__section">
+      <div className="profile__section-icon">
+        <i className="fas fa-map-marker-alt fa-fw" />
       </div>
-      <div>
-        <h3>{t('private.profile.addresses')}</h3>
+      <div className="profile__section-content">
+        <span className="profile__section-content-header">{t('private.profile.addresses')}</span>
         {addresses && addresses.length ? (
           addresses.map((a, i) => <Address key={i} program={a.program} address={a.address} />)
         ) : (

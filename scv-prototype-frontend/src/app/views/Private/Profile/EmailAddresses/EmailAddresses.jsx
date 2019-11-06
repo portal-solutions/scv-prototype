@@ -8,14 +8,12 @@ const EmailAddresses = ({ emailAddresses }) => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <div>
-        <h3>
-          <i className="fas fa-pin fa-fw" />
-        </h3>
+    <div className="profile__section">
+      <div className="profile__section-icon">
+        <i className="fas fa-envelope fa-fw" />
       </div>
-      <div>
-        <h3>{t('private.profile.addresses')}</h3>
+      <div className="profile__section-content">
+        <span className="profile__section-content-header">{t('private.profile.addresses')}</span>
         {emailAddresses && emailAddresses.length ? (
           emailAddresses.map((ea, i) => <EmailAddress key={i} program={ea.program} emailAddress={ea.emailAddress} />)
         ) : (

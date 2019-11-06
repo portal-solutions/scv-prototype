@@ -1,0 +1,16 @@
+.profile {
+  &__section {
+    display: flex;
+    &-icon {
+      font-size: 1.25em;
+      margin-right: 2rem;
+    }
+    &-content {
+      width: 100%;
+      &-header {
+        font-size: 1.25em;
+        font-weight: 600;
+      }
+    }
+  }
+}

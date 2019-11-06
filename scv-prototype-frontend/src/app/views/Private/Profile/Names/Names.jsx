@@ -8,14 +8,12 @@ const Names = ({ names }) => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <div>
-        <h3>
-          <i className="fas fa-file fa-fw" />
-        </h3>
+    <div className="profile__section">
+      <div className="profile__section-icon">
+        <i className="fas fa-file-alt fa-fw" />
       </div>
-      <div>
-        <h3>{t('private.profile.names')}</h3>
+      <div className="profile__section-content">
+        <span className="profile__section-content-header">{t('private.profile.names')}</span>
         {names && names.length ? (
           names.map((n, i) => <Name key={i} program={n.program} name={n.name} />)
         ) : (
