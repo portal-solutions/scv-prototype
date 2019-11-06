@@ -76,7 +76,7 @@ const Login = ({ location }) => {
               type="email"
               className="form-control"
               placeholder={t('login.input.username')}
-              defaultValue={username}
+              value={username}
               onChange={(e) => setUsername(e.target.value)}
               size="50"
             />
@@ -94,6 +94,7 @@ const Login = ({ location }) => {
               type="password"
               className="form-control"
               placeholder={t('login.input.password')}
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               size="50"
             />
