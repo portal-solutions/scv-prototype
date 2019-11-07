@@ -66,73 +66,20 @@ const Profile = () => {
   }
 
   // data loaded
-  const fakedata = {
-    names: [
-      {
-        program: 'Job Bank',
-        name: 'Client name'
-      },
-      {
-        program: 'National Student Loans Service Center (NSLSC)',
-        name: 'Client name'
-      }
-    ],
-    datesOfBirth: [
-      {
-        program: 'Job Bank',
-        dateOfBirth: '1985-01-10'
-      },
-      {
-        program: 'National Student Loans Service Center (NSLSC)',
-        dateOfBirth: '1985-01-10'
-      }
-    ],
-    addresses: [
-      {
-        program: 'Job Bank',
-        address: 'Client street address\nCity, Prov/Terr\nPostal code'
-      },
-      {
-        program: 'National Student Loans Service Center (NSLSC)',
-        address: 'Different client street address\nCity, Prov/Terr\nPostal code'
-      }
-    ],
-    telephoneNumbers: [
-      {
-        program: 'Job Bank',
-        mobile: '506-546-6565',
-        home: '506-546-2222'
-      },
-      {
-        program: 'National Student Loans Service Center (NSLSC)',
-        home: '506-546-2222'
-      }
-    ],
-    emailAddresses: [
-      {
-        program: 'Job Bank',
-        emailAddress: 'client-address@email.ca'
-      },
-      {
-        program: 'National Student Loans Service Center (NSLSC)',
-        emailAddress: 'different-address@email.com'
-      }
-    ]
-  };
 
   return (
     <div className="panel panel-default">
       <div className="panel-heading">{t('private.profile.panel.title')}</div>
       <div className="panel-body profile">
-        <Names names={fakedata.names} />
+        <Names names={data.names} />
         <hr />
-        <DatesOfBirth datesOfBirth={fakedata.datesOfBirth} />
+        <DatesOfBirth datesOfBirth={data.datesOfBirth} />
         <hr />
-        <Addresses addresses={fakedata.addresses} />
+        <Addresses addresses={data.addresses} />
         <hr />
-        <TelephoneNumbers telephoneNumbers={fakedata.telephoneNumbers} />
+        <TelephoneNumbers telephoneNumbers={data.telephoneNumbers} />
         <hr />
-        <EmailAddresses emailAddresses={fakedata.emailAddresses} />
+        <EmailAddresses emailAddresses={data.emailAddresses} />
       </div>
     </div>
   );

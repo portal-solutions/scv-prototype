@@ -18,7 +18,7 @@ const EmailAddresses = ({ emailAddresses }) => {
           <span>{t('private.profile.email-addresses.title')}</span>
           <Button size={Button.sizes.default} variant={Button.variants.default}>
             <i className="fas fa-plus" />
-            <strong>{t('private.profile.email-addresses.add')}</strong>
+            {t('private.profile.email-addresses.add')}
           </Button>
         </div>
         {emailAddresses && emailAddresses.length ? (
