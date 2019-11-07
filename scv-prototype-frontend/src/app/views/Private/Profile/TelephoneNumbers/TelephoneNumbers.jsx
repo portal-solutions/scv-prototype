@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import TelephoneNumber from './TelephoneNumber';
+import Button from '../../../../components/Button';
 
 const TelephoneNumbers = ({ telephoneNumbers }) => {
   const { t } = useTranslation();
@@ -13,8 +14,12 @@ const TelephoneNumbers = ({ telephoneNumbers }) => {
         <i className="fas fa-phone fa-fw" />
       </div>
       <div className="profile__section__content">
-        <div className="mb-4">
-          <span className="profile__section__content__title">{t('private.profile.telephone-numbers.title')}</span>
+        <div className="profile__section__content__title">
+          <span>{t('private.profile.telephone-numbers.title')}</span>
+          <Button size={Button.sizes.default} variant={Button.variants.default}>
+            <i className="fas fa-plus" />
+            <strong>{t('private.profile.telephone-numbers.add')}</strong>
+          </Button>
         </div>
         {telephoneNumbers && telephoneNumbers.length ? (
           telephoneNumbers.map((tn, i) => (

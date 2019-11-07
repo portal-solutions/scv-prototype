@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import EmailAddress from './EmailAddress';
+import Button from '../../../../components/Button';
 
 const EmailAddresses = ({ emailAddresses }) => {
   const { t } = useTranslation();
@@ -13,8 +14,12 @@ const EmailAddresses = ({ emailAddresses }) => {
         <i className="fas fa-envelope fa-fw" />
       </div>
       <div className="profile__section__content">
-        <div className="mb-4">
-          <span className="profile__section__content__title">{t('private.profile.email-addresses.title')}</span>
+        <div className="profile__section__content__title">
+          <span>{t('private.profile.email-addresses.title')}</span>
+          <Button size={Button.sizes.default} variant={Button.variants.default}>
+            <i className="fas fa-plus" />
+            <strong>{t('private.profile.email-addresses.add')}</strong>
+          </Button>
         </div>
         {emailAddresses && emailAddresses.length ? (
           emailAddresses.map((ea, i) => <EmailAddress key={i} program={ea.program} emailAddress={ea.emailAddress} />)

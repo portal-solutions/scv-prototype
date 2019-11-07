@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Address from './Address';
+import Button from '../../../../components/Button';
 
 const Addresses = ({ addresses }) => {
   const { t } = useTranslation();
@@ -13,8 +14,12 @@ const Addresses = ({ addresses }) => {
         <i className="fas fa-map-marker-alt fa-fw" />
       </div>
       <div className="profile__section__content">
-        <div className="mb-4">
-          <span className="profile__section__content__title">{t('private.profile.addresses.title')}</span>
+        <div className="profile__section__content__title">
+          <span>{t('private.profile.addresses.title')}</span>
+          <Button size={Button.sizes.default} variant={Button.variants.default}>
+            <i className="fas fa-plus" />
+            <strong>{t('private.profile.addresses.add')}</strong>
+          </Button>
         </div>
         {addresses && addresses.length ? (
           addresses.map((a, i) => <Address key={i} program={a.program} address={a.address} />)

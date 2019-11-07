@@ -11,8 +11,18 @@
       width: 100%;
 
       &__title {
-        font-size: 1.25em;
-        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+
+        span {
+          font-size: 1.25em;
+          font-weight: 600;
+        }
+
+        button > i {
+          margin-right: 1rem;
+        }
       }
     }
   }

@@ -56,6 +56,7 @@
         "content": "This screen shows you the different demographic and personal information that participating programs hold about you, as well as the contact information you have provided to the participating programs. Please note that it is possible for the personal information to be different across programs depending on how and when that data was created. If you notice any errors, please let us know! From this screen you can add new contact information and decide which programs you want to access and use that contact information. Once you add new data, you can request updates to the various programs. Once they accept or reject your data, we will let you know."
       },
       "addresses": {
+        "add": "Add an address",
         "address": "Address",
         "title": "Addresses"
       },
@@ -64,6 +65,7 @@
         "title": "Dates of birth"
       },
       "email-addresses": {
+        "add": "Add an email address",
         "email-address": "Email address",
         "title": "Email addresses"
       },
@@ -72,6 +74,7 @@
         "title": "Names"
       },
       "telephone-numbers": {
+        "add": "Add a telephone number",
         "home": "Home",
         "mobile": "Mobile",
         "telephone": "Telephone",

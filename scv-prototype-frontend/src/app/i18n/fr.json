@@ -57,6 +57,7 @@
         "content": "Cet écran vous montre les différentes informations démographiques et personnelles que les programmes participants possèdent sur vous, ainsi que les informations de contact que vous avez fournies aux programmes participants. Veuillez noter qu'il est possible que les informations personnelles diffèrent d'un programme à l'autre, en fonction du moment et de la date de création de ces données. Si vous remarquez des erreurs, merci de nous le signaler! À partir de cet écran, vous pouvez ajouter de nouvelles informations de contact et décider des programmes auxquels vous souhaitez accéder et utiliser ces informations de contact. Une fois que vous avez ajouté de nouvelles données, vous pouvez demander des mises à jour pour les différents programmes. Une fois qu'ils acceptent ou rejettent vos données, nous vous le ferons savoir."
       },
       "addresses": {
+        "add": "Ajouter une adresse",
         "address": "Adresse",
         "title": "Adresses"
       },
@@ -65,6 +66,7 @@
         "title": "Dates de naissance"
       },
       "email-addresses": {
+        "add": "Ajouter une adresse courriel",
         "email-address": "Adresse courriel",
         "title": "Adresses courriel"
       },
@@ -73,6 +75,7 @@
         "title": "Noms"
       },
       "telephone-numbers": {
+        "add": "Ajouter un numéro de téléphone",
         "home": "Résidentiel",
         "mobile": "Mobile",
         "telephone": "Téléphone",

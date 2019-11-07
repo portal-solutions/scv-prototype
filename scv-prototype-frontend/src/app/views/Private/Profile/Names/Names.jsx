@@ -13,8 +13,8 @@ const Names = ({ names }) => {
         <i className="fas fa-file-alt fa-fw" />
       </div>
       <div className="profile__section__content">
-        <div className="mb-4">
-          <span className="profile__section__content__title">{t('private.profile.names.title')}</span>
+        <div className="profile__section__content__title">
+          <span>{t('private.profile.names.title')}</span>
         </div>
         {names && names.length ? (
           names.map((n, i) => <Name key={i} program={n.program} name={n.name} />)

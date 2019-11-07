@@ -13,8 +13,8 @@ const DatesOfBirth = ({ datesOfBirth }) => {
         <i className="fas fa-calendar-alt fa-fw" />
       </div>
       <div className="profile__section__content">
-        <div className="mb-4">
-          <span className="profile__section__content__title">{t('private.profile.dates-of-birth.title')}</span>
+        <div className="profile__section__content__title">
+          <span>{t('private.profile.dates-of-birth.title')}</span>
         </div>
         {datesOfBirth && datesOfBirth.length ? (
           datesOfBirth.map((dob, i) => <DateOfBirth key={i} program={dob.program} dateOfBirth={dob.dateOfBirth} />)
