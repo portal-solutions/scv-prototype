@@ -8,7 +8,7 @@ const Name = ({ program, name }) => {
   return (
     <p>
       <strong>
-        {t('private.profile.name')} - {program}
+        {t('private.profile.names.name')} - {program}
       </strong>
       <br />
       {name}

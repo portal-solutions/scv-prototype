@@ -9,11 +9,13 @@ const Names = ({ names }) => {
 
   return (
     <div className="profile__section">
-      <div className="profile__section-icon">
+      <div className="profile__section__icon">
         <i className="fas fa-file-alt fa-fw" />
       </div>
-      <div className="profile__section-content">
-        <span className="profile__section-content-header">{t('private.profile.names')}</span>
+      <div className="profile__section__content">
+        <div className="mb-4">
+          <span className="profile__section__content__title">{t('private.profile.names.title')}</span>
+        </div>
         {names && names.length ? (
           names.map((n, i) => <Name key={i} program={n.program} name={n.name} />)
         ) : (

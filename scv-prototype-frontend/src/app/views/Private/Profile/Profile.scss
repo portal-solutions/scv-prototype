@@ -1,13 +1,16 @@
 .profile {
   &__section {
     display: flex;
-    &-icon {
+
+    &__icon {
       font-size: 1.25em;
       margin-right: 2rem;
     }
-    &-content {
+
+    &__content {
       width: 100%;
-      &-header {
+
+      &__title {
         font-size: 1.25em;
         font-weight: 600;
       }

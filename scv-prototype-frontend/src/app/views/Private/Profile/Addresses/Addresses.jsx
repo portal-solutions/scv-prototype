@@ -9,11 +9,13 @@ const Addresses = ({ addresses }) => {
 
   return (
     <div className="profile__section">
-      <div className="profile__section-icon">
+      <div className="profile__section__icon">
         <i className="fas fa-map-marker-alt fa-fw" />
       </div>
-      <div className="profile__section-content">
-        <span className="profile__section-content-header">{t('private.profile.addresses')}</span>
+      <div className="profile__section__content">
+        <div className="mb-4">
+          <span className="profile__section__content__title">{t('private.profile.addresses.title')}</span>
+        </div>
         {addresses && addresses.length ? (
           addresses.map((a, i) => <Address key={i} program={a.program} address={a.address} />)
         ) : (

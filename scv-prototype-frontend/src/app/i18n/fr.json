@@ -56,36 +56,27 @@
         "title": "Description du profil ",
         "content": "Cet écran vous montre les différentes informations démographiques et personnelles que les programmes participants possèdent sur vous, ainsi que les informations de contact que vous avez fournies aux programmes participants. Veuillez noter qu'il est possible que les informations personnelles diffèrent d'un programme à l'autre, en fonction du moment et de la date de création de ces données. Si vous remarquez des erreurs, merci de nous le signaler! À partir de cet écran, vous pouvez ajouter de nouvelles informations de contact et décider des programmes auxquels vous souhaitez accéder et utiliser ces informations de contact. Une fois que vous avez ajouté de nouvelles données, vous pouvez demander des mises à jour pour les différents programmes. Une fois qu'ils acceptent ou rejettent vos données, nous vous le ferons savoir."
       },
-      "personal-information": {
-        "title": "Informations personnelles",
-        "first-name": "Prénom",
-        "middle-name": "Deuxième nom",
-        "last-name": "Nom de famille",
+      "addresses": {
+        "address": "Adresse",
+        "title": "Adresses"
+      },
+      "dates-of-birth": {
         "date-of-birth": "Date de naissance",
-        "social-insurance-number": "Numéro d'assurance sociale",
-        "language-of-preference": "Langue de préférence"
+        "title": "Dates de naissance"
       },
-      "address": {
-        "title": "Adresse"
+      "email-addresses": {
+        "email-address": "Adresse courriel",
+        "title": "Adresses courriel"
       },
-      "phone": {
-        "title": "Téléphone",
-        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-        "used-for": "Utilisée pour <strong><0 /></strong>."
+      "names": {
+        "name": "Nom",
+        "title": "Noms"
       },
-      "email": {
-        "title": "Adresse courriel",
-        "primary-email-address": "Adresse courriel primaire",
-        "secondary-email-address": "Adresse courriel secondaire",
-        "used-for-all": "Utilisée pour <strong>tous les programmes</strong>.",
-        "used-for": "Utilisée pour <strong><0 /></strong>."
-      },
-      "volunteer-experience": {
-        "title": "Expérience de bénévolat",
-        "service-hours": "heures de service"
-      },
-      "note": {
-        "title": "Notes"
+      "telephone-numbers": {
+        "home": "Résidentiel",
+        "mobile": "Mobile",
+        "telephone": "Téléphone",
+        "title": "Numéros de téléphone"
       }
     },
     "service-preferences": {

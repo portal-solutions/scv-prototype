@@ -13,13 +13,13 @@ const TelephoneNumber = ({ program, mobile, home }) => {
       {mobile || home ? <br /> : null}
       {mobile && (
         <>
-          <span className="text-muted">{t('private.profile.telephone-numbers.telephone.mobile')}</span>&nbsp;{mobile}
+          <span className="text-muted">{t('private.profile.telephone-numbers.mobile')}</span>&nbsp;{mobile}
           {home && <br />}
         </>
       )}
       {home && (
         <>
-          <span className="text-muted">{t('private.profile.telephone-numbers.telephone.home')}</span>&nbsp;{home}
+          <span className="text-muted">{t('private.profile.telephone-numbers.home')}</span>&nbsp;{home}
         </>
       )}
     </p>

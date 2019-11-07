@@ -10,7 +10,7 @@ const Address = ({ program, address }) => {
   return (
     <p>
       <strong>
-        {t('private.profile.address')} - {program}
+        {t('private.profile.addresses.address')} - {program}
       </strong>
       <br />
       {addressParts.map((s, i) => (

@@ -8,7 +8,7 @@ const EmailAddress = ({ program, emailAddress }) => {
   return (
     <p>
       <strong>
-        {t('private.profile.email-address')} - {program}
+        {t('private.profile.email-addresses.email-address')} - {program}
       </strong>
       <br />
       {emailAddress}

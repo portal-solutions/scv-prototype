@@ -9,11 +9,13 @@ const EmailAddresses = ({ emailAddresses }) => {
 
   return (
     <div className="profile__section">
-      <div className="profile__section-icon">
+      <div className="profile__section__icon">
         <i className="fas fa-envelope fa-fw" />
       </div>
-      <div className="profile__section-content">
-        <span className="profile__section-content-header">{t('private.profile.addresses')}</span>
+      <div className="profile__section__content">
+        <div className="mb-4">
+          <span className="profile__section__content__title">{t('private.profile.email-addresses.title')}</span>
+        </div>
         {emailAddresses && emailAddresses.length ? (
           emailAddresses.map((ea, i) => <EmailAddress key={i} program={ea.program} emailAddress={ea.emailAddress} />)
         ) : (

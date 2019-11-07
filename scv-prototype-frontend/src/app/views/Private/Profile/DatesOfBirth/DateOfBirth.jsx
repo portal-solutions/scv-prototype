@@ -8,7 +8,7 @@ const DateOfBirth = ({ program, dateOfBirth }) => {
   return (
     <p>
       <strong>
-        {t('private.profile.date-of-birth')} - {program}
+        {t('private.profile.dates-of-birth.date-of-birth')} - {program}
       </strong>
       <br />
       {new Date(dateOfBirth).toLocaleDateString()}

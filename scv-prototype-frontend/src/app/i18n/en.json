@@ -50,41 +50,32 @@
       "page-title": "SCV :: Profile",
       "page-identifier": "SCV-0010-EN",
       "panel": {
-        "title": "Profile"
+        "title": "Profil"
       },
       "description": {
         "content": "This screen shows you the different demographic and personal information that participating programs hold about you, as well as the contact information you have provided to the participating programs. Please note that it is possible for the personal information to be different across programs depending on how and when that data was created. If you notice any errors, please let us know! From this screen you can add new contact information and decide which programs you want to access and use that contact information. Once you add new data, you can request updates to the various programs. Once they accept or reject your data, we will let you know."
       },
-      "personal-information": {
-        "title": "Personal information",
-        "first-name": "First name",
-        "middle-name": "Middle name",
-        "last-name": "Last name",
+      "addresses": {
+        "address": "Address",
+        "title": "Addresses"
+      },
+      "dates-of-birth": {
         "date-of-birth": "Date of birth",
-        "social-insurance-number": "Social insurance number",
-        "language-of-preference": "Language of preference"
+        "title": "Dates of birth"
       },
-      "address": {
-        "title": "Address"
+      "email-addresses": {
+        "email-address": "Email address",
+        "title": "Email addresses"
       },
-      "phone": {
-        "title": "Phone",
-        "used-for-all": "Used for <strong>all programs</strong>.",
-        "used-for": "Used for <strong><0 /></strong>."
+      "names": {
+        "name": "Name",
+        "title": "Names"
       },
-      "email": {
-        "title": "Email address",
-        "primary-email-address": "Primary email address",
-        "secondary-email-address": "Secondary email address",
-        "used-for-all": "Used for <strong>all programs</strong>.",
-        "used-for": "Used for <strong><0 /></strong>."
-      },
-      "volunteer-experience": {
-        "title": "Volunteer experience",
-        "service-hours": "service hours"
-      },
-      "note": {
-        "title": "Notes"
+      "telephone-numbers": {
+        "home": "Home",
+        "mobile": "Mobile",
+        "telephone": "Telephone",
+        "title": "Telephone numbers"
       }
     },
     "service-preferences": {
