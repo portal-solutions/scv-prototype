@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePageMetadata } from '../../../utils/page-metadata';
+import Sidebar from '../Sidebar';
 
 const ServiceActions = () => {
   const { t } = useTranslation();
@@ -11,7 +12,11 @@ const ServiceActions = () => {
     pageTitle: t('private.service-actions.page-title')
   });
 
-  return (
+  // GETS proper component to render
+  let componentToRender = null;
+
+  // data loaded
+  componentToRender = (
     <div className="panel panel-default">
       <div className="panel-heading">{t('private.service-actions.panel.title')}</div>
       <div className="panel-body">
@@ -34,6 +39,22 @@ const ServiceActions = () => {
         </p>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="row">
+        <div className="col-xs-12 mb-3 mt-3">
+          <p>{t('private.service-actions.description.content')}</p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-12 col-md-3 mb-2">
+          <Sidebar />
+        </div>
+        <div className="col-xs-12 col-md-9">{componentToRender}</div>
+      </div>
+    </>
   );
 };
 
