@@ -38,67 +38,89 @@
     "page-identifier": "SCV-0001-EN",
     "page-title": "SCV :: Home"
   },
-  "profile": {
-    "document-title": "Profile",
-    "page-title": "SCV :: Profile",
-    "page-identifier": "SCV-0010-EN",
-    "personal-information": {
-      "title": "Personal information",
-      "first-name": "First name",
-      "middle-name": "Middle name",
-      "last-name": "Last name",
-      "date-of-birth": "Date of birth",
-      "social-insurance-number": "Social insurance number",
-      "language-of-preference": "Language of preference"
+  "private": {
+    "sidebar": {
+      "profile": "Profile",
+      "service-preferences": "Service preferences",
+      "consent": "Consent",
+      "service-actions": "Service actions"
     },
-    "address": {
-      "title": "Address"
-    },
-    "phone": {
-      "title": "Phone",
-      "used-for-all": "Used for <strong>all programs</strong>.",
-      "used-for": "Used for <strong><0 /></strong>."
-    },
-    "email": {
-      "title": "Email address",
-      "primary-email-address": "Primary email address",
-      "secondary-email-address": "Secondary email address",
-      "used-for-all": "Used for <strong>all programs</strong>.",
-      "used-for": "Used for <strong><0 /></strong>."
-    },
-    "volunteer-experience": {
-      "title": "Volunteer experience",
-      "service-hours": "service hours"
-    },
-    "note": {
-      "title": "Notes"
-    },
-    "payment-details": {
-      "document-title": "Payment details",
-      "page-identifier": "SCV-0011-EN",
-      "page-title": "Payment details",
-      "navbar": {
-        "details": "Details",
-        "make-payment": "Make a payment",
-        "payment-history": "Payment history"
+    "profile": {
+      "document-title": "Profile",
+      "page-title": "SCV :: Profile",
+      "page-identifier": "SCV-0010-EN",
+      "panel": {
+        "title": "Profil"
       },
-      "details": {
-        "not-in-use": "Not in use.",
-        "used-for": "Used for: <strong><0 /></strong>"
+      "description": {
+        "content": "This screen shows you the different demographic and personal information that participating programs hold about you, as well as the contact information you have provided to the participating programs. Please note that it is possible for the personal information to be different across programs depending on how and when that data was created. If you notice any errors, please let us know! From this screen you can add new contact information and decide which programs you want to access and use that contact information. Once you add new data, you can request updates to the various programs. Once they accept or reject your data, we will let you know."
       },
-      "payment-history": {
-        "date": "Date",
-        "program-service": "Program/service",
-        "amount": "Amount",
-        "account-number": "Account number"
+      "addresses": {
+        "add": "Add an address",
+        "address": "Address",
+        "title": "Addresses"
+      },
+      "dates-of-birth": {
+        "date-of-birth": "Date of birth",
+        "title": "Dates of birth"
+      },
+      "email-addresses": {
+        "add": "Add an email address",
+        "email-address": "Email address",
+        "title": "Email addresses"
+      },
+      "names": {
+        "name": "Name",
+        "title": "Names"
+      },
+      "telephone-numbers": {
+        "add": "Add a telephone number",
+        "home": "Home",
+        "mobile": "Mobile",
+        "telephone": "Telephone",
+        "title": "Telephone numbers"
+      }
+    },
+    "service-preferences": {
+      "document-title": "Service preferences",
+      "page-identifier": "SCV-0009-EN",
+      "page-title": "SCV :: Service preferences",
+      "panel": {
+        "title": "Service preferences"
+      },
+      "description": {
+        "content": "This screen allows you to adjust your preferences for the channels we use to contact you, how frequently, and allows you to fine-tune those settings for different programs because your communication needs may be different from program to program. In addition, this screen allows you to identify inclusivity characteristics for the purposes of locating customized benefits and services. And finally, you can specify accessibility needs that will change how we communicate to you and make sure any correspondence we send you is in the right format."
+      }
+    },
+    "consent": {
+      "document-title": "Consent",
+      "page-identifier": "SCV-0009-EN",
+      "page-title": "SCV :: Consent",
+      "panel": {
+        "title": "Consent"
+      },
+      "description": {
+        "content-top": "This screen allows you to see what data is held about you in the participating programs, and how that data is being used under legislative authority. This view also allows you to adjust controls for how your data is used in the following contexts:",
+        "context-items": [
+          "Re-use of general profile data to facilitate upcoming or new administrative requirements like filling applications and providing updates once for multiple programs",
+          "Allowing the view of service preference data to customize benefit and service identification specific to your needs",
+          "Allowing service agents to view your service preference data so that they can customize the service experience to meet your needs",
+          "Allowing use of your general profile data for eligibility determination for benefits and services"
+        ],
+        "content-bottom": "Consent is usually provided as a single transaction – you are allowing us to take your instruction once and apply it to an administrative or service need. As such, we will often re-confirm your consent to ensure you still want us to use the data the same way. Some consents will be persistent until you tell us to change the activity, such as finding benefits and services through a regular automated web search where we provide you compiled results. You are free to adjust your consent over time using this view."
+      }
+    },
+    "service-actions": {
+      "document-title": "Service actions",
+      "page-identifier": "SCV-0009-EN",
+      "page-title": "SCV :: Service actions",
+      "panel": {
+        "title": "Service actions"
+      },
+      "description": {
+        "content": "This screen allows you to set automated searches to compile job searches, skills development, educational opportunities and career exploration. Once you tell us where you want us to look for this information and how often you would like us to repeat searches, we will provide the compilation of results underneath each tab in this view screen."
       }
     }
-  },
-  "service-preferences": {
-    "document-title": "Service preferences",
-    "message": "This is the <strong>service preferences</strong> page.",
-    "page-identifier": "SCV-0009-EN",
-    "page-title": "SCV :: Service preferences"
   },
   "wet-boew": {
     "default-page-identifier": "SCV-0000-EN",

@@ -22,22 +22,22 @@ const NavMenu = () => {
         </button>
         <ul role="menu" aria-orientation="vertical">
           <li role="presentation">
-            <Link role="menuitem" to="/private" exact>
+            <Link role="menuitem" to="/private">
               <i className="fas fa-fw fa-home" /> {t('wet-boew.header.navbar.home')}
             </Link>
           </li>
           <li role="presentation">
-            <Link role="menuitem" to="/private/profile" exact>
+            <Link role="menuitem" to="/private/profile">
               <i className="fas fa-fw fa-user" /> {t('wet-boew.header.navbar.profile')}
             </Link>
           </li>
           <li role="presentation">
-            <Link role="menuitem" to="/private/service-preferences" exact>
+            <Link role="menuitem" to="/private/service-preferences">
               <i className="fas fa-fw fa-cog" /> {t('wet-boew.header.navbar.service-preferences')}
             </Link>
           </li>
           <li role="presentation">
-            <Link role="menuitem" to="/msca" exact>
+            <Link role="menuitem" to="/msca">
               <i className="fas fa-fw fa-project-diagram" /> Mock MSCA
             </Link>
           </li>

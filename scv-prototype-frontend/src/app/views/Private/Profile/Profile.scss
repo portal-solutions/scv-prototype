@@ -1,0 +1,33 @@
+.profile {
+  &__section {
+    display: flex;
+
+    &__icon {
+      font-size: 1.25em;
+      margin-right: 2rem;
+    }
+
+    &__content {
+      width: 100%;
+
+      &__title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+
+        span {
+          font-size: 1.25em;
+          font-weight: 600;
+        }
+
+        button {
+          font-weight: 600;
+
+          > i {
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

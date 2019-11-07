@@ -38,9 +38,9 @@ const App = () => {
                 <Route path="/" exact>
                   <Redirect to="/private" />
                 </Route>
+                <PrivateRoute path="/private" component={Private} />
                 <Route path="/msca" component={MSCA} exact />
                 <Route path="/sign-in" component={Login} exact />
-                <PrivateRoute path="/private" component={Private} />
                 <Route path="*" component={Error404} />
               </Switch>
             </BrowserRouter>
