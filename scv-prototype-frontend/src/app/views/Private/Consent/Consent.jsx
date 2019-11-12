@@ -1,6 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePageMetadata } from '../../../utils/page-metadata';
+import Sidebar from '../Sidebar';
 
 const Consent = () => {
   const { t } = useTranslation();
@@ -11,7 +13,11 @@ const Consent = () => {
     pageTitle: t('private.consent.page-title')
   });
 
-  return (
+  // GETS proper component to render
+  let componentToRender = null;
+
+  // data loaded
+  componentToRender = (
     <div className="panel panel-default">
       <div className="panel-heading">{t('private.consent.panel.title')}</div>
       <div className="panel-body">
@@ -34,6 +40,28 @@ const Consent = () => {
         </p>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="row">
+        <div className="col-xs-12 mb-3 mt-3">
+          <p>{t('private.consent.description.content-top')}</p>
+          <ul>
+            {t('private.consent.description.context-items', { returnObjects: true }).map((obj, idx) => (
+              <li key={idx}>{obj}</li>
+            ))}
+          </ul>
+          <p>{t('private.consent.description.content-bottom')}</p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-12 col-md-3 mb-2">
+          <Sidebar />
+        </div>
+        <div className="col-xs-12 col-md-9">{componentToRender}</div>
+      </div>
+    </>
   );
 };
 
