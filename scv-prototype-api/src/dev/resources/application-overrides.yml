@@ -28,6 +28,11 @@ application:
     security:
       ignored-paths:
         - /actuator/**
+    service:
+      interop:
+        base-uri: https://location.okd.azure.sc-interop.ca/
+        proxy-host: proxy.prv
+        proxy-port: 80
     webmvc:
       cors-allowed-origins:
           - http://localhost:3000
