@@ -48,7 +48,7 @@ const Greeting = () => {
       {error && (error.name !== 'InvalidTokenError' || <Error />)}
 
       {loading && (
-        <div className='text-center mrgn-tp-lg'>
+        <div className="text-center mrgn-tp-lg">
           <Loading />
         </div>
       )}
@@ -63,7 +63,7 @@ const Error = () => {
 
   return (
     <>
-      <div className='alert alert-danger'>
+      <div className="alert alert-danger">
         <span>{t('something-went-wrong')}</span>
       </div>
     </>
@@ -72,8 +72,8 @@ const Error = () => {
 
 const Messages = ({ data }) => {
   return (
-    <div className='row'>
-      <div className='col-xs-12'>
+    <div className="row">
+      <div className="col-xs-12">
         {data.map((greeting) => (
           <p key={greeting.message}>{greeting.message}</p>
         ))}

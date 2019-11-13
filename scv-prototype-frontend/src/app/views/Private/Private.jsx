@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Error404 from '../../components/error/Error404';
 import MainLayout from '../../layout/Main';
 import Profile from './Profile';
@@ -9,8 +9,9 @@ import Consent from './Consent';
 import ServiceActions from './ServiceActions';
 import TermsAndConditions from './TermsAndConditions/TermsAndConditions';
 
-const Private = ({ match }) => {
+const Private = () => {
   // The `path` lets us build <Route> paths that are relative to the parent route
+  const match = useRouteMatch();
   const { path } = match;
 
   const applyLayout = (Component) => {

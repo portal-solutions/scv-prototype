@@ -35,13 +35,13 @@ const App = () => {
           <PageMetadataProvider>
             <BrowserRouter>
               <Switch>
-                <Route path='/' exact>
-                  <Redirect to='/private' />
+                <Route path="/" exact>
+                  <Redirect to="/private" />
                 </Route>
-                <PrivateRoute path='/private' component={Private} />
-                <Route path='/msca' component={MSCA} exact />
+                <PrivateRoute path="/private" component={Private} />
+                <Route path="/msca" component={MSCA} exact />
                 {/* <Route path="/sign-in" component={Login} exact /> */}
-                <Route path='*' component={Error404} />
+                <Route path="*" component={Error404} />
               </Switch>
             </BrowserRouter>
           </PageMetadataProvider>

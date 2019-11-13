@@ -42,7 +42,6 @@ const AuthProvider = (props) => {
   };
 
   const setTermsAndConditionsAgreement = async () => {
-    console.log(state);
     const auth = { ...state, agreedTermsAndConditions: true };
     localStorage.setItem('auth', JSON.stringify(auth));
     setState(auth);

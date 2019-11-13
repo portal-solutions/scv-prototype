@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../utils/auth';
 import { usePageMetadata } from '../../../utils/page-metadata';
 import Button from '../../../components/Button';
@@ -13,7 +13,9 @@ import Button from '../../../components/Button';
  * @author Sebastien Comeau <sebastien.comeau@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const TermsAndConditions = ({ location, history }) => {
+const TermsAndConditions = () => {
+  const history = useHistory();
+  const location = useLocation();
   const { t } = useTranslation();
   const { auth, setTermsAndConditionsAgreement } = useAuth();
 
@@ -49,8 +51,8 @@ const TermsAndConditions = ({ location, history }) => {
   };
 
   return (
-    <div className='row'>
-      <div className='col-xs-12'>
+    <div className="row">
+      <div className="col-xs-12">
         <p>
           Currently, the following list of programs participate in the Single client View integrated service profile:
         </p>
@@ -70,12 +72,12 @@ const TermsAndConditions = ({ location, history }) => {
           <li>Using your general profile data to filter relevant job searches, or other benefits and services</li>
         </ul>
 
-        <div className='row'>
-          <div className='col-xs-12 col-lg-8'>
-            <details className='brdr-0' open=''>
-              <summary className='btn btn-default'>Privacy notice and terms and conditions</summary>
-              <div className='clearfix' />
-              <div className='well row'>
+        <div className="row">
+          <div className="col-xs-12 col-lg-8">
+            <details className="brdr-0" open="">
+              <summary className="btn btn-default">Privacy notice and terms and conditions</summary>
+              <div className="clearfix" />
+              <div className="well row">
                 <p>
                   Donec pulvinar euismod sapien, eu ornare ipsum vestibulum ac. Phasellus at velit sit amet nisl dictum
                   luctus. Nam efficitur tellus nec sem condimentum interdum sit amet vitae arcu. Vestibulum aliquet
@@ -91,14 +93,14 @@ const TermsAndConditions = ({ location, history }) => {
           </div>
         </div>
 
-        <div className='checkbox mb-5 mt-5'>
-          <label htmlFor='chkRead'>
-            <input id='chkRead' type='checkbox' checked={read} onChange={(e) => setRead(e.target.checked)} />I have read
+        <div className="checkbox mb-5 mt-5">
+          <label htmlFor="chkRead">
+            <input id="chkRead" type="checkbox" checked={read} onChange={(e) => setRead(e.target.checked)} />I have read
             and agree to the privacy and terms and conditions
           </label>
         </div>
 
-        <div className='mb-4'>
+        <div className="mb-4">
           <Button onClick={handleConsent} disabled={!read}>
             I have read and agree to the Privacy
           </Button>
@@ -113,4 +115,4 @@ const TermsAndConditions = ({ location, history }) => {
   );
 };
 
-export default withRouter(TermsAndConditions);
+export default TermsAndConditions;

@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
 
-const MSCA = ({ history, location }) => {
+const MSCA = () => {
+  const history = useHistory();
+  const location = useLocation();
   const { auth, login } = useAuth();
 
-  const handleLogin = (e) => {
+  const handleLogin = () => {
     // call login
     (async () => {
       if (!auth.authenticated || auth.tokenExpired) {
@@ -21,13 +23,13 @@ const MSCA = ({ history, location }) => {
   };
 
   return (
-    <div className='text-center' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/msca-bg.png)` }}>
-      <img src={`${process.env.PUBLIC_URL}/msca.png`} alt='' useMap='#map' />
-      <map name='map'>
-        <area shape='rect' coords='717,106,886,151' alt='' href='#' onClick={handleLogin} />
+    <div className="text-center" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/msca-bg.png)` }}>
+      <img src={`${process.env.PUBLIC_URL}/msca.png`} alt="" useMap="#map" />
+      <map name="map">
+        <area shape="rect" coords="717,106,886,151" alt="" href="#" onClick={handleLogin} />
       </map>
     </div>
   );
 };
 
-export default withRouter(MSCA);
+export default MSCA;
