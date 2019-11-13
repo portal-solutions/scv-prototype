@@ -18,7 +18,10 @@ const useAuth = () => useContext(AuthContext);
  * Stuff includes the auth info, as well as methods such as 'login' and 'logout'.
  */
 const AuthProvider = (props) => {
-  const initialState = { authenticated: false };
+  const initialState = {
+    authenticated: false
+  };
+
   const storedState = JSON.parse(localStorage.getItem('auth'));
 
   const [state, setState] = useState(storedState || initialState);
@@ -29,7 +32,6 @@ const AuthProvider = (props) => {
     const auth = { authenticated: true, ...user };
     localStorage.setItem('auth', JSON.stringify(auth));
     setState(auth);
-
     return auth;
   };
 
@@ -39,7 +41,16 @@ const AuthProvider = (props) => {
     setState({ ...initialState, tokenExpired });
   };
 
-  return <AuthContext.Provider value={{ auth: state, login, logout }} {...props} />;
+  const setTermsAndConditionsAgreement = async () => {
+    console.log(state);
+    const auth = { ...state, agreedTermsAndConditions: true };
+    localStorage.setItem('auth', JSON.stringify(auth));
+    setState(auth);
+
+    return auth;
+  };
+
+  return <AuthContext.Provider value={{ auth: state, login, logout, setTermsAndConditionsAgreement }} {...props} />;
 };
 
 export default AuthProvider;

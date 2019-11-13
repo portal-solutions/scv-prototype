@@ -1,21 +1,33 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { useAuth } from '../utils/auth';
 
-const MSCA = () => {
-  const history = useHistory();
+const MSCA = ({ history, location }) => {
+  const { auth, login } = useAuth();
+
+  const handleLogin = (e) => {
+    // call login
+    (async () => {
+      if (!auth.authenticated || auth.tokenExpired) {
+        await login('user@example.com', 'password');
+      }
+
+      // redirect to scv
+      const { from } = location.state || { from: { pathname: '/' } };
+      history.push(from);
+    })();
+  };
 
   return (
-    <div className="text-center" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/msca-bg.png)` }}>
-      <img src={`${process.env.PUBLIC_URL}/msca.png`} alt="" useMap="#map" />
-      <map name="map">
-        <area shape="rect" coords="717,106,886,151" alt="" href="#" onClick={() => history.push('/')} />
+    <div className='text-center' style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/msca-bg.png)` }}>
+      <img src={`${process.env.PUBLIC_URL}/msca.png`} alt='' useMap='#map' />
+      <map name='map'>
+        <area shape='rect' coords='717,106,886,151' alt='' href='#' onClick={handleLogin} />
       </map>
     </div>
   );
 };
 
-export default MSCA;
+export default withRouter(MSCA);

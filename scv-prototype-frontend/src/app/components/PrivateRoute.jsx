@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
 import { intersection } from '../utils/array-utils';
 import { useAuth } from '../utils/auth';
@@ -12,32 +12,35 @@ import Error403 from './error/Error403';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ component: Component, authorities: requiredAuthorities, ...rest }) => {
   const { auth } = useAuth();
-  const { authenticated, authorities, tokenExpired } = auth;
 
   if (
-    authenticated &&
-    !tokenExpired &&
+    auth.authenticated &&
+    !auth.tokenExpired &&
     requiredAuthorities.length &&
-    intersection(requiredAuthorities)(authorities).length === 0
+    intersection(requiredAuthorities)(auth.authorities).length === 0
   ) {
     return <Error403 />;
   }
 
   return (
     <Route
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       render={(props) => {
-        if (authenticated && !tokenExpired) {
-          // eslint-disable-next-line react/prop-types
-          return <Component {...props} />;
+        if (auth.authenticated && !auth.tokenExpired) {
+          // user logged in then check if he agreed to the terms and conditions
+          // or user didn't agreed and it's terms and conditions component
+          if (auth.agreedTermsAndConditions || props.location.pathname === '/private/terms-and-conditions') {
+            return <Component {...props} />;
+          }
+
+          // redirect to terms and conditions
+          return <Redirect to={{ pathname: '/private/terms-and-conditions', state: { from: props.location } }} />;
         }
 
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        return <Redirect to={{ pathname: '/sign-in', state: { from: props.location } }} />;
+        // redirect to sign-in
+        return <Redirect to={{ pathname: '/msca', state: { from: props.location } }} />;
       }}
     />
   );

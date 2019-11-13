@@ -44,14 +44,14 @@ const Profile = () => {
   if (error) {
     // error occured because token is invalid, user needs to sign-in
     if (error.name === 'InvalidTokenError') {
-      return <Redirect to={{ pathname: '/sign-in', state: { tokenExpired: true } }} />;
+      return <Redirect to={{ pathname: '/msca', state: { tokenExpired: true } }} />;
     }
 
     // eslint-disable-next-line no-console
     console.error(error);
 
     componentToRender = (
-      <div className="alert alert-danger">
+      <div className='alert alert-danger'>
         <span>{t('something-went-wrong')}</span>
       </div>
     );
@@ -60,16 +60,16 @@ const Profile = () => {
   // data is loading
   if (data === null) {
     componentToRender = (
-      <div className="text-center mrgn-tp-lg">
+      <div className='text-center mrgn-tp-lg'>
         <Roller />
       </div>
     );
   } else {
     // data loaded
     componentToRender = (
-      <div className="panel panel-default">
-        <div className="panel-heading">{t('private.profile.panel.title')}</div>
-        <div className="panel-body profile">
+      <div className='panel panel-default'>
+        <div className='panel-heading'>{t('private.profile.panel.title')}</div>
+        <div className='panel-body profile'>
           <Names names={data.names} />
           <hr />
           <DatesOfBirth datesOfBirth={data.datesOfBirth} />
@@ -86,16 +86,16 @@ const Profile = () => {
 
   return (
     <>
-      <div className="row">
-        <div className="col-xs-12 mb-3 mt-3">
+      <div className='row'>
+        <div className='col-xs-12 mb-3 mt-3'>
           <p>{t('private.profile.description.content')}</p>
         </div>
       </div>
-      <div className="row">
-        <div className="col-xs-12 col-md-3 mb-2">
+      <div className='row'>
+        <div className='col-xs-12 col-md-3 mb-2'>
           <Sidebar />
         </div>
-        <div className="col-xs-12 col-md-9">{componentToRender}</div>
+        <div className='col-xs-12 col-md-9'>{componentToRender}</div>
       </div>
     </>
   );

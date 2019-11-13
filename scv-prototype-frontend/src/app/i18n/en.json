@@ -120,6 +120,11 @@
       "description": {
         "content": "This screen allows you to set automated searches to compile job searches, skills development, educational opportunities and career exploration. Once you tell us where you want us to look for this information and how often you would like us to repeat searches, we will provide the compilation of results underneath each tab in this view screen."
       }
+    },
+    "terms-and-conditions": {
+      "document-title": "My Service Canada Account - Create Single Client View",
+      "page-identifier": "SCV-0009-EN",
+      "page-title": "My Service Canada Account - Create Single Client View"
     }
   },
   "wet-boew": {

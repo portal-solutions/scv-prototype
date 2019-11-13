@@ -7,6 +7,7 @@ import Profile from './Profile';
 import ServicePreferences from './ServicePreferences';
 import Consent from './Consent';
 import ServiceActions from './ServiceActions';
+import TermsAndConditions from './TermsAndConditions/TermsAndConditions';
 
 const Private = ({ match }) => {
   // The `path` lets us build <Route> paths that are relative to the parent route
@@ -36,6 +37,9 @@ const Private = ({ match }) => {
       </Route>
       <Route exact path={`${path}/service-actions`}>
         {applyLayout(ServiceActions)}
+      </Route>
+      <Route exact path={`${path}/terms-and-conditions`}>
+        {applyLayout(TermsAndConditions)}
       </Route>
       <Route component={Error404} />
     </Switch>
