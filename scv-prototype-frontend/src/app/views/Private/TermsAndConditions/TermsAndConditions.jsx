@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Redirect, Link, useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../utils/auth';
 import { usePageMetadata } from '../../../utils/page-metadata';
 import Button from '../../../components/Button';
@@ -41,13 +41,6 @@ const TermsAndConditions = () => {
     (async () => {
       await setTermsAndConditionsAgreement();
     })();
-  };
-
-  const handleCancel = (e) => {
-    e.preventDefault();
-
-    // redirect to MSCA
-    history.push('/msca');
   };
 
   return (
@@ -106,9 +99,9 @@ const TermsAndConditions = () => {
           </Button>
         </div>
         <div>
-          <Button onClick={handleCancel} variant={Button.variants.link}>
+          <Link to="/msca" className="btn btn-link">
             Cancel
-          </Button>
+          </Link>
         </div>
       </div>
     </div>
