@@ -14,21 +14,19 @@
 //
 
 const environments = {
+  // 'dev' represents a localhost deployment
+  dev: {
+    api: {
+      baseUrl: 'http://localhost:8080'
+    }
+  },
 
-	// 'dev' represents a localhost deployment
-	dev: {
-		api: {
-			baseUrl: 'http://localhost:8080'
-		}
-	},
-
-	// 'staging' represents our staging area in Azure
-	staging: {
-		api: {
-			baseUrl: 'https://scv-prototype-api.azurewebsites.net'
-		}
-	}
-
+  // 'staging' represents our staging area in Azure
+  staging: {
+    api: {
+      baseUrl: 'https://scv-prototype-api.azurewebsites.net'
+    }
+  }
 };
 
 /**
@@ -36,10 +34,10 @@ const environments = {
  */
 const environment = process.env.REACT_APP_ENV || 'staging';
 
-if (!environments.hasOwnProperty(environment)) {
-	throw new Error(`Environment "${environment}" is not a known environment`);
+if (!Object.prototype.hasOwnProperty.call(environments, environment)) {
+  throw new Error(`Environment "${environment}" is not a known environment`);
 }
 
 export default {
-	...environments[environment]
+  ...environments[environment]
 };
