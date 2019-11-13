@@ -33,29 +33,20 @@ const Header = () => {
       </nav>
       <header>
         <div id="wb-bnr" className="container">
-          <div className="clearfix">
-            <section id="wb-lng" className="text-right">
-              <h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
-              <ul className="list-inline margin-bottom-none">
-                <li>
-                  <Button
-                    variant={Button.variants.link}
-                    size={Button.sizes.sm}
-                    lang={t('wet-boew.header.language-lang')}
-                    onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'fr' : 'en')}
-                  >
-                    <span>{t('wet-boew.header.language-toggle')}</span>
-                  </Button>
-                </li>
-              </ul>
-            </section>
-            <section id="wb-auth" className="text-right">
+          <div className="mt-4" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <section>
               <h2 className="wb-inv">{t('action.sign-out')}</h2>
-              <ul className="list-inline margin-bottom-none">
-                <li>
-                  <AuthButton />
-                </li>
-              </ul>
+              <AuthButton />
+            </section>
+            <section>
+              <h2 className="wb-inv">{t('wet-boew.header.language-selection')}</h2>
+              <Button
+                variant={Button.variants.link}
+                size={Button.sizes.sm}
+                lang={t('wet-boew.header.language-lang')}
+                onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'fr' : 'en')}>
+                <span>{t('wet-boew.header.language-toggle')}</span>
+              </Button>
             </section>
           </div>
           <div className="row">

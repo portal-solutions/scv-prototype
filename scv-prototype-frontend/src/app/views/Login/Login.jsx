@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
 import FormGroup from '../../components/FormGroup';
 import MainLayout from '../../layout/Main';
@@ -15,7 +15,8 @@ import { usePageMetadata } from '../../utils/page-metadata';
  * @author Greg Baker <gregory.j.baker@hrsdc-rhdcc.gc.ca>
  * @since 0.0.0
  */
-const Login = ({ location }) => {
+const Login = () => {
+  const location = useLocation();
   const { t } = useTranslation();
   const { auth, login } = useAuth();
 
@@ -68,8 +69,7 @@ const Login = ({ location }) => {
             label={t('login.input.username')}
             labelFor="email"
             className={badCredentialsError && 'input-error'}
-            required
-          >
+            required>
             <input
               id="email"
               name="email"
@@ -86,8 +86,7 @@ const Login = ({ location }) => {
             label={t('login.input.password')}
             labelFor="password"
             className={badCredentialsError && 'input-error'}
-            required
-          >
+            required>
             <input
               id="password"
               name="password"

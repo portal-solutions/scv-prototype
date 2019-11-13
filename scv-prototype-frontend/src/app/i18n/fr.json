@@ -124,6 +124,11 @@
         "title": "Description des actions de service",
         "content": "Cet écran vous permet de définir des recherches automatisées pour compiler les recherches d’emploi, le développement des compétences, les opportunités de formation et l’exploration de carrière. Une fois que vous nous avez indiqué où vous souhaitez que nous recherchions ces informations et à quelle fréquence vous souhaitez que nous répétions les recherches, nous fournirons la compilation des résultats sous chaque onglet de cet écran."
       }
+    },
+    "terms-and-conditions": {
+      "document-title": "Mon compte Service Canada - Créer une vue client unique",
+      "page-identifier": "SCV-0009-FR",
+      "page-title": "Mon compte Service Canada - Créer une vue client unique"
     }
   },
   "wet-boew": {

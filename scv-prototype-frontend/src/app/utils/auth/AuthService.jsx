@@ -27,7 +27,8 @@ const authenticate = async (username, password) => {
     authToken: data.accessToken,
     tokenExpired: false,
     uid: data.uid,
-    username
+    username,
+    agreedTermsAndConditions: false
   };
 };
 

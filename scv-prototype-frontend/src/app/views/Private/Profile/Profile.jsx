@@ -44,7 +44,7 @@ const Profile = () => {
   if (error) {
     // error occured because token is invalid, user needs to sign-in
     if (error.name === 'InvalidTokenError') {
-      return <Redirect to={{ pathname: '/sign-in', state: { tokenExpired: true } }} />;
+      return <Redirect to={{ pathname: '/msca', state: { tokenExpired: true } }} />;
     }
 
     // eslint-disable-next-line no-console

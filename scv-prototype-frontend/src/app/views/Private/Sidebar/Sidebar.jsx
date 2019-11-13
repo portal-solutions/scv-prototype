@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SidebarItem from './SidebarItem';
 
@@ -26,4 +25,4 @@ const Sidebar = () => {
   );
 };
 
-export default withRouter(Sidebar);
+export default Sidebar;

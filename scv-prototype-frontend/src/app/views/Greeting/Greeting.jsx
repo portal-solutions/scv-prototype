@@ -42,7 +42,7 @@ const Greeting = () => {
   return (
     <>
       {error && error.name === 'InvalidTokenError' && (
-        <Redirect to={{ pathname: '/sign-in', state: { tokenExpired: true } }} />
+        <Redirect to={{ pathname: '/msca', state: { tokenExpired: true } }} />
       )}
 
       {error && (error.name !== 'InvalidTokenError' || <Error />)}
