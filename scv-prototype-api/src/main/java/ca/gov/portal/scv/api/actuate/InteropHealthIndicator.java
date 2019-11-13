@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 import ca.gov.portal.scv.api.service.InteropService;
-import ca.gov.portal.scv.api.service.dto.PingResponse;
+import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -32,12 +32,14 @@ public class InteropHealthIndicator extends AbstractHealthIndicator {
 		try {
 			stopWatch.start();
 
-			final PingResponse pingResponse = interopService.checkAvailability();
-			builder.up().withDetail("response", pingResponse);
+			final OpenApiInfo info = interopService.isAvailable(); // will throw if service is unavailable
+
+			builder.up()
+				.withDetail("title", info.getTitle())
+				.withDetail("version", info.getVersion());
 		}
 		finally {
 			stopWatch.stop();
-
 			builder
 				.withDetail("baseUri", baseUri)
 				.withDetail("responseTime", stopWatch.getTotalTimeMillis() + "ms");

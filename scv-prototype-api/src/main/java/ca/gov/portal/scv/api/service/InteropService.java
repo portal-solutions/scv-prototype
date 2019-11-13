@@ -1,6 +1,6 @@
 package ca.gov.portal.scv.api.service;
 
-import ca.gov.portal.scv.api.service.dto.PingResponse;
+import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 
 /**
  * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
@@ -8,6 +8,6 @@ import ca.gov.portal.scv.api.service.dto.PingResponse;
  */
 public interface InteropService {
 
-	PingResponse checkAvailability();
+	OpenApiInfo isAvailable();
 
 }
