@@ -1,10 +1,28 @@
+logging.level:
+  org.apache.http.wire: debug
+
 # ===================================================================
 # Application specific properties...
 # ===================================================================
 
 application:
+  config:
+    service:
+      interop:
+        base-uri: https://location.okd.azure.sc-interop.ca/
+        proxy-host: proxy.prv
+        proxy-port: 80
   jwt-resolver:
     issuer: http://localhost:8080/
     secret: > # random 128 byte string
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
+
+# ===================================================================
+# Test specific properties...
+# ===================================================================
+
+tests:
+  interop-service:
+    fail-search-string: ${random.value}
+    success-search-string: 69 FERRYLAND
