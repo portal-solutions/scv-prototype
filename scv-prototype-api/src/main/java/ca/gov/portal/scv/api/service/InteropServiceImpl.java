@@ -1,5 +1,8 @@
 package ca.gov.portal.scv.api.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,8 +27,8 @@ public class InteropServiceImpl implements InteropService {
 	}
 
 	@Override
-	public Location getLocation(String addressStr) {
-		return restTemplate.getForObject("/fuzzySearch/{addressStr}", Location.class, addressStr);
+	public List<Location> getLocations(String searchString) {
+		return Arrays.asList(restTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString));
 	}
 
 }

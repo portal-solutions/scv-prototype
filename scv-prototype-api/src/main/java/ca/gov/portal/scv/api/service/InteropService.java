@@ -1,6 +1,9 @@
 package ca.gov.portal.scv.api.service;
 
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
+
+import java.util.List;
+
 import ca.gov.portal.scv.api.service.dto.Location;
 
 /**
@@ -11,5 +14,5 @@ public interface InteropService {
 
 	OpenApiInfo isAvailable();
 
-	Location getLocation(String addressStr);
+	List<Location> getLocations(String searchString);
 }

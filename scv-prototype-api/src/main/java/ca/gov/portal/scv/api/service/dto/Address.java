@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Builder;
 import lombok.Value;
@@ -15,6 +16,7 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
+@JsonDeserialize(builder = Address.AddressBuilder.class)
 public class Address implements Serializable {
 
 	@JsonProperty("LocationAddress")
