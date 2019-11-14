@@ -5,6 +5,7 @@ import org.springframework.web.client.RestTemplate;
 
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.OpenApiResponse;
+import ca.gov.portal.scv.api.service.dto.Location;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -20,6 +21,11 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public OpenApiInfo isAvailable() {
 		return restTemplate.getForObject("/openapi.json", OpenApiResponse.class).getInfo();
+	}
+
+	@Override
+	public Location getLocation(String addressStr) {
+		return restTemplate.getForObject("/fuzzySearch/{addressStr}", Location.class, addressStr);
 	}
 
 }
