@@ -1,9 +1,9 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Builder;
 import lombok.Value;
@@ -15,9 +15,9 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-public class Date implements Serializable {
+@JsonDeserialize(builder = ProgramBenefitRequest.ProgramBenefitRequestBuilder.class)
+public class ProgramBenefitRequest implements Serializable {
 
-	@JsonProperty("DateTime")
-	private LocalDate dateTime;
-
+	@JsonProperty("Program")
+	private Program program;
 }

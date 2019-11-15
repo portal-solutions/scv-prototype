@@ -15,16 +15,10 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = PersonLocationAssociation.PersonLocationAssociationBuilder.class)
-public class PersonLocationAssociation implements Serializable {
+@JsonDeserialize(builder = PersonResponse.PersonResponseBuilder.class)
+public class PersonResponse implements Serializable {
 
 	@JsonProperty("Person")
 	private Person person;
-
-	@JsonProperty("Location")
-	private Location location;
-
-	@JsonProperty("PersonLocationAssociationIdentification")
-	private Identification identification;
 
 }

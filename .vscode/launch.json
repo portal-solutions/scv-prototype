@@ -19,7 +19,7 @@
 			],
 			"cwd": "${workspaceFolder}/scv-prototype-frontend",
 			"noDebug": true
-		},
+		}
 	],
 	"compounds": [{
 		"name": "Launch API & Frontend",

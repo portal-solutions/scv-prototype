@@ -1,9 +1,9 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Builder;
 import lombok.Value;
@@ -15,15 +15,16 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
+@JsonDeserialize(builder = ProgramPersonLocationAssociation.ProgramPersonLocationAssociationBuilder.class)
 public class ProgramPersonLocationAssociation implements Serializable {
 
-	@JsonProperty("AssociationDateRange")
-	private AssociationDateRange associationDateRange;
-
 	@JsonProperty("Program")
-	private List<Program> programs;
+	private Program program;
 
 	@JsonProperty("PersonLocationAssociation")
 	private PersonLocationAssociation personLocationAssociation;
+
+	@JsonProperty("RequestStatus")
+	private RequestStatus requestStatus;
 
 }
