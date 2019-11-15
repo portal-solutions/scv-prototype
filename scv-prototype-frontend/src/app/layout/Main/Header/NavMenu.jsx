@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -11,13 +11,33 @@ import { Link } from 'react-router-dom';
  * @since 0.0.0
  */
 const NavMenu = () => {
+  const navRef = useRef();
   const { t } = useTranslation();
 
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const handleMouseDown = (e) => {
+      if (!navRef.current.contains(e.target)) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleMouseDown);
+    return () => document.removeEventListener('mousedown', handleMouseDown);
+  }, [setExpanded]);
+
   return (
-    <nav className="gcweb-v2 gcweb-menu" typeof="SiteNavigationElement">
+    <nav className="gcweb-v2 gcweb-menu" typeof="SiteNavigationElement" ref={navRef}>
       <div className="container">
         <h2 className="wb-inv">Menu</h2>
-        <button type="button" aria-haspopup="true" aria-expanded="false">
+        <button
+          type="button"
+          aria-haspopup="true"
+          aria-expanded={expanded}
+          onClick={() => {
+            setExpanded(!expanded);
+          }}>
           <span className="wb-inv">Main </span>Menu <span className="expicon glyphicon glyphicon-chevron-down" />
         </button>
         <ul role="menu" aria-orientation="vertical">
