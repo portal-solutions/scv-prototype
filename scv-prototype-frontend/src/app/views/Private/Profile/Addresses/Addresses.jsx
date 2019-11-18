@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import ModalBS from 'react-bootstrap-modal';
+import Modal from 'react-bootstrap-modal';
 import Address from './Address';
 import Button from '../../../../components/Button';
 
@@ -48,23 +48,23 @@ const Addresses = ({ addresses }) => {
         test mon copain
       </Modal> */}
 
-      <ModalBS show={addAddress} onHide={addAdressOnClose} aria-labelledby="ModalHeader">
-        <ModalBS.Header closeButton>
-          <ModalBS.Title id="ModalHeader">
+      <Modal show={addAddress} onHide={addAdressOnClose} aria-labelledby="ModalHeader">
+        <Modal.Header closeButton>
+          <Modal.Title id="ModalHeader">
             <i className="fas fa-plus mr-3" /> Add an address
-          </ModalBS.Title>
-        </ModalBS.Header>
-        <ModalBS.Body>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <p>Some Content here</p>
           <p>Some Content here</p>
           <p>Some Content here</p>
           <p>Some Content here</p>
-        </ModalBS.Body>
-        <ModalBS.Footer>
-          <ModalBS.Dismiss className="btn btn-default">Cancel</ModalBS.Dismiss>
+        </Modal.Body>
+        <Modal.Footer>
+          <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
           <Button onClick={addAdressOnSubmit}>Save</Button>
-        </ModalBS.Footer>
-      </ModalBS>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
