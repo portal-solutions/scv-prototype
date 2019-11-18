@@ -1,12 +1,15 @@
 {
   "action": {
     "add": "Ajouter",
+    "cancel": "Annuler",
+    "close": "Fermer",
     "edit": "Modifier",
     "remove": "Enlever",
     "delete": "Supprimer",
     "refresh": "Actualiser",
     "sign-in": "Se connecter",
-    "sign-out": "Se déconnecter"
+    "sign-out": "Se déconnecter",
+    "submit": "Soumettre"
   },
   "colon": "\u00a0:",
   "alert": {
@@ -37,6 +40,20 @@
     "more-information": "Pour plus d'informations, <0>cliquez ici</0>.",
     "page-identifier": "VCU-0001-FR",
     "page-title": "VCU :: Accueil"
+  },
+  "msca": {
+    "modal": {
+      "provide-person-identification": {
+        "title": "Fournir l'identification de la personne"
+      }
+    }
+  },
+  "person": {
+    "social-insurance-number": {
+      "full": "Numéro d'assurance sociale",
+      "abbrv": "NAS",
+      "placeholder": "123-456-789"
+    }
   },
   "private": {
     "sidebar": {

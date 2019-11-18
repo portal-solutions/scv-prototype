@@ -1,12 +1,15 @@
 {
   "action": {
     "add": "Add",
+    "cancel": "Cancel",
+    "close": "Close",
     "edit": "Edit",
     "remove": "Remove",
     "delete": "Delete",
     "refresh": "Refresh",
     "sign-in": "Sign in",
-    "sign-out": "Sign out"
+    "sign-out": "Sign out",
+    "submit": "Submit"
   },
   "colon": ":",
   "alert": {
@@ -37,6 +40,20 @@
     "more-information": "For more information, <0>click here</0>.",
     "page-identifier": "SCV-0001-EN",
     "page-title": "SCV :: Home"
+  },
+  "msca": {
+    "modal": {
+      "provide-person-identification": {
+        "title": "Provide the identification of the person"
+      }
+    }
+  },
+  "person": {
+    "social-insurance-number": {
+      "full": "Social insurance number",
+      "abbrv": "SIN",
+      "placeholder": "123-456-789"
+    }
   },
   "private": {
     "sidebar": {
