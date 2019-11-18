@@ -2,20 +2,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import ModalBS from 'react-bootstrap-modal';
 import Address from './Address';
 import Button from '../../../../components/Button';
-import Modal from '../../../../components/ui/Modal/Modal';
+
+import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 
 const Addresses = ({ addresses }) => {
   const { t } = useTranslation();
 
   const [addAddress, setAddAddress] = useState(false);
 
-  const addAdress_OnClose = () => {
+  const addAdressOnClose = () => {
     setAddAddress(false);
   };
 
-  const addAdress_OnSubmit = () => {
+  const addAdressOnSubmit = () => {
     setAddAddress(false);
   };
 
@@ -42,9 +44,27 @@ const Addresses = ({ addresses }) => {
           )}
         </div>
       </div>
-      <Modal title="Add an address" show={addAddress} onClose={addAdress_OnClose} onSubmit={addAdress_OnSubmit}>
+      {/* <Modal title="Add an address" show={addAddress} onClose={addAdress_OnClose} onSubmit={addAdress_OnSubmit}>
         test mon copain
-      </Modal>
+      </Modal> */}
+
+      <ModalBS show={addAddress} onHide={addAdressOnClose} aria-labelledby="ModalHeader">
+        <ModalBS.Header closeButton>
+          <ModalBS.Title id="ModalHeader">
+            <i className="fas fa-plus mr-3" /> Add an address
+          </ModalBS.Title>
+        </ModalBS.Header>
+        <ModalBS.Body>
+          <p>Some Content here</p>
+          <p>Some Content here</p>
+          <p>Some Content here</p>
+          <p>Some Content here</p>
+        </ModalBS.Body>
+        <ModalBS.Footer>
+          <ModalBS.Dismiss className="btn btn-default">Cancel</ModalBS.Dismiss>
+          <Button onClick={addAdressOnSubmit}>Save</Button>
+        </ModalBS.Footer>
+      </ModalBS>
     </>
   );
 };
