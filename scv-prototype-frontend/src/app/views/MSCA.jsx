@@ -75,7 +75,9 @@ const MSCA = () => {
         </Modal.Body>
         <Modal.Footer>
           <Modal.Dismiss className="btn btn-default">{t('action.cancel')}</Modal.Dismiss>
-          <Button onClick={handleInputSIN}>{t('action.submit')}</Button>
+          <Button onClick={handleInputSIN} disabled={sin.length < 9}>
+            {t('action.submit')}
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
