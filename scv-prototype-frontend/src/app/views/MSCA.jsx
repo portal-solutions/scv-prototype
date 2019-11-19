@@ -16,7 +16,7 @@ const MSCA = () => {
   const { auth, login } = useAuth();
 
   const [inputSIN, setInputSIN] = useState(false);
-  const [sin, setSIN] = useState('');
+  const [sin, setSIN] = useState(localStorage.getItem('msca-sin') || '');
 
   const handleLogin = () => {
     setInputSIN(true);
@@ -46,6 +46,9 @@ const MSCA = () => {
       if (!auth.authenticated || auth.tokenExpired) {
         await login('user@example.com', 'password');
       }
+
+      // save SIN in localstorage
+      localStorage.setItem('msca-sin', sin);
 
       // redirect to scv
       const { from } = location.state || { from: { pathname: '/' } };
