@@ -30,7 +30,17 @@ const MSCA = () => {
     setInputSIN(false);
   };
 
-  const handleInputSIN = () => {
+  /*
+    Validate SIN with following formats:
+    999999999
+    999-999-999
+    999 999 999
+  */
+  const isValidSIN = (val) => {
+    return /^\d{9}$/.test(val) || /^\d{3}-\d{3}-\d{3}$/.test(val) || /^\d{3} \d{3} \d{3}$/.test(val);
+  };
+
+  const handleSubmitSIN = () => {
     // call login
     (async () => {
       if (!auth.authenticated || auth.tokenExpired) {
@@ -75,7 +85,7 @@ const MSCA = () => {
         </Modal.Body>
         <Modal.Footer>
           <Modal.Dismiss className="btn btn-default">{t('action.cancel')}</Modal.Dismiss>
-          <Button onClick={handleInputSIN} disabled={sin.length < 9}>
+          <Button onClick={handleSubmitSIN} disabled={!isValidSIN(sin)}>
             {t('action.submit')}
           </Button>
         </Modal.Footer>
