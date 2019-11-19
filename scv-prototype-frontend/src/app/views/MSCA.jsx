@@ -84,7 +84,7 @@ const MSCA = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Modal.Dismiss className="btn btn-default">{t('action.cancel')}</Modal.Dismiss>
+          <Modal.Dismiss className="btn btn-link">{t('action.cancel')}</Modal.Dismiss>
           <Button onClick={handleSubmitSIN} disabled={!isValidSIN(sin)}>
             {t('action.submit')}
           </Button>
