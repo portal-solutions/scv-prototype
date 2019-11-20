@@ -1,8 +1,10 @@
 package ca.gov.portal.scv.api.service;
 
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
+import ca.gov.portal.scv.api.service.dto.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 import ca.gov.portal.scv.api.service.dto.Location;
 
@@ -15,4 +17,6 @@ public interface InteropService {
 	OpenApiInfo isAvailable();
 
 	List<Location> getLocations(String searchString);
+	
+	Person getPersonBySin(String sin);
 }
