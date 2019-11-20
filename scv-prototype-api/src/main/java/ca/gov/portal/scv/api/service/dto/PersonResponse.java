@@ -1,10 +1,7 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -18,11 +15,10 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = Date.DateBuilder.class)
-public class Date implements Serializable {
+@JsonDeserialize(builder = PersonResponse.PersonResponseBuilder.class)
+public class PersonResponse implements Serializable {
 
-	@JsonProperty("Date")
-	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
-	private LocalDate date;
+	@JsonProperty("Person")
+	private Person person;
 
 }

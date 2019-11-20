@@ -40,15 +40,15 @@ public class InteropServiceImplIT {
 	public void testGetLocation_hasResult() {
 		final String searchString = environment.getProperty("tests.interop-service.success-search-string");
 		List<Location> locartions = interopService.getLocations(searchString);
-		
+
 		assertThat(interopService.getLocations(searchString)).isNotEmpty();
 	}
-	
+
 	@Test
 	public void testGetPersonBySin_hasResult() {
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
 		Person persons = interopService.getPersonBySin(sin);
-		
+		System.out.println(persons);
 		int i = 0;
 	}
 
