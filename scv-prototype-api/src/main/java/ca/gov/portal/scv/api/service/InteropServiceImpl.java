@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.OpenApiResponse;
 import ca.gov.portal.scv.api.service.dto.Person;
+import ca.gov.portal.scv.api.service.dto.PersonResponse;
 import ca.gov.portal.scv.api.service.dto.Location;
 import lombok.RequiredArgsConstructor;
 
@@ -32,10 +33,10 @@ public class InteropServiceImpl implements InteropService {
 	public List<Location> getLocations(String searchString) {
 		return Arrays.asList(restTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString));
 	}
-	
+
 	@Override
 	public Person getPersonBySin(String sin) {
-		return restTemplate.getForObject("https://person.okd.azure.sc-interop.ca/Person?SIN={sin}", Person.class, sin);
+		return restTemplate.getForObject("https://person.okd.azure.sc-interop.ca/Person?SIN={sin}", PersonResponse.class, sin).getPerson();
 	}
 
 }
