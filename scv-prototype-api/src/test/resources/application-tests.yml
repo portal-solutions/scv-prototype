@@ -26,5 +26,5 @@ tests:
   interop-service:
     fail-search-string: ${random.value}
     success-search-string: 69 FERRYLAND
-    
-    valid-sin: 800019432
+    fail-sin: 800019999
+    valid-sin: 800019366

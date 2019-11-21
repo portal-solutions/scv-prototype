@@ -20,11 +20,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping({ "/api/person" })
 @RequiredArgsConstructor
 public class PersonController {
-	
+
 	private final InteropService interopService;
-	
+
 	@GetMapping(path = { "/Person?SIN={sin}" }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<?> handleGetPersonBySin(@PathVariable String sin) throws Exception {
-		return ResponseEntity.ok(interopService.getPersonBySin(sin));
+		return ResponseEntity.ok(interopService.getPerson(sin));
 	}
 }
