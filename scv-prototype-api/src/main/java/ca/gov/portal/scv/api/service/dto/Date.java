@@ -22,7 +22,16 @@ import lombok.Value;
 public class Date implements Serializable {
 
 	@JsonProperty("Date")
-	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
 	private LocalDate date;
+
+	// NOTE: lombok will enhance this builder class as necessary
+	//       it exists _only_ to propagate the JsonFormat annotation down to the date field
+	public static class DateBuilder {
+
+		@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
+		private LocalDate date;
+
+	}
 
 }
