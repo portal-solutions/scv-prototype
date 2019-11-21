@@ -19,7 +19,7 @@ import lombok.Value;
 public class Person implements Serializable {
 
 	@JsonProperty("PersonBirthDate")
-	private Date birthDate;
+	private DateTime birthDate;
 
 	@JsonProperty("PersonName")
 	private PersonName name;
@@ -27,7 +27,7 @@ public class Person implements Serializable {
 	@JsonProperty("PersonOtherIdentification")
 	private Identification otherIdentification;
 
-//	@JsonProperty("PersonSINIdentification")
-//	private Identification sinIdentification;
+	// @JsonProperty("PersonSINIdentification")
+	// private Identification sinIdentification;
 
 }

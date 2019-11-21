@@ -15,16 +15,9 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = PersonLocationAssociation.PersonLocationAssociationBuilder.class)
-public class PersonLocationAssociation implements Serializable {
+@JsonDeserialize(builder = ProgramBenefitRequest.ProgramBenefitRequestBuilder.class)
+public class ProgramBenefitRequest implements Serializable {
 
-	@JsonProperty("Person")
-	private Person person;
-
-	@JsonProperty("Location")
-	private Location location;
-
-	@JsonProperty("PersonLocationAssociationIdentification")
-	private Identification identification;
-
+	@JsonProperty("Program")
+	private Program program;
 }

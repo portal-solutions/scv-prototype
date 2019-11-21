@@ -26,7 +26,6 @@ import ca.gov.portal.scv.api.endpoint.auth.AuthRequest;
 import ca.gov.portal.scv.api.endpoint.auth.AuthResponse;
 import ca.gov.portal.scv.api.security.ApplicationUser;
 import ca.gov.portal.scv.api.service.InteropService;
-import ca.gov.portal.scv.api.service.dto.Date;
 import ca.gov.portal.scv.api.service.dto.Person;
 import ca.gov.portal.scv.api.service.dto.PersonName;
 
@@ -34,7 +33,7 @@ public class PersonControllerTest {
 
 	@Mock
 	private InteropService interopService;
-	
+
 	private PersonController personController;
 
 	@Before
@@ -42,16 +41,16 @@ public class PersonControllerTest {
 		MockitoAnnotations.initMocks(this);
 		this.personController = new PersonController(interopService);
 	}
-	
+
 	@Test
 	public void testHandleGetPersonBySin() throws Exception {
 		final PersonName personName = PersonName.builder().fullName("Test Test").build();
 		final Person person = Person.builder().name(personName).build();
-		
-		when(this.interopService.getPersonBySin("1234567")).thenReturn(person);
+
+		when(this.interopService.getPerson("1234567")).thenReturn(person);
 
 		final ResponseEntity<?> responseEntity = this.personController.handleGetPersonBySin("1234567");
-		
+
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat((Person) responseEntity.getBody()).extracting(Person::getName).isEqualTo(personName);
 	}
