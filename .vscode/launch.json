@@ -20,6 +20,16 @@
 			"cwd": "${workspaceFolder}/scv-prototype-frontend",
 			"noDebug": true
 		},
+		{
+			"type": "java",
+			"name": "Spring Boot-Application<scv-prototype-api>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"console": "internalConsole",
+			"mainClass": "ca.gov.portal.scv.api.Application",
+			"projectName": "scv-prototype-api",
+			"args": ""
+		}
 	],
 	"compounds": [{
 		"name": "Launch API & Frontend",
