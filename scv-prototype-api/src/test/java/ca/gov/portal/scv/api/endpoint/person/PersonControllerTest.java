@@ -1,58 +1,68 @@
 package ca.gov.portal.scv.api.endpoint.person;
 
-import static java.util.Collections.singletonList;
-import static java.util.Collections.singletonMap;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
-import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.gov.portal.scv.api.endpoint.auth.AuthController;
-import ca.gov.portal.scv.api.endpoint.auth.AuthRequest;
-import ca.gov.portal.scv.api.endpoint.auth.AuthResponse;
-import ca.gov.portal.scv.api.security.ApplicationUser;
 import ca.gov.portal.scv.api.service.InteropService;
-import ca.gov.portal.scv.api.service.dto.Person;
-import ca.gov.portal.scv.api.service.dto.PersonName;
+import ca.gov.portal.scv.api.service.InteropServiceImpl;
 
+@SpringBootTest
+@ActiveProfiles({ "tests" })
+@RunWith(SpringRunner.class)
 public class PersonControllerTest {
 
 	@Mock
 	private InteropService interopService;
+
+	@Autowired
+	Environment environment;
+
+	@Autowired
+	InteropServiceImpl interopServiceImpl;
 
 	private PersonController personController;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		this.personController = new PersonController(interopService);
+		this.personController = new PersonController(interopServiceImpl);
 	}
 
 	@Test
-	public void testHandleGetPersonBySin() throws Exception {
-		final PersonName personName = PersonName.builder().fullName("Test Test").build();
-		final Person person = Person.builder().name(personName).build();
+	public void testHandleGetPerson_noResult() throws Exception {
+		// arrange
+		final String sin = environment.getProperty("tests.interop-service.fail-sin");
 
-		when(this.interopService.getPerson("1234567")).thenReturn(person);
+		// act
+		ResponseEntity<?> responseEntity = this.personController.handleGetPerson(sin);
 
-		final ResponseEntity<?> responseEntity = this.personController.handleGetPersonBySin("1234567");
-
-		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat((Person) responseEntity.getBody()).extracting(Person::getName).isEqualTo(personName);
+		// assert
+		assertThat(responseEntity).extracting(ResponseEntity::getStatusCode).isEqualTo(HttpStatus.NOT_FOUND);
+		assertThat(responseEntity).extracting(ResponseEntity::getBody).isNull();
 	}
 
+	@Test
+	public void testHandleGetPerson_hasResult() throws Exception {
+		// arrange
+		final String sin = environment.getProperty("tests.interop-service.valid-sin");
+
+		// act
+		ResponseEntity<?> responseEntity = this.personController.handleGetPerson(sin);
+
+		// assert
+		assertThat(responseEntity).extracting(ResponseEntity::getStatusCode).isEqualTo(HttpStatus.OK);
+		assertThat(responseEntity).extracting(ResponseEntity::getBody).isNotNull();
+	}
 }

@@ -83,18 +83,6 @@ public class InteropServiceImplIT {
 	}
 
 	@Test
-	public void testGetPersonPrograms_noResult() {
-		// arrange
-		UUID id = UUID.randomUUID();
-
-		// act
-		List<Program> programs = interopService.getPersonPrograms(id);
-
-		// assert
-		assertThat(programs).isNotEmpty();
-	}
-
-	@Test
 	public void testGetPersonPrograms_hasResult() {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
@@ -106,19 +94,6 @@ public class InteropServiceImplIT {
 
 		// assert
 		assertThat(programs).isNotEmpty();
-	}
-
-	@Test
-	public void testGetPersonLocations_noResult() {
-		// arrange
-		final String sin = environment.getProperty("tests.interop-service.valid-sin");
-		UUID id = UUID.randomUUID();
-
-		// act
-		List<Location> locations = interopService.getPersonLocations(id, sin);
-
-		// assert
-		assertThat(locations).isNotEmpty();
 	}
 
 	@Test
