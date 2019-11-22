@@ -27,4 +27,4 @@ tests:
     fail-search-string: ${random.value}
     success-search-string: 9 ABERDEEN
     fail-sin: 800019999
-    valid-sin: 800019366
+    valid-sin: 800019424
