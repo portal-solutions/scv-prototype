@@ -1,6 +1,5 @@
 package ca.gov.portal.scv.api.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -40,7 +39,20 @@ public class InteropServiceImpl implements InteropService {
 
 	@Override
 	public List<Location> getLocations(String searchString) {
-		return Arrays.asList(restTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString));
+		try {
+			return Arrays
+					.asList(restTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString));
+		} catch (HttpStatusCodeException e) {
+
+			HttpStatus httpStatus = e.getStatusCode();
+
+			if (httpStatus == HttpStatus.BAD_REQUEST || httpStatus == HttpStatus.NOT_FOUND) {
+				return null;
+			}
+
+			throw e;
+		}
+
 	}
 
 	@Override
@@ -52,14 +64,14 @@ public class InteropServiceImpl implements InteropService {
 					.getPerson();
 		} catch (HttpStatusCodeException e) {
 
-			HttpStatus statusCode = e.getStatusCode();
+			HttpStatus httpStatus = e.getStatusCode();
 
-			if (statusCode != HttpStatus.BAD_REQUEST && statusCode != HttpStatus.NOT_FOUND) {
-				throw e;
+			if (httpStatus == HttpStatus.BAD_REQUEST || httpStatus == HttpStatus.NOT_FOUND) {
+				return null;
 			}
-		}
 
-		return null;
+			throw e;
+		}
 	}
 
 	@Override
@@ -77,14 +89,14 @@ public class InteropServiceImpl implements InteropService {
 
 		} catch (HttpStatusCodeException e) {
 
-			HttpStatus statusCode = e.getStatusCode();
+			HttpStatus httpStatus = e.getStatusCode();
 
-			if (statusCode != HttpStatus.BAD_REQUEST && statusCode != HttpStatus.NOT_FOUND) {
-				throw e;
+			if (httpStatus == HttpStatus.BAD_REQUEST || httpStatus == HttpStatus.NOT_FOUND) {
+				return null;
 			}
-		}
 
-		return new ArrayList<Program>();
+			throw e;
+		}
 	}
 
 	@Override
@@ -104,14 +116,14 @@ public class InteropServiceImpl implements InteropService {
 
 		} catch (HttpStatusCodeException e) {
 
-			HttpStatus statusCode = e.getStatusCode();
+			HttpStatus httpStatus = e.getStatusCode();
 
-			if (statusCode != HttpStatus.BAD_REQUEST && statusCode != HttpStatus.NOT_FOUND) {
-				throw e;
+			if (httpStatus == HttpStatus.BAD_REQUEST || httpStatus == HttpStatus.NOT_FOUND) {
+				return null;
 			}
-		}
 
-		return new ArrayList<Location>();
+			throw e;
+		}
 	}
 
 }
