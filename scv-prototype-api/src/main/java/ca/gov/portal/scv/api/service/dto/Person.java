@@ -3,6 +3,7 @@ package ca.gov.portal.scv.api.service.dto;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Builder;
 import lombok.Value;
@@ -14,12 +15,19 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
+@JsonDeserialize(builder = Person.PersonBuilder.class)
 public class Person implements Serializable {
+
+	@JsonProperty("PersonBirthDate")
+	private DateTime birthDate;
+
+	@JsonProperty("PersonName")
+	private PersonName name;
 
 	@JsonProperty("PersonOtherIdentification")
 	private Identification otherIdentification;
 
-	@JsonProperty("PersonSINIdentification")
-	private Identification sinIdentification;
+	// @JsonProperty("PersonSINIdentification")
+	// private Identification sinIdentification;
 
 }

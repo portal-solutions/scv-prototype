@@ -30,9 +30,14 @@ application:
   config:
     service:
       interop:
-        base-uri: # must be set externally
-        proxy-host: # (optional) must be set externally
-        proxy-port: # (optional) must be set externally
+        location:
+          base-uri: # must be set externally
+          proxy-host: # (optional) must be set externally
+          proxy-port: # (optional) must be set externally
+        person:
+          base-uri: # must be set externally
+          proxy-host: # (optional) must be set externally
+          proxy-port: # (optional) must be set externally
     webmvc:
       cors-allowed-origins: # must be set externally
   jwt-resolver:
