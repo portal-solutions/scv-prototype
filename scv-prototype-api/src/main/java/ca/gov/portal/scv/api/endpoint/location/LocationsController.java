@@ -1,7 +1,6 @@
 package ca.gov.portal.scv.api.endpoint.location;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,17 +25,9 @@ public class LocationsController {
 
 	private final InteropServiceImpl interopService;
 
-	@GetMapping(path = { "/fuzzySearch/{searchString}" }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	@GetMapping({ "/fuzzySearch/{searchString}" })
 	public ResponseEntity<?> handleGetLocations(@PathVariable String searchString) throws Exception {
-		try {
-
-			return ResponseEntity.ok(interopService.getLocations(searchString));
-
-		} catch (HttpStatusCodeException e) {
-
-			HttpStatus httpStatus = e.getStatusCode();
-			return ResponseEntity.status(httpStatus).build();
-		}
-
+		return ResponseEntity.ok(interopService.getLocations(searchString));
 	}
+
 }
