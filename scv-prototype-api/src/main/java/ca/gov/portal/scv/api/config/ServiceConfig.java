@@ -27,30 +27,53 @@ import lombok.Data;
 @ConfigurationProperties("application.config.service")
 public class ServiceConfig {
 
-	@Autowired InteropProperties interopConfig;
+	@Autowired LocationApiProperties locationApiConfig;
+
+	@Autowired PersonApiProperties personApiConfig;
 
 	@Autowired RestTemplateBuilder restTemplateBuilder;
 
-	@Bean RestTemplate restTemplate() {
+	@Bean RestTemplate locationApiRestTemplate() {
 		final HttpClientBuilder httpClientBuilder = HttpClients.custom();
 
-		if (StringUtils.hasText(interopConfig.getProxyHost())) {
-			httpClientBuilder.setProxy(new HttpHost(interopConfig.getProxyHost(), interopConfig.getProxyPort()));
+		if (StringUtils.hasText(locationApiConfig.getProxyHost())) {
+			httpClientBuilder.setProxy(new HttpHost(locationApiConfig.getProxyHost(), locationApiConfig.getProxyPort()));
 		}
 
 		return restTemplateBuilder
 			.requestFactory(() -> new HttpComponentsClientHttpRequestFactory(httpClientBuilder.build()))
-			.rootUri(interopConfig.getBaseUri())
+			.rootUri(locationApiConfig.getBaseUri())
+			.build();
+	}
+
+	@Bean RestTemplate personApiRestTemplate() {
+		final HttpClientBuilder httpClientBuilder = HttpClients.custom();
+
+		if (StringUtils.hasText(personApiConfig.getProxyHost())) {
+			httpClientBuilder.setProxy(new HttpHost(personApiConfig.getProxyHost(), personApiConfig.getProxyPort()));
+		}
+
+		return restTemplateBuilder
+			.requestFactory(() -> new HttpComponentsClientHttpRequestFactory(httpClientBuilder.build()))
+			.rootUri(personApiConfig.getBaseUri())
 			.build();
 	}
 
 }
 
-@Data
 @Configuration
 @SuppressWarnings({ "serial" })
-@ConfigurationProperties("application.config.service.interop")
-class InteropProperties implements Serializable {
+@ConfigurationProperties("application.config.service.interop.location")
+class LocationApiProperties extends InteropProperties {}
+
+@Configuration
+@SuppressWarnings({ "serial" })
+@ConfigurationProperties("application.config.service.interop.person")
+class PersonApiProperties extends InteropProperties {}
+
+@Data
+@SuppressWarnings({ "serial" })
+abstract class InteropProperties implements Serializable {
 
 	private String baseUri;
 

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -30,18 +31,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InteropServiceImpl implements InteropService {
 
-	private final RestTemplate restTemplate;
+	@Qualifier("locationApiRestTemplate")
+	private final RestTemplate locationApiRestTemplate;
+
+	@Qualifier("personApiRestTemplate")
+	private final RestTemplate personApiRestTemplate;
 
 	@Override
 	public OpenApiInfo isAvailable() {
-		return restTemplate.getForObject("/openapi.json", OpenApiResponse.class).getInfo();
+		return locationApiRestTemplate.getForObject("/openapi.json", OpenApiResponse.class).getInfo();
 	}
 
 	@Override
 	public List<Location> getLocations(String searchString) {
 		try {
 			return Arrays
-					.asList(restTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString));
+					.asList(locationApiRestTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString));
 		} catch (HttpStatusCodeException e) {
 
 			HttpStatus httpStatus = e.getStatusCode();
@@ -59,9 +64,7 @@ public class InteropServiceImpl implements InteropService {
 	public Person getPerson(String sin) {
 
 		try {
-			return restTemplate
-					.getForObject("https://person.okd.azure.sc-interop.ca/Person?SIN={sin}", PersonResponse.class, sin)
-					.getPerson();
+			return personApiRestTemplate.getForObject("/Person?SIN={sin}", PersonResponse.class, sin).getPerson();
 		} catch (HttpStatusCodeException e) {
 
 			HttpStatus httpStatus = e.getStatusCode();
@@ -78,10 +81,9 @@ public class InteropServiceImpl implements InteropService {
 	public List<Program> getPersonPrograms(UUID id) {
 
 		try {
-			List<ProgramBenefitRequest> programBenefitRequests = restTemplate
-					.getForObject("https://person.okd.azure.sc-interop.ca/Person/{id}/Program",
-							PersonProgramsResponse.class, id)
-					.getProgramBenefitRequests();
+			List<ProgramBenefitRequest> programBenefitRequests = personApiRestTemplate
+				.getForObject("/Person/{id}/Program", PersonProgramsResponse.class, id)
+				.getProgramBenefitRequests();
 
 			// select program from the list
 			return programBenefitRequests.stream().map((programBenefitRequest) -> programBenefitRequest.getProgram())
@@ -103,10 +105,9 @@ public class InteropServiceImpl implements InteropService {
 	public List<Location> getPersonLocations(UUID id, String sin) {
 
 		try {
-			List<ProgramPersonLocationAssociation> programPersonLocationAssociations = restTemplate
-					.getForObject("https://person.okd.azure.sc-interop.ca/Person/{id}/Location?SIN={sin}",
-							PersonLocationsResponse.class, id, sin)
-					.getProgramPersonLocationAssociations();
+			List<ProgramPersonLocationAssociation> programPersonLocationAssociations = personApiRestTemplate
+				.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin)
+				.getProgramPersonLocationAssociations();
 
 			// select program from the list
 			return programPersonLocationAssociations.stream()

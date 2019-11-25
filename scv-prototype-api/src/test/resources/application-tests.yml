@@ -9,9 +9,14 @@ application:
   config:
     service:
       interop:
-        base-uri: https://location.okd.azure.sc-interop.ca/
-        proxy-host: proxy.prv
-        proxy-port: 80
+        location:
+          base-uri: https://location.okd.azure.sc-interop.ca/
+          proxy-host: proxy.prv
+          proxy-port: 80
+        person:
+          base-uri: https://person.okd.azure.sc-interop.ca/
+          proxy-host: proxy.prv
+          proxy-port: 80
   jwt-resolver:
     issuer: http://localhost:8080/
     secret: > # random 128 byte string
