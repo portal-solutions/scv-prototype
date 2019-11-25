@@ -3,7 +3,6 @@ package ca.gov.portal.scv.api.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -87,10 +86,9 @@ public class InteropServiceImplIT {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
 		Person person = interopService.getPerson(sin);
-		UUID id = UUID.fromString(person.getOtherIdentification().getId());
 
 		// act
-		List<Program> programs = interopService.getPersonPrograms(id);
+		List<Program> programs = interopService.getPersonPrograms(person.getOtherIdentification().getId());
 
 		// assert
 		assertThat(programs).isNotEmpty();
@@ -101,10 +99,9 @@ public class InteropServiceImplIT {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
 		Person person = interopService.getPerson(sin);
-		UUID id = UUID.fromString(person.getOtherIdentification().getId());
 
 		// act
-		List<Location> Locations = interopService.getPersonLocations(id, sin);
+		List<Location> Locations = interopService.getPersonLocations(person.getOtherIdentification().getId(), sin);
 
 		// assert
 		assertThat(Locations).isNotEmpty();

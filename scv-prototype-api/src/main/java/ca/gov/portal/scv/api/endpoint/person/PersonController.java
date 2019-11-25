@@ -1,7 +1,6 @@
 package ca.gov.portal.scv.api.endpoint.person;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +15,6 @@ import ca.gov.portal.scv.api.service.InteropServiceImpl;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.Person;
 import ca.gov.portal.scv.api.service.dto.Program;
-
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -58,11 +56,8 @@ public class PersonController {
 				return ResponseEntity.notFound().build();
 			}
 
-			// person exists
-			UUID id = UUID.fromString(person.getOtherIdentification().getId());
-
 			// get person's programs
-			List<Program> programs = interopService.getPersonPrograms(id);
+			List<Program> programs = interopService.getPersonPrograms(person.getOtherIdentification().getId());
 
 			return programs != null ? ResponseEntity.ok(programs) : ResponseEntity.notFound().build();
 
@@ -83,11 +78,8 @@ public class PersonController {
 				return ResponseEntity.notFound().build();
 			}
 
-			// person exists
-			UUID id = UUID.fromString(person.getOtherIdentification().getId());
-
 			// get person's locations
-			List<Location> locations = interopService.getPersonLocations(id, sin);
+			List<Location> locations = interopService.getPersonLocations(person.getOtherIdentification().getId(), sin);
 
 			return locations != null ? ResponseEntity.ok(locations) : ResponseEntity.notFound().build();
 
