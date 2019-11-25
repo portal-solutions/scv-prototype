@@ -13,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.gov.portal.scv.api.service.dto.Location;
-import ca.gov.portal.scv.api.service.dto.Person;
 import ca.gov.portal.scv.api.service.dto.Program;
 
 /**
@@ -39,7 +38,7 @@ public class InteropServiceImplIT {
 		final String searchString = environment.getProperty("tests.interop-service.fail-search-string");
 
 		// act
-		List<Location> locations = interopService.getLocations(searchString);
+		final List<Location> locations = interopService.getLocations(searchString);
 
 		// assert
 		assertThat(locations).isEmpty();
@@ -51,7 +50,7 @@ public class InteropServiceImplIT {
 		final String searchString = environment.getProperty("tests.interop-service.success-search-string");
 
 		// act
-		List<Location> locations = interopService.getLocations(searchString);
+		final List<Location> locations = interopService.getLocations(searchString);
 
 		// act
 		assertThat(locations).isNotEmpty();
@@ -62,11 +61,8 @@ public class InteropServiceImplIT {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.fail-sin");
 
-		// act
-		Person person = interopService.getPerson(sin);
-
 		// assert
-		assertThat(person).isNull();
+		assertThat(interopService.getPerson(sin)).isEmpty();
 	}
 
 	@Test
@@ -74,21 +70,17 @@ public class InteropServiceImplIT {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
 
-		// act
-		Person person = interopService.getPerson(sin);
-
 		// assert
-		assertThat(person).isNotNull();
+		assertThat(interopService.getPerson(sin)).isNotEmpty();
 	}
 
 	@Test
 	public void testGetPersonPrograms_hasResult() {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
-		Person person = interopService.getPerson(sin);
 
 		// act
-		List<Program> programs = interopService.getPersonPrograms(person.getOtherIdentification().getId());
+		final List<Program> programs = interopService.getPersonPrograms(interopService.getPerson(sin).get().getOtherIdentification().getId());
 
 		// assert
 		assertThat(programs).isNotEmpty();
@@ -98,12 +90,12 @@ public class InteropServiceImplIT {
 	public void testGetPersonLocations_hasResult() {
 		// arrange
 		final String sin = environment.getProperty("tests.interop-service.valid-sin");
-		Person person = interopService.getPerson(sin);
 
 		// act
-		List<Location> Locations = interopService.getPersonLocations(person.getOtherIdentification().getId(), sin);
+		final List<Location> Locations = interopService.getPersonLocations(interopService.getPerson(sin).get().getOtherIdentification().getId(), sin);
 
 		// assert
 		assertThat(Locations).isNotEmpty();
 	}
+
 }
