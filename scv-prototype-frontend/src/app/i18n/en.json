@@ -223,7 +223,9 @@
       "navbar": {
         "home": "Home",
         "profile": "Profile",
-        "service-preferences": "Service preferences"
+        "service-preferences": "Service preferences",
+        "consent": "Consent",
+        "service-actions": "Service actions"
       },
       "sign-in": "Sign in"
     },

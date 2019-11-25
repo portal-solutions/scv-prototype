@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Redirect, Link, useHistory, useLocation } from 'react-router-dom';
+import { Redirect, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../utils/auth';
 import { usePageMetadata } from '../../../utils/page-metadata';
 import Button from '../../../components/Button';
@@ -14,7 +14,6 @@ import Button from '../../../components/Button';
  * @since 0.0.0
  */
 const TermsAndConditions = () => {
-  const history = useHistory();
   const location = useLocation();
   const { t } = useTranslation();
   const { auth, setTermsAndConditionsAgreement } = useAuth();
