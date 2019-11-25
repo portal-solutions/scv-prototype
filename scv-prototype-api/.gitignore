@@ -1,6 +1,9 @@
 application-local.properties
 application-local.yml
 
+application-tests-local.properties
+application-tests-local.yml
+
 # Created by https://www.gitignore.io/api/maven
 # Edit at https://www.gitignore.io/?templates=maven
 
