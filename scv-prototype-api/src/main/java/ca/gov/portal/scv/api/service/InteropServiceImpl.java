@@ -1,11 +1,12 @@
 package ca.gov.portal.scv.api.service;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
 
 import ca.gov.portal.scv.api.service.dto.Location;
+import ca.gov.portal.scv.api.service.dto.LocationResponse;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.OpenApiResponse;
 import ca.gov.portal.scv.api.service.dto.Person;
@@ -50,8 +52,9 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public List<Location> getLocations(String searchString) {
 		try {
-			final Location[] results = locationApiRestTemplate.getForObject("/fuzzySearch/{searchString}", Location[].class, searchString);
-			return Arrays.asList(results);
+			return Stream.of(locationApiRestTemplate.getForObject("/fuzzySearch/{searchString}", LocationResponse[].class, searchString))
+				.map(LocationResponse::getLocation)
+				.collect(toImmutableList());
 		}
 		catch (final BadRequest | NotFound exception) {
 			log.debug("Caught BadRequest or NotFound exception while calling fuzzySearch API", exception);
@@ -73,10 +76,7 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public List<Program> getPersonPrograms(String id) {
 		try {
-			final List<ProgramBenefitRequest> programBenefitRequests = personApiRestTemplate
-				.getForObject("/Person/{id}/Program", PersonProgramsResponse.class, id)
-				.getProgramBenefitRequests();
-			return programBenefitRequests.stream()
+			return personApiRestTemplate.getForObject("/Person/{id}/Program", PersonProgramsResponse.class, id).getProgramBenefitRequests().stream()
 				.map(ProgramBenefitRequest::getProgram)
 				.collect(toList());
 		}
@@ -89,12 +89,7 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public List<Location> getPersonLocations(String id, String sin) {
 		try {
-			List<ProgramPersonLocationAssociation> programPersonLocationAssociations = personApiRestTemplate
-					.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin)
-					.getProgramPersonLocationAssociations();
-
-			// select program from the list
-			return programPersonLocationAssociations.stream()
+			return personApiRestTemplate.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin).getProgramPersonLocationAssociations().stream()
 				.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
 				.map(PersonLocationAssociation::getLocation)
 				.collect(toList());

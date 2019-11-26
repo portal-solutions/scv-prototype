@@ -1,9 +1,11 @@
 package ca.gov.portal.scv.api.endpoint.location;
 
+import static org.springframework.http.ResponseEntity.ok;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.gov.portal.scv.api.service.InteropService;
@@ -17,15 +19,22 @@ import lombok.RequiredArgsConstructor;
  * @since 0.0.0
  */
 @RestController
-@RequestMapping({ "/api/locations" })
 @RequiredArgsConstructor
+@RequestMapping({ "/api/locations" })
 public class LocationsController {
 
 	private final InteropService interopService;
 
-	@GetMapping({ "/fuzzySearch/{searchString}" })
-	public ResponseEntity<?> handleGetLocations(@PathVariable String searchString) throws Exception {
-		return ResponseEntity.ok(interopService.getLocations(searchString));
+	private final LocationMapper locationMapper;
+
+	@GetMapping
+	public ResponseEntity<?> handleGetAllLocations() {
+		throw new UnsupportedOperationException("not yet implemented");
+	}
+
+	@GetMapping(params = { "q" })
+	public ResponseEntity<?> handleGetLocationsFiltered(@RequestParam("q") String searchString) {
+		return ok(locationMapper.map(interopService.getLocations(searchString)));
 	}
 
 }
