@@ -1,28 +1,28 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"type": "java",
-			"request": "launch",
-			"name": "Launch API Project",
-			"mainClass": "ca.gov.portal.scv.api.Application",
-			"cwd": "${workspaceFolder}/scv-prototype-api"
-		},
-		{
-			"type": "node",
-			"request": "launch",
-			"name": "Launch Frontend Project",
-			"runtimeExecutable": "npm",
-			"runtimeArgs": [
-				"run-script",
-				"start"
-			],
-			"cwd": "${workspaceFolder}/scv-prototype-frontend",
-			"noDebug": true
-		}
-	],
-	"compounds": [{
-		"name": "Launch API & Frontend",
-		"configurations": [ "Launch API Project", "Launch Frontend Project" ],
-	}]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Launch API Project",
+      "mainClass": "ca.gov.portal.scv.api.Application",
+      "cwd": "${workspaceFolder}/scv-prototype-api",
+      "console": "internalConsole"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Frontend Project",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "start"],
+      "cwd": "${workspaceFolder}/scv-prototype-frontend",
+      "noDebug": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch API & Frontend",
+      "configurations": ["Launch API Project", "Launch Frontend Project"]
+    }
+  ]
 }
