@@ -19,6 +19,7 @@ import ca.gov.portal.scv.api.service.dto.Program;
  * Integration test that will test that the interop service.
  *
  * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
+ * @author Sébastien Comeau (sebastien.comeau@hrsdc-rhdcc.gc.ca)
  * @since 0.0.0
  */
 @SpringBootTest
@@ -35,7 +36,7 @@ public class InteropServiceImplIT {
 	@Test
 	public void testGetLocations_noResult() {
 		// arrange
-		final String searchString = environment.getProperty("tests.interop-service.fail-search-string");
+		final String searchString = environment.getProperty("tests.interop-service.location.fail-search-string");
 
 		// act
 		final List<Location> locations = interopService.getLocations(searchString);
@@ -47,7 +48,7 @@ public class InteropServiceImplIT {
 	@Test
 	public void testGetLocations_hasResult() {
 		// arrange
-		final String searchString = environment.getProperty("tests.interop-service.success-search-string");
+		final String searchString = environment.getProperty("tests.interop-service.location.success-search-string");
 
 		// act
 		final List<Location> locations = interopService.getLocations(searchString);
@@ -59,7 +60,7 @@ public class InteropServiceImplIT {
 	@Test
 	public void testGetPerson_noResult() {
 		// arrange
-		final String sin = environment.getProperty("tests.interop-service.fail-sin");
+		final String sin = environment.getProperty("tests.interop-service.person.fail-sin");
 
 		// assert
 		assertThat(interopService.getPerson(sin)).isEmpty();
@@ -68,7 +69,7 @@ public class InteropServiceImplIT {
 	@Test
 	public void testGetPerson_hasResult() {
 		// arrange
-		final String sin = environment.getProperty("tests.interop-service.valid-sin");
+		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
 
 		// assert
 		assertThat(interopService.getPerson(sin)).isNotEmpty();
@@ -77,7 +78,7 @@ public class InteropServiceImplIT {
 	@Test
 	public void testGetPersonPrograms_hasResult() {
 		// arrange
-		final String sin = environment.getProperty("tests.interop-service.valid-sin");
+		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
 
 		// act
 		final List<Program> programs = interopService.getPersonPrograms(interopService.getPerson(sin).get().getOtherIdentification().getId());
@@ -89,7 +90,7 @@ public class InteropServiceImplIT {
 	@Test
 	public void testGetPersonLocations_hasResult() {
 		// arrange
-		final String sin = environment.getProperty("tests.interop-service.valid-sin");
+		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
 
 		// act
 		final List<Location> Locations = interopService.getPersonLocations(interopService.getPerson(sin).get().getOtherIdentification().getId(), sin);
