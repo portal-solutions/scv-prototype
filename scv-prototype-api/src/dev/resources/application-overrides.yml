@@ -17,7 +17,7 @@ spring:
 
 logging.level:
   ca.gov.portal.scv.api: trace
-  org.springframework: debug
+  org.apache.http.wire: debug
 
 # ===================================================================
 # Application specific properties...
@@ -27,6 +27,7 @@ application:
   config:
     security:
       ignored-paths:
+        - /** # TODO :: GjB :: remove this (eventually)
         - /actuator/**
     service:
       interop:
