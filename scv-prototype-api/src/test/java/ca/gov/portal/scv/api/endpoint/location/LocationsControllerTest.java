@@ -1,57 +1,65 @@
 package ca.gov.portal.scv.api.endpoint.location;
 
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+import static org.springframework.http.HttpStatus.OK;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.gov.portal.scv.api.service.InteropService;
-import ca.gov.portal.scv.api.service.InteropServiceImpl;
+import ca.gov.portal.scv.api.service.dto.Location;
 
-@SpringBootTest
-@ActiveProfiles({ "tests" })
-@RunWith(SpringRunner.class)
+/**
+ * Unit tests for {@link LocationsController}
+ *
+ * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
+ * @author Sebastien Comeau (sebastien.comeau@hrsdc-rhdcc.gc.ca)
+ * @since 0.0.0
+*/
 public class LocationsControllerTest {
 
 	@Mock
-	private InteropService interopService;
+	InteropService interopService;
 
-	@Autowired
-	Environment environment;
-
-	@Autowired
-	InteropServiceImpl interopServiceImpl;
-
-	private LocationsController locationsController;
+	LocationsController locationsController;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		this.locationsController = new LocationsController(interopServiceImpl);
+		this.locationsController = new LocationsController(interopService);
 	}
 
 	@Test
-	public void handleGetLocations() throws Exception {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void handleGetLocations_noResults() throws Exception {
+		when(interopService.getLocations(anyString())).thenReturn(emptyList());
 
-		// arrange
-		final String searchString = environment.getProperty("tests.interop-service.fail-search-string");
+		final ResponseEntity<?> responseEntity = this.locationsController.handleGetLocations("123 Anywhere Street");
 
-		// act
-		ResponseEntity<?> responseEntity = this.locationsController.handleGetLocations(searchString);
+		assertThat(responseEntity).extracting(ResponseEntity::getStatusCode).isEqualTo(OK);
+		assertThat(responseEntity).extracting(ResponseEntity::getBody).isInstanceOf(List.class);
+		assertThat((List) responseEntity.getBody()).isEmpty();
+	}
 
-		// assert
-		assertThat(responseEntity).extracting(ResponseEntity::getStatusCode).isEqualTo(HttpStatus.OK);
-		assertThat(responseEntity).extracting(ResponseEntity::getBody).isNotNull();
+	@Test
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void handleGetLocations_noHasResults() throws Exception {
+		when(interopService.getLocations(anyString())).thenReturn(singletonList(Location.builder().build()));
+
+		final ResponseEntity<?> responseEntity = this.locationsController.handleGetLocations("123 Anywhere Street");
+
+		assertThat(responseEntity).extracting(ResponseEntity::getStatusCode).isEqualTo(OK);
+		assertThat(responseEntity).extracting(ResponseEntity::getBody).isInstanceOf(List.class);
+		assertThat((List) responseEntity.getBody()).hasSize(1);
 	}
 
 }

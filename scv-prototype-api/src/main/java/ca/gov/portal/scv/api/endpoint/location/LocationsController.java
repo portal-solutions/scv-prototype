@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.gov.portal.scv.api.service.InteropServiceImpl;
+import ca.gov.portal.scv.api.service.InteropService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LocationsController {
 
-	private final InteropServiceImpl interopService;
+	private final InteropService interopService;
 
 	@GetMapping({ "/fuzzySearch/{searchString}" })
 	public ResponseEntity<?> handleGetLocations(@PathVariable String searchString) throws Exception {
