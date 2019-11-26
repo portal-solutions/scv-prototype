@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.gov.portal.scv.api.service.InteropServiceImpl;
+import ca.gov.portal.scv.api.service.InteropService;
 import ca.gov.portal.scv.api.service.dto.Person;
 import lombok.RequiredArgsConstructor;
 
@@ -24,11 +24,11 @@ import lombok.RequiredArgsConstructor;
  * @since 0.0.0
  */
 @RestController
-@RequestMapping({ "/api/person" })
 @RequiredArgsConstructor
-public class PersonController {
+@RequestMapping({ "/api/persons" })
+public class PersonsController {
 
-	private final InteropServiceImpl interopService;
+	private final InteropService interopService;
 
 	@GetMapping({ "/{sin}" })
 	public ResponseEntity<?> handleGetPerson(@PathVariable String sin) throws Exception {
