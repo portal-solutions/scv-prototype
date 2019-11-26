@@ -52,7 +52,8 @@
     "social-insurance-number": {
       "full": "Numéro d'assurance sociale",
       "abbrv": "NAS",
-      "placeholder": "123-456-789"
+      "placeholder": "123-456-789",
+      "invalid": "Numéro d'assurance sociale invalide"
     }
   },
   "private": {

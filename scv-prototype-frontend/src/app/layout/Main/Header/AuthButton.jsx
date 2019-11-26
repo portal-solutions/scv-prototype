@@ -15,11 +15,14 @@ const AuthButton = () => {
   const { t } = useTranslation();
   const { auth, logout } = useAuth();
 
-  const handleSignOut = async (e) => {
-    e.preventDefault();
-
+  const signOut = async () => {
     await logout();
     history.push('/');
+  };
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    signOut();
   };
 
   return auth.authenticated && !auth.tokenExpired ? (

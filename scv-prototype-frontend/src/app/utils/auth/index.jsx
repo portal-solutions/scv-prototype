@@ -1,7 +1,7 @@
 import AuthProvider, { useAuth } from './AuthProvider';
-import BadCredentialsError from './BadCredentialsError';
+import InvalidSINError from './InvalidSINError';
 import * as authService from './AuthService';
 
 export { AuthProvider, useAuth };
-export { BadCredentialsError };
+export { InvalidSINError };
 export { authService };
