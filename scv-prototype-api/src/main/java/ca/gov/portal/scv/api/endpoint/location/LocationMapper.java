@@ -28,7 +28,7 @@ public class LocationMapper {
 			.countryCode(location.getAddress().getCountry().getIso3166Code())
 			.id(location.getIdentification().getId())
 			.postalCode(location.getAddress().getPostalCode())
-			.provinceCode(location.getAddress().getState().getCanadianProvinceCode())
+			.provinceCode(location.getAddress().getState().getStateCode())
 			.build();
 	}
 

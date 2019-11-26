@@ -8,6 +8,9 @@ spring:
   # ContextIdApplicationContextInitializer
   application.name: scv-prototype-api
 
+  jackson: # JacksonProperties
+    default-property-inclusion: NON_NULL
+
   # NOTE: the order is important; if you add any, keep 'overrides' at the end
   profiles.include: overrides
 

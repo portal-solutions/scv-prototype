@@ -15,13 +15,16 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = Country.CountryBuilder.class)
-public class Country implements Serializable {
+@JsonDeserialize(builder = Street.StreetBuilder.class)
+public class Street implements Serializable {
 
-	@JsonProperty("LocationCountryISO3166NumericCode")
-	private String iso3166Code;
+	@JsonProperty("StreetNumberText")
+	private String number;
 
-	@JsonProperty("LocationCountryName")
+	@JsonProperty("StreetName")
 	private String name;
+
+	@JsonProperty("StreetCategoryText")
+	private String category;
 
 }

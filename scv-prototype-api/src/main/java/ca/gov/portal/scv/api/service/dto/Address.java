@@ -37,4 +37,7 @@ public class Address implements Serializable {
 	@JsonProperty("AddressCategoryText")
 	private AddressCategory addressCategory;
 
+	@JsonProperty("LocationStreet")
+	private Street street;
+
 }
