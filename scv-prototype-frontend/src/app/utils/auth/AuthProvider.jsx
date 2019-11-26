@@ -26,10 +26,10 @@ const AuthProvider = (props) => {
 
   const [state, setState] = useState(storedState || initialState);
 
-  const login = async (username, password) => {
-    const user = await authService.authenticate(username, password);
+  const login = async (sin) => {
+    const person = await authService.authenticate(sin);
 
-    const auth = { authenticated: true, ...user };
+    const auth = { authenticated: true, ...person };
     localStorage.setItem('auth', JSON.stringify(auth));
     setState(auth);
     return auth;

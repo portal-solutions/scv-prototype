@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-bootstrap-modal';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -13,13 +14,25 @@ const MSCA = () => {
   const location = useLocation();
   const modalSINRef = useRef();
   const { t } = useTranslation();
-  const { auth, login } = useAuth();
+  const { login, logout } = useAuth();
 
-  const [inputSIN, setInputSIN] = useState(false);
   const [sin, setSIN] = useState(localStorage.getItem('msca-sin') || '');
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [invalidSINError, setInvalidSINError] = useState();
+  const [error, setError] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    setInputSIN(true);
+    if (!showModal) {
+      // clear modal states
+      setLoading(false);
+      setInvalidSINError(null);
+      setError(null);
+
+      // show modal
+      setShowModal(true);
+    }
   };
 
   const handleModalEntered = () => {
@@ -27,7 +40,7 @@ const MSCA = () => {
   };
 
   const handleModalClose = () => {
-    setInputSIN(false);
+    setShowModal(false);
   };
 
   /*
@@ -40,21 +53,47 @@ const MSCA = () => {
     return /^\d{9}$/.test(val) || /^\d{3}-\d{3}-\d{3}$/.test(val) || /^\d{3} \d{3} \d{3}$/.test(val);
   };
 
-  const handleSubmitSIN = () => {
-    // call login
-    (async () => {
-      if (!auth.authenticated || auth.tokenExpired) {
-        await login('user@example.com', 'password');
-      }
-
+  const signIn = async () => {
+    try {
       // save SIN in localstorage
       localStorage.setItem('msca-sin', sin);
 
+      // call person login
+      await login(sin);
+
+      setLoggedIn(true);
+    } catch (err) {
+      // handle errors
+      if (err.name === 'InvalidSINError') {
+        setInvalidSINError(err);
+      } else {
+        setError(err);
+      }
+
+      setLoading(false);
+    }
+  };
+
+  const handleSubmitSIN = () => {
+    setLoading(true);
+
+    // check if sin if valid
+    if (isValidSIN(sin)) {
+      signIn();
+    }
+  };
+
+  useEffect(() => {
+    if (loggedIn) {
       // redirect to scv
       const { from } = location.state || { from: { pathname: '/' } };
       history.push(from);
-    })();
-  };
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    logout();
+  }, []);
 
   return (
     <>
@@ -64,20 +103,35 @@ const MSCA = () => {
           <area shape="rect" coords="717,106,886,151" alt="" href="#" onClick={handleLogin} />
         </map>
       </div>
-      <Modal show={inputSIN} onEntered={handleModalEntered} onHide={handleModalClose} aria-labelledby="ModalHeader">
-        <Modal.Header closeButton>
+      <Modal
+        backdrop="static"
+        show={showModal}
+        onEntered={handleModalEntered}
+        onHide={handleModalClose}
+        aria-labelledby="ModalHeader">
+        <Modal.Header closeButton={!loading}>
           <Modal.Title id="ModalHeader">{t('msca.modal.provide-person-identification.title')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {(invalidSINError || error) && (
+            <div className="alert alert-danger">
+              {invalidSINError && <span>{t('person.social-insurance-number.invalid')}</span>}
+              {error && <span>{error.message}</span>}
+            </div>
+          )}
+
           <form>
-            <FormGroup label={t('person.social-insurance-number.full')} labelFor="sin" required>
+            <FormGroup
+              label={t('person.social-insurance-number.full')}
+              labelFor="sin"
+              className={invalidSINError && 'input-error'}
+              required>
               <input
                 ref={modalSINRef}
                 id="sin"
                 name="sin"
                 type="text"
                 className="form-control"
-                placeholder={t('person.social-insurance-number.placeholder')}
                 value={sin}
                 onChange={(e) => setSIN(e.target.value)}
                 size="11"
@@ -87,9 +141,12 @@ const MSCA = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Modal.Dismiss className="btn btn-link">{t('action.cancel')}</Modal.Dismiss>
-          <Button onClick={handleSubmitSIN} disabled={!isValidSIN(sin)}>
-            {t('action.submit')}
+          <Modal.Dismiss className="btn btn-link" disabled={loading}>
+            {t('action.cancel')}
+          </Modal.Dismiss>
+          <Button onClick={handleSubmitSIN} disabled={loading || !isValidSIN(sin)}>
+            <i className={`fas fa-sign-in-alt ${loading && 'fa-spinner fa-spin'}`} aria-hidden="true" />
+            <span className="ml-2">{t('action.submit')}</span>
           </Button>
         </Modal.Footer>
       </Modal>

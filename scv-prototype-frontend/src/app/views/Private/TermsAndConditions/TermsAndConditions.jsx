@@ -19,7 +19,6 @@ const TermsAndConditions = () => {
   const { auth, setTermsAndConditionsAgreement } = useAuth();
 
   const [read, setRead] = useState(false);
-
   usePageMetadata({
     documentTitle: t('private.terms-and-conditions.document-title'),
     pageIdentifier: t('private.terms-and-conditions.page-identifier'),

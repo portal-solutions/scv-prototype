@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import { ApiProvider } from './utils/api';
 import { AuthProvider } from './utils/auth';
 import { PageMetadataProvider } from './utils/page-metadata';
-// import Login from './views/Login/Login';
 import MSCA from './views/MSCA';
 import Private from './views/Private';
 
@@ -40,7 +39,6 @@ const App = () => {
                 </Route>
                 <PrivateRoute path="/private" component={Private} />
                 <Route path="/msca" component={MSCA} exact />
-                {/* <Route path="/sign-in" component={Login} exact /> */}
                 <Route path="*" component={Error404} />
               </Switch>
             </BrowserRouter>

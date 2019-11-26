@@ -1,22 +1,19 @@
 /* eslint-disable import/prefer-default-export */
-
 import config from '../../../config';
-import BadCredentialsError from './BadCredentialsError';
+import InvalidSINError from './InvalidSINError';
 
 /**
- * Authenticate a user by POSTing to the REST API.
+ * Authenticate a person by using the REST API.
  */
-const authenticate = async (username, password) => {
-  const response = await fetch(`${config.api.baseUrl}/auth`, {
-    body: JSON.stringify({ username, password }),
-    cache: 'no-cache',
-    headers: { 'Content-Type': 'application/json' },
-    method: 'POST',
-    mode: 'cors'
-  });
+const authenticate = async (sin) => {
+  // extract only numbers
+  const cleanSin = sin.replace(/\D/g, '');
 
-  if (response.status === 401) {
-    throw new BadCredentialsError('Invalid username/password combination');
+  const url = `${config.api.baseUrl}/api/persons/${cleanSin}`;
+  const response = await fetch(url, { cache: 'no-cache' });
+
+  if (response.status === 404) {
+    throw new InvalidSINError('Invalid Social Insurance Number.');
   }
 
   const data = await response.json();
@@ -26,8 +23,9 @@ const authenticate = async (username, password) => {
     authorities: ['USER'],
     authToken: data.accessToken,
     tokenExpired: false,
-    uid: data.uid,
-    username,
+    uid: data.PersonOtherIdentification.IdentificationID,
+    username: data.PersonName.PersonFullName,
+    sin,
     agreedTermsAndConditions: false
   };
 };
