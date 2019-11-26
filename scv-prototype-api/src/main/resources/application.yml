@@ -28,6 +28,9 @@ management:
 
 application:
   config:
+    security:
+      ignored-paths:
+        - /** # TODO :: GjB :: remove this (eventually)
     service:
       interop:
         location:
