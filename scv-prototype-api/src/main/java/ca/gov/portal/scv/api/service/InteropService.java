@@ -16,6 +16,8 @@ public interface InteropService {
 
 	OpenApiInfo isAvailable();
 
+	Optional<Location> getLocation(String id);
+
 	List<Location> getLocations(String searchString);
 
 	Optional<Person> getPerson(String sin);

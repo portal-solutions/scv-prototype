@@ -14,6 +14,7 @@ import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
 
+import ca.gov.portal.scv.api.service.dto.Identification;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.LocationResponse;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
@@ -47,6 +48,17 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public OpenApiInfo isAvailable() {
 		return locationApiRestTemplate.getForObject("/openapi.json", OpenApiResponse.class).getInfo();
+	}
+
+	@Override
+	public Optional<Location> getLocation(String id) {
+		try {
+			return Stream.of(locationApiRestTemplate.getForObject("/location/{id}", LocationResponse[].class, id))
+				.map(LocationResponse::getLocation).findFirst();
+		}
+		catch (final NotFound exception) {
+			return Optional.empty();
+		}
 	}
 
 	@Override
@@ -89,9 +101,15 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public List<Location> getPersonLocations(String id, String sin) {
 		try {
-			return personApiRestTemplate.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin).getProgramPersonLocationAssociations().stream()
+			return personApiRestTemplate.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin)
+				.getProgramPersonLocationAssociations().stream()
 				.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
 				.map(PersonLocationAssociation::getLocation)
+				.map(Location::getIdentification)
+				.map(Identification::getId)
+				.map(this::getLocation)
+				.filter(Optional::isPresent)
+				.map(Optional::get)
 				.collect(toList());
 		}
 		catch (final BadRequest | NotFound exception) {
