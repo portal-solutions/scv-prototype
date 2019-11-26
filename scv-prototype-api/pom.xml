@@ -21,6 +21,7 @@
 		<!-- see https://maven.apache.org/maven-ci-friendly.html -->
 		<revision>0.0.0-SNAPSHOT</revision>
 
+		<guava.version>28.1-jre</guava.version>
 		<java-jwt.version>3.8.2</java-jwt.version>
 		<springfox.version>2.9.2</springfox.version>
 
@@ -36,6 +37,11 @@
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
 			<version>${java-jwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
