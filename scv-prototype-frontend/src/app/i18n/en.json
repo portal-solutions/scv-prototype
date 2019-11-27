@@ -3,6 +3,7 @@
     "add": "Add",
     "cancel": "Cancel",
     "close": "Close",
+    "continue": "Continue",
     "edit": "Edit",
     "remove": "Remove",
     "delete": "Delete",
@@ -142,7 +143,22 @@
     "terms-and-conditions": {
       "document-title": "My Service Canada Account - Create Single Client View",
       "page-identifier": "SCV-0009-EN",
-      "page-title": "My Service Canada Account - Create Single Client View"
+      "page-title": "My Service Canada Account - Create Single Client View",
+      "content": {
+        "list-of-programs-participate": "Currently, the following list of programs participate in the Single client View integrated service profile:",
+        "clicking-below": "By clicking below, you are providing your consent for us to search the participating programs and generate the general profile information that those programs hold about you for you to see. After that, you can manage how your data is updated and shared across programs from the Single Client View!",
+        "further-consent-provision": "Further consent provision can also allow you to:",
+        "further-consent-provision-items": [
+          "Use general profile data for pre-filling applications",
+          "Make your preferences viewable by service agents during service phone calls or in-person",
+          "Using your general profile data to filter relevant job searches, or other benefits and services"
+        ],
+        "privacy-notice": {
+          "heading": "Privacy notice and terms and conditions",
+          "body": "Donec pulvinar euismod sapien, eu ornare ipsum vestibulum ac. Phasellus at velit sit amet nisl dictum luctus. Nam efficitur tellus nec sem condimentum interdum sit amet vitae arcu. Vestibulum aliquet risusa nulla consectetur, quis rhoncus sem malesuada. Nullam dictum justo vitae nulla semper mollis."
+        },
+        "read-and-agree": "I have read and agree to the privacy and terms and conditions"
+      }
     }
   },
   "wet-boew": {

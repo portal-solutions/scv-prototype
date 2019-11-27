@@ -24,6 +24,7 @@ const TermsAndConditions = () => {
   const { auth, setTermsAndConditionsAgreement } = useAuth();
   const { fetchPersonPrograms } = useApi();
 
+  const [privacyNoticeOpen, setPrivacyNoticeOpen] = useState(false);
   const [read, setRead] = useState(false);
   const [programs, setPrograms] = useState(null);
   const [fetchingError, setFetchingError] = useState(null);
@@ -90,64 +91,44 @@ const TermsAndConditions = () => {
     componentToRender = (
       <div className="row">
         <div className="col-xs-12">
-          <p>
-            Currently, the following list of programs participate in the Single client View integrated service profile:
-          </p>
-          <ul>
-            {programs.map((p, i) => (
-              <li key={i}>{t(`programs.${p.ActivityIdentification.IdentificationID}`)}</li>
-            ))}
-          </ul>
-          <p>
-            By clicking below, you are providing your consent for us to search the participating programs and generate
-            the general profile information that those programs hold about you for you to see. After that, you can
-            manage how your data is updated and shared across programs from the Single Client View!
-          </p>
-          <p>Further consent provision can also allow you to:</p>
-          <ul>
-            <li>Use general profile data for pre-filling applications</li>
-            <li>Make your preferences viewable by service agents during service phone calls or in-person</li>
-            <li>Using your general profile data to filter relevant job searches, or other benefits and services</li>
-          </ul>
-
-          <div className="row">
-            <div className="col-xs-12 col-lg-8">
-              <details className="brdr-0" open="">
-                <summary className="btn btn-default">Privacy notice and terms and conditions</summary>
-                <div className="clearfix" />
-                <div className="well row">
-                  <p>
-                    Donec pulvinar euismod sapien, eu ornare ipsum vestibulum ac. Phasellus at velit sit amet nisl
-                    dictum luctus. Nam efficitur tellus nec sem condimentum interdum sit amet vitae arcu. Vestibulum
-                    aliquet risus a nulla consectetur, quis rhoncus sem malesuada. Nullam dictum justo vitae nulla
-                    semper mollis. Mauris varius vitae dolor ut imperdiet. Integer felis erat, laoreet et fringilla id,
-                    iaculis ut ex. Praesent ut viverra turpis. Suspendisse vestibulum tellus id est pulvinar, eu
-                    accumsan libero consequat. Nam auctor ex id est ornare bibendum. Maecenas viverra vitae ante et
-                    ornare. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum hendrerit nibh,
-                    vitae ullamcorper felis facilisis ac. Maecenas aliquam nisi in erat semper congue. Etiam vitae
-                    tempor ipsum.
-                  </p>
-                </div>
-              </details>
+          <div className="mb-5">
+            <p>{t('private.terms-and-conditions.content.list-of-programs-participate')}</p>
+            <ul>
+              {programs.map((p, i) => (
+                <li key={i}>{t(`programs.${p.ActivityIdentification.IdentificationID}`)}</li>
+              ))}
+            </ul>
+            <p>{t('private.terms-and-conditions.content.clicking-below')}</p>
+            <p>{t('private.terms-and-conditions.content.further-consent-provision')}</p>
+            <ul>
+              {t('private.terms-and-conditions.content.further-consent-provision-items', { returnObjects: true }).map(
+                (obj, idx) => (
+                  <li key={idx}>{obj}</li>
+                )
+              )}
+            </ul>
+          </div>
+          <div className="panel panel-default mb-5" open={privacyNoticeOpen}>
+            <div className="panel-heading">{t('private.terms-and-conditions.content.privacy-notice.heading')}</div>
+            <div className="panel-body">
+              <p>{t('private.terms-and-conditions.content.privacy-notice.body')}</p>
             </div>
           </div>
 
-          <div className="checkbox mb-5 mt-5">
+          <div className="checkbox mb-5">
             <label htmlFor="chkRead">
-              <input id="chkRead" type="checkbox" checked={read} onChange={(e) => setRead(e.target.checked)} />I have
-              read and agree to the privacy and terms and conditions
+              <input id="chkRead" type="checkbox" checked={read} onChange={(e) => setRead(e.target.checked)} />
+              {t('private.terms-and-conditions.content.read-and-agree')}
             </label>
           </div>
 
-          <div className="mb-4">
-            <Button onClick={handleConsent} disabled={!read}>
-              I have read and agree to the Privacy
-            </Button>
-          </div>
           <div>
             <Link to="/msca" className="btn btn-link">
-              Cancel
+              {t('action.cancel')}
             </Link>
+            <Button onClick={handleConsent} disabled={!read}>
+              {t('action.continue')}
+            </Button>
           </div>
         </div>
       </div>

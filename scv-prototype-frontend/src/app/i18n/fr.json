@@ -2,6 +2,7 @@
   "action": {
     "add": "Ajouter",
     "cancel": "Annuler",
+    "continue": "Continuer",
     "close": "Fermer",
     "edit": "Modifier",
     "remove": "Enlever",
@@ -146,7 +147,22 @@
     "terms-and-conditions": {
       "document-title": "Mon compte Service Canada - Créer une vue client unique",
       "page-identifier": "SCV-0009-FR",
-      "page-title": "Mon compte Service Canada - Créer une vue client unique"
+      "page-title": "Mon compte Service Canada - Créer une vue client unique",
+      "content": {
+        "list-of-programs-participate": "Actuellement, la liste suivante de programmes participe au profil de service intégré Vue client unique :",
+        "clicking-below": "En cliquant ci-dessous, vous donnez votre consentement pour que nous puissions rechercher les programmes participants et générer les informations de profil générales que ces programmes contiennent à votre sujet. Ensuite, vous pouvez gérer la mise à jour et le partage de vos données entre programmes à partir de la vue client unique!",
+        "further-consent-provision": "Une autre disposition relative au consentement peut également vous permettre de :",
+        "further-consent-provision-items": [
+          "Utiliser les données de profil générales pour les applications de pré-remplissage",
+          "Rendez vos préférences visibles pour les agents de service lors d'appels téléphoniques de service ou en personne",
+          "Utilisation de vos données de profil générales pour filtrer les recherches d'emploi pertinentes ou d'autres avantages et services"
+        ],
+        "privacy-notice": {
+          "heading": "Avis de confidentialité et conditions d'utilisation",
+          "body": "Phasellus at velit sit amet nisl dictum luctus. Nam efficitur tellus nec sem condimentum interdum sit amet vitae arcu. Vestibulum aliquet risusa nulla consectetur, quis rhoncus sem malesuada. Nullam dictum justo vitae nulla semper mollis. Donec pulvinar euismod sapien, eu ornare ipsum vestibulum ac. "
+        },
+        "read-and-agree": "J'ai lu et j'accepte la vie privée et les termes et conditions"
+      }
     }
   },
   "wet-boew": {
