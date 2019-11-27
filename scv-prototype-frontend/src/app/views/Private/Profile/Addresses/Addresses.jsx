@@ -8,7 +8,7 @@ import Button from '../../../../components/Button';
 
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 
-const Addresses = ({ addresses }) => {
+const Addresses = ({ locations }) => {
   const { t } = useTranslation();
 
   const [addAddress, setAddAddress] = useState(false);
@@ -35,8 +35,8 @@ const Addresses = ({ addresses }) => {
               {t('private.profile.addresses.add')}
             </Button>
           </div>
-          {addresses && addresses.length ? (
-            addresses.map((a, i) => <Address key={i} program={a.program} address={a.address} />)
+          {locations && locations.length ? (
+            locations.map((location, idx) => <Address key={idx} location={location} />)
           ) : (
             <p className="text-center">
               <em>{t('no-data-available')}</em>
@@ -70,11 +70,11 @@ const Addresses = ({ addresses }) => {
 };
 
 Addresses.propTypes = {
-  addresses: PropTypes.arrayOf(PropTypes.shape(Address.propTypes))
+  locations: PropTypes.arrayOf(PropTypes.shape(Address.propTypes.location))
 };
 
 Addresses.defaultProps = {
-  addresses: []
+  locations: []
 };
 
 export default Addresses;
