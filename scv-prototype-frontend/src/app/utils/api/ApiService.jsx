@@ -1,7 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 
 import config from '../../../config';
-import InvalidTokenError from './InvalidTokenError';
+import InvalidTokenError from '../errors/InvalidTokenError';
+import NotFoundError from '../errors/NotFoundError';
+
+const SanitizeSIN = (sin) => sin.replace(/\D/g, '');
 
 /**
  * This is a test method that will fetch a greeting from the API.
@@ -100,4 +103,81 @@ const fetchProfile = async (authToken, uid) => {
   return response.json();
 };
 
-export { fetchGreetings, fetchPaymentDetails, fetchPaymentHistory, fetchProfile };
+/**
+ * Fetch a person's locations from the backend API.
+ */
+const fetchPerson = async (sin) => {
+  const url = `${config.api.baseUrl}/api/persons/${SanitizeSIN(sin)}`;
+
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    method: 'GET',
+    mode: 'cors'
+  });
+
+  if (response.status === 404) {
+    throw new NotFoundError(`Person data was not found with sin ${sin}.`);
+  }
+
+  if (!response.ok) {
+    throw new Error(`Error on GET to ${url}; status=${response.status}`);
+  }
+
+  return response.json();
+};
+
+/**
+ * Fetch a person's locations from the backend API.
+ */
+const fetchPersonPrograms = async (sin) => {
+  const url = `${config.api.baseUrl}/api/persons/${SanitizeSIN(sin)}/programs`;
+
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    method: 'GET',
+    mode: 'cors'
+  });
+
+  if (response.status === 404) {
+    throw new NotFoundError(`Person programs data was not found with sin ${SanitizeSIN(sin)}.`);
+  }
+
+  if (!response.ok) {
+    throw new Error(`Error on GET to ${url}; status=${response.status}`);
+  }
+
+  return response.json();
+};
+
+/**
+ * Fetch a person's locations from the backend API.
+ */
+const fetchPersonLocations = async (sin) => {
+  const url = `${config.api.baseUrl}/api/persons/${SanitizeSIN(sin)}/locations`;
+
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    method: 'GET',
+    mode: 'cors'
+  });
+
+  if (response.status === 404) {
+    throw new NotFoundError(`Person locations data was not found with sin ${sin}.`);
+  }
+
+  if (!response.ok) {
+    throw new Error(`Error on GET to ${url}; status=${response.status}`);
+  }
+
+  return response.json();
+};
+
+export {
+  fetchGreetings,
+  fetchPaymentDetails,
+  fetchPaymentHistory,
+  fetchProfile,
+  fetchPerson,
+  fetchPersonPrograms,
+  fetchPersonLocations
+};
