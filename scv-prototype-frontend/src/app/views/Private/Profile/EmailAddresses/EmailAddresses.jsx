@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import EmailAddress from './EmailAddress';
 import Button from '../../../../components/Button';
 
-const EmailAddresses = ({ emailAddresses }) => {
+const EmailAddresses = ({ programs, emailAddresses }) => {
   const { t } = useTranslation();
 
   return (
@@ -21,8 +21,19 @@ const EmailAddresses = ({ emailAddresses }) => {
             {t('private.profile.email-addresses.add')}
           </Button>
         </div>
-        {emailAddresses && emailAddresses.length ? (
-          emailAddresses.map((ea, i) => <EmailAddress key={i} program={ea.program} emailAddress={ea.emailAddress} />)
+        {programs && programs.length && emailAddresses && emailAddresses.length ? (
+          programs.map((p, i) => {
+            // get first from fake data
+            const ea = emailAddresses[Math.floor(Math.random() * emailAddresses.length)];
+
+            return (
+              <EmailAddress
+                key={i}
+                program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                emailAddress={ea.emailAddress}
+              />
+            );
+          })
         ) : (
           <p className="text-center">
             <em>{t('no-data-available')}</em>
@@ -34,10 +45,12 @@ const EmailAddresses = ({ emailAddresses }) => {
 };
 
 EmailAddresses.propTypes = {
-  emailAddresses: PropTypes.arrayOf(PropTypes.shape(EmailAddress.propTypes))
+  programs: PropTypes.arrayOf(PropTypes.object),
+  emailAddresses: PropTypes.arrayOf(PropTypes.object)
 };
 
 EmailAddresses.defaultProps = {
+  programs: [],
   emailAddresses: []
 };
 

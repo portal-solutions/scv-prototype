@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
@@ -10,15 +11,17 @@ import DatesOfBirth from './DatesOfBirth';
 import Addresses from './Addresses';
 import TelephoneNumbers from './TelephoneNumbers';
 import EmailAddresses from './EmailAddresses';
+import InvalidTokenError from '../../../utils/errors/InvalidTokenError';
+import AuthenticationRequiredError from '../../../utils/errors/AuthenticationRequiredError';
 
 import './Profile.scss';
 
 const Profile = () => {
   const { t } = useTranslation();
-  const { fetchProfile } = useApi();
+  const { fetchProfile, fetchPerson, fetchPersonPrograms, fetchPersonLocations } = useApi();
 
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [fetchingError, setFetchingError] = useState(null);
 
   usePageMetadata({
     documentTitle: t('private.profile.document-title'),
@@ -26,33 +29,38 @@ const Profile = () => {
     pageTitle: t('private.profile.page-title')
   });
 
+  const fetchDataFromApi = async () => {
+    try {
+      setData({
+        profile: await fetchProfile(),
+        person: await fetchPerson(),
+        programs: await fetchPersonPrograms(),
+        locations: await fetchPersonLocations()
+      });
+    } catch (err) {
+      setFetchingError(err);
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      try {
-        setData(await fetchProfile());
-      } catch (err) {
-        setError(err);
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchDataFromApi();
   }, []);
 
   // GETS proper component to render
   let componentToRender = null;
 
-  // error occured
-  if (error) {
-    // error occured because token is invalid, user needs to sign-in
-    if (error.name === 'InvalidTokenError') {
+  // fetching error occured
+  if (fetchingError) {
+    // error occured because token is invalid or user not authenticated
+    if (fetchingError instanceof InvalidTokenError || fetchingError instanceof AuthenticationRequiredError) {
+      // user needs to sign-in
       return <Redirect to={{ pathname: '/msca', state: { tokenExpired: true } }} />;
     }
-
-    // eslint-disable-next-line no-console
-    console.error(error);
 
     componentToRender = (
       <div className="alert alert-danger">
         <span>{t('something-went-wrong')}</span>
+        <span className="hide">{fetchingError.message}</span>
       </div>
     );
   }
@@ -70,15 +78,15 @@ const Profile = () => {
       <div className="panel panel-default">
         <div className="panel-heading">{t('private.profile.panel.title')}</div>
         <div className="panel-body profile">
-          <Names names={data.names} />
+          <Names person={data.person} programs={data.programs} />
           <hr />
-          <DatesOfBirth datesOfBirth={data.datesOfBirth} />
+          <DatesOfBirth person={data.person} programs={data.programs} />
           <hr />
-          <Addresses addresses={data.addresses} />
+          <Addresses addresses={data.profile.addresses} />
           <hr />
-          <TelephoneNumbers telephoneNumbers={data.telephoneNumbers} />
+          <TelephoneNumbers programs={data.programs} telephoneNumbers={data.profile.telephoneNumbers} />
           <hr />
-          <EmailAddresses emailAddresses={data.emailAddresses} />
+          <EmailAddresses programs={data.programs} emailAddresses={data.profile.emailAddresses} />
         </div>
       </div>
     );

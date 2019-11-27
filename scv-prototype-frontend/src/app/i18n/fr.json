@@ -270,5 +270,9 @@
       "remember-me": "Se souvenir de moi",
       "forgot-password": "Mot de passe oublié?"
     }
+  },
+  "programs": {
+    "JB": "Guichet-Emplois",
+    "CSLP": "Programme canadien de prêts aux étudiants"
   }
 }

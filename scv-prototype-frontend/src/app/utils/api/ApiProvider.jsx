@@ -3,6 +3,7 @@ import React, { createContext, useContext } from 'react';
 import { useAuth } from '../auth';
 import * as apiService from './ApiService';
 import InvalidTokenError from '../errors/InvalidTokenError';
+import AuthenticationRequiredError from '../errors/AuthenticationRequiredError';
 
 /**
  * Auth context; used to store API stuff.
@@ -19,6 +20,12 @@ const useApi = () => useContext(ApiContext);
  */
 const ApiProvider = (props) => {
   const { auth, logout } = useAuth();
+
+  const validateAuthentication = (fnName) => {
+    if (!auth.authenticated || auth.tokenExpired) {
+      throw new AuthenticationRequiredError(`User must be authenticated. [ApiProvider.${fnName}]`);
+    }
+  };
 
   const fetchGreetings = async () => {
     try {
@@ -64,16 +71,19 @@ const ApiProvider = (props) => {
     }
   };
 
-  const fetchPerson = async (sin) => {
-    return apiService.fetchPerson(sin);
+  const fetchPerson = async () => {
+    validateAuthentication('fetchPerson');
+    return apiService.fetchPerson(auth.sin);
   };
 
-  const fetchPersonPrograms = async (sin) => {
-    return apiService.fetchPersonPrograms(sin);
+  const fetchPersonPrograms = async () => {
+    validateAuthentication('fetchPersonPrograms');
+    return apiService.fetchPersonPrograms(auth.sin);
   };
 
-  const fetchPersonLocations = async (sin) => {
-    return apiService.fetchPersonLocations(sin);
+  const fetchPersonLocations = async () => {
+    validateAuthentication('fetchPersonLocations');
+    return apiService.fetchPersonLocations(auth.sin);
   };
 
   return (
