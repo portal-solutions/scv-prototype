@@ -10,6 +10,7 @@ import { AuthProvider } from './utils/auth';
 import { PageMetadataProvider } from './utils/page-metadata';
 import MSCA from './views/MSCA';
 import Private from './views/Private';
+import ScrollToTop from './components/ScrollToTop';
 
 // alert optional cofiguration
 const alertOptions = {
@@ -33,6 +34,7 @@ const App = () => {
         <ApiProvider>
           <PageMetadataProvider>
             <BrowserRouter>
+              <ScrollToTop />
               <Switch>
                 <Route path="/" exact>
                   <Redirect to="/private" />
