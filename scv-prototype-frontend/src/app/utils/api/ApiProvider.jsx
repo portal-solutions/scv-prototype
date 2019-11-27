@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-
 import React, { createContext, useContext } from 'react';
 import { useAuth } from '../auth';
 import * as apiService from './ApiService';
+import InvalidTokenError from '../errors/InvalidTokenError';
 
 /**
  * Auth context; used to store API stuff.
@@ -24,7 +24,7 @@ const ApiProvider = (props) => {
     try {
       return await apiService.fetchGreetings(auth.authToken, auth.uid);
     } catch (err) {
-      if (err.name === 'InvalidTokenError') {
+      if (err instanceof InvalidTokenError) {
         logout(true);
       }
       throw err;
@@ -35,7 +35,7 @@ const ApiProvider = (props) => {
     try {
       return await apiService.fetchPaymentDetails(auth.authToken, auth.uid);
     } catch (err) {
-      if (err.name === 'InvalidTokenError') {
+      if (err instanceof InvalidTokenError) {
         logout(true);
       }
       throw err;
@@ -46,7 +46,7 @@ const ApiProvider = (props) => {
     try {
       return await apiService.fetchPaymentHistory(auth.authToken, auth.uid);
     } catch (err) {
-      if (err.name === 'InvalidTokenError') {
+      if (err instanceof InvalidTokenError) {
         logout(true);
       }
       throw err;
@@ -57,16 +57,36 @@ const ApiProvider = (props) => {
     try {
       return await apiService.fetchProfile(auth.authToken, auth.uid);
     } catch (err) {
-      if (err.name === 'InvalidTokenError') {
+      if (err instanceof InvalidTokenError) {
         logout(true);
       }
       throw err;
     }
   };
 
+  const fetchPerson = async (sin) => {
+    return apiService.fetchPerson(sin);
+  };
+
+  const fetchPersonPrograms = async (sin) => {
+    return apiService.fetchPersonPrograms(sin);
+  };
+
+  const fetchPersonLocations = async (sin) => {
+    return apiService.fetchPersonLocations(sin);
+  };
+
   return (
     <ApiContext.Provider
-      value={{ fetchGreetings, fetchPaymentDetails, fetchPaymentHistory, fetchProfile }}
+      value={{
+        fetchGreetings,
+        fetchPaymentDetails,
+        fetchPaymentHistory,
+        fetchProfile,
+        fetchPerson,
+        fetchPersonPrograms,
+        fetchPersonLocations
+      }}
       {...props}
     />
   );
