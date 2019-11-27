@@ -46,8 +46,12 @@ const TelephoneNumbers = ({ programs, telephoneNumbers }) => {
 };
 
 TelephoneNumbers.propTypes = {
-  programs: PropTypes.arrayOf(PropTypes.object),
-  telephoneNumbers: PropTypes.arrayOf(PropTypes.object)
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  ),
+  telephoneNumbers: PropTypes.arrayOf(PropTypes.shape({ mobile: PropTypes.string, home: PropTypes.string }))
 };
 
 TelephoneNumbers.defaultProps = {

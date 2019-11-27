@@ -35,8 +35,14 @@ const DatesOfBirth = ({ person, programs }) => {
 };
 
 DatesOfBirth.propTypes = {
-  person: PropTypes.objectOf(PropTypes.object),
-  programs: PropTypes.arrayOf(PropTypes.object)
+  person: PropTypes.shape({
+    PersonBirthDate: PropTypes.shape({ Date: PropTypes.string.isRequired })
+  }),
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  )
 };
 
 DatesOfBirth.defaultProps = {

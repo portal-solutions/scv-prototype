@@ -35,8 +35,14 @@ const Names = ({ person, programs }) => {
 };
 
 Names.propTypes = {
-  person: PropTypes.objectOf(PropTypes.object),
-  programs: PropTypes.arrayOf(PropTypes.object)
+  person: PropTypes.shape({
+    PersonName: PropTypes.shape({ PersonFullName: PropTypes.string.isRequired })
+  }),
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  )
 };
 
 Names.defaultProps = {

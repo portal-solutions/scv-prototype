@@ -45,8 +45,12 @@ const EmailAddresses = ({ programs, emailAddresses }) => {
 };
 
 EmailAddresses.propTypes = {
-  programs: PropTypes.arrayOf(PropTypes.object),
-  emailAddresses: PropTypes.arrayOf(PropTypes.object)
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  ),
+  emailAddresses: PropTypes.arrayOf(PropTypes.shape({ emailAddress: PropTypes.string }))
 };
 
 EmailAddresses.defaultProps = {
