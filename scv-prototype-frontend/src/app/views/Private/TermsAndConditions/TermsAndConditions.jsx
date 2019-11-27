@@ -123,12 +123,12 @@ const TermsAndConditions = () => {
           </div>
 
           <div>
+            <Button variant={Button.variants.primary} onClick={handleConsent} disabled={!read}>
+              {t('action.continue')}
+            </Button>
             <Link to="/msca" className="btn btn-link">
               {t('action.cancel')}
             </Link>
-            <Button onClick={handleConsent} disabled={!read}>
-              {t('action.continue')}
-            </Button>
           </div>
         </div>
       </div>
