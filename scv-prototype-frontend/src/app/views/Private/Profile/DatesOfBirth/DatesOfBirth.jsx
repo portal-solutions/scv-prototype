@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import DateOfBirth from './DateOfBirth';
 
-const DatesOfBirth = ({ datesOfBirth }) => {
+const DatesOfBirth = ({ person, programs }) => {
   const { t } = useTranslation();
 
   return (
@@ -16,8 +16,14 @@ const DatesOfBirth = ({ datesOfBirth }) => {
         <div className="profile__section__content__title">
           <span>{t('private.profile.dates-of-birth.title')}</span>
         </div>
-        {datesOfBirth && datesOfBirth.length ? (
-          datesOfBirth.map((dob, i) => <DateOfBirth key={i} program={dob.program} dateOfBirth={dob.dateOfBirth} />)
+        {person && programs && programs.length ? (
+          programs.map((p, i) => (
+            <DateOfBirth
+              key={i}
+              program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+              dateOfBirth={person.PersonBirthDate.Date}
+            />
+          ))
         ) : (
           <p className="text-center">
             <em>{t('no-data-available')}</em>
@@ -29,11 +35,19 @@ const DatesOfBirth = ({ datesOfBirth }) => {
 };
 
 DatesOfBirth.propTypes = {
-  datesOfBirth: PropTypes.arrayOf(PropTypes.shape(DateOfBirth.propTypes))
+  person: PropTypes.shape({
+    PersonBirthDate: PropTypes.shape({ Date: PropTypes.string.isRequired })
+  }),
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  )
 };
 
 DatesOfBirth.defaultProps = {
-  datesOfBirth: []
+  person: null,
+  programs: []
 };
 
 export default DatesOfBirth;

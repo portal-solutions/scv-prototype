@@ -266,5 +266,9 @@
       "remember-me": "Remember me",
       "forgot-password": "Forgot password?"
     }
+  },
+  "programs": {
+    "JB": "Job Bank",
+    "CSLP": "Canada Student Loans Program"
   }
 }

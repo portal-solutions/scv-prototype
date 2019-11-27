@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import TelephoneNumber from './TelephoneNumber';
 import Button from '../../../../components/Button';
 
-const TelephoneNumbers = ({ telephoneNumbers }) => {
+const TelephoneNumbers = ({ programs, telephoneNumbers }) => {
   const { t } = useTranslation();
 
   return (
@@ -21,10 +21,20 @@ const TelephoneNumbers = ({ telephoneNumbers }) => {
             {t('private.profile.telephone-numbers.add')}
           </Button>
         </div>
-        {telephoneNumbers && telephoneNumbers.length ? (
-          telephoneNumbers.map((tn, i) => (
-            <TelephoneNumber key={i} program={tn.program} mobile={tn.mobile} home={tn.home} />
-          ))
+        {programs && programs.length && telephoneNumbers && telephoneNumbers.length ? (
+          programs.map((p, i) => {
+            // get first from fake data
+            const tn = telephoneNumbers[Math.floor(Math.random() * telephoneNumbers.length)];
+
+            return (
+              <TelephoneNumber
+                key={i}
+                program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                mobile={tn.mobile}
+                home={tn.home}
+              />
+            );
+          })
         ) : (
           <p className="text-center">
             <em>{t('no-data-available')}</em>
@@ -36,10 +46,16 @@ const TelephoneNumbers = ({ telephoneNumbers }) => {
 };
 
 TelephoneNumbers.propTypes = {
-  telephoneNumbers: PropTypes.arrayOf(PropTypes.shape(TelephoneNumber.propTypes))
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  ),
+  telephoneNumbers: PropTypes.arrayOf(PropTypes.shape({ mobile: PropTypes.string, home: PropTypes.string }))
 };
 
 TelephoneNumbers.defaultProps = {
+  programs: [],
   telephoneNumbers: []
 };
 

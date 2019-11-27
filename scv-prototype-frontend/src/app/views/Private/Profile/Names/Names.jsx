@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Name from './Name';
 
-const Names = ({ names }) => {
+const Names = ({ person, programs }) => {
   const { t } = useTranslation();
 
   return (
@@ -16,8 +16,14 @@ const Names = ({ names }) => {
         <div className="profile__section__content__title">
           <span>{t('private.profile.names.title')}</span>
         </div>
-        {names && names.length ? (
-          names.map((n, i) => <Name key={i} program={n.program} name={n.name} />)
+        {person && programs && programs.length ? (
+          programs.map((p, i) => (
+            <Name
+              key={i}
+              program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+              name={person.PersonName.PersonFullName}
+            />
+          ))
         ) : (
           <p className="text-center">
             <em>{t('no-data-available')}</em>
@@ -29,11 +35,19 @@ const Names = ({ names }) => {
 };
 
 Names.propTypes = {
-  names: PropTypes.arrayOf(PropTypes.shape(Name.propTypes))
+  person: PropTypes.shape({
+    PersonName: PropTypes.shape({ PersonFullName: PropTypes.string.isRequired })
+  }),
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  )
 };
 
 Names.defaultProps = {
-  names: []
+  person: null,
+  programs: []
 };
 
 export default Names;
