@@ -8,6 +8,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
 import Button from '../components/Button';
 import FormGroup from '../components/FormGroup';
+import InvalidSINError from '../utils/errors/InvalidSINError';
 
 const MSCA = () => {
   const history = useHistory();
@@ -64,7 +65,7 @@ const MSCA = () => {
       setLoggedIn(true);
     } catch (err) {
       // handle errors
-      if (err.name === 'InvalidSINError') {
+      if (err instanceof InvalidSINError) {
         setInvalidSINError(err);
       } else {
         setError(err);

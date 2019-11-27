@@ -1,33 +1,32 @@
 /* eslint-disable import/prefer-default-export */
-import config from '../../../config';
-import InvalidSINError from './InvalidSINError';
+import { fetchPerson } from '../api/ApiService';
+import NotFoundError from '../errors/NotFoundError';
+import InvalidSINError from '../errors/InvalidSINError';
 
 /**
  * Authenticate a person by using the REST API.
  */
 const authenticate = async (sin) => {
-  // extract only numbers
-  const cleanSin = sin.replace(/\D/g, '');
+  try {
+    const data = await fetchPerson(sin);
 
-  const url = `${config.api.baseUrl}/api/persons/${cleanSin}`;
-  const response = await fetch(url, { cache: 'no-cache' });
+    return {
+      authenticated: true,
+      authorities: ['USER'],
+      authToken: data.accessToken,
+      tokenExpired: false,
+      uid: data.PersonOtherIdentification.IdentificationID,
+      username: data.PersonName.PersonFullName,
+      sin,
+      agreedTermsAndConditions: false
+    };
+  } catch (err) {
+    if (err instanceof NotFoundError) {
+      throw new InvalidSINError('Invalid Social Insurance Number.');
+    }
 
-  if (response.status === 404) {
-    throw new InvalidSINError('Invalid Social Insurance Number.');
+    throw err;
   }
-
-  const data = await response.json();
-
-  return {
-    authenticated: true,
-    authorities: ['USER'],
-    authToken: data.accessToken,
-    tokenExpired: false,
-    uid: data.PersonOtherIdentification.IdentificationID,
-    username: data.PersonName.PersonFullName,
-    sin,
-    agreedTermsAndConditions: false
-  };
 };
 
 export { authenticate };
