@@ -22,6 +22,7 @@ i18n
       lookupLocalStorage: 'locale',
       caches: ['localStorage']
     },
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false // JSX escapes by default
     },
