@@ -73,8 +73,6 @@ const Profile = () => {
       </div>
     );
   } else {
-    console.log(data);
-    // data loaded
     componentToRender = (
       <div className="panel panel-default">
         <div className="panel-heading">{t('private.profile.panel.title')}</div>
