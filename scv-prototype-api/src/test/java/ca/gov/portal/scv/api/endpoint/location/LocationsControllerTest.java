@@ -16,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
+import ca.gov.portal.scv.api.endpoint.model.Location;
+import ca.gov.portal.scv.api.endpoint.model.LocationMapper;
 import ca.gov.portal.scv.api.service.InteropService;
 
 /**

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.gov.portal.scv.api.endpoint.model.LocationMapper;
 import ca.gov.portal.scv.api.service.InteropService;
 import ca.gov.portal.scv.api.service.dto.Person;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,8 @@ import lombok.RequiredArgsConstructor;
 public class PersonsController {
 
 	private final InteropService interopService;
+
+	private final LocationMapper locationMapper;
 
 	@GetMapping({ "/{sin}" })
 	public ResponseEntity<?> handleGetPerson(@PathVariable String sin) throws Exception {
@@ -49,7 +52,7 @@ public class PersonsController {
 		final Optional<Person> person = interopService.getPerson(sin);
 
 		return person.isPresent()
-			? ok(interopService.getPersonLocations(person.get().getOtherIdentification().getId(), sin))
+			? ok(locationMapper.map(interopService.getPersonLocations(person.get().getOtherIdentification().getId(), sin)))
 			: status(NOT_FOUND).body(singletonMap("message", "No location found for user with sin=" + sin));
 	}
 

@@ -3,29 +3,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-const Address = ({ program, address }) => {
+const Address = ({ location }) => {
   const { t } = useTranslation();
-  const addressParts = address.split('\n');
 
   return (
     <p>
       <strong>
-        {t('private.profile.addresses.address')} - {program}
+        {t('private.profile.addresses.address')} - {location.id} {/* program */}
       </strong>
       <br />
-      {addressParts.map((s, i) => (
-        <React.Fragment key={i}>
-          {s}
-          {i !== addressParts.length - 1 && <br />}
-        </React.Fragment>
-      ))}
+      {`${location.line1}`}
+      <br />
+      {`${location.city}, ${location.provinceName.eng}`}
+      <br />
+      {location.countryName}
     </p>
   );
 };
 
 Address.propTypes = {
-  program: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired
+  location: PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    countryName: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    line1: PropTypes.string.isRequired,
+    provinceName: PropTypes.shape({
+      eng: PropTypes.string,
+      fra: PropTypes.string
+    }).isRequired
+  }).isRequired
 };
 
 export default Address;

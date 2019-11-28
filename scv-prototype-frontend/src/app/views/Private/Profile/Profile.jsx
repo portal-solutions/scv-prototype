@@ -73,6 +73,7 @@ const Profile = () => {
       </div>
     );
   } else {
+    console.log(data);
     // data loaded
     componentToRender = (
       <div className="panel panel-default">
@@ -82,7 +83,7 @@ const Profile = () => {
           <hr />
           <DatesOfBirth person={data.person} programs={data.programs} />
           <hr />
-          <Addresses addresses={data.profile.addresses} />
+          <Addresses locations={data.locations} />
           <hr />
           <TelephoneNumbers programs={data.programs} telephoneNumbers={data.profile.telephoneNumbers} />
           <hr />

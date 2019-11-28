@@ -1,6 +1,7 @@
-package ca.gov.portal.scv.api.endpoint.location;
+package ca.gov.portal.scv.api.endpoint.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import lombok.Builder;
 import lombok.Value;
@@ -22,6 +23,14 @@ public class Location implements Serializable {
 
 	private String provinceCode;
 
+	private Map<String, String> provinceName;
+
 	private String countryCode;
+
+	private String countryName;
+
+	private String line1;
+
+	private String line2;
 
 }

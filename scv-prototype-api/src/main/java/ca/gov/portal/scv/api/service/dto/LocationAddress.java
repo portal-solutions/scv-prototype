@@ -1,6 +1,7 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -15,11 +16,14 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = Address.AddressBuilder.class)
-public class Address implements Serializable {
+@JsonDeserialize(builder = LocationAddress.LocationAddressBuilder.class)
+public class LocationAddress implements Serializable {
 
-	@JsonProperty("AddressSecondaryUnitText")
-	private String secondaryUnit;
+	@JsonProperty("LocationAddress")
+	private List<String> fullText;
+
+	@JsonProperty("LocationCityName")
+	private String cityName;
 
 	@JsonProperty("LocationState")
 	private State state;
@@ -29,5 +33,11 @@ public class Address implements Serializable {
 
 	@JsonProperty("LocationPostalCode")
 	private String postalCode;
+
+	@JsonProperty("AddressCategoryText")
+	private AddressCategory addressCategory;
+
+	@JsonProperty("LocationStreet")
+	private Street street;
 
 }
