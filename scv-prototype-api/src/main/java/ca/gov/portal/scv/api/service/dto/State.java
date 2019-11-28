@@ -26,4 +26,7 @@ public class State implements Serializable {
 	@JsonProperty("LocationStateName")
 	private List<Map<String, String>> stateNames;
 
+	@JsonProperty("LocationCanadianProvinceCode")
+	private String provinceCode;
+
 }

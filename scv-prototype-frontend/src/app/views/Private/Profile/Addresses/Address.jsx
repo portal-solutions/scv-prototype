@@ -9,41 +9,27 @@ const Address = ({ location }) => {
   return (
     <p>
       <strong>
-        {t('private.profile.addresses.address')} - {location.LocationIdentification.IdentificationID} {/*program*/}
+        {t('private.profile.addresses.address')} - {location.id} {/* program */}
       </strong>
       <br />
-      {`${location.LocationAddress.LocationStreet.StreetNumberText} ${location.LocationAddress.LocationStreet.StreetName} ${location.LocationAddress.LocationStreet.StreetCategoryText}`}
+      {`${location.line1}`}
       <br />
-      {`${location.LocationAddress.LocationCityName}, ${location.LocationAddress.LocationState.LocationStateName[0].eng}`}
+      {`${location.city}, ${location.provinceName.eng}`}
       <br />
-      {location.LocationAddress.LocationCountry.LocationCountryName}
+      {location.countryName}
     </p>
   );
 };
 
 Address.propTypes = {
   location: PropTypes.shape({
-    LocationIdentification: PropTypes.shape({
-      IdentificationID: PropTypes.string.isRequired
-    }).isRequired,
-    LocationAddress: PropTypes.shape({
-      LocationStreet: PropTypes.shape({
-        StreetNumberText: PropTypes.string.isRequired,
-        StreetName: PropTypes.string.isRequired,
-        StreetCategoryText: PropTypes.string.isRequired
-      }).isRequired,
-      LocationCityName: PropTypes.string.isRequired,
-      LocationState: PropTypes.shape({
-        LocationStateName: PropTypes.arrayOf(
-          PropTypes.shape({
-            eng: PropTypes.string,
-            fra: PropTypes.string
-          }).isRequired
-        )
-      }).isRequired,
-      LocationCountry: PropTypes.shape({
-        LocationCountryName: PropTypes.string.isRequired
-      }).isRequired
+    city: PropTypes.string.isRequired,
+    countryName: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    line1: PropTypes.string.isRequired,
+    provinceName: PropTypes.shape({
+      eng: PropTypes.string,
+      fra: PropTypes.string
     }).isRequired
   }).isRequired
 };

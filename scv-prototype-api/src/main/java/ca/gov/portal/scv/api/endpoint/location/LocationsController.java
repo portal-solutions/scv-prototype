@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.gov.portal.scv.api.endpoint.model.LocationMapper;
 import ca.gov.portal.scv.api.service.InteropService;
-
 import lombok.RequiredArgsConstructor;
 
 /**

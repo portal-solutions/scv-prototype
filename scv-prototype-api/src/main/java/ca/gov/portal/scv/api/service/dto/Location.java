@@ -18,8 +18,11 @@ import lombok.Value;
 @JsonDeserialize(builder = Location.LocationBuilder.class)
 public class Location implements Serializable {
 
-	@JsonProperty("LocationAddress")
+	@JsonProperty("Address")
 	private Address address;
+
+	@JsonProperty("LocationAddress")
+	private LocationAddress locationAddress;
 
 	@JsonProperty("LocationIdentification")
 	private Identification identification;
