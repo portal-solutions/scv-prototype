@@ -15,6 +15,11 @@ import NavMenu from './NavMenu';
 const Header = () => {
   const { i18n, t } = useTranslation();
 
+  const toggleLanguage = () => {
+    const isFrench = i18n.language.startsWith('fr');
+    i18n.changeLanguage(isFrench ? 'en' : 'fr');
+  };
+
   return (
     <>
       <nav>
@@ -44,7 +49,7 @@ const Header = () => {
                 variant={Button.variants.link}
                 size={Button.sizes.sm}
                 lang={t('wet-boew.header.language-lang')}
-                onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'fr' : 'en')}>
+                onClick={toggleLanguage}>
                 <span>{t('wet-boew.header.language-toggle')}</span>
               </Button>
             </section>
