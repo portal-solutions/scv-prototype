@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useRef, useState } from 'react';
 import Modal from 'react-bootstrap-modal';
+import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useAuth } from '../utils/auth';
 import Button from '../components/Button';
 import FormGroup from '../components/FormGroup';
+import testSins from '../test-sins';
+import { useAuth } from '../utils/auth';
 import InvalidSINError from '../utils/errors/InvalidSINError';
 
 const MSCA = () => {
@@ -127,17 +128,17 @@ const MSCA = () => {
               labelFor="sin"
               className={invalidSINError && 'input-error'}
               required>
-              <input
-                ref={modalSINRef}
+              <select
                 id="sin"
                 name="sin"
-                type="text"
                 className="form-control"
                 value={sin}
                 onChange={(e) => setSIN(e.target.value)}
-                size="11"
-                maxLength="11"
-              />
+                ref={modalSINRef}>
+                {testSins.sort().map((testSin) => (
+                  <option key={testSin}>{testSin}</option>
+                ))}
+              </select>
             </FormGroup>
           </form>
         </Modal.Body>
