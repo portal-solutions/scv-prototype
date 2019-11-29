@@ -8,6 +8,7 @@
     "remove": "Enlever",
     "delete": "Supprimer",
     "refresh": "Actualiser",
+    "search": "Recherche",
     "sign-in": "Se connecter",
     "sign-out": "Se déconnecter",
     "submit": "Soumettre"
@@ -20,6 +21,13 @@
   },
   "no-data-available": "Aucune données disponibles",
   "something-went-wrong": "Oops, il y a eu un problème...",
+  "error": {
+    "validation-error": "Une erreur de validation s'est produite.",
+    "add-person-location-validation-error": {
+      "location-required": "Un emplacement est requis.",
+      "programs-required": "Au moins un programme est requis."
+    }
+  },
   "required": "obligatoire",
   "not-found": {
     "apology": "Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?",
@@ -76,7 +84,20 @@
         "content": "Cet écran vous montre les différentes informations démographiques et personnelles que les programmes participants possèdent sur vous, ainsi que les informations de contact que vous avez fournies aux programmes participants. Veuillez noter qu'il est possible que les informations personnelles diffèrent d'un programme à l'autre, en fonction du moment et de la date de création de ces données. Si vous remarquez des erreurs, merci de nous le signaler! À partir de cet écran, vous pouvez ajouter de nouvelles informations de contact et décider des programmes auxquels vous souhaitez accéder et utiliser ces informations de contact. Une fois que vous avez ajouté de nouvelles données, vous pouvez demander des mises à jour pour les différents programmes. Une fois qu'ils acceptent ou rejettent vos données, nous vous le ferons savoir."
       },
       "addresses": {
-        "add": "Ajouter une adresse",
+        "add": {
+          "trigger": "Ajouter une adresse",
+          "title": "Ajouter une adresse",
+          "search-label": "Tapez l'adresse ci-dessous",
+          "search-placeholder": "Tapez l'adresse sur une ligne (par exemple, 1-19 Av Spadina)",
+          "select-address": "Sélectionnez une adresse",
+          "share-with": "Partager avec",
+          "submit": "Ajouter l'adresse",
+          "validation-error": {
+            "message": "Erreur de validation!",
+            "location-must-be-selected": "Vous devez sélectionner une adresse!",
+            "program-one-must-be-selected": "Vous devez sélectionner au moins un programme!"
+          }
+        },
         "address": "Adresse",
         "title": "Adresses"
       },

@@ -2,27 +2,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import Modal from 'react-bootstrap-modal';
 import Address from './Address';
+import AddAddressModal from './AddAddressModal';
 import Button from '../../../../components/Button';
 
-import 'react-bootstrap-modal/lib/css/rbm-patch.css';
-
-const Addresses = ({ locations }) => {
+const Addresses = ({ programs, locations, onAddressAdded }) => {
   const { t } = useTranslation();
 
-  const [addAddress, setAddAddress] = useState(false);
+  const [addAddressModalShow, setAddAddressModalShow] = useState(false);
 
-  const addAdressOnClose = () => {
-    setAddAddress(false);
-  };
+  const addAddressModalOnClosing = (addressAdded) => {
+    setAddAddressModalShow(false);
 
-  const addAdressOnSubmit = () => {
-    setAddAddress(false);
+    if (addressAdded) {
+      onAddressAdded();
+    }
   };
 
   return (
     <>
+      <AddAddressModal programs={programs} show={addAddressModalShow} onClosing={addAddressModalOnClosing} />
+
       <div className="profile__section">
         <div className="profile__section__icon">
           <i className="fas fa-map-marker-alt fa-fw" />
@@ -30,9 +30,12 @@ const Addresses = ({ locations }) => {
         <div className="profile__section__content">
           <div className="profile__section__content__title">
             <span>{t('private.profile.addresses.title')}</span>
-            <Button size={Button.sizes.default} variant={Button.variants.default} onClick={() => setAddAddress(true)}>
+            <Button
+              size={Button.sizes.default}
+              variant={Button.variants.default}
+              onClick={() => setAddAddressModalShow(true)}>
               <i className="fas fa-plus" />
-              {t('private.profile.addresses.add')}
+              {t('private.profile.addresses.add.trigger')}
             </Button>
           </div>
           {locations && locations.length ? (
@@ -44,33 +47,18 @@ const Addresses = ({ locations }) => {
           )}
         </div>
       </div>
-      {/* <Modal title="Add an address" show={addAddress} onClose={addAdress_OnClose} onSubmit={addAdress_OnSubmit}>
-        test mon copain
-      </Modal> */}
-
-      <Modal show={addAddress} onHide={addAdressOnClose} aria-labelledby="ModalHeader">
-        <Modal.Header closeButton>
-          <Modal.Title id="ModalHeader">
-            <i className="fas fa-plus mr-3" /> Add an address
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Some Content here</p>
-          <p>Some Content here</p>
-          <p>Some Content here</p>
-          <p>Some Content here</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
-          <Button onClick={addAdressOnSubmit}>Save</Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };
 
 Addresses.propTypes = {
-  locations: PropTypes.arrayOf(PropTypes.shape(Address.propTypes.location))
+  programs: PropTypes.arrayOf(
+    PropTypes.shape({
+      ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
+    })
+  ).isRequired,
+  locations: PropTypes.arrayOf(PropTypes.shape(Address.propTypes.location)),
+  onAddressAdded: PropTypes.func.isRequired
 };
 
 Addresses.defaultProps = {

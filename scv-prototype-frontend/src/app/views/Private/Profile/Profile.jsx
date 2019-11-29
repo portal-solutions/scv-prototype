@@ -20,8 +20,9 @@ const Profile = () => {
   const { t } = useTranslation();
   const { fetchProfile, fetchPerson, fetchPersonPrograms, fetchPersonLocations } = useApi();
 
-  const [data, setData] = useState(null);
+  const [fetchData, setFetchData] = useState(true);
   const [fetchingError, setFetchingError] = useState(null);
+  const [data, setData] = useState(null);
 
   usePageMetadata({
     documentTitle: t('private.profile.document-title'),
@@ -43,8 +44,9 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    setData(null);
     fetchDataFromApi();
-  }, []);
+  }, [fetchData]);
 
   // GETS proper component to render
   let componentToRender = null;
@@ -81,7 +83,11 @@ const Profile = () => {
           <hr />
           <DatesOfBirth person={data.person} programs={data.programs} />
           <hr />
-          <Addresses locations={data.locations} />
+          <Addresses
+            programs={data.programs}
+            locations={data.locations}
+            onAddressAdded={() => setFetchData((prevState) => !prevState)}
+          />
           <hr />
           <TelephoneNumbers programs={data.programs} telephoneNumbers={data.profile.telephoneNumbers} />
           <hr />

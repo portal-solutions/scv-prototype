@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 const Address = ({ location }) => {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   return (
     <p>
@@ -14,7 +14,7 @@ const Address = ({ location }) => {
       <br />
       {`${location.line1}`}
       <br />
-      {`${location.city}, ${location.provinceName.eng}`}
+      {`${location.city}, ${location.provinceName[i18n.language === 'fr' ? 'fra' : 'eng']}`}
       <br />
       {location.countryName}
     </p>
