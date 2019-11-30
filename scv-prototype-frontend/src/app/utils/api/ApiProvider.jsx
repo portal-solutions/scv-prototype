@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { createContext, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../auth';
 import * as apiService from './ApiService';
 import InvalidTokenError from '../errors/InvalidTokenError';
 import AuthenticationRequiredError from '../errors/AuthenticationRequiredError';
+import AddPersonLocationValidationError from '../errors/AddPersonLocationValidationError';
 
 /**
  * Auth context; used to store API stuff.
@@ -19,6 +21,7 @@ const useApi = () => useContext(ApiContext);
  * React component that will expose API stuff to children.
  */
 const ApiProvider = (props) => {
+  const { t } = useTranslation();
   const { auth, logout } = useAuth();
 
   const validateAuthentication = (fnName) => {
@@ -86,6 +89,39 @@ const ApiProvider = (props) => {
     return apiService.fetchPersonLocations(auth.sin);
   };
 
+  const searchLocations = async (query) => {
+    return apiService.searchLocations(query);
+  };
+
+  /**
+   * Add person's location from the backend API.
+   */
+  const addPersonLocation = async (locationId, programIds) => {
+    validateAuthentication('addPersonLocation');
+
+    // validation
+    const addPersonLocationValidationError = new AddPersonLocationValidationError(t('error.validation-error'));
+
+    // validate location id
+    if (locationId === undefined || locationId === null || locationId.length === 0) {
+      addPersonLocationValidationError.locationMessage = t(
+        'error.add-person-location-validation-error.location-required'
+      );
+    }
+
+    // validate program ids
+    if (programIds === undefined || programIds === null || programIds.length === 0) {
+      addPersonLocationValidationError.programsMessage = t(
+        'error.add-person-location-validation-error.programs-required'
+      );
+    }
+
+    if (addPersonLocationValidationError.hasError()) throw addPersonLocationValidationError;
+
+    // call the api service
+    return apiService.addPersonLocation(auth.sin, locationId, programIds);
+  };
+
   return (
     <ApiContext.Provider
       value={{
@@ -95,7 +131,9 @@ const ApiProvider = (props) => {
         fetchProfile,
         fetchPerson,
         fetchPersonPrograms,
-        fetchPersonLocations
+        fetchPersonLocations,
+        searchLocations,
+        addPersonLocation
       }}
       {...props}
     />

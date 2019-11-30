@@ -24,7 +24,6 @@ const TermsAndConditions = () => {
   const { auth, setTermsAndConditionsAgreement } = useAuth();
   const { fetchPersonPrograms } = useApi();
 
-  const [privacyNoticeOpen, setPrivacyNoticeOpen] = useState(false);
   const [read, setRead] = useState(false);
   const [programs, setPrograms] = useState(null);
   const [fetchingError, setFetchingError] = useState(null);
@@ -108,7 +107,7 @@ const TermsAndConditions = () => {
               )}
             </ul>
           </div>
-          <div className="panel panel-default mb-5" open={privacyNoticeOpen}>
+          <div className="panel panel-default mb-5">
             <div className="panel-heading">{t('private.terms-and-conditions.content.privacy-notice.heading')}</div>
             <div className="panel-body">
               <p>{t('private.terms-and-conditions.content.privacy-notice.body')}</p>

@@ -1,5 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-
 import config from '../../../config';
 import InvalidTokenError from '../errors/InvalidTokenError';
 import NotFoundError from '../errors/NotFoundError';
@@ -172,6 +171,48 @@ const fetchPersonLocations = async (sin) => {
   return response.json();
 };
 
+/**
+ * Search locations from the backend API.
+ */
+const searchLocations = async (query) => {
+  const url = `${config.api.baseUrl}/api/locations?q=${query}`;
+
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    method: 'GET',
+    mode: 'cors'
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error on GET to ${url}; status=${response.status}`);
+  }
+
+  return response.json();
+};
+
+/**
+ * Add person's location from the backend API.
+ */
+const addPersonLocation = async (sin, locationId, programIds) => {
+  // build the POST url
+  const url = `${config.api.baseUrl}/api/persons/${sin}/locations/locationId/?p=${programIds.join(',')}`;
+
+  // build and request the POST request
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    method: 'POST',
+    mode: 'cors'
+  });
+
+  // check the response
+  if (!response.ok) {
+    throw new Error(`Error on POST to ${url}; status=${response.status}`);
+  }
+
+  // return body reponse json
+  return response.json();
+};
+
 export {
   fetchGreetings,
   fetchPaymentDetails,
@@ -179,5 +220,7 @@ export {
   fetchProfile,
   fetchPerson,
   fetchPersonPrograms,
-  fetchPersonLocations
+  fetchPersonLocations,
+  searchLocations,
+  addPersonLocation
 };

@@ -8,6 +8,7 @@
     "remove": "Remove",
     "delete": "Delete",
     "refresh": "Refresh",
+    "search": "Search",
     "sign-in": "Sign in",
     "sign-out": "Sign out",
     "submit": "Submit"
@@ -20,6 +21,13 @@
   },
   "no-data-available": "No data available",
   "something-went-wrong": "Oops, something went wrong...",
+  "error": {
+    "validation-error": "Validation error has occurred.",
+    "add-person-location-validation-error": {
+      "location-required": "One location is required.",
+      "programs-required": "At least one program is required."
+    }
+  },
   "required": "required",
   "not-found": {
     "apology": "We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?",
@@ -75,7 +83,20 @@
         "content": "This screen shows you the different demographic and personal information that participating programs hold about you, as well as the contact information you have provided to the participating programs. Please note that it is possible for the personal information to be different across programs depending on how and when that data was created. If you notice any errors, please let us know! From this screen you can add new contact information and decide which programs you want to access and use that contact information. Once you add new data, you can request updates to the various programs. Once they accept or reject your data, we will let you know."
       },
       "addresses": {
-        "add": "Add an address",
+        "add": {
+          "trigger": "Add an address",
+          "title": "Add an address",
+          "search-label": "Type the address below",
+          "search-placeholder": "Type the address as a single line (for example, 1-19 Spadina Ave)",
+          "select-address": "Select an address",
+          "share-with": "Share with",
+          "submit": "Add the address",
+          "validation-error": {
+            "message": "Validation error!",
+            "location-must-be-selected": "You must select one address!",
+            "program-one-must-be-selected": "You must select at least one program!"
+          }
+        },
         "address": "Address",
         "title": "Addresses"
       },
