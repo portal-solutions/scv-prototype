@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.Program;
+import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
 
 /**
  * Integration test that will test that the interop service.
@@ -81,7 +82,8 @@ public class InteropServiceImplIT {
 		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
 
 		// act
-		final List<Program> programs = interopService.getPersonPrograms(interopService.getPerson(sin).get().getOtherIdentification().getId());
+		final List<Program> programs = interopService
+				.getPersonPrograms(interopService.getPerson(sin).get().getOtherIdentification().getId());
 
 		// assert
 		assertThat(programs).isNotEmpty();
@@ -93,10 +95,11 @@ public class InteropServiceImplIT {
 		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
 
 		// act
-		final List<Location> Locations = interopService.getPersonLocations(interopService.getPerson(sin).get().getOtherIdentification().getId(), sin);
+		final List<ProgramPersonLocationAssociation> programPersonLocationAssociations = interopService
+				.getPersonLocations(interopService.getPerson(sin).get().getOtherIdentification().getId(), sin);
 
 		// assert
-		assertThat(Locations).isNotEmpty();
+		assertThat(programPersonLocationAssociations).isNotEmpty();
 	}
 
 }

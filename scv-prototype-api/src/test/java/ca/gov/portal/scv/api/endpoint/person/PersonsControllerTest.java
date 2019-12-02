@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import ca.gov.portal.scv.api.endpoint.location.LocationsController;
-import ca.gov.portal.scv.api.endpoint.model.LocationMapper;
+import ca.gov.portal.scv.api.endpoint.model.PersonProgramLocationMapper;
 import ca.gov.portal.scv.api.service.InteropService;
 import ca.gov.portal.scv.api.service.dto.Person;
 
@@ -32,14 +32,14 @@ public class PersonsControllerTest {
 	InteropService interopService;
 
 	@Mock
-	LocationMapper locationMapper;
+	PersonProgramLocationMapper personProgramLocationMapper;
 
 	PersonsController personsController;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		this.personsController = new PersonsController(interopService, locationMapper);
+		this.personsController = new PersonsController(interopService, personProgramLocationMapper);
 	}
 
 	@Test
