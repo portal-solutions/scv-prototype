@@ -31,11 +31,8 @@ public class LocationAddress implements Serializable {
 	@JsonProperty("LocationCountry")
 	private Country country;
 
-	@JsonProperty("LocationPostalCode")
-	private String postalCode;
-
 	@JsonProperty("AddressCategoryText")
-	private AddressCategory addressCategory;
+	private String addressCategory;
 
 	@JsonProperty("LocationStreet")
 	private Street street;

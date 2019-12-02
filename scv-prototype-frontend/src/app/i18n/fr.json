@@ -19,6 +19,7 @@
     "success": "Succès",
     "error": "Erreur"
   },
+  "status": "Statut",
   "no-data-available": "Aucune données disponibles",
   "something-went-wrong": "Oops, il y a eu un problème...",
   "error": {
@@ -311,5 +312,10 @@
   "programs": {
     "2": "Guichet-Emplois",
     "3": "Programme canadien de prêts aux étudiants"
+  },
+  "location": {
+    "category": {
+      "HOME": "Domicile"
+    }
   }
 }

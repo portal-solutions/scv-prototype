@@ -36,7 +36,7 @@ const Profile = () => {
         profile: await fetchProfile(),
         person: await fetchPerson(),
         programs: await fetchPersonPrograms(),
-        locations: await fetchPersonLocations()
+        personLocations: await fetchPersonLocations()
       });
     } catch (err) {
       setFetchingError(err);
@@ -85,7 +85,7 @@ const Profile = () => {
           <hr />
           <Addresses
             programs={data.programs}
-            locations={data.locations}
+            personLocations={data.personLocations}
             onAddressAdded={() => setFetchData((prevState) => !prevState)}
           />
           <hr />
