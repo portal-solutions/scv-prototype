@@ -309,7 +309,7 @@
     }
   },
   "programs": {
-    "JB": "Guichet-Emplois",
-    "CSLP": "Programme canadien de prêts aux étudiants"
+    "2": "Guichet-Emplois",
+    "3": "Programme canadien de prêts aux étudiants"
   }
 }
