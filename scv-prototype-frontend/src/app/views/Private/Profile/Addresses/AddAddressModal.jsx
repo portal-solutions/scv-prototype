@@ -7,12 +7,13 @@ import { useApi } from '../../../../utils/api';
 import Button from '../../../../components/Button';
 import Roller from '../../../../components/Loading';
 import FormGroup from '../../../../components/FormGroup';
+import Location from '../../../../components/Location';
 import AddPersonLocationValidationError from '../../../../utils/errors/AddPersonLocationValidationError';
 
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
 
 const AddAddressModal = ({ programs, show, onClosing }) => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const { searchLocations, addPersonLocation } = useApi();
 
   const searchInputRef = useRef();
@@ -193,9 +194,7 @@ const AddAddressModal = ({ programs, show, onClosing }) => {
                                 value={location.id}
                                 disabled={addingNewAddress}
                               />
-                              {`${location.line1}, ${location.city}, ${
-                                location.provinceName[i18n.language === 'fr' ? 'fra' : 'eng']
-                              }, ${location.countryName}`}
+                              <Location location={location} oneline />
                             </label>
                           </div>
                         );
