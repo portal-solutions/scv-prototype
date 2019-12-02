@@ -14,19 +14,18 @@ import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
 
-import ca.gov.portal.scv.api.service.dto.Identification;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.LocationResponse;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.OpenApiResponse;
 import ca.gov.portal.scv.api.service.dto.Person;
-import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.PersonLocationsResponse;
 import ca.gov.portal.scv.api.service.dto.PersonProgramsResponse;
 import ca.gov.portal.scv.api.service.dto.PersonResponse;
 import ca.gov.portal.scv.api.service.dto.Program;
 import ca.gov.portal.scv.api.service.dto.ProgramBenefitRequest;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,9 +53,8 @@ public class InteropServiceImpl implements InteropService {
 	public Optional<Location> getLocation(String id) {
 		try {
 			return Stream.of(locationApiRestTemplate.getForObject("/location/{id}", LocationResponse[].class, id))
-				.map(LocationResponse::getLocation).findFirst();
-		}
-		catch (final NotFound exception) {
+					.map(LocationResponse::getLocation).findFirst();
+		} catch (final NotFound exception) {
 			return Optional.empty();
 		}
 	}
@@ -64,11 +62,10 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public List<Location> getLocations(String searchString) {
 		try {
-			return Stream.of(locationApiRestTemplate.getForObject("/fuzzySearch/{searchString}", LocationResponse[].class, searchString))
-				.map(LocationResponse::getLocation)
-				.collect(toImmutableList());
-		}
-		catch (final BadRequest | NotFound exception) {
+			return Stream.of(locationApiRestTemplate.getForObject("/fuzzySearch/{searchString}",
+					LocationResponse[].class, searchString)).map(LocationResponse::getLocation)
+					.collect(toImmutableList());
+		} catch (final BadRequest | NotFound exception) {
 			log.debug("Caught BadRequest or NotFound exception while calling fuzzySearch API", exception);
 			return emptyList();
 		}
@@ -77,9 +74,9 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public Optional<Person> getPerson(String sin) {
 		try {
-			return Optional.of(personApiRestTemplate.getForObject("/Person?SIN={sin}", PersonResponse.class, sin).getPerson());
-		}
-		catch (final BadRequest | NotFound exception) {
+			return Optional
+					.of(personApiRestTemplate.getForObject("/Person?SIN={sin}", PersonResponse.class, sin).getPerson());
+		} catch (final BadRequest | NotFound exception) {
 			log.debug("Caught BadRequest or NotFound exception while calling person API", exception);
 			return Optional.empty();
 		}
@@ -88,31 +85,21 @@ public class InteropServiceImpl implements InteropService {
 	@Override
 	public List<Program> getPersonPrograms(String id) {
 		try {
-			return personApiRestTemplate.getForObject("/Person/{id}/Program", PersonProgramsResponse.class, id).getProgramBenefitRequests().stream()
-				.map(ProgramBenefitRequest::getProgram)
-				.collect(toList());
-		}
-		catch (final BadRequest | NotFound exception) {
+			return personApiRestTemplate.getForObject("/Person/{id}/Program", PersonProgramsResponse.class, id)
+					.getProgramBenefitRequests().stream().map(ProgramBenefitRequest::getProgram).collect(toList());
+		} catch (final BadRequest | NotFound exception) {
 			log.debug("Caught BadRequest or NotFound exception while calling person/program API", exception);
 			return emptyList();
 		}
 	}
 
 	@Override
-	public List<Location> getPersonLocations(String id, String sin) {
+	public List<ProgramPersonLocationAssociation> getPersonLocations(String id, String sin) {
 		try {
-			return personApiRestTemplate.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin)
-				.getProgramPersonLocationAssociations().stream()
-				.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
-				.map(PersonLocationAssociation::getLocation)
-				.map(Location::getIdentification)
-				.map(Identification::getId)
-				.map(this::getLocation)
-				.filter(Optional::isPresent)
-				.map(Optional::get)
-				.collect(toList());
-		}
-		catch (final BadRequest | NotFound exception) {
+			return personApiRestTemplate
+					.getForObject("/Person/{id}/Location?SIN={sin}", PersonLocationsResponse.class, id, sin)
+					.getProgramPersonLocationAssociations();
+		} catch (final BadRequest | NotFound exception) {
 			log.debug("Caught BadRequest or NotFound exception while calling person/location API", exception);
 			return emptyList();
 		}
