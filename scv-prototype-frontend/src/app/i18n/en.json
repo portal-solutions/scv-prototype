@@ -19,6 +19,7 @@
     "success": "Success",
     "error": "Error"
   },
+  "status": "Status",
   "no-data-available": "No data available",
   "something-went-wrong": "Oops, something went wrong...",
   "error": {
@@ -307,5 +308,10 @@
   "programs": {
     "2": "Job Bank",
     "3": "Canada Student Loans Program"
+  },
+  "location": {
+    "category": {
+      "HOME": "Home"
+    }
   }
 }

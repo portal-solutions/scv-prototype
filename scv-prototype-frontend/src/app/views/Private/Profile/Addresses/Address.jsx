@@ -2,35 +2,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Location from '../../../../components/Location';
 
-const Address = ({ location }) => {
-  const { i18n, t } = useTranslation();
+const Address = ({ personLocation }) => {
+  const { t } = useTranslation();
 
   return (
     <p>
       <strong>
-        {t('private.profile.addresses.address')} - {location.id} {/* program */}
+        {t('private.profile.addresses.address')} -{' '}
+        {t(`location.category.${personLocation.locationAddressCategoryText}`)} -{' '}
+        {t(`programs.${personLocation.programId}`)}
       </strong>
       <br />
-      {`${location.line1}`}
+      <Location location={personLocation.location} />
       <br />
-      {`${location.city}, ${location.provinceName[i18n.language === 'fr' ? 'fra' : 'eng']}`}
-      <br />
-      {location.countryName}
+      <em>
+        {t('status') + t('colon')}&nbsp;
+        {personLocation.statusText}&nbsp;
+        {new Date(personLocation.statusDate).toLocaleDateString()}
+      </em>
     </p>
   );
 };
 
 Address.propTypes = {
-  location: PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    countryName: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    line1: PropTypes.string.isRequired,
-    provinceName: PropTypes.shape({
-      eng: PropTypes.string,
-      fra: PropTypes.string
-    }).isRequired
+  personLocation: PropTypes.shape({
+    programId: PropTypes.string.isRequired,
+    locationAddressCategoryText: PropTypes.string.isRequired,
+    statusText: PropTypes.string.isRequired,
+    statusDate: PropTypes.string.isRequired,
+    location: Location.propTypes.location
   }).isRequired
 };
 

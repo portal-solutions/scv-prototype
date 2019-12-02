@@ -6,7 +6,7 @@ import Address from './Address';
 import AddAddressModal from './AddAddressModal';
 import Button from '../../../../components/Button';
 
-const Addresses = ({ programs, locations, onAddressAdded }) => {
+const Addresses = ({ programs, personLocations, onAddressAdded }) => {
   const { t } = useTranslation();
 
   const [addAddressModalShow, setAddAddressModalShow] = useState(false);
@@ -38,8 +38,8 @@ const Addresses = ({ programs, locations, onAddressAdded }) => {
               {t('private.profile.addresses.add.trigger')}
             </Button>
           </div>
-          {locations && locations.length ? (
-            locations.map((location, idx) => <Address key={idx} location={location} />)
+          {personLocations && personLocations.length ? (
+            personLocations.map((personLocation, idx) => <Address key={idx} personLocation={personLocation} />)
           ) : (
             <p className="text-center">
               <em>{t('no-data-available')}</em>
@@ -57,12 +57,12 @@ Addresses.propTypes = {
       ActivityIdentification: PropTypes.shape({ IdentificationID: PropTypes.string.isRequired })
     })
   ).isRequired,
-  locations: PropTypes.arrayOf(PropTypes.shape(Address.propTypes.location)),
+  personLocations: PropTypes.arrayOf(PropTypes.shape(Address.propTypes.personLocation)),
   onAddressAdded: PropTypes.func.isRequired
 };
 
 Addresses.defaultProps = {
-  locations: []
+  personLocations: []
 };
 
 export default Addresses;

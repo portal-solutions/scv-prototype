@@ -7,6 +7,7 @@ import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.Person;
 import ca.gov.portal.scv.api.service.dto.Program;
+import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
 
 /**
  * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
@@ -24,5 +25,5 @@ public interface InteropService {
 
 	List<Program> getPersonPrograms(String id);
 
-	List<Location> getPersonLocations(String id, String sin);
+	List<ProgramPersonLocationAssociation> getPersonLocations(String id, String sin);
 }
