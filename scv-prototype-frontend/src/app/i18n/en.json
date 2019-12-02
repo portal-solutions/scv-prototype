@@ -305,7 +305,7 @@
     }
   },
   "programs": {
-    "JB": "Job Bank",
-    "CSLP": "Canada Student Loans Program"
+    "2": "Job Bank",
+    "3": "Canada Student Loans Program"
   }
 }
