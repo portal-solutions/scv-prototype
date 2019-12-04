@@ -4,28 +4,41 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
 
+import ca.gov.portal.scv.api.service.dto.AddLocationRequest;
+import ca.gov.portal.scv.api.service.dto.AssociationDateRange;
+import ca.gov.portal.scv.api.service.dto.Identification;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.LocationResponse;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.OpenApiResponse;
 import ca.gov.portal.scv.api.service.dto.Person;
+import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.PersonLocationsResponse;
 import ca.gov.portal.scv.api.service.dto.PersonProgramsResponse;
 import ca.gov.portal.scv.api.service.dto.PersonResponse;
 import ca.gov.portal.scv.api.service.dto.Program;
 import ca.gov.portal.scv.api.service.dto.ProgramBenefitRequest;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
-
+import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociationRequest;
+import ca.gov.portal.scv.api.service.dto.ProgramRequest;
+import ca.gov.portal.scv.api.service.dto.ProgramsPersonLocationAssociation;
+import ca.gov.portal.scv.api.service.dto.ShareLocationByProgramRequest;
+import ca.gov.portal.scv.api.service.dto.ShareLocationRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -104,5 +117,58 @@ public class InteropServiceImpl implements InteropService {
 			return emptyList();
 		}
 	}
+	
+	@Override
+	public void shareLocation(String personId, ShareLocationRequest shareLocationRequest) {
+
+		final LocalDate startTime = LocalDate.now();
+		final AssociationDateRange associationDateRange = AssociationDateRange.builder().startDate(startTime).build();
+		final Person person = Person.builder().otherIdentification(Identification.builder().id(personId).build()).build();
+		final Location location = Location.builder().identification(Identification.builder().id(shareLocationRequest.getLocationId()).build()).build();
+		
+		final AddLocationRequest addLocationRequest = AddLocationRequest.builder().associationDateRange(associationDateRange)
+				.person(person).location(location).build();
+				
+		
+		personApiRestTemplate.postForEntity("/Person/{id}/Location", addLocationRequest, Void.class, personId);
+		
+	}
+	
+	@Override
+	public void shareLocationByProgram(String personId, String locationId, ShareLocationByProgramRequest shareLocationByProgramRequest) {
+		
+		final LocalDate startTime = LocalDate.now();
+		
+		final AssociationDateRange associationDateRange = AssociationDateRange.builder().startDate(startTime).build();
+		
+		final Identification identification = Identification.builder().id(shareLocationByProgramRequest.getProgramIds().get(0)).build();
+		
+		final String sin = shareLocationByProgramRequest.getSin();
+		
+		final ProgramPersonLocationAssociation programPersonLocationAssociation = getPersonLocations(personId, sin).get(0);
+		
+		final String personOtherIdentificationId = programPersonLocationAssociation.getPersonLocationAssociation().getIdentification().getId();
+		final Person person = Person.builder().otherIdentification(Identification.builder().id(personOtherIdentificationId).build()).build();
+		final PersonLocationAssociation personLocationAssociation = PersonLocationAssociation.builder().person(person).build();
+			
+		final List<Identification> activityIdentifications = Stream.of(identification).collect(Collectors.toList());
+		
+		final ProgramsPersonLocationAssociation programsPersonLocationAssociation = 
+				ProgramsPersonLocationAssociation.builder().associationDateRange(associationDateRange)
+					.program(ProgramRequest.builder().activityIdentifications(activityIdentifications).build()).personLocationAssociation(personLocationAssociation).build();
+		
+		final ProgramPersonLocationAssociationRequest request = ProgramPersonLocationAssociationRequest.builder().programsPersonLocationAssociation(programsPersonLocationAssociation).build();
+		
+		try {
+			personApiRestTemplate.postForEntity("​/Person​/{PersonID}​/Location​/{LocationID}", request, Void.class, personId, locationId);
+		} catch (final HttpClientErrorException exception ) {
+			log.debug("Caught BadRequest or NotFound exception while calling ​/Person​/{personID}​/Location​/{locationID}", exception);
+			
+		} catch (final Exception ex) {
+			log.debug("Caught BadRequest or NotFound exception while calling ​/Person​/{personID}​/Location​/{locationID}", ex);
+		}
+		
+	}
+
 
 }

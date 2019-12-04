@@ -1,8 +1,8 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Value;
@@ -14,8 +14,9 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-public class ShareLocationRequest implements Serializable {
-
+public class ShareLocationByProgramRequest implements Serializable {
+	
+	private String sin;
 	private String locationId;
-
+	private List<String> programIds;
 }
