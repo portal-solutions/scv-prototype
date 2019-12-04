@@ -75,10 +75,8 @@ const TermsAndConditions = () => {
         <span className="hide">{fetchingError.message}</span>
       </div>
     );
-  }
-
-  // programs are loading
-  if (programs === null) {
+  } else if (programs === null) {
+    // programs loading
     componentToRender = (
       <div className="text-center mrgn-tp-lg">
         <Roller />
@@ -86,7 +84,6 @@ const TermsAndConditions = () => {
     );
   } else {
     // programs loaded
-
     componentToRender = (
       <div className="row">
         <div className="col-xs-12">
@@ -94,7 +91,9 @@ const TermsAndConditions = () => {
             <p>{t('private.terms-and-conditions.content.list-of-programs-participate')}</p>
             <ul>
               {programs.map((p, i) => (
-                <li key={i}>{t(`programs.${p.ActivityIdentification.IdentificationID}`)}</li>
+                <li key={p.ActivityIdentification.IdentificationID}>
+                  {t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                </li>
               ))}
             </ul>
             <p>{t('private.terms-and-conditions.content.clicking-below')}</p>

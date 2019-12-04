@@ -100,7 +100,11 @@
         },
         "address": "Address",
         "title": "Addresses",
-        "share-with": "Share with"
+        "share-with": "Share with",
+        "status": {
+          "accepted": "Accepted",
+          "pending": "Pending"
+        }
       },
       "dates-of-birth": {
         "date-of-birth": "Date of birth",

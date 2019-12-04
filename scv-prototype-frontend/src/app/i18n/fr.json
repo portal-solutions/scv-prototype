@@ -101,7 +101,11 @@
         },
         "address": "Adresse",
         "title": "Adresses",
-        "share-with": "Partager avec"
+        "share-with": "Partager avec",
+        "status": {
+          "accepted": "Acceptée",
+          "pending": "En attendante"
+        }
       },
       "dates-of-birth": {
         "date-of-birth": "Date de naissance",

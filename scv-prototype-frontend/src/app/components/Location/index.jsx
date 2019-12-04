@@ -18,7 +18,10 @@ const Location = ({ location, oneline }) => {
     if (city) cpParts.push(city);
     if (provinceName) cpParts.push(provinceName[i18n.language === 'fr' ? 'fra' : 'eng']);
 
-    parts.push(cpParts.join(', '));
+    /**
+     * join with &nbsp;&nbsp;
+     */
+    parts.push(cpParts.join('\u00a0\u00a0'));
   }
 
   if (postalCode) parts.push(postalCode);
