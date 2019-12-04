@@ -65,16 +65,15 @@ const Profile = () => {
         <span className="hide">{fetchingError.message}</span>
       </div>
     );
-  }
-
-  // data is loading
-  if (data === null) {
+  } else if (data === null) {
+    // data loading
     componentToRender = (
       <div className="text-center mrgn-tp-lg">
         <Roller />
       </div>
     );
   } else {
+    // data loaded
     componentToRender = (
       <div className="panel panel-default">
         <div className="panel-heading">{t('private.profile.panel.title')}</div>

@@ -9,6 +9,11 @@ const Address = ({ personLocation }) => {
   const { t } = useTranslation();
   const { programIds, locationAddressCategoryText, statusText, statusDate, location } = personLocation;
 
+  const statusIcons = {
+    accepted: 'fas fa-check-circle text-success',
+    pending: 'fas exclamation-triangle text-warning'
+  };
+
   return (
     <p>
       <strong>
@@ -21,15 +26,15 @@ const Address = ({ personLocation }) => {
         <>
           <strong className="text-info">
             {t('private.profile.addresses.share-with')}{' '}
-            {makeString(programIds.map((programId) => t(`programs.${programId}`)), { lastSeparator: t('and') })}
+            {makeString(programIds.sort().map((programId) => t(`programs.${programId}`)), { lastSeparator: t('and') })}
           </strong>
           <br />
         </>
       )}
       <em>
-        {t('status') + t('colon')}&nbsp;
-        {statusText}&nbsp;
-        {new Date(statusDate).toLocaleDateString()}
+        <strong>{t('status') + t('colon')}</strong>
+        &nbsp;{t(`private.profile.addresses.status.${statusText.toLowerCase()}`)}&nbsp;-&nbsp;{statusDate}&nbsp;
+        <i className={statusIcons[statusText.toLowerCase()]} />
       </em>
     </p>
   );
