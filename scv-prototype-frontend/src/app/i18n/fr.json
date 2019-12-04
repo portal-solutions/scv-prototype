@@ -14,6 +14,7 @@
     "submit": "Soumettre"
   },
   "colon": "\u00a0:",
+  "and": "et",
   "alert": {
     "info": "Information",
     "success": "Succès",
@@ -91,7 +92,6 @@
           "search-label": "Tapez l'adresse ci-dessous",
           "search-placeholder": "Tapez l'adresse sur une ligne (par exemple, 1-19 Av Spadina)",
           "select-address": "Sélectionnez une adresse",
-          "share-with": "Partager avec",
           "submit": "Ajouter l'adresse",
           "validation-error": {
             "message": "Erreur de validation!",
@@ -100,7 +100,8 @@
           }
         },
         "address": "Adresse",
-        "title": "Adresses"
+        "title": "Adresses",
+        "share-with": "Partager avec"
       },
       "dates-of-birth": {
         "date-of-birth": "Date de naissance",
