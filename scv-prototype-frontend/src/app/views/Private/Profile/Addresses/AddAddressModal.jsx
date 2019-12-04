@@ -204,7 +204,7 @@ const AddAddressModal = ({ programs, show, onClosing }) => {
                     <div ref={programsContainerRef}>
                       <FormGroup
                         required
-                        label={t('private.profile.addresses.add.share-with')}
+                        label={t('private.profile.addresses.share-with')}
                         labelFor={`programCheckboxes_${searchResponseData[0].id}`}
                         errorMessage={
                           error !== null && error instanceof AddPersonLocationValidationError

@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.gov.portal.scv.api.endpoint.model.PersonProgramLocationMapper;
+import ca.gov.portal.scv.api.endpoint.model.PersonLocationProgramsMapper;
 import ca.gov.portal.scv.api.service.InteropService;
+import ca.gov.portal.scv.api.service.dto.Identification;
+import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.Person;
+import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
+import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -32,7 +37,7 @@ public class PersonsController {
 
 	private final InteropService interopService;
 
-	private final PersonProgramLocationMapper personProgramLocationMapper;
+	private final PersonLocationProgramsMapper personLocationProgramsMapper;
 
 	@GetMapping({ "/{sin}" })
 	public ResponseEntity<?> handleGetPerson(@PathVariable String sin) throws Exception {
@@ -51,14 +56,21 @@ public class PersonsController {
 	public ResponseEntity<?> handleGetPersonLocations(@PathVariable String sin) throws Exception {
 		final Optional<Person> person = interopService.getPerson(sin);
 
-		return person.isPresent()
-				? ok(interopService.getPersonLocations(person.get().getOtherIdentification().getId(), sin).stream()
-						.map(obj -> personProgramLocationMapper.map(obj,
-								interopService.getLocation(
-										obj.getPersonLocationAssociation().getLocation().getIdentification().getId())
-										.get()))
-						.collect(toImmutableList()))
-				: status(NOT_FOUND).body(singletonMap("message", "No location found for user with sin=" + sin));
+		if (person.isPresent()) {
+
+			List<ProgramPersonLocationAssociation> programPersonLocationAssociations = interopService
+					.getPersonLocations(person.get().getOtherIdentification().getId(), sin);
+
+			List<Location> locations = programPersonLocationAssociations.stream()
+					.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
+					.map(PersonLocationAssociation::getLocation).map(Location::getIdentification)
+					.map(Identification::getId).map(locationId -> interopService.getLocation(locationId).get())
+					.collect(toImmutableList());
+
+			return ok(personLocationProgramsMapper.map(programPersonLocationAssociations, locations));
+		} else {
+			return status(NOT_FOUND).body(singletonMap("message", "No location found for user with sin=" + sin));
+		}
 	}
 
 }

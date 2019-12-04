@@ -2,6 +2,7 @@ package ca.gov.portal.scv.api.endpoint.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Value;
@@ -13,9 +14,9 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-public class PersonProgramLocation implements Serializable {
+public class PersonLocationPrograms implements Serializable {
 
-	private String programId;
+	private List<String> programIds;
 
 	private String locationAddressCategoryText;
 

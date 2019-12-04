@@ -14,6 +14,7 @@
     "submit": "Submit"
   },
   "colon": ":",
+  "and": "and",
   "alert": {
     "info": "Information",
     "success": "Success",
@@ -90,7 +91,6 @@
           "search-label": "Type the address below",
           "search-placeholder": "Type the address as a single line (for example, 1-19 Spadina Ave)",
           "select-address": "Select an address",
-          "share-with": "Share with",
           "submit": "Add the address",
           "validation-error": {
             "message": "Validation error!",
@@ -99,7 +99,8 @@
           }
         },
         "address": "Address",
-        "title": "Addresses"
+        "title": "Addresses",
+        "share-with": "Share with"
       },
       "dates-of-birth": {
         "date-of-birth": "Date of birth",
