@@ -208,7 +208,7 @@ public class InteropServiceImpl implements InteropService {
 							.builder().programsPersonLocationAssociation(programsPersonLocationAssociation).build();
 
 					try {
-						personApiRestTemplate.postForEntity("​/Person/{personId}/Location/{locationId}",
+						personApiRestTemplate.postForEntity("/Person/{PersonID}/Location/{LocationID}",
 								programPersonLocationAssociationRequest, Void.class, personId, locationId);
 					} catch (final HttpClientErrorException exception) {
 						log.debug(
