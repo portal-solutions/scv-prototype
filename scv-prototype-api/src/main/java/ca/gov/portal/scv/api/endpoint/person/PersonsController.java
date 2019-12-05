@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +24,6 @@ import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.Person;
 import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
-import ca.gov.portal.scv.api.service.dto.ShareLocationByProgramRequest;
 import ca.gov.portal.scv.api.service.dto.ShareLocationRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -77,22 +75,14 @@ public class PersonsController {
 			return status(NOT_FOUND).body(singletonMap("message", "No location found for user with sin=" + sin));
 		}
 	}
-	
-	@PostMapping(path = {"/Person/{id}/Location"})
-	public ResponseEntity<?> handleShareLocation(@PathVariable("id") String personId, @RequestBody ShareLocationRequest shareLocationRequest) {
-				
-		interopService.shareLocation(personId, shareLocationRequest);
+
+	@PostMapping({ "/{sin}/locations/{locationId}" })
+	public ResponseEntity<?> handleShareLocation(@PathVariable("sin") String sin,
+			@PathVariable("locationId") String locationId, @RequestBody ShareLocationRequest shareLocationRequest) {
+
+		interopService.addLocation(sin, locationId);
+		interopService.shareLocation(sin, locationId, shareLocationRequest.getProgramIds());
+
 		return ResponseEntity.accepted().build();
 	}
-
-	@PostMapping(path = {"/Person​/{personId}​/Location​/{locationID}"})
-	public ResponseEntity<?> handleShareLocationByProgram(
-					@PathVariable("personId") String personId, 
-					@PathVariable("locationID") String locationID,
-					@RequestBody ShareLocationByProgramRequest shareLocationByProgramRequest) {
-		
-		interopService.shareLocationByProgram(personId, locationID, shareLocationByProgramRequest);
-		return ResponseEntity.accepted().build();
-	}
-
 }

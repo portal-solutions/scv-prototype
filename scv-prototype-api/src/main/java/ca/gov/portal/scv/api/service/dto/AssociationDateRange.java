@@ -1,10 +1,9 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Builder;
 import lombok.Value;
@@ -16,10 +15,10 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
+@JsonDeserialize(builder = AssociationDateRange.AssociationDateRangeBuilder.class)
 public class AssociationDateRange implements Serializable {
 
 	@JsonProperty("StartDate")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate startDate;
+	private StartDate startDate;
 
 }
