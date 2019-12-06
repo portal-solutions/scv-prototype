@@ -11,6 +11,7 @@ import Location from '../../../../components/Location';
 import AddPersonLocationValidationError from '../../../../utils/errors/AddPersonLocationValidationError';
 
 import 'react-bootstrap-modal/lib/css/rbm-patch.css';
+import { sleep } from '../../../../utils/async-utils';
 
 const AddAddressModal = ({ programs, show, onClosing }) => {
   const { t } = useTranslation();
@@ -83,6 +84,9 @@ const AddAddressModal = ({ programs, show, onClosing }) => {
 
       // call api
       await addPersonLocation(locationId, programIds);
+
+      // sleep for a bit to make sure the MDM returns correct data from person locations
+      await sleep(3000);
 
       // close modal
       onClosing(true);
