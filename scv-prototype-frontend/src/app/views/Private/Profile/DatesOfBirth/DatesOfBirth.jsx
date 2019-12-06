@@ -17,13 +17,17 @@ const DatesOfBirth = ({ person, programs }) => {
           <span>{t('private.profile.dates-of-birth.title')}</span>
         </div>
         {person && programs && programs.length ? (
-          programs.map((p, i) => (
-            <DateOfBirth
-              key={i}
-              program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
-              dateOfBirth={person.PersonBirthDate.Date}
-            />
-          ))
+          programs.map((p, idx) => {
+            return (
+              <React.Fragment key={idx}>
+                <DateOfBirth
+                  program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                  dateOfBirth={person.PersonBirthDate.Date}
+                />
+                {idx !== programs.length - 1 && <hr />}
+              </React.Fragment>
+            );
+          })
         ) : (
           <p className="text-center">
             <em>{t('no-data-available')}</em>

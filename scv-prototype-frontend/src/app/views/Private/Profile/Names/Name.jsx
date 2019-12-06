@@ -6,13 +6,12 @@ const Name = ({ program, name }) => {
   const { t } = useTranslation();
 
   return (
-    <p>
-      <strong>
+    <>
+      <h4>
         {t('private.profile.names.name')} - {program}
-      </strong>
-      <br />
-      {name}
-    </p>
+      </h4>
+      <p>{name}</p>
+    </>
   );
 };
 

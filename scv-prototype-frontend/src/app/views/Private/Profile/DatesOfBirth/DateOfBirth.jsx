@@ -6,13 +6,12 @@ const DateOfBirth = ({ program, dateOfBirth }) => {
   const { t } = useTranslation();
 
   return (
-    <p>
-      <strong>
+    <>
+      <h4>
         {t('private.profile.dates-of-birth.date-of-birth')} - {program}
-      </strong>
-      <br />
-      {new Date(dateOfBirth).toLocaleDateString()}
-    </p>
+      </h4>
+      <p>{new Date(dateOfBirth).toLocaleDateString()}</p>
+    </>
   );
 };
 
