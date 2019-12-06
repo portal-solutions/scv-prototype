@@ -1,6 +1,7 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -22,7 +23,7 @@ public class ProgramsPersonLocationAssociation implements Serializable {
 	private AssociationDateRange associationDateRange;
 
 	@JsonProperty("Program")
-	private ProgramRequest program;
+	private List<ProgramRequest> program;
 
 	@JsonProperty("PersonLocationAssociation")
 	private PersonLocationAssociation personLocationAssociation;

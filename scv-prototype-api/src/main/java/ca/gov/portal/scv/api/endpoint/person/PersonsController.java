@@ -2,6 +2,7 @@ package ca.gov.portal.scv.api.endpoint.person;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static java.util.Collections.singletonMap;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
@@ -80,9 +81,12 @@ public class PersonsController {
 	public ResponseEntity<?> handleShareLocation(@PathVariable("sin") String sin,
 			@PathVariable("locationId") String locationId, @RequestBody ShareLocationRequest shareLocationRequest) {
 
-		interopService.addLocation(sin, locationId);
-		interopService.shareLocation(sin, locationId, shareLocationRequest.getProgramIds());
+		Optional<PersonLocationAssociation> personLocationAssociation = interopService.addLocation(sin, locationId);
+		Boolean shareLocationSuccess = interopService.shareLocation(sin, locationId,
+				shareLocationRequest.getProgramIds());
 
-		return ResponseEntity.accepted().build();
+		return personLocationAssociation.isPresent() && shareLocationSuccess ? ResponseEntity.noContent().build()
+				: status(BAD_REQUEST).body(singletonMap("message",
+						"Share location problem with sin=" + sin + " and locationId=" + locationId));
 	}
 }

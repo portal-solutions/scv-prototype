@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
@@ -115,7 +116,7 @@ public class InteropServiceImpl implements InteropService {
 	}
 
 	@Override
-	public Optional<String> addLocation(String sin, String locationId) {
+	public Optional<PersonLocationAssociation> addLocation(String sin, String locationId) {
 
 		final Optional<Person> person = getPerson(sin);
 		final Optional<Location> location = getLocation(locationId);
@@ -130,8 +131,7 @@ public class InteropServiceImpl implements InteropService {
 
 			if (programPersonLocationAssociation.isPresent()) {
 				// location already associated to the person
-				return Optional.of(programPersonLocationAssociation.get().getPersonLocationAssociation()
-						.getIdentification().getId());
+				return Optional.of(programPersonLocationAssociation.get().getPersonLocationAssociation());
 			}
 
 			// add location request
@@ -141,14 +141,13 @@ public class InteropServiceImpl implements InteropService {
 			final AddLocationRequest addLocationRequest = AddLocationRequest.builder()
 					.associationDateRange(associationDateRange).person(person.get()).location(location.get()).build();
 
-			personApiRestTemplate.postForEntity("/Person/{personId}/Location", addLocationRequest, Void.class,
-					personId);
+			ResponseEntity<Void> reponse = personApiRestTemplate.postForEntity("/Person/{personId}/Location",
+					addLocationRequest, Void.class, personId);
 
-			// return new PersonLocationAssociation id
-			if (programPersonLocationAssociation.isPresent()) {
-				// location already associated to the person
+			if (reponse.getStatusCode() == HttpStatus.NO_CONTENT) {
+				// return new PersonLocationAssociation id
 				return Optional.of(getProgramPersonLocationAssociation(personId, sin, locationId).get()
-						.getPersonLocationAssociation().getIdentification().getId());
+						.getPersonLocationAssociation());
 			}
 		}
 
@@ -156,7 +155,7 @@ public class InteropServiceImpl implements InteropService {
 	}
 
 	@Override
-	public void shareLocation(String sin, String locationId, List<String> programIds) {
+	public Boolean shareLocation(String sin, String locationId, List<String> programIds) {
 
 		final Optional<Person> person = getPerson(sin);
 		final Optional<Location> location = getLocation(locationId);
@@ -169,7 +168,13 @@ public class InteropServiceImpl implements InteropService {
 			final List<ProgramPersonLocationAssociation> programPersonLocationAssociations = getProgramPersonLocationAssociations(
 					personId, sin, locationId);
 
-			if (!programPersonLocationAssociations.isEmpty()) {
+			// keep program ids that belong to the person
+			final List<String> personProgramIds = getPersonPrograms(personId).stream()
+					.map(Program::getActivityIdentification).map(Identification::getId).collect(Collectors.toList());
+
+			programIds.retainAll(personProgramIds);
+
+			if (!programPersonLocationAssociations.isEmpty() && !programIds.isEmpty()) {
 
 				// remove programid already present
 				programIds.removeIf(programId -> programPersonLocationAssociations.stream()
@@ -194,36 +199,33 @@ public class InteropServiceImpl implements InteropService {
 							.person(personForRequest).build();
 
 					// ProgramsPersonLocationAssociation object
-					final List<Identification> activityIdentifications = programIds.stream()
-							.map(programId -> Identification.builder().id(programId).build())
+					final List<ProgramRequest> programs = programIds.stream()
+							.map(programId -> ProgramRequest.builder()
+									.activityIdentification(Identification.builder().id(programId).build()).build())
 							.collect(Collectors.toList());
 
 					final ProgramsPersonLocationAssociation programsPersonLocationAssociation = ProgramsPersonLocationAssociation
-							.builder().associationDateRange(associationDateRange)
-							.program(ProgramRequest.builder().activityIdentifications(activityIdentifications).build())
+							.builder().associationDateRange(associationDateRange).program(programs)
 							.personLocationAssociation(personLocationAssociation).build();
 
 					// ProgramPersonLocationAssociationRequest object
 					final ProgramPersonLocationAssociationRequest programPersonLocationAssociationRequest = ProgramPersonLocationAssociationRequest
 							.builder().programsPersonLocationAssociation(programsPersonLocationAssociation).build();
 
-					try {
-						personApiRestTemplate.postForEntity("/Person/{PersonID}/Location/{LocationID}",
-								programPersonLocationAssociationRequest, Void.class, personId, locationId);
-					} catch (final HttpClientErrorException exception) {
-						log.debug(
-								"Caught BadRequest or NotFound exception while calling ​/Person​/{personId}​/Location​/{locationId}",
-								exception);
+					ResponseEntity<Void> response = personApiRestTemplate.postForEntity(
+							"/Person/{personId}/Location/{locationId}", programPersonLocationAssociationRequest,
+							Void.class, personId, locationId);
 
-					} catch (final Exception ex) {
-						log.debug(
-								"Caught BadRequest or NotFound exception while calling ​/Person​/{personId}​/Location​/{locationId}",
-								ex);
+					if (response.getStatusCode() != HttpStatus.NO_CONTENT) {
+						return false;
 					}
 				}
+
+				return true;
 			}
 		}
 
+		return false;
 	}
 
 	private Optional<ProgramPersonLocationAssociation> getProgramPersonLocationAssociation(String personId, String sin,

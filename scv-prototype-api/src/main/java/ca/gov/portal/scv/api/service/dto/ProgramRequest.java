@@ -1,7 +1,6 @@
 package ca.gov.portal.scv.api.service.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -20,6 +19,6 @@ import lombok.Value;
 public class ProgramRequest implements Serializable {
 
 	@JsonProperty("ActivityIdentification")
-	private List<Identification> activityIdentifications;
+	private Identification activityIdentification;
 
 }

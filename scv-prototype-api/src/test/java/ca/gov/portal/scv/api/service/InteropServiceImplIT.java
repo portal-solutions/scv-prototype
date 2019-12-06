@@ -128,8 +128,8 @@ public class InteropServiceImplIT {
 		final List<String> programid = interopService.getPersonPrograms(personId).stream()
 				.map(Program::getActivityIdentification).map(Identification::getId).collect(Collectors.toList());
 
-		// act
-		interopService.shareLocation(sin, locationId, programid);
+		// assert
+		assertThat(interopService.shareLocation(sin, locationId, programid)).isTrue();
 	}
 
 }
