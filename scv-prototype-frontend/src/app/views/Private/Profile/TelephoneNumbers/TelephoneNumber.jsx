@@ -6,23 +6,21 @@ const TelephoneNumber = ({ program, mobile, home }) => {
   const { t } = useTranslation();
 
   return (
-    <p>
-      <strong>
+    <>
+      <h4>
         {t('private.profile.telephone-numbers.telephone')} - {program}
-      </strong>
-      {mobile || home ? <br /> : null}
+      </h4>
       {mobile && (
-        <>
+        <p>
           <span className="text-muted">{t('private.profile.telephone-numbers.mobile')}</span>&nbsp;{mobile}
-          {home && <br />}
-        </>
+        </p>
       )}
       {home && (
-        <>
+        <p>
           <span className="text-muted">{t('private.profile.telephone-numbers.home')}</span>&nbsp;{home}
-        </>
+        </p>
       )}
-    </p>
+    </>
   );
 };
 

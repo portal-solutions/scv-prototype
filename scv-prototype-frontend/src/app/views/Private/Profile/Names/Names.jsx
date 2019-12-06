@@ -17,13 +17,17 @@ const Names = ({ person, programs }) => {
           <span>{t('private.profile.names.title')}</span>
         </div>
         {person && programs && programs.length ? (
-          programs.map((p, i) => (
-            <Name
-              key={i}
-              program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
-              name={person.PersonName.PersonFullName}
-            />
-          ))
+          programs.map((p, idx) => {
+            return (
+              <React.Fragment key={idx}>
+                <Name
+                  program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                  name={person.PersonName.PersonFullName}
+                />
+                {idx !== programs.length - 1 && <hr />}
+              </React.Fragment>
+            );
+          })
         ) : (
           <p className="text-center">
             <em>{t('no-data-available')}</em>

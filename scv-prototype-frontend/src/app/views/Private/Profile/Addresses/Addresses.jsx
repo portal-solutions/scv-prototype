@@ -39,7 +39,14 @@ const Addresses = ({ programs, personLocations, onAddressAdded }) => {
             </Button>
           </div>
           {personLocations && personLocations.length ? (
-            personLocations.map((personLocation, idx) => <Address key={idx} personLocation={personLocation} />)
+            personLocations.map((personLocation, idx) => {
+              return (
+                <React.Fragment key={idx}>
+                  <Address personLocation={personLocation} />
+                  {idx !== personLocations.length - 1 && <hr />}
+                </React.Fragment>
+              );
+            })
           ) : (
             <p className="text-center">
               <em>{t('no-data-available')}</em>

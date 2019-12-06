@@ -22,16 +22,18 @@ const EmailAddresses = ({ programs, emailAddresses }) => {
           </Button>
         </div>
         {programs && programs.length && emailAddresses && emailAddresses.length ? (
-          programs.map((p, i) => {
+          programs.map((p, idx) => {
             // get first from fake data
             const ea = emailAddresses[Math.floor(Math.random() * emailAddresses.length)];
 
             return (
-              <EmailAddress
-                key={i}
-                program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
-                emailAddress={ea.emailAddress}
-              />
+              <React.Fragment key={idx}>
+                <EmailAddress
+                  program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                  emailAddress={ea.emailAddress}
+                />
+                {idx !== emailAddresses.length - 1 && <hr />}
+              </React.Fragment>
             );
           })
         ) : (

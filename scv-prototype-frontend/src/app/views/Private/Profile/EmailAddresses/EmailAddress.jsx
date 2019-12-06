@@ -6,13 +6,12 @@ const EmailAddress = ({ program, emailAddress }) => {
   const { t } = useTranslation();
 
   return (
-    <p>
-      <strong>
+    <>
+      <h4>
         {t('private.profile.email-addresses.email-address')} - {program}
-      </strong>
-      <br />
-      {emailAddress}
-    </p>
+      </h4>
+      <p>{emailAddress}</p>
+    </>
   );
 };
 

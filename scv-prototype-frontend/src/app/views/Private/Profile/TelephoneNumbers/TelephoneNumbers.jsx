@@ -22,17 +22,19 @@ const TelephoneNumbers = ({ programs, telephoneNumbers }) => {
           </Button>
         </div>
         {programs && programs.length && telephoneNumbers && telephoneNumbers.length ? (
-          programs.map((p, i) => {
+          programs.map((p, idx) => {
             // get first from fake data
             const tn = telephoneNumbers[Math.floor(Math.random() * telephoneNumbers.length)];
 
             return (
-              <TelephoneNumber
-                key={i}
-                program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
-                mobile={tn.mobile}
-                home={tn.home}
-              />
+              <React.Fragment key={idx}>
+                <TelephoneNumber
+                  program={t(`programs.${p.ActivityIdentification.IdentificationID}`)}
+                  mobile={tn.mobile}
+                  home={tn.home}
+                />
+                {idx !== telephoneNumbers.length - 1 && <hr />}
+              </React.Fragment>
             );
           })
         ) : (
