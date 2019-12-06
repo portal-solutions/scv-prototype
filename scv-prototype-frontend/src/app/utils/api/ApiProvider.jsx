@@ -119,7 +119,7 @@ const ApiProvider = (props) => {
     if (addPersonLocationValidationError.hasError()) throw addPersonLocationValidationError;
 
     // call the api service
-    return apiService.addPersonLocation(auth.sin, locationId, programIds);
+    apiService.addPersonLocation(auth.sin, locationId, programIds);
   };
 
   return (

@@ -195,22 +195,28 @@ const searchLocations = async (query) => {
  */
 const addPersonLocation = async (sin, locationId, programIds) => {
   // build the POST url
-  const url = `${config.api.baseUrl}/api/persons/${sin}/locations/locationId/?p=${programIds.join(',')}`;
+  const url = `${config.api.baseUrl}/api/persons/${sin}/locations/${locationId}`;
+
+  const programs = {
+    ProgramIds: Array.isArray(programIds) ? programIds : []
+  };
 
   // build and request the POST request
   const response = await fetch(url, {
     cache: 'no-cache',
     method: 'POST',
-    mode: 'cors'
+    mode: 'cors',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(programs)
   });
 
   // check the response
-  if (!response.ok) {
+  if (response.status !== 204) {
     throw new Error(`Error on POST to ${url}; status=${response.status}`);
   }
-
-  // return body reponse json
-  return response.json();
 };
 
 export {
