@@ -6,6 +6,7 @@ import java.util.Optional;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.Person;
+import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.Program;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
 
@@ -26,4 +27,8 @@ public interface InteropService {
 	List<Program> getPersonPrograms(String id);
 
 	List<ProgramPersonLocationAssociation> getPersonLocations(String id, String sin);
+
+	Optional<PersonLocationAssociation> addLocation(String sin, String locationId);
+
+	Boolean shareLocation(String sin, String locationId, List<String> programIds);
 }

@@ -6,26 +6,36 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.HttpClientErrorException.NotFound;
 import org.springframework.web.client.RestTemplate;
 
+import ca.gov.portal.scv.api.service.dto.AddLocationRequest;
+import ca.gov.portal.scv.api.service.dto.AssociationDateRange;
+import ca.gov.portal.scv.api.service.dto.Identification;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.LocationResponse;
 import ca.gov.portal.scv.api.service.dto.OpenApiInfo;
 import ca.gov.portal.scv.api.service.dto.OpenApiResponse;
 import ca.gov.portal.scv.api.service.dto.Person;
+import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.PersonLocationsResponse;
 import ca.gov.portal.scv.api.service.dto.PersonProgramsResponse;
 import ca.gov.portal.scv.api.service.dto.PersonResponse;
 import ca.gov.portal.scv.api.service.dto.Program;
 import ca.gov.portal.scv.api.service.dto.ProgramBenefitRequest;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
-
+import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociationRequest;
+import ca.gov.portal.scv.api.service.dto.ProgramRequest;
+import ca.gov.portal.scv.api.service.dto.ProgramsPersonLocationAssociation;
+import ca.gov.portal.scv.api.service.dto.StartDate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -105,4 +115,128 @@ public class InteropServiceImpl implements InteropService {
 		}
 	}
 
+	@Override
+	public Optional<PersonLocationAssociation> addLocation(String sin, String locationId) {
+
+		final Optional<Person> person = getPerson(sin);
+		final Optional<Location> location = getLocation(locationId);
+
+		if (person.isPresent() && location.isPresent()) {
+			final String personId = person.get().getOtherIdentification().getId();
+			locationId = location.get().getIdentification().getId();
+
+			// check if the location already added to the actual person
+			final Optional<ProgramPersonLocationAssociation> programPersonLocationAssociation = getProgramPersonLocationAssociation(
+					personId, sin, locationId);
+
+			if (programPersonLocationAssociation.isPresent()) {
+				// location already associated to the person
+				return Optional.of(programPersonLocationAssociation.get().getPersonLocationAssociation());
+			}
+
+			// add location request
+			final AssociationDateRange associationDateRange = AssociationDateRange.builder()
+					.startDate(StartDate.builder().build()).build();
+
+			final AddLocationRequest addLocationRequest = AddLocationRequest.builder()
+					.associationDateRange(associationDateRange).person(person.get()).location(location.get()).build();
+
+			ResponseEntity<Void> reponse = personApiRestTemplate.postForEntity("/Person/{personId}/Location",
+					addLocationRequest, Void.class, personId);
+
+			if (reponse.getStatusCode() == HttpStatus.NO_CONTENT) {
+				// return new PersonLocationAssociation id
+				return Optional.of(getProgramPersonLocationAssociation(personId, sin, locationId).get()
+						.getPersonLocationAssociation());
+			}
+		}
+
+		return Optional.empty();
+	}
+
+	@Override
+	public Boolean shareLocation(String sin, String locationId, List<String> programIds) {
+
+		final Optional<Person> person = getPerson(sin);
+		final Optional<Location> location = getLocation(locationId);
+
+		if (person.isPresent() && location.isPresent()) {
+			final String personId = person.get().getOtherIdentification().getId();
+			locationId = location.get().getIdentification().getId();
+
+			// check if the location is associated to the person
+			final List<ProgramPersonLocationAssociation> programPersonLocationAssociations = getProgramPersonLocationAssociations(
+					personId, sin, locationId);
+
+			// keep program ids that belong to the person
+			final List<String> personProgramIds = getPersonPrograms(personId).stream()
+					.map(Program::getActivityIdentification).map(Identification::getId).collect(Collectors.toList());
+
+			programIds.retainAll(personProgramIds);
+
+			if (!programPersonLocationAssociations.isEmpty() && !programIds.isEmpty()) {
+
+				// remove programid already present
+				programIds.removeIf(programId -> programPersonLocationAssociations.stream()
+						.anyMatch(obj -> obj.getProgram().getActivityIdentification().getId().equals(programId)));
+
+				if (!programIds.isEmpty()) {
+
+					// build the post request
+					// association date range object
+					final AssociationDateRange associationDateRange = AssociationDateRange.builder()
+							.startDate(StartDate.builder().build()).build();
+
+					// person object
+					// PersonLocationAssociation ID into person
+					// DONT ASK ME WHY!?
+					final String personLocationAssociationId = programPersonLocationAssociations.get(0)
+							.getPersonLocationAssociation().getIdentification().getId();
+					final Person personForRequest = Person.builder()
+							.otherIdentification(Identification.builder().id(personLocationAssociationId).build())
+							.build();
+					final PersonLocationAssociation personLocationAssociation = PersonLocationAssociation.builder()
+							.person(personForRequest).build();
+
+					// ProgramsPersonLocationAssociation object
+					final List<ProgramRequest> programs = programIds.stream()
+							.map(programId -> ProgramRequest.builder()
+									.activityIdentification(Identification.builder().id(programId).build()).build())
+							.collect(Collectors.toList());
+
+					final ProgramsPersonLocationAssociation programsPersonLocationAssociation = ProgramsPersonLocationAssociation
+							.builder().associationDateRange(associationDateRange).program(programs)
+							.personLocationAssociation(personLocationAssociation).build();
+
+					// ProgramPersonLocationAssociationRequest object
+					final ProgramPersonLocationAssociationRequest programPersonLocationAssociationRequest = ProgramPersonLocationAssociationRequest
+							.builder().programsPersonLocationAssociation(programsPersonLocationAssociation).build();
+
+					ResponseEntity<Void> response = personApiRestTemplate.postForEntity(
+							"/Person/{personId}/Location/{locationId}", programPersonLocationAssociationRequest,
+							Void.class, personId, locationId);
+
+					if (response.getStatusCode() != HttpStatus.NO_CONTENT) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private Optional<ProgramPersonLocationAssociation> getProgramPersonLocationAssociation(String personId, String sin,
+			String locationId) {
+		return getProgramPersonLocationAssociations(personId, sin, locationId).stream().findFirst();
+	}
+
+	private List<ProgramPersonLocationAssociation> getProgramPersonLocationAssociations(String personId, String sin,
+			String locationId) {
+		return getPersonLocations(personId, sin).stream().filter(
+				obj -> obj.getPersonLocationAssociation().getLocation().getIdentification().getId().equals(locationId))
+				.collect(Collectors.toList());
+	}
 }

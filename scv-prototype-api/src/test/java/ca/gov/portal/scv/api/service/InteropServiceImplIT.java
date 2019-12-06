@@ -3,6 +3,7 @@ package ca.gov.portal.scv.api.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import ca.gov.portal.scv.api.service.dto.Identification;
 import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.Program;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
@@ -100,6 +102,34 @@ public class InteropServiceImplIT {
 
 		// assert
 		assertThat(programPersonLocationAssociations).isNotEmpty();
+	}
+
+	@Test
+	public void testAddLocation_hasResult() {
+		// arrange
+		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
+		final String searchString = environment.getProperty("tests.interop-service.location.success-search-string");
+		final String locationId = interopService.getLocations(searchString).stream().findFirst().get()
+				.getIdentification().getId();
+
+		// assert
+		assertThat(interopService.addLocation(sin, locationId)).isNotEmpty();
+	}
+
+	@Test
+	public void testShareLocationByProgram_hasResult() throws Throwable {
+
+		// arrange
+		final String sin = environment.getProperty("tests.interop-service.person.valid-sin");
+		final String personId = interopService.getPerson(sin).get().getOtherIdentification().getId();
+		final String searchString = environment.getProperty("tests.interop-service.location.success-search-string");
+		final String locationId = interopService.getLocations(searchString).stream().findFirst().get()
+				.getIdentification().getId();
+		final List<String> programid = interopService.getPersonPrograms(personId).stream()
+				.map(Program::getActivityIdentification).map(Identification::getId).collect(Collectors.toList());
+
+		// assert
+		assertThat(interopService.shareLocation(sin, locationId, programid)).isTrue();
 	}
 
 }

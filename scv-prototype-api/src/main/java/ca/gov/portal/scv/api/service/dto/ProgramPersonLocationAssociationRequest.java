@@ -15,10 +15,9 @@ import lombok.Value;
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = AssociationDateRange.AssociationDateRangeBuilder.class)
-public class AssociationDateRange implements Serializable {
+@JsonDeserialize(builder = ProgramPersonLocationAssociationRequest.ProgramPersonLocationAssociationRequestBuilder.class)
+public class ProgramPersonLocationAssociationRequest implements Serializable {
 
-	@JsonProperty("StartDate")
-	private StartDate startDate;
-
+	@JsonProperty("ProgramPersonLocationAssociation")
+	private ProgramsPersonLocationAssociation programsPersonLocationAssociation;
 }

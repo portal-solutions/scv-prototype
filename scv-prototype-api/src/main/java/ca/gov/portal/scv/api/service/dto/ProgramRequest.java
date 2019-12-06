@@ -9,16 +9,16 @@ import lombok.Builder;
 import lombok.Value;
 
 /**
- * @author Greg Baker (gregory.j.baker@hrsdc-rhdcc.gc.ca)
+ * @author Rui Wang (rui.wang@hrsdc-rhdcc.gc.ca)
  * @since 0.0.0
  */
 @Value
 @Builder
 @SuppressWarnings({ "serial" })
-@JsonDeserialize(builder = AssociationDateRange.AssociationDateRangeBuilder.class)
-public class AssociationDateRange implements Serializable {
+@JsonDeserialize(builder = ProgramRequest.ProgramRequestBuilder.class)
+public class ProgramRequest implements Serializable {
 
-	@JsonProperty("StartDate")
-	private StartDate startDate;
+	@JsonProperty("ActivityIdentification")
+	private Identification activityIdentification;
 
 }

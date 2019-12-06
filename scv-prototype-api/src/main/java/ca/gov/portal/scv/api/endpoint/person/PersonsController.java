@@ -2,6 +2,7 @@ package ca.gov.portal.scv.api.endpoint.person;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static java.util.Collections.singletonMap;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
@@ -12,6 +13,8 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +25,7 @@ import ca.gov.portal.scv.api.service.dto.Location;
 import ca.gov.portal.scv.api.service.dto.Person;
 import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
+import ca.gov.portal.scv.api.service.dto.ShareLocationRequest;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -73,4 +77,16 @@ public class PersonsController {
 		}
 	}
 
+	@PostMapping({ "/{sin}/locations/{locationId}" })
+	public ResponseEntity<?> handleShareLocation(@PathVariable("sin") String sin,
+			@PathVariable("locationId") String locationId, @RequestBody ShareLocationRequest shareLocationRequest) {
+
+		Optional<PersonLocationAssociation> personLocationAssociation = interopService.addLocation(sin, locationId);
+		Boolean shareLocationSuccess = interopService.shareLocation(sin, locationId,
+				shareLocationRequest.getProgramIds());
+
+		return personLocationAssociation.isPresent() && shareLocationSuccess ? ResponseEntity.noContent().build()
+				: status(BAD_REQUEST).body(singletonMap("message",
+						"Share location problem with sin=" + sin + " and locationId=" + locationId));
+	}
 }
