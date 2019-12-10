@@ -52,8 +52,9 @@ public class PersonsController {
 	public ResponseEntity<?> handleGetPersonPrograms(@PathVariable String sin) throws Exception {
 		final Optional<Person> person = interopService.getPerson(sin);
 
-		return person.isPresent() ? ok(interopService.getPersonPrograms(person.get().getOtherIdentification().getId()))
-				: status(NOT_FOUND).body(singletonMap("message", "No program found for user with sin=" + sin));
+		return person.isPresent()
+			? ok(interopService.getPersonPrograms(person.get().getOtherIdentification().getId()))
+			: status(NOT_FOUND).body(singletonMap("message", "No program found for user with sin=" + sin));
 	}
 
 	@GetMapping({ "/{sin}/locations" })
@@ -61,32 +62,33 @@ public class PersonsController {
 		final Optional<Person> person = interopService.getPerson(sin);
 
 		if (person.isPresent()) {
+			final List<ProgramPersonLocationAssociation> programPersonLocationAssociations = interopService.getPersonLocations(person.get().getOtherIdentification().getId(), sin);
 
-			List<ProgramPersonLocationAssociation> programPersonLocationAssociations = interopService
-					.getPersonLocations(person.get().getOtherIdentification().getId(), sin);
-
-			List<Location> locations = programPersonLocationAssociations.stream()
+			final List<Location> locations = programPersonLocationAssociations.stream()
 					.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
-					.map(PersonLocationAssociation::getLocation).map(Location::getIdentification)
-					.map(Identification::getId).map(locationId -> interopService.getLocation(locationId).get())
+					.map(PersonLocationAssociation::getLocation)
+					.map(Location::getIdentification)
+					.map(Identification::getId)
+					.map(locationId -> interopService.getLocation(locationId))
+					.filter(Optional::isPresent)
+					.map(Optional::get)
 					.collect(toImmutableList());
 
 			return ok(personLocationProgramsMapper.map(programPersonLocationAssociations, locations));
-		} else {
+		}
+		else {
 			return status(NOT_FOUND).body(singletonMap("message", "No location found for user with sin=" + sin));
 		}
 	}
 
 	@PostMapping({ "/{sin}/locations/{locationId}" })
-	public ResponseEntity<?> handleShareLocation(@PathVariable("sin") String sin,
-			@PathVariable("locationId") String locationId, @RequestBody ShareLocationRequest shareLocationRequest) {
+	public ResponseEntity<?> handleShareLocation(@PathVariable("sin") String sin, @PathVariable("locationId") String locationId, @RequestBody ShareLocationRequest shareLocationRequest) {
+		final Optional<PersonLocationAssociation> personLocationAssociation = interopService.addLocation(sin, locationId);
+		final Boolean shareLocationSuccess = interopService.shareLocation(sin, locationId, shareLocationRequest.getProgramIds());
 
-		Optional<PersonLocationAssociation> personLocationAssociation = interopService.addLocation(sin, locationId);
-		Boolean shareLocationSuccess = interopService.shareLocation(sin, locationId,
-				shareLocationRequest.getProgramIds());
-
-		return personLocationAssociation.isPresent() && shareLocationSuccess ? ResponseEntity.noContent().build()
-				: status(BAD_REQUEST).body(singletonMap("message",
-						"Share location problem with sin=" + sin + " and locationId=" + locationId));
+		return personLocationAssociation.isPresent() && shareLocationSuccess
+			? ResponseEntity.noContent().build()
+			: status(BAD_REQUEST).body(singletonMap("message", "Share location problem with sin=" + sin + " and locationId=" + locationId));
 	}
+
 }
