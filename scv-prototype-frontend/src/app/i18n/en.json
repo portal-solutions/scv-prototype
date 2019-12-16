@@ -101,9 +101,11 @@
         "address": "Address",
         "title": "Addresses",
         "share-with": "Share with",
+        "shared-with": "Shared with",
         "status": {
-          "accepted": "Accepted",
-          "pending": "Pending"
+          "requested": "Requested",
+          "pending": "Pending",
+          "accepted": "Accepted"
         }
       },
       "dates-of-birth": {

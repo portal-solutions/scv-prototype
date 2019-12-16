@@ -9,9 +9,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import ca.gov.portal.scv.api.service.dto.Identification;
 import ca.gov.portal.scv.api.service.dto.PersonLocationAssociation;
-import ca.gov.portal.scv.api.service.dto.Program;
 import ca.gov.portal.scv.api.service.dto.ProgramPersonLocationAssociation;
 import ca.gov.portal.scv.api.service.dto.Location;
 
@@ -32,34 +30,29 @@ public class PersonLocationProgramsMapper {
 
 		List<PersonLocationPrograms> personLocationProgramsList = new ArrayList<PersonLocationPrograms>();
 
-		// collect disctinct personLocationAssociation id
-		List<String> personLocationAssociationIds = programPersonLocationAssociations.stream()
-				.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
-				.map(PersonLocationAssociation::getIdentification).map(Identification::getId).distinct()
+		// collect disctinct personLocationAssociation list
+		List<PersonLocationAssociation> personLocationAssociations = programPersonLocationAssociations.stream()
+				.map(ProgramPersonLocationAssociation::getPersonLocationAssociation).distinct()
 				.collect(toImmutableList());
 
 		// loop through personLocationAssociation ids
-		for (String id : personLocationAssociationIds) {
-
-			// get ProgramPersonLocationAssociations for this PersonLocationAssociation id
-			List<ProgramPersonLocationAssociation> currentProgramPersonLocationAssociations = programPersonLocationAssociations
-					.stream().filter(ppla -> ppla.getPersonLocationAssociation().getIdentification().getId().equals(id))
-					.collect(toImmutableList());
-
-			// get single location id based on the current ProgramPersonLocationAssociation
-			// list
-			String locationId = currentProgramPersonLocationAssociations.stream()
-					.map(ProgramPersonLocationAssociation::getPersonLocationAssociation)
-					.map(PersonLocationAssociation::getLocation).map(Location::getIdentification)
-					.map(Identification::getId).findFirst().get();
+		for (PersonLocationAssociation pla : personLocationAssociations) {
 
 			// try get location
 			Optional<Location> location = locations.stream()
-					.filter(l -> l.getIdentification().getId().equals(locationId)).findFirst();
+					.filter(l -> l.getIdentification().getId().equals(pla.getLocation().getIdentification().getId()))
+					.findFirst();
 
 			if (location.isPresent()) {
+
+				// get ProgramPersonLocationAssociations for this PersonLocationAssociation id
+				List<ProgramPersonLocationAssociation> currentProgramPersonLocationAssociations = programPersonLocationAssociations
+						.stream().filter(ppla -> ppla.getPersonLocationAssociation().getIdentification().getId()
+								.equals(pla.getIdentification().getId()))
+						.collect(toImmutableList());
+
 				// add new item to list
-				personLocationProgramsList.add(this.map(currentProgramPersonLocationAssociations, location.get()));
+				personLocationProgramsList.add(this.map(location.get(), currentProgramPersonLocationAssociations));
 
 			}
 		}
@@ -67,24 +60,18 @@ public class PersonLocationProgramsMapper {
 		return personLocationProgramsList;
 	}
 
-	private PersonLocationPrograms map(List<ProgramPersonLocationAssociation> programPersonLocationAssociations,
-			Location location) {
+	private PersonLocationPrograms map(Location location,
+			List<ProgramPersonLocationAssociation> programPersonLocationAssociations) {
 
-		// get first one
-		ProgramPersonLocationAssociation programPersonLocationAssociation = programPersonLocationAssociations.stream()
-				.findFirst().get();
-
-		// get distinct lis of program ids
-		List<String> programIds = programPersonLocationAssociations.stream()
-				.filter(ppla -> !ppla.getProgram().getActivityIdentification().getId().equals("1"))
-				.map(ProgramPersonLocationAssociation::getProgram).map(Program::getActivityIdentification)
-				.map(Identification::getId).collect(toImmutableList());
-
-		return PersonLocationPrograms.builder().programIds(programIds)
-				.locationAddressCategoryText(programPersonLocationAssociation.getPersonLocationAssociation()
-						.getLocation().getLocationAddress().getAddressCategory())
-				.statusText(programPersonLocationAssociation.getRequestStatus().getStatusText())
-				.statusDate(programPersonLocationAssociation.getRequestStatus().getStatusDate().getDate())
-				.location(locationMapper.map(location)).build();
+		return PersonLocationPrograms.builder()
+				.personLocationAssociation(programPersonLocationAssociations.stream()
+						.map(ProgramPersonLocationAssociation::getPersonLocationAssociation).findFirst().get())
+				.location(locationMapper.map(location))
+				.programRequestStatuses(
+						programPersonLocationAssociations.stream()
+								.map(ppla -> ProgramRequestStatus.builder().program(ppla.getProgram())
+										.requestStatus(ppla.getRequestStatus()).build())
+								.collect(toImmutableList()))
+				.build();
 	}
 }
