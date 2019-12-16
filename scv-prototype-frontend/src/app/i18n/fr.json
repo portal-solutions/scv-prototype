@@ -102,9 +102,11 @@
         "address": "Adresse",
         "title": "Adresses",
         "share-with": "Partager avec",
+        "shared-with": "Partagée avec",
         "status": {
-          "accepted": "Acceptée",
-          "pending": "En attendante"
+          "requested": "Demandée",
+          "pending": "En attendante",
+          "accepted": "Acceptée"
         }
       },
       "dates-of-birth": {
