@@ -21,7 +21,7 @@
 		<!-- see https://maven.apache.org/maven-ci-friendly.html -->
 		<revision>0.0.0-SNAPSHOT</revision>
 
-		<guava.version>28.1-jre</guava.version>
+		<guava.version>29.0-jre</guava.version>
 		<java-jwt.version>3.8.2</java-jwt.version>
 		<springfox.version>2.9.2</springfox.version>
 
